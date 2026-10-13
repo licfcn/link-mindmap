@@ -1,0 +1,8 @@
+data.json
+src.js
+i18n.js
+node_modules/
+.codeartsdoer/
+.DS_Store
+*.log
+DEVELOP.md
