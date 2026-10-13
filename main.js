@@ -493,7 +493,9 @@ var te = _e((Be, Qt) => {
       \u6E05\u7A7A: "Clear",
       \u6E05\u7A7A\u6240\u6709\u7B5B\u9009\u6761\u4EF6: "Clear all filters",
       \u5728\u5BFC\u56FE\u4E2D\u663E\u793A: "Show in Mindmap",
-      \u6309\u6307\u5B9A\u65E5\u671F\u7B5B\u9009: "Filter by specific date"
+      \u6309\u6307\u5B9A\u65E5\u671F\u7B5B\u9009: "Filter by specific date",
+      \u8FD1\u4E00\u5468: "Past week",
+      \u8FD1\u4E00\u6708: "Past month"
     }
   }, At = "zh";
   function ve(b) {
@@ -1033,7 +1035,7 @@ var qt = me, ge = class extends ne {
 y(ge, "MoveModal");
 var Wt = ge, ke = class extends Te {
   constructor(t, s) {
-    super(t), this.plugin = s, this.rootPath = null, this.depth = s.settings.defaultDepth, this.notes = /* @__PURE__ */ new Map(), this.referenced = /* @__PURE__ */ new Set(), this.currentRoot = null, this._cleanup = [], this._view = null, this._expandedMem = /* @__PURE__ */ new Map(), this._history = [], this._selected = /* @__PURE__ */ new Set(), this._batchMode = !1, this._selKey = null, this._mode = "map", this._kwFile = null, this._multiRoot = !1, this._toolbarCollapsed = !1, this._dashFilters = [], this._dashSort = "date", this._dashSearch = "", this._dashHeatIdx = 0, this._dashBranchAll = !1, this._dashTab = "stats", this._tlSort = "desc", this._tlTypeFilter = "", this._tlSearch = "", this._tlRange = "all", this._tlZkFilter = "all", this._tlStatusFilter = "all", this._tlDateFilter = "", this._nodeIndex = /* @__PURE__ */ new Map();
+    super(t), this.plugin = s, this.rootPath = null, this.depth = s.settings.defaultDepth, this.notes = /* @__PURE__ */ new Map(), this.referenced = /* @__PURE__ */ new Set(), this.currentRoot = null, this._cleanup = [], this._view = null, this._expandedMem = /* @__PURE__ */ new Map(), this._history = [], this._selected = /* @__PURE__ */ new Set(), this._batchMode = !1, this._selKey = null, this._mode = "map", this._kwFile = null, this._multiRoot = !1, this._toolbarCollapsed = !1, this._dashFilters = [], this._dashSort = "date", this._dashSearch = "", this._dashHeatIdx = 0, this._dashBranchAll = !1, this._dashTab = "stats", this._tlSort = "desc", this._tlTypeFilter = "", this._tlSearch = "", this._tlRange = "pweek", this._tlZkFilter = "all", this._tlStatusFilter = "all", this._tlDateFilter = "", this._nodeIndex = /* @__PURE__ */ new Map();
   }
   get s() {
     return this.plugin.settings;
@@ -2937,7 +2939,7 @@ ${c}: "${d}"
       this._tlTypeFilter = o.value, this._renderTimelineBody(k, i);
     }), n.createEl("span", { cls: "lkm-tl-label", text: e("\u65F6\u95F4") });
     let r = n.createEl("select", { cls: "lkm-tl-typesel" });
-    for (let [_, v] of [["all", e("\u5168\u90E8")], ["day", e("\u4ECA\u65E5")], ["week", e("\u672C\u5468")], ["month", e("\u672C\u6708")], ["year", e("\u672C\u5E74")]])
+    for (let [_, v] of [["all", e("\u5168\u90E8")], ["day", e("\u4ECA\u65E5")], ["week", e("\u672C\u5468")], ["month", e("\u672C\u6708")], ["year", e("\u672C\u5E74")], ["pweek", e("\u8FD1\u4E00\u5468")], ["pmonth", e("\u8FD1\u4E00\u6708")], ["pyear", e("\u8FD1\u4E00\u5E74")]])
       r.createEl("option", { value: _, text: v });
     r.value = this._tlRange, r.addEventListener("change", () => {
       this._tlRange = r.value, this._renderTimelineBody(k, i);
@@ -2964,7 +2966,7 @@ ${c}: "${d}"
     });
     let m = n.createEl("button", { cls: "lkm-btn", text: e("\u6E05\u7A7A") });
     m.title = e("\u6E05\u7A7A\u6240\u6709\u7B5B\u9009\u6761\u4EF6"), m.addEventListener("click", () => {
-      this._tlSearch = "", this._tlTypeFilter = "", this._tlRange = "all", this._tlZkFilter = "all", this._tlStatusFilter = "all", this._tlDateFilter = "", this.render();
+      this._tlSearch = "", this._tlTypeFilter = "", this._tlRange = "pweek", this._tlZkFilter = "all", this._tlStatusFilter = "all", this._tlDateFilter = "", this.render();
     });
     let k = t.createDiv({ cls: "lkm-tl-body" });
     this._renderTimelineBody(k, i);
@@ -2976,7 +2978,7 @@ ${c}: "${d}"
       i = i.filter((c) => c.ctime && c.ctime.slice(0, 10) === this._tlDateFilter);
     else if (this._tlRange !== "all") {
       let c = /* @__PURE__ */ new Date(), h = c.getFullYear() + "-" + String(c.getMonth() + 1).padStart(2, "0") + "-" + String(c.getDate()).padStart(2, "0"), d = /* @__PURE__ */ new Date(h), p = null;
-      if (this._tlRange === "day" ? p = d : this._tlRange === "week" ? p = new Date(d.getTime() - 6 * 864e5) : this._tlRange === "month" ? p = new Date(d.getTime() - 29 * 864e5) : this._tlRange === "year" && (p = new Date(d.getTime() - 364 * 864e5)), p) {
+      if (this._tlRange === "day" ? p = d : this._tlRange === "week" || this._tlRange === "pweek" ? p = new Date(d.getTime() - 6 * 864e5) : this._tlRange === "month" || this._tlRange === "pmonth" ? p = new Date(d.getTime() - 29 * 864e5) : (this._tlRange === "year" || this._tlRange === "pyear") && (p = new Date(d.getTime() - 364 * 864e5)), p) {
         let m = p.getFullYear() + "-" + String(p.getMonth() + 1).padStart(2, "0") + "-" + String(p.getDate()).padStart(2, "0");
         i = i.filter((k) => {
           if (!k.ctime) return !1;
