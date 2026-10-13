@@ -774,13 +774,17 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 @media (max-width: 600px) {
   .lkm-view .lkm-toolbar .lkm-btn { min-height: 36px; min-width: 36px; padding: 6px 12px; font-size: 13px; }
   .lkm-btn-icon { font-size: 15px; }
+  .lkm-view .lkm-filter-toggle { display: inline-flex; }
+  .lkm-filter-input { display: none; height: 30px; width: 80px; font-size: 12px; }
+  .lkm-toolbar.lkm-filter-open .lkm-filter-input { display: inline-block; }
   .lkm-multipick { max-width: 94vw; }
   .lkm-multipick-list { max-height: 50vh; }
   .lkm-toolbar-toggle { display: inline-flex; }
   .lkm-toolbar.lkm-collapsed .lkm-btn:not(.lkm-toolbar-toggle),
   .lkm-toolbar.lkm-collapsed .lkm-depth,
   .lkm-toolbar.lkm-collapsed .lkm-toolbar-sep,
-  .lkm-toolbar.lkm-collapsed .lkm-sel-count { display: none; }
+  .lkm-toolbar.lkm-collapsed .lkm-sel-count,
+  .lkm-toolbar.lkm-collapsed .lkm-filter-input { display: none; }
   .lkm-confirm-row { flex-wrap: wrap; justify-content: stretch; }
   .lkm-confirm-row button { flex: 1 1 100%; min-height: 40px; font-size: 14px; padding: 8px 12px; }
   .lkm-multipick-filter { flex-wrap: wrap; }
@@ -826,8 +830,9 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 }
 .lkm-guide-val { color: var(--text-muted); }
 /* ---- 筛选高亮 ---- */
+.lkm-filter-toggle { display: none; }
 .lkm-filter-input {
-  margin-left: auto; height: 26px; width: 120px;
+  height: 26px; width: 120px;
   font-size: 12px; padding: 0 8px; border-radius: 6px;
   border: 1px solid var(--background-modifier-border);
   background: var(--background-secondary);

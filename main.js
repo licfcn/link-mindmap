@@ -1,7 +1,7 @@
 "use strict";
-var _e = (b, t) => () => {
+var _e = (x, t) => () => {
   try {
-    return t || b((t = { exports: {} }).exports, t), t.exports;
+    return t || x((t = { exports: {} }).exports, t), t.exports;
   } catch (s) {
     throw t = 0, s;
   }
@@ -498,14 +498,14 @@ var te = _e((Be, Qt) => {
       \u8FD1\u4E00\u6708: "Past month"
     }
   }, At = "zh";
-  function ve(b) {
-    At = b || "zh";
+  function ve(x) {
+    At = x || "zh";
   }
   function xe() {
     return At;
   }
-  function be(b, t) {
-    let s = Jt[At] && Jt[At][b] || b;
+  function be(x, t) {
+    let s = Jt[At] && Jt[At][x] || x;
     if (t) for (let i in t) s = s.split("{" + i + "}").join(t[i]);
     return s;
   }
@@ -513,7 +513,7 @@ var te = _e((Be, Qt) => {
 });
 
 // ../src.js
-var y = (b, t) => b, Ce = require("obsidian"), {
+var y = (x, t) => x, Ce = require("obsidian"), {
   Plugin: Se,
   ItemView: Te,
   Notice: w,
@@ -571,15 +571,15 @@ var y = (b, t) => b, Ce = require("obsidian"), {
     \u8D44\u6E90: "#7f8fa6"
   }
 };
-function Bt(b) {
-  return b == null ? [] : Array.isArray(b) ? b.slice() : [b];
+function Bt(x) {
+  return x == null ? [] : Array.isArray(x) ? x.slice() : [x];
 }
 y(Bt, "toArr");
-function bt(b) {
-  return String(b ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
+function bt(x) {
+  return String(x ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
 }
 y(bt, "cleanLink");
-function Xt(b) {
+function Xt(x) {
   let t = [], s = /* @__PURE__ */ y((i) => {
     if (i == null) return;
     let n = String(i), a = /\[\[([^\[\]]+?)\]\]/g, o, l = !1;
@@ -590,39 +590,39 @@ function Xt(b) {
       r && t.push(r);
     }
   }, "push");
-  return Array.isArray(b) ? b.forEach(s) : s(b), t;
+  return Array.isArray(x) ? x.forEach(s) : s(x), t;
 }
 y(Xt, "extractLinks");
-function tt(b, t) {
-  return b = String(b ?? ""), t > 0 && b.length > t ? b.slice(0, t - 1) + "\u2026" : b;
+function tt(x, t) {
+  return x = String(x ?? ""), t > 0 && x.length > t ? x.slice(0, t - 1) + "\u2026" : x;
 }
 y(tt, "truncate");
-function ae(b, t) {
+function ae(x, t) {
   let s = 0;
-  for (let i of String(b ?? ""))
+  for (let i of String(x ?? ""))
     s += /[一-鿿　-〿＀-￯]/.test(i) ? t : t * 0.55;
   return s;
 }
 y(ae, "estWidth");
 var Ot = null, zt = /* @__PURE__ */ new Map();
-function Gt(b, t, s) {
-  let i = b + "|" + t + "|" + (s ? 1 : 0), n = zt.get(i);
+function Gt(x, t, s) {
+  let i = x + "|" + t + "|" + (s ? 1 : 0), n = zt.get(i);
   if (n !== void 0) return n;
   let a;
   try {
-    Ot || (Ot = document.createElement("canvas").getContext("2d")), Ot.font = (s ? "600 " : "") + t + 'px Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif', a = Ot.measureText(String(b ?? "")).width;
+    Ot || (Ot = document.createElement("canvas").getContext("2d")), Ot.font = (s ? "600 " : "") + t + 'px Inter, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif', a = Ot.measureText(String(x ?? "")).width;
   } catch {
-    a = ae(b, t);
+    a = ae(x, t);
   }
   return zt.size > 2e3 && zt.clear(), zt.set(i, a), a;
 }
 y(Gt, "measureTextWidth");
-function ft(b) {
-  return String(b).replace(/[\\/:*?"<>|#^\[\]]/g, "-").trim() || e("\u672A\u547D\u540D");
+function ft(x) {
+  return String(x).replace(/[\\/:*?"<>|#^\[\]]/g, "-").trim() || e("\u672A\u547D\u540D");
 }
 y(ft, "safeFileName");
-function oe(b) {
-  let t = String(b ?? "").replace(/^﻿/, "").replace(/\r\n/g, `
+function oe(x) {
+  let t = String(x ?? "").replace(/^﻿/, "").replace(/\r\n/g, `
 `).replace(/^\n+/, ""), s = t.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
   if (!s) return { fields: [], body: t };
   let i = [];
@@ -634,18 +634,18 @@ function oe(b) {
   return { fields: i, body: t.slice(s[0].length) };
 }
 y(oe, "splitFrontmatter");
-function Kt(b) {
-  return b = String(b ?? "").trim(), b.length >= 2 && (b.charAt(0) === '"' && b.charAt(b.length - 1) === '"' || b.charAt(0) === "'" && b.charAt(b.length - 1) === "'") ? b.slice(1, -1) : b;
+function Kt(x) {
+  return x = String(x ?? "").trim(), x.length >= 2 && (x.charAt(0) === '"' && x.charAt(x.length - 1) === '"' || x.charAt(0) === "'" && x.charAt(x.length - 1) === "'") ? x.slice(1, -1) : x;
 }
 y(Kt, "stripYamlQuotes");
-function I(b, t) {
-  let s = document.createElementNS(Me, b);
+function I(x, t) {
+  let s = document.createElementNS(Me, x);
   if (t) for (let i in t) s.setAttribute(i, t[i]);
   return s;
 }
 y(I, "svgEl");
-function re(b, t, s) {
-  let i = b && (b[s || "date"] != null ? b[s || "date"] : "");
+function re(x, t, s) {
+  let i = x && (x[s || "date"] != null ? x[s || "date"] : "");
   if (i) {
     let n = String(i).match(/(\d{4})[-/年](\d{1,2})[-/月](\d{1,2})/);
     if (n) return n[1] + "-" + String(n[2]).padStart(2, "0") + "-" + String(n[3]).padStart(2, "0");
@@ -661,9 +661,9 @@ function re(b, t, s) {
   return "";
 }
 y(re, "createdOf");
-function ce(b) {
+function ce(x) {
   try {
-    let t = b.stat;
+    let t = x.stat;
     if (t && t.ctime) {
       let s = new Date(t.ctime);
       return s.getFullYear() + "-" + String(s.getMonth() + 1).padStart(2, "0") + "-" + String(s.getDate()).padStart(2, "0") + " " + String(s.getHours()).padStart(2, "0") + ":" + String(s.getMinutes()).padStart(2, "0") + ":" + String(s.getSeconds()).padStart(2, "0");
@@ -673,25 +673,25 @@ function ce(b) {
   return "";
 }
 y(ce, "fileCtime");
-function $t(b, t) {
+function $t(x, t) {
   let s = et(t || ""), i = [];
-  for (let n of b.vault.getMarkdownFiles())
+  for (let n of x.vault.getMarkdownFiles())
     s && n.path !== s && !n.path.startsWith(s + "/") || i.push(n);
   return i;
 }
 y($t, "notesInFolder");
-function he(b, t) {
-  let s = $t(b, t.mainFolder);
+function he(x, t) {
+  let s = $t(x, t.mainFolder);
   if (!s.length) return !0;
   for (let i of s)
-    if ((b.metadataCache.getFileCache(i) || {}).frontmatter) return !0;
+    if ((x.metadataCache.getFileCache(i) || {}).frontmatter) return !0;
   return !1;
 }
 y(he, "metadataReady");
-function Ht(b, t) {
+function Ht(x, t) {
   let s = t.linkField || "children", i = t.backField || "parent", n = t.zkField || "main", a = t.statusField || "status", o = t.typeField || "type", l = t.dateField || "date", r = t.titleField || "title", c = /* @__PURE__ */ new Map();
-  for (let d of $t(b, t.mainFolder)) {
-    let p = (b.metadataCache.getFileCache(d) || {}).frontmatter || {};
+  for (let d of $t(x, t.mainFolder)) {
+    let p = (x.metadataCache.getFileCache(d) || {}).frontmatter || {};
     c.set(d.path, {
       file: d,
       title: p[r] ? String(p[r]) : d.basename,
@@ -707,22 +707,22 @@ function Ht(b, t) {
   let h = /* @__PURE__ */ new Set();
   for (let d of c.values())
     for (let p of d.childLinks) {
-      let m = b.metadataCache.getFirstLinkpathDest(p, d.file.path);
+      let m = x.metadataCache.getFirstLinkpathDest(p, d.file.path);
       m && c.has(m.path) && h.add(m.path);
     }
   return { map: c, referenced: h };
 }
 y(Ht, "collectNotes");
-function Ut(b, t, s, i) {
+function Ut(x, t, s, i) {
   let n = i === "child" ? s.childLinks : s.parentLinks, a = [];
   for (let o of n) {
-    let l = b.metadataCache.getFirstLinkpathDest(o, s.file.path);
+    let l = x.metadataCache.getFirstLinkpathDest(o, s.file.path);
     l && t.has(l.path) && a.push(t.get(l.path));
   }
   return a;
 }
 y(Ut, "resolveLinks");
-function Dt(b, t, s) {
+function Dt(x, t, s) {
   let i = /* @__PURE__ */ new Set([s.file.path]), n = /* @__PURE__ */ y((l, r) => {
     let c = {
       note: l,
@@ -733,7 +733,7 @@ function Dt(b, t, s) {
       key: (r ? r.key + ">" : ">") + l.file.path
     };
     for (let h of l.childLinks) {
-      let d = b.metadataCache.getFirstLinkpathDest(h, l.file.path);
+      let d = x.metadataCache.getFirstLinkpathDest(h, l.file.path);
       if (!d) continue;
       let p = t.get(d.path);
       !p || i.has(d.path) || (i.add(d.path), c.children.push(n(p, c)), i.delete(d.path));
@@ -749,7 +749,7 @@ function Dt(b, t, s) {
   }), "collect"))(a);
   for (let [l, r] of o) {
     if (r.length < 2) continue;
-    let c = t.get(l), h = new Set(c ? Ut(b, t, c, "parent").map((p) => p.file.path) : []), d = -1;
+    let c = t.get(l), h = new Set(c ? Ut(x, t, c, "parent").map((p) => p.file.path) : []), d = -1;
     for (let p = 0; p < r.length; p++) {
       let m = r[p].parent && r[p].parent.note.file ? r[p].parent.note.file.path : null;
       if (m && h.has(m)) {
@@ -764,8 +764,8 @@ function Dt(b, t, s) {
   return a;
 }
 y(Dt, "buildTree");
-function Yt(b, t) {
-  let s = [[b, 1]];
+function Yt(x, t) {
+  let s = [[x, 1]];
   for (; s.length; ) {
     let [i, n] = s.pop();
     i.expanded = n < t && i.children.length > 0;
@@ -773,7 +773,7 @@ function Yt(b, t) {
   }
 }
 y(Yt, "applyDepth");
-function Nt(b, t) {
+function Nt(x, t) {
   let s = [], i = [], n = t.layoutDir === "v";
   return (/* @__PURE__ */ y((function a(o) {
     if (!o._w) {
@@ -796,7 +796,7 @@ function Nt(b, t) {
         a(c), r += c._h + (h ? t.gapY : 0);
       }), o._h = Math.max(t.nodeHeight, r);
     }
-  }), "measure"))(b), (/* @__PURE__ */ y((function a(o, l, r) {
+  }), "measure"))(x), (/* @__PURE__ */ y((function a(o, l, r) {
     o._x = l, o._y = r + o._h / 2, s.push(o);
     let c = o.expanded ? o.children : [];
     if (n) {
@@ -814,21 +814,21 @@ function Nt(b, t) {
       for (let d of c)
         a(d, l + o._w + t.gapX, h), i.push([o, d]), h += d._h + t.gapY;
     }
-  }), "place"))(b, 0, 0), { nodes: s, edges: i };
+  }), "place"))(x, 0, 0), { nodes: s, edges: i };
 }
 y(Nt, "layoutTree");
-async function Rt(b, t, s, i) {
-  await b.fileManager.processFrontMatter(t, (n) => {
+async function Rt(x, t, s, i) {
+  await x.fileManager.processFrontMatter(t, (n) => {
     let a = Bt(n[s]);
     a.some((l) => bt(l) === i) || a.push("[[" + i + "]]"), n[s] = a;
   });
 }
 y(Rt, "addLink");
-async function _t(b, t, s, i) {
+async function _t(x, t, s, i) {
   let n = !1;
-  return await b.fileManager.processFrontMatter(t, (a) => {
+  return await x.fileManager.processFrontMatter(t, (a) => {
     let o = Bt(a[s]), l = o.filter((r) => {
-      let c = b.metadataCache.getFirstLinkpathDest(bt(r), t.path);
+      let c = x.metadataCache.getFirstLinkpathDest(bt(r), t.path);
       return !(c && c.path === i);
     });
     l.length !== o.length && (n = !0), l.length ? a[s] = l : delete a[s];
@@ -898,11 +898,11 @@ var Et = de, pe = class extends xt {
       h.empty();
       let v = m(), C = 0, L = 100;
       for (let N = 0; N < v.length && C < L; N++) {
-        let x = v[N], A = h.createDiv("lkm-multipick-row");
-        this.selected.has(x.path) && A.classList.add("is-selected"), A.createSpan({ text: x.label });
+        let b = v[N], A = h.createDiv("lkm-multipick-row");
+        this.selected.has(b.path) && A.classList.add("is-selected"), A.createSpan({ text: b.label });
         let D = [];
-        x.isMain && D.push(e("\u4E3B\u7B14\u8BB0")), x.type && D.push(x.type), D.length && A.createSpan({ text: " \xB7 " + D.join(" \xB7 "), cls: "lkm-multipick-type" }), A.addEventListener("click", () => {
-          this.selected.has(x.path) ? this.selected.delete(x.path) : this.selected.set(x.path, x.label), A.classList.toggle("is-selected"), d.setText(e("\u5DF2\u9009 ") + this.selected.size + e(" \u7BC7\u7B14\u8BB0"));
+        b.isMain && D.push(e("\u4E3B\u7B14\u8BB0")), b.type && D.push(b.type), D.length && A.createSpan({ text: " \xB7 " + D.join(" \xB7 "), cls: "lkm-multipick-type" }), A.addEventListener("click", () => {
+          this.selected.has(b.path) ? this.selected.delete(b.path) : this.selected.set(b.path, b.label), A.classList.toggle("is-selected"), d.setText(e("\u5DF2\u9009 ") + this.selected.size + e(" \u7BC7\u7B14\u8BB0"));
         }), C++;
       }
       C === 0 ? h.createEl("p", { text: e("\u65E0\u5339\u914D\u7ED3\u679C"), cls: "lkm-modal-sub" }) : C === L && h.createEl("p", { text: e("\u4EC5\u663E\u793A\u524D ") + L + e(" \u6761\uFF0C\u8BF7\u641C\u7D22\u7F29\u5C0F\u8303\u56F4"), cls: "lkm-modal-sub" });
@@ -1155,37 +1155,37 @@ var Wt = ge, ke = class extends Te {
     }
     let i = this.s;
     s.tabIndex = -1;
-    let n = /* @__PURE__ */ y((x) => {
-      let A = x.target.tagName;
+    let n = /* @__PURE__ */ y((b) => {
+      let A = b.target.tagName;
       if (!(A === "INPUT" || A === "TEXTAREA"))
-        if (x.key === "Delete" || x.key === "Backspace") {
+        if (b.key === "Delete" || b.key === "Backspace") {
           if (this._selKey) {
-            x.preventDefault();
+            b.preventDefault();
             let f = this._nodeIndex.get(this._selKey);
             f && this._deleteNode(f);
           }
-        } else if (x.key === "Enter") {
+        } else if (b.key === "Enter") {
           if (this._selKey) {
-            x.preventDefault();
+            b.preventDefault();
             let f = this._nodeIndex.get(this._selKey);
             f && f.note.file && this.app.workspace.getLeaf(!0).openFile(f.note.file);
           }
-        } else if (x.key === "Escape")
+        } else if (b.key === "Escape")
           this._batchMode ? (this._batchMode = !1, this._selected.clear(), this.render()) : this._selKey && this._select(null);
-        else if (x.key === "ArrowUp" || x.key === "ArrowDown" || x.key === "ArrowLeft" || x.key === "ArrowRight") {
+        else if (b.key === "ArrowUp" || b.key === "ArrowDown" || b.key === "ArrowLeft" || b.key === "ArrowRight") {
           if (!this._selKey) return;
           let f = this._nodeIndex.get(this._selKey);
           if (!f) return;
-          if (x.preventDefault(), x.key === "ArrowLeft")
+          if (b.preventDefault(), b.key === "ArrowLeft")
             f.expanded && f.children.length ? (f.expanded = !1, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, !1), this.render()) : f.parent && this._select(f.parent.key);
-          else if (x.key === "ArrowRight")
+          else if (b.key === "ArrowRight")
             !f.expanded && f.children.length ? (f.expanded = !0, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, !0), this.render()) : f.children.length && this._select(f.children[0].key);
-          else if (x.key === "ArrowUp") {
+          else if (b.key === "ArrowUp") {
             if (f.parent) {
               let D = f.parent.children, F = D.indexOf(f);
               F > 0 ? this._select(D[F - 1].key) : this._select(f.parent.key);
             }
-          } else if (x.key === "ArrowDown") {
+          } else if (b.key === "ArrowDown") {
             if (f.expanded && f.children.length) {
               this._select(f.children[0].key);
               return;
@@ -1200,29 +1200,29 @@ var Wt = ge, ke = class extends Te {
               D = D.parent;
             }
           }
-        } else if (x.key === " ") {
+        } else if (b.key === " ") {
           if (this._selKey) {
-            x.preventDefault();
+            b.preventDefault();
             let f = this._nodeIndex.get(this._selKey);
             f && f.children.length && (f.expanded = !f.expanded, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, f.expanded), this.render());
           }
-        } else if (x.key === "n" || x.key === "N") {
+        } else if (b.key === "n" || b.key === "N") {
           if (this._selKey) {
-            x.preventDefault();
+            b.preventDefault();
             let f = this._nodeIndex.get(this._selKey);
             f && this._addChildDialog(f);
           }
-        } else x.key === "b" || x.key === "B" ? (x.preventDefault(), this._back()) : x.key === "/" && (x.preventDefault(), this.openNoteSearch());
+        } else b.key === "b" || b.key === "B" ? (b.preventDefault(), this._back()) : b.key === "/" && (b.preventDefault(), this.openNoteSearch());
     }, "onKeydown");
     s.addEventListener("keydown", n), this._cleanup.push(() => s.removeEventListener("keydown", n)), this._titleLenApplied !== i.maxTitleLen && (this._titleLenApplied = i.maxTitleLen);
     let a = s.createDiv("lkm-toolbar"), o = a.createEl("button", { cls: "lkm-btn lkm-toolbar-toggle", text: "\u2630" });
     o.title = e("\u5C55\u5F00/\u6298\u53E0\u5DE5\u5177\u680F"), o.onclick = () => {
       this._toolbarCollapsed = !this._toolbarCollapsed, a.classList.toggle("lkm-collapsed", this._toolbarCollapsed);
     }, this._toolbarCollapsed && a.classList.add("lkm-collapsed");
-    let l = /* @__PURE__ */ y((x, A, f, D, F, T) => {
+    let l = /* @__PURE__ */ y((b, A, f, D, F, T) => {
       let g = a.createEl("button", { cls: "lkm-btn" + (D ? " " + D : "") });
-      return T ? (g.createEl("span", { cls: "lkm-btn-icon", text: T }), g.createEl("span", { text: x })) : g.textContent = x, g.title = A, F && (g.disabled = !0), g.onclick = () => {
-        g.disabled || f(g);
+      return T ? (g.createEl("span", { cls: "lkm-btn-icon", text: T }), g.createEl("span", { text: b })) : g.textContent = b, g.title = A, F && (g.disabled = !0), g.onclick = (O) => {
+        g.disabled || f(g, O);
       }, g;
     }, "mkBtn"), r = this._selKey ? this._nodeIndex.get(this._selKey) : null, c = !r;
     l(e("\u5DE5\u4F5C\u53F0"), e("\u67E5\u770B\u7EDF\u8BA1\u5DE5\u4F5C\u53F0"), () => {
@@ -1235,24 +1235,24 @@ var Wt = ge, ke = class extends Te {
       this.depth > 1 && (this.depth--, this._expandedMem.clear(), p.setText(String(this.depth)), this.render());
     }, m.onclick = () => {
       this.depth < 12 && (this.depth++, this._expandedMem.clear(), p.setText(String(this.depth)), this.render());
-    }, l(e("\u8FD4\u56DE"), e("\u8FD4\u56DE\u4E0A\u4E00\u6B21\u89C6\u56FE\u4F4D\u7F6E"), () => this._back(), "", !1, "\u2190"), l(e("\u5237\u65B0"), e("\u91CD\u65B0\u8BFB\u53D6\u76EE\u5F55\u4E0E\u7B14\u8BB0\u6570\u636E"), () => this.rebuild(!0), "", !1, "\u21BB"), l(e("\u9002\u5E94"), e("\u7F29\u653E\u81F3\u5B8C\u6574\u663E\u793A\u6240\u6709\u8282\u70B9"), () => this._fit && this._fit(), "", !1, "\u2922"), l(e("\u5168\u5C55"), e("\u5C55\u5F00\u6240\u6709\u8282\u70B9"), () => this._expandAll(!0), "", !1, "\u2295"), l(e("\u5168\u6298"), e("\u6298\u53E0\u6240\u6709\u5B50\u8282\u70B9"), () => this._expandAll(!1), "", !1, "\u2296"), l(this.s.layoutDir === "v" ? e("\u7EB5\u5411") : e("\u6A2A\u5411"), e("\u5207\u6362\u5E03\u5C40\u65B9\u5411\uFF08\u6A2A\u5411/\u7EB5\u5411\uFF09"), (x) => {
+    }, l(e("\u5237\u65B0"), e("\u91CD\u65B0\u8BFB\u53D6\u76EE\u5F55\u4E0E\u7B14\u8BB0\u6570\u636E"), () => this.rebuild(!0), "", !1, "\u21BB"), l(e("\u9002\u5E94"), e("\u7F29\u653E\u81F3\u5B8C\u6574\u663E\u793A\u6240\u6709\u8282\u70B9"), () => this._fit && this._fit(), "", !1, "\u2922"), l(e("\u5168\u5C55"), e("\u5C55\u5F00\u6240\u6709\u8282\u70B9"), () => this._expandAll(!0), "", !1, "\u2295"), l(e("\u5168\u6298"), e("\u6298\u53E0\u6240\u6709\u5B50\u8282\u70B9"), () => this._expandAll(!1), "", !1, "\u2296"), l(this.s.layoutDir === "v" ? e("\u7EB5\u5411") : e("\u6A2A\u5411"), e("\u5207\u6362\u5E03\u5C40\u65B9\u5411\uFF08\u6A2A\u5411/\u7EB5\u5411\uFF09"), (b) => {
       this.s.layoutDir = this.s.layoutDir === "v" ? "h" : "v", this.plugin.saveSettings(), this._view = null, this.render({ fit: !0 });
-    }, this.s.layoutDir === "v" ? "is-active" : "", !1, "\u21C4"), l(e("\u5FEB\u6377\u952E"), e("\u67E5\u770B\u952E\u76D8\u5FEB\u6377\u952E\u8BF4\u660E"), () => this._showShortcutHelp(), "", !1, "\u2328"), l(e("\u5BFC\u51FA"), e("\u5BFC\u51FA\u5BFC\u56FE\u4E3A SVG / PNG / Markdown \u5927\u7EB2"), (x) => this._exportMenu(x), "", !1, "\u2B07");
+    }, this.s.layoutDir === "v" ? "is-active" : "", !1, "\u21C4"), l(e("\u5FEB\u6377\u952E"), e("\u67E5\u770B\u952E\u76D8\u5FEB\u6377\u952E\u8BF4\u660E"), () => this._showShortcutHelp(), "", !1, "\u2328"), l(e("\u5BFC\u51FA"), e("\u5BFC\u51FA\u5BFC\u56FE\u4E3A SVG / PNG / Markdown \u5927\u7EB2"), (b) => this._exportMenu(b), "", !1, "\u2B07");
     let k = l(e("\u663E\u793A"), e("\u5207\u6362\u663E\u793A\u9009\u9879"), () => {
-      let x = new Vt();
-      x.addItem((f) => f.setTitle(this.s.showCreated ? e("\u2713 \u65F6\u95F4") : e("\u65F6\u95F4")).setIcon("calendar").onClick(() => {
+      let b = new Vt();
+      b.addItem((f) => f.setTitle(this.s.showCreated ? e("\u2713 \u65F6\u95F4") : e("\u65F6\u95F4")).setIcon("calendar").onClick(() => {
         this.s.showCreated = !this.s.showCreated, this.plugin.saveSettings(), this.render();
-      })), x.addItem((f) => f.setTitle(this.s.showType ? e("\u2713 \u7C7B\u578B") : e("\u7C7B\u578B")).setIcon("tag").onClick(() => {
+      })), b.addItem((f) => f.setTitle(this.s.showType ? e("\u2713 \u7C7B\u578B") : e("\u7C7B\u578B")).setIcon("tag").onClick(() => {
         this.s.showType = !this.s.showType, this.plugin.saveSettings(), this.render();
-      })), x.addItem((f) => f.setTitle(this.s.showChildCount ? e("\u2713 \u5B50\u6570") : e("\u5B50\u6570")).setIcon("list").onClick(() => {
+      })), b.addItem((f) => f.setTitle(this.s.showChildCount ? e("\u2713 \u5B50\u6570") : e("\u5B50\u6570")).setIcon("list").onClick(() => {
         this.s.showChildCount = !this.s.showChildCount, this.plugin.saveSettings(), this.render();
-      })), x.addSeparator(), x.addItem((f) => f.setTitle(this.s.showOpenIcon !== !1 ? e("\u2713 \u6253\u5F00\u56FE\u6807") : e("\u6253\u5F00\u56FE\u6807")).setIcon("edit").onClick(() => {
+      })), b.addSeparator(), b.addItem((f) => f.setTitle(this.s.showOpenIcon !== !1 ? e("\u2713 \u6253\u5F00\u56FE\u6807") : e("\u6253\u5F00\u56FE\u6807")).setIcon("edit").onClick(() => {
         this.s.showOpenIcon = this.s.showOpenIcon === !1, this.plugin.saveSettings(), this.render();
-      })), x.addItem((f) => f.setTitle(this.s.showAddIcon !== !1 ? e("\u2713 \u65B0\u589E\u56FE\u6807") : e("\u65B0\u589E\u56FE\u6807")).setIcon("plus-circle").onClick(() => {
+      })), b.addItem((f) => f.setTitle(this.s.showAddIcon !== !1 ? e("\u2713 \u65B0\u589E\u56FE\u6807") : e("\u65B0\u589E\u56FE\u6807")).setIcon("plus-circle").onClick(() => {
         this.s.showAddIcon = this.s.showAddIcon === !1, this.plugin.saveSettings(), this.render();
       }));
       let A = k.getBoundingClientRect();
-      x.showAtPosition({ x: A.left, y: A.bottom });
+      b.showAtPosition({ x: A.left, y: A.bottom });
     });
     l(e("\u6279\u91CF"), e("\u8FDB\u5165\u6279\u91CF\u6A21\u5F0F\uFF1A\u5355\u51FB\u9009\u4E2D\u591A\u4E2A\u8282\u70B9\u540E\u7EDF\u4E00\u79FB\u52A8/\u5220\u9664"), () => this._toggleBatch(), this._batchMode ? "is-active" : ""), this._batchMode && (a.createDiv("lkm-sel-count").setText(e("\u5DF2\u9009 ") + this._selected.size), l(e("\u5168\u9009"), e("\u9009\u4E2D\u5BFC\u56FE\u4E2D\u6240\u6709\u8282\u70B9"), () => {
       this._selected = new Set(this._nodeIndex.keys()), this.render();
@@ -1262,18 +1262,16 @@ var Wt = ge, ke = class extends Te {
       this._selected = A, this.render();
     }, "lkm-btn-action"), l(e("\u79FB\u52A8\u5230\u2026"), e("\u628A\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u79FB\u52A8\u5230\u6307\u5B9A\u7236\u7B14\u8BB0\u4E0B"), () => this._batchMoveDialog(), "lkm-btn-action"), l(e("\u5220\u9664\u9009\u4E2D"), e("\u5220\u9664\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u53CA\u5176\u7B14\u8BB0\uFF08\u79FB\u5165\u56DE\u6536\u7AD9\uFF09"), () => this._batchDelete(), "lkm-btn-action"), l(e("\u6539\u7C7B\u578B"), e("\u6279\u91CF\u4FEE\u6539\u9009\u4E2D\u8282\u70B9\u7684\u7C7B\u578B"), () => this._batchSetType(), "lkm-btn-action"), l(e("\u6807\u8BB0\u5B8C\u6210"), e("\u6279\u91CF\u6807\u8BB0\u9009\u4E2D\u8282\u70B9\u4E3A\u5DF2\u5B8C\u6210"), () => this._batchSetStatus(!0), "lkm-btn-action"), l(e("\u53D6\u6D88\u5B8C\u6210"), e("\u6279\u91CF\u53D6\u6D88\u9009\u4E2D\u8282\u70B9\u7684\u5B8C\u6210\u6807\u8BB0"), () => this._batchSetStatus(!1), "lkm-btn-action")), l(e("\u8BBE\u7F6E"), e("\u6253\u5F00\u63D2\u4EF6\u8BBE\u7F6E"), () => {
       this.app.setting.open(), this.app.setting.openTabById(this.plugin.manifest.id);
-    }, "", !1, "\u2699");
+    }, "", !1, "\u2699"), l(e("\u83DC\u5355"), e("\u663E\u793A\u8282\u70B9\u64CD\u4F5C\u83DC\u5355\uFF08\u7B49\u540C\u53F3\u952E/\u957F\u6309\uFF09\uFF1A\u6253\u5F00/\u65B0\u589E/\u805A\u7126/\u4E0A\u7EA7/\u5B8C\u6210/\u4E3B\u7B14\u8BB0/\u91CD\u547D\u540D/\u590D\u5236/\u79FB\u52A8/\u6392\u5E8F/\u5220\u9664"), (b, A) => {
+      let f = this._nodeIndex.get(this._selKey);
+      f && this._showNodeMenu(f, { clientX: A.clientX, clientY: A.clientY });
+    }, "lkm-node-btn", !r), l(e("\u8FD4\u56DE"), e("\u8FD4\u56DE\u4E0A\u4E00\u6B21\u89C6\u56FE\u4F4D\u7F6E"), () => this._back(), "", this._history.length === 0, "\u2190"), l(e("\u7B5B\u9009"), e("\u7B5B\u9009\u8282\u70B9"), () => {
+      a.classList.toggle("lkm-filter-open");
+    }, "lkm-filter-toggle");
     let _ = a.createEl("input", { type: "text", cls: "lkm-filter-input", placeholder: e("\u7B5B\u9009\u8282\u70B9\u2026") });
-    if (_.value = this._filterText || "", _.addEventListener("input", () => {
+    _.value = this._filterText || "", _.addEventListener("input", () => {
       this._filterText = _.value.trim().toLowerCase(), this._applyFilter();
-    }), r) {
-      a.createDiv("lkm-toolbar-sep");
-      let x = a.createEl("button", { cls: "lkm-btn lkm-node-btn", text: e("\u83DC\u5355") });
-      x.title = e("\u663E\u793A\u8282\u70B9\u64CD\u4F5C\u83DC\u5355\uFF08\u7B49\u540C\u53F3\u952E/\u957F\u6309\uFF09\uFF1A\u6253\u5F00/\u65B0\u589E/\u805A\u7126/\u4E0A\u7EA7/\u5B8C\u6210/\u4E3B\u7B14\u8BB0/\u91CD\u547D\u540D/\u590D\u5236/\u79FB\u52A8/\u6392\u5E8F/\u5220\u9664"), x.onclick = (A) => {
-        let f = this._nodeIndex.get(this._selKey);
-        f && this._showNodeMenu(f, { clientX: A.clientX, clientY: A.clientY });
-      };
-    }
+    });
     let v = a.createDiv("lkm-info");
     r && v.createSpan({ text: e("\u5DF2\u9009\uFF1A") + tt(r.note.title, 12) + " \uFF5C " });
     let C = this.rootPath ? this.notes.get(this.rootPath) : null;
@@ -1283,15 +1281,15 @@ var Wt = ge, ke = class extends Te {
       v.createSpan({ text: e("\u591A\u9009\u5BFC\u56FE\uFF08") + (this.currentRoot ? this.currentRoot.children.length : 0) + e(" \u7BC7\uFF09") });
     else if (C) {
       v.createSpan({ text: e("\u8DEF\u5F84\uFF1A") });
-      let x = this._buildCrumbChain();
-      x.forEach((A, f) => {
-        if (x.length > 8 && f === 1) {
+      let b = this._buildCrumbChain();
+      b.forEach((A, f) => {
+        if (b.length > 8 && f === 1) {
           v.createEl("span", { cls: "lkm-crumb-sep", text: "\u2026>" });
           return;
         }
-        if (x.length > 8 && f > 1 && f < x.length - 1) return;
+        if (b.length > 8 && f > 1 && f < b.length - 1) return;
         f && v.createSpan({ cls: "lkm-crumb-sep", text: ">" });
-        let D = f === x.length - 1, F = tt(A.note.title, 10), T = v.createEl(D ? "span" : "a", { cls: "lkm-crumb-item" + (D ? " lkm-crumb-cur" : ""), text: F });
+        let D = f === b.length - 1, F = tt(A.note.title, 10), T = v.createEl(D ? "span" : "a", { cls: "lkm-crumb-item" + (D ? " lkm-crumb-cur" : ""), text: F });
         T.title = A.note.title, !D && A.note.file && T.addEventListener("click", () => this._focusPath(A.note.file.path));
       });
     } else
@@ -1468,8 +1466,8 @@ var Wt = ge, ke = class extends Te {
     m.textContent = p, s.insertBefore(m, s.firstChild);
     let k = t.querySelectorAll(".lkm-card"), _ = s.querySelectorAll(".lkm-card");
     for (let f = 0; f < k.length && f < _.length; f++) {
-      let D = k[f], F = _[f], T = getComputedStyle(D), g = T.stroke, K = T.fill, S = T.strokeWidth;
-      g && g !== "none" && F.setAttribute("stroke", g), K && K !== "none" && F.setAttribute("fill", K), S && F.setAttribute("stroke-width", S);
+      let D = k[f], F = _[f], T = getComputedStyle(D), g = T.stroke, O = T.fill, S = T.strokeWidth;
+      g && g !== "none" && F.setAttribute("stroke", g), O && O !== "none" && F.setAttribute("fill", O), S && F.setAttribute("stroke-width", S);
     }
     let v = t.querySelectorAll(".lkm-title, .lkm-sub, .lkm-sign, .lkm-open-sign, .lkm-add-sign"), C = s.querySelectorAll(".lkm-title, .lkm-sub, .lkm-sign, .lkm-open-sign, .lkm-add-sign");
     for (let f = 0; f < v.length && f < C.length; f++) {
@@ -1481,9 +1479,9 @@ var Wt = ge, ke = class extends Te {
       let F = getComputedStyle(L[f]).fill;
       F && F !== "none" && N[f].setAttribute("fill", F);
     }
-    let x = t.querySelectorAll(".lkm-edge"), A = s.querySelectorAll(".lkm-edge");
-    for (let f = 0; f < x.length && f < A.length; f++) {
-      let F = getComputedStyle(x[f]).stroke;
+    let b = t.querySelectorAll(".lkm-edge"), A = s.querySelectorAll(".lkm-edge");
+    for (let f = 0; f < b.length && f < A.length; f++) {
+      let F = getComputedStyle(b[f]).stroke;
       F && F !== "none" && A[f].setAttribute("stroke", F);
     }
     return new XMLSerializer().serializeToString(s);
@@ -2334,16 +2332,16 @@ ${c}: "${d}"
         L.appendChild(I("path", { d: dt, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
       }
     }
-    let N = /* @__PURE__ */ y((u) => this._draw(t, Nt(this.currentRoot, n), { anchorKey: u }), "redraw"), x = null, A = { before: e("\u2191 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u524D"), after: e("\u2193 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u540E"), child: e("\u2192 \u4F5C\u4E3A\u5B50\u8282\u70B9") }, f = /* @__PURE__ */ y((u, P) => {
+    let N = /* @__PURE__ */ y((u) => this._draw(t, Nt(this.currentRoot, n), { anchorKey: u }), "redraw"), b = null, A = { before: e("\u2191 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u524D"), after: e("\u2193 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u540E"), child: e("\u2192 \u4F5C\u4E3A\u5B50\u8282\u70B9") }, f = /* @__PURE__ */ y((u, P) => {
       if (!P.note.file) return;
-      x = { node: P, sx: u.clientX, sy: u.clientY, moved: !1, target: null, zone: "child" };
+      b = { node: P, sx: u.clientX, sy: u.clientY, moved: !1, target: null, zone: "child" };
       let E = document.createElement("div");
       E.className = "lkm-drag-hint", E.style.display = "none", document.body.appendChild(E);
       let W = /* @__PURE__ */ y(($) => {
-        if (!x) return;
-        let dt = $.clientX - x.sx, Ct = $.clientY - x.sy;
-        if (!x.moved && Math.hypot(dt, Ct) < 6) return;
-        x.moved = !0, _.classList.add("lkm-dragging");
+        if (!b) return;
+        let dt = $.clientX - b.sx, Ct = $.clientY - b.sy;
+        if (!b.moved && Math.hypot(dt, Ct) < 6) return;
+        b.moved = !0, _.classList.add("lkm-dragging");
         let St = t.getBoundingClientRect(), kt = ($.clientX - St.left - T) / F, at = ($.clientY - St.top - g) / F, st = n.nodeHeight, G = null, ct = "child";
         for (let q of a)
           if (!(q.key === P.key || !q.note.file) && kt >= q._x && kt <= q._x + q._w && at >= q._y - st / 2 && at <= q._y + st / 2) {
@@ -2356,11 +2354,11 @@ ${c}: "${d}"
             }
             break;
           }
-        (G !== x.target || ct !== x.zone) && (x.target && x.target._el && x.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), x.target = G, x.zone = ct, G && G._el && (G._el.classList.add("lkm-drop-target"), ct === "before" && G._el.classList.add("lkm-drop-before"), ct === "after" && G._el.classList.add("lkm-drop-after"))), E.style.display = G ? "block" : "none", G && (E.textContent = A[ct], E.style.left = $.clientX + 16 + "px", E.style.top = $.clientY + 16 + "px");
+        (G !== b.target || ct !== b.zone) && (b.target && b.target._el && b.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), b.target = G, b.zone = ct, G && G._el && (G._el.classList.add("lkm-drop-target"), ct === "before" && G._el.classList.add("lkm-drop-before"), ct === "after" && G._el.classList.add("lkm-drop-after"))), E.style.display = G ? "block" : "none", G && (E.textContent = A[ct], E.style.left = $.clientX + 16 + "px", E.style.top = $.clientY + 16 + "px");
       }, "onMove"), J = /* @__PURE__ */ y(() => {
         window.removeEventListener("mousemove", W), window.removeEventListener("mouseup", J), window.removeEventListener("touchmove", X), window.removeEventListener("touchend", ot), _.classList.remove("lkm-dragging"), E.remove();
-        let $ = x;
-        x = null, $ && ($.target && $.target._el && $.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), $.moved && $.target && ($.zone === "child" ? this._moveNode($.node, $.target.note.file.path) : this._reorderSiblings($.node, $.target.note.file.path, $.zone === "after")));
+        let $ = b;
+        b = null, $ && ($.target && $.target._el && $.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), $.moved && $.target && ($.zone === "child" ? this._moveNode($.node, $.target.note.file.path) : this._reorderSiblings($.node, $.target.note.file.path, $.zone === "after")));
       }, "onUp"), X = /* @__PURE__ */ y(($) => {
         $.touches.length && W({ clientX: $.touches[0].clientX, clientY: $.touches[0].clientY });
       }, "onTouchMove2"), ot = /* @__PURE__ */ y(() => J(), "onTouchEnd2");
@@ -2511,25 +2509,25 @@ ${c}: "${d}"
     this._applyFilter();
     let F = 1, T = 0, g = 0;
     this._view && (F = this._view.k, T = this._view.tx, g = this._view.ty);
-    let K = /* @__PURE__ */ y(() => L.setAttribute("transform", `translate(${T},${g}) scale(${F})`), "apply"), S = !1, V = /* @__PURE__ */ y(() => {
+    let O = /* @__PURE__ */ y(() => L.setAttribute("transform", `translate(${T},${g}) scale(${F})`), "apply"), S = !1, V = /* @__PURE__ */ y(() => {
       let u = t.getBoundingClientRect(), P = u.width || t.clientWidth || 800, E = u.height || t.clientHeight || 600;
       if (F = Math.min(P / m, E / k, 1.4) || 1, d && a.length) {
         let W = a[0];
         T = P / 2 - (W._x + W._w / 2) * F, g = p * F - r * F;
       } else
         T = (P - m * F) / 2 - (l - p) * F, g = (E - k * F) / 2 - (r - p) * F;
-      this._view = { k: F, tx: T, ty: g }, K();
+      this._view = { k: F, tx: T, ty: g }, O();
     }, "fit");
     this._fit = V;
-    let z = /* @__PURE__ */ y((u) => {
+    let Y = /* @__PURE__ */ y((u) => {
       let P = a.find((W) => W.note.file && W.note.file.path === u);
       if (!P) return;
       let E = t.getBoundingClientRect();
-      !E.width || !E.height || (T = E.width / 2 - (P._x + P._w / 2) * F, g = E.height / 2 - P._y * F, this._view = { k: F, tx: T, ty: g }, K());
+      !E.width || !E.height || (T = E.width / 2 - (P._x + P._w / 2) * F, g = E.height / 2 - P._y * F, this._view = { k: F, tx: T, ty: g }, O());
     }, "centerOnPath");
     if (!this._view || i.fit) {
       if (requestAnimationFrame(() => {
-        V(), i.centerPath && z(i.centerPath);
+        V(), i.centerPath && Y(i.centerPath);
       }), !i.centerPath) {
         let u = 3, P = /* @__PURE__ */ y(() => {
           u-- > 0 && V();
@@ -2541,23 +2539,23 @@ ${c}: "${d}"
         });
       }
     } else
-      K(), i.centerPath && z(i.centerPath);
+      O(), i.centerPath && Y(i.centerPath);
     let H = /* @__PURE__ */ y((u) => {
       u.preventDefault();
       let P = _.getBoundingClientRect(), E = u.clientX - P.left, W = u.clientY - P.top, J = Math.max(0.2, Math.min(3, F * (u.deltaY < 0 ? 1.1 : 0.9)));
-      T = E - (E - T) * (J / F), g = W - (W - g) * (J / F), F = J, this._view = { k: F, tx: T, ty: g }, K();
+      T = E - (E - T) * (J / F), g = W - (W - g) * (J / F), F = J, this._view = { k: F, tx: T, ty: g }, O();
     }, "onWheel");
     _.addEventListener("wheel", H, { passive: !1 }), this._cleanup.push(() => _.removeEventListener("wheel", H));
-    let O = !1, Z = !1, it = 0, Q = 0, nt = /* @__PURE__ */ y((u) => {
-      O = !0, Z = !1, it = u.clientX - T, Q = u.clientY - g, _.classList.add("lkm-grabbing");
-    }, "onDown"), Y = /* @__PURE__ */ y((u) => {
-      O && (!Z && Math.hypot(u.clientX - (it + T), u.clientY - (Q + g)) > 3 && (Z = !0), T = u.clientX - it, g = u.clientY - Q, this._view = { k: F, tx: T, ty: g }, K());
+    let z = !1, Z = !1, it = 0, Q = 0, nt = /* @__PURE__ */ y((u) => {
+      z = !0, Z = !1, it = u.clientX - T, Q = u.clientY - g, _.classList.add("lkm-grabbing");
+    }, "onDown"), K = /* @__PURE__ */ y((u) => {
+      z && (!Z && Math.hypot(u.clientX - (it + T), u.clientY - (Q + g)) > 3 && (Z = !0), T = u.clientX - it, g = u.clientY - Q, this._view = { k: F, tx: T, ty: g }, O());
     }, "onMove"), R = /* @__PURE__ */ y(() => {
-      let u = O;
-      O = !1, _.classList.remove("lkm-grabbing"), u && !Z && !this._batchMode && this._select(null);
+      let u = z;
+      z = !1, _.classList.remove("lkm-grabbing"), u && !Z && !this._batchMode && this._select(null);
     }, "onUp");
-    _.addEventListener("mousedown", nt), window.addEventListener("mousemove", Y), window.addEventListener("mouseup", R), this._cleanup.push(() => {
-      _.removeEventListener("mousedown", nt), window.removeEventListener("mousemove", Y), window.removeEventListener("mouseup", R);
+    _.addEventListener("mousedown", nt), window.addEventListener("mousemove", K), window.addEventListener("mouseup", R), this._cleanup.push(() => {
+      _.removeEventListener("mousedown", nt), window.removeEventListener("mousemove", K), window.removeEventListener("mouseup", R);
     });
     let j = null, lt = null, pt = /* @__PURE__ */ y((u) => {
       if (!S)
@@ -2571,8 +2569,8 @@ ${c}: "${d}"
         if (u.stopPropagation(), u.touches.length === 2 && lt) {
           u.preventDefault();
           let P = u.touches[0].clientX - u.touches[1].clientX, E = u.touches[0].clientY - u.touches[1].clientY, W = Math.max(0.2, Math.min(3, lt.k * (Math.hypot(P, E) / lt.dist))), J = _.getBoundingClientRect(), X = (u.touches[0].clientX + u.touches[1].clientX) / 2 - J.left, ot = (u.touches[0].clientY + u.touches[1].clientY) / 2 - J.top;
-          T = X - (X - T) * (W / F), g = ot - (ot - g) * (W / F), F = W, this._view = { k: F, tx: T, ty: g }, K();
-        } else u.touches.length === 1 && j ? (u.preventDefault(), T = u.touches[0].clientX - j.x, g = u.touches[0].clientY - j.y, this._view = { k: F, tx: T, ty: g }, K()) : u.touches.length && u.preventDefault();
+          T = X - (X - T) * (W / F), g = ot - (ot - g) * (W / F), F = W, this._view = { k: F, tx: T, ty: g }, O();
+        } else u.touches.length === 1 && j ? (u.preventDefault(), T = u.touches[0].clientX - j.x, g = u.touches[0].clientY - j.y, this._view = { k: F, tx: T, ty: g }, O()) : u.touches.length && u.preventDefault();
     }, "onTouchMove"), Ft = /* @__PURE__ */ y((u) => {
       S || (u.stopPropagation(), u.touches.length === 0 && (j = null, lt = null, _.classList.remove("lkm-grabbing")));
     }, "onTouchEnd");
@@ -2600,11 +2598,11 @@ ${c}: "${d}"
       if (L instanceof Tt) {
         let N = oe(await this.app.vault.read(L));
         _ = N.body;
-        let x = new Map(N.fields);
-        i || (x.get(d) != null ? i = Kt(x.get(d)) : x.get("type") != null && (i = Kt(x.get("type"))));
+        let b = new Map(N.fields);
+        i || (b.get(d) != null ? i = Kt(b.get(d)) : b.get("type") != null && (i = Kt(b.get("type"))));
         let A = [];
         for (let [f, D] of [["zk", c], ["status", h], ["date", p], ["type", d], ["title", m]])
-          f !== D && x.has(f) && !x.has(D) && A.push(f + "\u2192" + D);
+          f !== D && b.has(f) && !b.has(D) && A.push(f + "\u2192" + D);
         A.length && new w(e("\u6A21\u677F\u5B57\u6BB5\u4E0E\u914D\u7F6E\u4E0D\u4E00\u81F4\uFF1A") + A.join("\uFF0C") + e("\u3002\u5DF2\u7528\u914D\u7F6E\u5B57\u6BB5\u540D\u521B\u5EFA\uFF0C\u5EFA\u8BAE\u66F4\u65B0\u6A21\u677F\u3002"), 1e4);
         for (let [f, D] of N.fields)
           k.has(f) || v.push([f, D]);
@@ -2726,24 +2724,24 @@ ${c}: "${d}"
         { num: o.deadLinks, label: e("\u5931\u6548\u94FE\u63A5"), icon: "alert-triangle", color: "#e5534b" }
       ];
       for (let S of h) {
-        let V = S.filter && this._isFilterActive(S.filter), z = c.createDiv("lkm-card-stat lkm-card-click" + (V ? " is-active" : "")), H = z.createDiv("lkm-card-ico");
+        let V = S.filter && this._isFilterActive(S.filter), Y = c.createDiv("lkm-card-stat lkm-card-click" + (V ? " is-active" : "")), H = Y.createDiv("lkm-card-ico");
         H.style.background = "color-mix(in srgb, " + S.color + " 16%, transparent)", H.style.color = S.color;
         try {
           ee(H, S.icon);
         } catch {
         }
-        z.createDiv("lkm-stat-num").setText(String(S.num)), z.createDiv("lkm-stat-label").setText(S.label + (S.filter && o.total ? " \xB7 " + Math.round(S.num / o.total * 100) + "%" : "")), S.filter && (z.title = e("\u70B9\u51FB\u67E5\u770B\u300C") + S.label + e("\u300D\u5217\u8868"), z.addEventListener("click", () => this._toggleDashFilter(S.filter)));
+        Y.createDiv("lkm-stat-num").setText(String(S.num)), Y.createDiv("lkm-stat-label").setText(S.label + (S.filter && o.total ? " \xB7 " + Math.round(S.num / o.total * 100) + "%" : "")), S.filter && (Y.title = e("\u70B9\u51FB\u67E5\u770B\u300C") + S.label + e("\u300D\u5217\u8868"), Y.addEventListener("click", () => this._toggleDashFilter(S.filter)));
       }
       {
         let S = r.createDiv("lkm-dash-two"), V = S.createDiv("lkm-dash-sec");
         V.createDiv("lkm-dash-h").setText(e("\u7C7B\u578B\u5206\u5E03"));
-        let z = o.byTypeOrder.map((R) => ({ label: R.name, value: R.count, color: R.color, filter: { kind: "type", value: R.name } }));
-        o.noType && z.push({ label: e("\u672A\u6807\u6CE8"), value: o.noType, color: "var(--text-faint)", filter: { kind: "notype" } });
+        let Y = o.byTypeOrder.map((R) => ({ label: R.name, value: R.count, color: R.color, filter: { kind: "type", value: R.name } }));
+        o.noType && Y.push({ label: e("\u672A\u6807\u6CE8"), value: o.noType, color: "var(--text-faint)", filter: { kind: "notype" } });
         let H = V.createDiv("lkm-donut-wrap");
-        this._renderDonut(H, z, o.total);
-        let O = H.createDiv("lkm-legend");
-        for (let R of z) {
-          let j = O.createDiv("lkm-legend-row lkm-type-click" + (this._isFilterActive(R.filter) ? " is-active" : ""));
+        this._renderDonut(H, Y, o.total);
+        let z = H.createDiv("lkm-legend");
+        for (let R of Y) {
+          let j = z.createDiv("lkm-legend-row lkm-type-click" + (this._isFilterActive(R.filter) ? " is-active" : ""));
           j.createSpan({ cls: "lkm-legend-dot" }).style.background = R.color, j.createSpan({ cls: "lkm-legend-name", text: R.label }), j.createSpan({ cls: "lkm-legend-num", text: String(R.value) }), j.addEventListener("click", () => this._toggleDashFilter(R.filter));
         }
         let Z = S.createDiv("lkm-dash-sec");
@@ -2757,11 +2755,11 @@ ${c}: "${d}"
           let j = it.createDiv("lkm-stackbar-seg");
           j.style.width = Math.max(6, R.value / o.total * 100) + "%", j.style.background = R.color, this._isFilterActive(R.filter) && j.addClass("is-active"), j.title = R.label + "\uFF1A" + R.value + e(" \u7BC7\uFF0C\u70B9\u51FB\u7B5B\u9009"), j.addEventListener("click", () => this._toggleDashFilter(R.filter));
         }
-        let nt = Z.createDiv("lkm-chips"), Y = /* @__PURE__ */ y((R, j, lt, pt) => {
+        let nt = Z.createDiv("lkm-chips"), K = /* @__PURE__ */ y((R, j, lt, pt) => {
           let gt = nt.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(pt) ? " is-active" : ""));
           gt.createSpan({ cls: "lkm-legend-dot" }).style.background = lt, gt.createSpan({ text: R + " " + j }), gt.addEventListener("click", () => this._toggleDashFilter(pt));
         }, "chip");
-        Y(e("\u5DF2\u5B8C\u6210"), o.done, "var(--lkm-done)", { kind: "done" }), Y(e("\u672A\u5B8C\u6210"), o.total - o.done, "var(--lkm-accent)", { kind: "undone" }), Y(e("\u672A\u6807\u65E5\u671F"), o.noDate, "var(--text-faint)", { kind: "nodate" });
+        K(e("\u5DF2\u5B8C\u6210"), o.done, "var(--lkm-done)", { kind: "done" }), K(e("\u672A\u5B8C\u6210"), o.total - o.done, "var(--lkm-accent)", { kind: "undone" }), K(e("\u672A\u6807\u65E5\u671F"), o.noDate, "var(--text-faint)", { kind: "nodate" });
       }
       {
         let S = r.createDiv("lkm-dash-sec");
@@ -2769,16 +2767,16 @@ ${c}: "${d}"
         let V = S.createDiv("lkm-chart-body");
         this._renderBarChart(
           V,
-          o.monthly.map((z) => ({ label: parseInt(z.key.slice(5, 7), 10) + e("\u6708"), value: z.count, filter: { kind: "month", value: z.key } })),
+          o.monthly.map((Y) => ({ label: parseInt(Y.key.slice(5, 7), 10) + e("\u6708"), value: Y.count, filter: { kind: "month", value: Y.key } })),
           { height: window.innerWidth < 600 ? 100 : 120, thinLabels: window.innerWidth < 600 }
         );
       }
       {
         let S = r.createDiv("lkm-dash-sec");
         if (S.createDiv("lkm-dash-h").setText(e("\u6811\u6DF1\u5EA6\u5206\u5E03\uFF08\u70B9\u51FB\u67F1\u5B50\u7B5B\u9009\u8BE5\u5C42\u8282\u70B9\uFF09")), o.depthMax) {
-          let V = S.createDiv("lkm-chart-body"), z = [];
-          for (let H = 1; H <= o.depthMax; H++) z.push({ label: e("\u7B2C") + H + e("\u5C42"), value: o.depthCount.get(H) || 0, filter: { kind: "depth", value: String(H) } });
-          this._renderBarChart(V, z, { height: window.innerWidth < 600 ? 100 : 120 });
+          let V = S.createDiv("lkm-chart-body"), Y = [];
+          for (let H = 1; H <= o.depthMax; H++) Y.push({ label: e("\u7B2C") + H + e("\u5C42"), value: o.depthCount.get(H) || 0, filter: { kind: "depth", value: String(H) } });
+          this._renderBarChart(V, Y, { height: window.innerWidth < 600 ? 100 : 120 });
         } else S.createDiv("lkm-heat-sum").setText(e("\u8FD8\u6CA1\u6709\u53EF\u7EDF\u8BA1\u7684\u5C42\u7EA7\u6570\u636E"));
       }
       let d = r.createDiv("lkm-dash-sec"), p = new Set([...o.heat.keys()].map((S) => S.slice(0, 4)));
@@ -2788,14 +2786,14 @@ ${c}: "${d}"
       let k = d.createDiv("lkm-heat-head");
       if (k.createDiv("lkm-dash-h").setText(e("\u521B\u5EFA\u70ED\u529B\u56FE \xB7 ") + (this._dashHeatIdx ? m[this._dashHeatIdx - 1] + e(" \u5E74") : e("\u8FD1\u4E00\u5E74")) + e("\uFF08\u6309 date \u5B57\u6BB5\uFF09")), this._dashHeatIdx || m.length > 1) {
         let S = k.createDiv("lkm-heat-nav"), V = /* @__PURE__ */ y(() => {
-          let O = this.contentEl.querySelector(".lkm-dash"), Z = O ? O.scrollTop : 0;
+          let z = this.contentEl.querySelector(".lkm-dash"), Z = z ? z.scrollTop : 0;
           this.render();
           let it = this.contentEl.querySelector(".lkm-dash");
           it && (it.scrollTop = Z);
-        }, "rerender"), z = S.createEl("button", { cls: "lkm-step", text: "\u2039" });
-        z.disabled = this._dashHeatIdx >= m.length;
+        }, "rerender"), Y = S.createEl("button", { cls: "lkm-step", text: "\u2039" });
+        Y.disabled = this._dashHeatIdx >= m.length;
         let H = S.createEl("button", { cls: "lkm-step", text: "\u203A" });
-        H.disabled = this._dashHeatIdx <= 0, z.onclick = () => {
+        H.disabled = this._dashHeatIdx <= 0, Y.onclick = () => {
           this._dashHeatIdx++, V();
         }, H.onclick = () => {
           this._dashHeatIdx--, V();
@@ -2803,41 +2801,41 @@ ${c}: "${d}"
       }
       let _ = 864e5, v = /* @__PURE__ */ new Date();
       v.setHours(0, 0, 0, 0);
-      let C = (v.getDay() + 6) % 7, L = window.innerWidth < 600, N = L ? 10 : 12, x, A, f, D;
+      let C = (v.getDay() + 6) % 7, L = window.innerWidth < 600, N = L ? 10 : 12, b, A, f, D;
       if (this._dashHeatIdx) {
-        let S = parseInt(m[this._dashHeatIdx - 1], 10), V = new Date(S, 0, 1), z = new Date(S, 11, 31);
-        x = new Date(V.getTime() - (V.getDay() + 6) % 7 * _), A = V, f = z, D = Math.round((z.getTime() + (6 - (z.getDay() + 6) % 7) * _ - x.getTime()) / _ / 7);
+        let S = parseInt(m[this._dashHeatIdx - 1], 10), V = new Date(S, 0, 1), Y = new Date(S, 11, 31);
+        b = new Date(V.getTime() - (V.getDay() + 6) % 7 * _), A = V, f = Y, D = Math.round((Y.getTime() + (6 - (Y.getDay() + 6) % 7) * _ - b.getTime()) / _ / 7);
       } else {
         let S = new Date(v.getTime() + (6 - C) * _);
-        D = L ? 26 : 53, x = new Date(S.getTime() - (D * 7 - 1) * _), A = x, f = v;
+        D = L ? 26 : 53, b = new Date(S.getTime() - (D * 7 - 1) * _), A = b, f = v;
       }
       if (d.createDiv("lkm-heat-sum").setText(o.heat.size ? (() => {
-        let S = this._ds(A), V = this._ds(f), z = 0, H = 0, O = { date: "", count: 0 };
-        for (let [Z, it] of o.heat) Z >= S && Z <= V && (z += it, H++, it > O.count && (O = { date: Z, count: it }));
-        return (H ? H + e(" \u5929\u6709\u521B\u5EFA \xB7 \u5171 ") + z + e(" \u7BC7") : e("\u8BE5\u65F6\u95F4\u6BB5\u6682\u65E0\u521B\u5EFA\u8BB0\u5F55")) + (O.count ? e(" \xB7 \u6700\u591A\u4E00\u5929 ") + O.count + e(" \u7BC7\uFF08") + O.date + "\uFF09" : "");
+        let S = this._ds(A), V = this._ds(f), Y = 0, H = 0, z = { date: "", count: 0 };
+        for (let [Z, it] of o.heat) Z >= S && Z <= V && (Y += it, H++, it > z.count && (z = { date: Z, count: it }));
+        return (H ? H + e(" \u5929\u6709\u521B\u5EFA \xB7 \u5171 ") + Y + e(" \u7BC7") : e("\u8BE5\u65F6\u95F4\u6BB5\u6682\u65E0\u521B\u5EFA\u8BB0\u5F55")) + (z.count ? e(" \xB7 \u6700\u591A\u4E00\u5929 ") + z.count + e(" \u7BC7\uFF08") + z.date + "\uFF09" : "");
       })() : e("\u8FD8\u6CA1\u6709\u5E26 date \u5B57\u6BB5\u7684\u7B14\u8BB0")), o.heat.size) {
         let S = d.createDiv("lkm-heat-scroll"), V = S.createDiv("lkm-heat-grid");
         V.style.gridTemplateColumns = "26px repeat(" + D + ", " + N + "px)", V.style.gridAutoRows = N + "px";
-        let z = -1;
+        let Y = -1;
         for (let Q = 0; Q < D; Q++) {
-          let nt = new Date(x.getTime() + Q * 7 * _);
-          if (nt.getMonth() !== z) {
-            z = nt.getMonth();
-            let Y = V.createDiv("lkm-heat-mon");
-            Y.style.gridColumn = String(Q + 2), Y.style.gridRow = "1", Y.setText(nt.getMonth() + 1 + e("\u6708"));
+          let nt = new Date(b.getTime() + Q * 7 * _);
+          if (nt.getMonth() !== Y) {
+            Y = nt.getMonth();
+            let K = V.createDiv("lkm-heat-mon");
+            K.style.gridColumn = String(Q + 2), K.style.gridRow = "1", K.setText(nt.getMonth() + 1 + e("\u6708"));
           }
         }
         [e("\u4E00"), e("\u4E09"), e("\u4E94")].forEach((Q, nt) => {
-          let Y = V.createDiv("lkm-heat-wd");
-          Y.style.gridColumn = "1", Y.style.gridRow = String(nt * 2 + 2), Y.setText(Q);
+          let K = V.createDiv("lkm-heat-wd");
+          K.style.gridColumn = "1", K.style.gridRow = String(nt * 2 + 2), K.setText(Q);
         });
-        let H = this._ds(A), O = this._ds(f), Z = this._ds(v), it = null;
+        let H = this._ds(A), z = this._ds(f), Z = this._ds(v), it = null;
         for (let Q = 0; Q < D; Q++)
           for (let nt = 0; nt < 7; nt++) {
-            let Y = new Date(x.getTime() + (Q * 7 + nt) * _), R = V.createDiv("lkm-heat-cell");
+            let K = new Date(b.getTime() + (Q * 7 + nt) * _), R = V.createDiv("lkm-heat-cell");
             R.style.gridColumn = String(Q + 2), R.style.gridRow = String(nt + 2);
-            let j = this._ds(Y);
-            if (Y > v || j < H || j > O) {
+            let j = this._ds(K);
+            if (K > v || j < H || j > z) {
               R.addClass("lkm-heat-off");
               continue;
             }
@@ -2854,21 +2852,21 @@ ${c}: "${d}"
         T.addClass("lkm-filter-sec");
         let S = this._sortDashItems(this._dashFilterItems(g)), V = T.createDiv("lkm-filter-head");
         V.createSpan({ cls: "lkm-dash-h lkm-filter-title", text: this._dashFilterGroupLabel(g) });
-        let z = V.createSpan({ cls: "lkm-filter-count", text: "\uFF08" + S.length + "\uFF09" }), H = V.createEl("input", { cls: "lkm-filter-search", type: "text", attr: { placeholder: e("\u8FC7\u6EE4\u2026") } });
+        let Y = V.createSpan({ cls: "lkm-filter-count", text: "\uFF08" + S.length + "\uFF09" }), H = V.createEl("input", { cls: "lkm-filter-search", type: "text", attr: { placeholder: e("\u8FC7\u6EE4\u2026") } });
         H.value = this._dashSearch || "", H.addEventListener("focus", () => {
           if (!window.matchMedia("(hover: none)").matches) return;
-          let Y = this.contentEl.querySelector(".lkm-dash"), R = this.contentEl.querySelector(".lkm-toolbar");
-          if (!Y || !R) return;
-          let j = Y.scrollTop, lt = Y.style.flex, pt = Y.style.height, gt = /* @__PURE__ */ y(() => {
+          let K = this.contentEl.querySelector(".lkm-dash"), R = this.contentEl.querySelector(".lkm-toolbar");
+          if (!K || !R) return;
+          let j = K.scrollTop, lt = K.style.flex, pt = K.style.height, gt = /* @__PURE__ */ y(() => {
             let Ft = R.getBoundingClientRect().bottom, u = window.visualViewport, E = (u ? u.height + u.offsetTop : window.innerHeight) - Ft;
-            E > 60 && (Y.style.flex = "none", Y.style.height = E + "px"), Y.scrollTop = Math.max(0, V.offsetTop - 50);
+            E > 60 && (K.style.flex = "none", K.style.height = E + "px"), K.scrollTop = Math.max(0, V.offsetTop - 50);
           }, "doAdjust");
           setTimeout(gt, 300), setTimeout(gt, 500), H.addEventListener("blur", () => {
-            Y.style.flex = lt, Y.style.height = pt, Y.scrollTop = j;
+            K.style.flex = lt, K.style.height = pt, K.scrollTop = j;
           }, { once: !0 });
         });
-        let O = V.createEl("button", { cls: "lkm-btn", text: e("\u6392\u5E8F\uFF1A") + { date: e("\u65E5\u671F"), name: e("\u540D\u79F0") }[this._dashSort || "date"] });
-        O.onclick = () => {
+        let z = V.createEl("button", { cls: "lkm-btn", text: e("\u6392\u5E8F\uFF1A") + { date: e("\u65E5\u671F"), name: e("\u540D\u79F0") }[this._dashSort || "date"] });
+        z.onclick = () => {
           this._dashSort = this._dashSort === "date" ? "name" : "date", this.render();
         };
         let Z = V.createEl("button", { cls: "lkm-btn", text: e("\u6E05\u9664") });
@@ -2876,51 +2874,51 @@ ${c}: "${d}"
           this._dashFilters = [], this._dashSearch = "", this.render();
         }, S.length || T.createDiv("lkm-heat-sum").setText(e("\u6CA1\u6709\u7B26\u5408\u6761\u4EF6\u7684\u7B14\u8BB0"));
         let it = T.createDiv("lkm-filter-list"), Q = [];
-        for (let Y of S) {
-          let R = this._dashRow(it, Y);
-          Q.push({ el: R, text: (Y.title + " " + (Y.type || "")).toLowerCase() }), R.addEventListener("click", () => {
-            Y.isIndex ? (this._kwFile = Y.file, this._multiRoot = !1, this._mode = "map", this.render()) : this.app.workspace.getLeaf(!0).openFile(Y.file);
+        for (let K of S) {
+          let R = this._dashRow(it, K);
+          Q.push({ el: R, text: (K.title + " " + (K.type || "")).toLowerCase() }), R.addEventListener("click", () => {
+            K.isIndex ? (this._kwFile = K.file, this._multiRoot = !1, this._mode = "map", this.render()) : this.app.workspace.getLeaf(!0).openFile(K.file);
           });
         }
         let nt = /* @__PURE__ */ y(() => {
-          let Y = (this._dashSearch || "").trim().toLowerCase(), R = 0;
+          let K = (this._dashSearch || "").trim().toLowerCase(), R = 0;
           for (let j of Q) {
-            let lt = !Y || j.text.includes(Y);
+            let lt = !K || j.text.includes(K);
             j.el.style.display = lt ? "" : "none", lt && R++;
           }
-          z.setText("\uFF08" + (Y ? R + "/" : "") + S.length + "\uFF09");
+          Y.setText("\uFF08" + (K ? R + "/" : "") + S.length + "\uFF09");
         }, "applySearch");
         H.addEventListener("input", () => {
           this._dashSearch = H.value, nt();
         }), nt();
       } else {
         T.createDiv("lkm-dash-h").setText(e("\u5206\u652F\u5206\u5E03 \xB7 \u5B8C\u6210\u8FDB\u5EA6")), o.branches.length || T.createDiv("lkm-heat-sum").setText(e("\u8FD8\u6CA1\u6709 main: true \u7684\u4E3B\u7B14\u8BB0"));
-        let S = this._dashBranchAll && o.branches.length > 6, V = S ? o.branches : o.branches.slice(0, 6), z = T.createDiv("lkm-filter-list lkm-branch-list"), H = o.branches[0] && o.branches[0].total || 1;
-        for (let O of V) {
-          let Z = z.createDiv("lkm-branch-row");
-          Z.title = O.title + e("\uFF0C\u70B9\u51FB\u5728\u5BFC\u56FE\u4E2D\u6253\u5F00"), Z.createSpan({ cls: "lkm-branch-name", text: tt(O.title, 10) });
+        let S = this._dashBranchAll && o.branches.length > 6, V = S ? o.branches : o.branches.slice(0, 6), Y = T.createDiv("lkm-filter-list lkm-branch-list"), H = o.branches[0] && o.branches[0].total || 1;
+        for (let z of V) {
+          let Z = Y.createDiv("lkm-branch-row");
+          Z.title = z.title + e("\uFF0C\u70B9\u51FB\u5728\u5BFC\u56FE\u4E2D\u6253\u5F00"), Z.createSpan({ cls: "lkm-branch-name", text: tt(z.title, 10) });
           let it = Z.createDiv("lkm-type-bar").createDiv("lkm-branch-scaler");
-          it.style.width = Math.max(3, Math.round(O.total / H * 100)) + "%";
+          it.style.width = Math.max(3, Math.round(z.total / H * 100)) + "%";
           let Q = it.createDiv("lkm-branch-done");
-          Q.style.width = (O.total ? Math.round(O.done / O.total * 100) : 0) + "%", Z.createSpan({ cls: "lkm-type-num", text: O.done + "/" + O.total + " \xB7 " + Math.round(O.done / O.total * 100) + "%" }), Z.addEventListener("click", () => {
-            this.rootPath = O.path, this._view = null, this._kwFile = null, this._multiRoot = !1, this._mode = "map", this._expandedMem.clear(), this.render();
+          Q.style.width = (z.total ? Math.round(z.done / z.total * 100) : 0) + "%", Z.createSpan({ cls: "lkm-type-num", text: z.done + "/" + z.total + " \xB7 " + Math.round(z.done / z.total * 100) + "%" }), Z.addEventListener("click", () => {
+            this.rootPath = z.path, this._view = null, this._kwFile = null, this._multiRoot = !1, this._mode = "map", this._expandedMem.clear(), this.render();
           });
         }
         if (o.branches.length > 6) {
-          let O = T.createEl("button", { cls: "lkm-btn", text: S ? e("\u6536\u8D77") : e("\u5C55\u5F00\u5168\u90E8 ") + o.branches.length + e(" \u4E2A\u5206\u652F") });
-          O.onclick = () => {
+          let z = T.createEl("button", { cls: "lkm-btn", text: S ? e("\u6536\u8D77") : e("\u5C55\u5F00\u5168\u90E8 ") + o.branches.length + e(" \u4E2A\u5206\u652F") });
+          z.onclick = () => {
             this._dashBranchAll = !this._dashBranchAll, this.render();
           };
         }
       }
-      let K = F.createDiv("lkm-dash-sec");
-      K.createDiv("lkm-dash-h").setText(e("\u6700\u8FD1\u521B\u5EFA"));
+      let O = F.createDiv("lkm-dash-sec");
+      O.createDiv("lkm-dash-h").setText(e("\u6700\u8FD1\u521B\u5EFA"));
       for (let S of o.recent)
-        this._dashRow(K, S).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(S.file));
+        this._dashRow(O, S).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(S.file));
       if (o.modified.length) {
-        K.createDiv("lkm-dash-h lkm-sec-gap").setText(e("\u6700\u8FD1\u4FEE\u6539"));
+        O.createDiv("lkm-dash-h lkm-sec-gap").setText(e("\u6700\u8FD1\u4FEE\u6539"));
         for (let S of o.modified)
-          this._dashRow(K, S).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(S.file));
+          this._dashRow(O, S).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(S.file));
       }
     } else
       this._renderTimelineDash(t);
@@ -3218,51 +3216,51 @@ ${c}: "${d}"
     for (let g of t)
       g.type ? c.set(g.type, (c.get(g.type) || 0) + 1) : h++;
     let d = Object.keys(r).filter((g) => c.has(g)).map((g) => ({ name: g, color: r[g], count: c.get(g) }));
-    for (let [g, K] of c) r[g] || d.push({ name: g, color: "var(--text-faint)", count: K });
+    for (let [g, O] of c) r[g] || d.push({ name: g, color: "var(--text-faint)", count: O });
     let p = this._depthMap(), m = /* @__PURE__ */ new Map();
     for (let g of p.values()) g && m.set(g, (m.get(g) || 0) + 1);
     let k = m.size ? Math.max(...m.keys()) : 0, _ = /* @__PURE__ */ new Date();
     _.setHours(0, 0, 0, 0);
     let v = [];
     for (let g = 11; g >= 0; g--) {
-      let K = new Date(_.getFullYear(), _.getMonth() - g, 1);
-      v.push({ key: K.getFullYear() + "-" + String(K.getMonth() + 1).padStart(2, "0"), count: 0 });
+      let O = new Date(_.getFullYear(), _.getMonth() - g, 1);
+      v.push({ key: O.getFullYear() + "-" + String(O.getMonth() + 1).padStart(2, "0"), count: 0 });
     }
     for (let g of t) {
       if (!g.date) continue;
-      let K = v.find((S) => S.key === g.date.slice(0, 7));
-      K && K.count++;
+      let O = v.find((S) => S.key === g.date.slice(0, 7));
+      O && O.count++;
     }
     let C = 0, L = this.app.vault.getAbstractFileByPath(et(this.s.indexFolder));
     L && L.children && (C = L.children.filter((g) => g instanceof Tt && g.extension === "md").length);
     let N = /* @__PURE__ */ new Map();
     for (let g of t) g.date && N.set(g.date, (N.get(g.date) || 0) + 1);
-    let x = t.filter((g) => g.zk).map((g) => {
-      let K = Dt(this.app, this.notes, g), S = 0, V = 0, z = /* @__PURE__ */ new Set();
-      return (/* @__PURE__ */ y((function H(O) {
-        if (O.note.file) {
-          if (z.has(O.note.file.path)) return;
-          z.add(O.note.file.path);
+    let b = t.filter((g) => g.zk).map((g) => {
+      let O = Dt(this.app, this.notes, g), S = 0, V = 0, Y = /* @__PURE__ */ new Set();
+      return (/* @__PURE__ */ y((function H(z) {
+        if (z.note.file) {
+          if (Y.has(z.note.file.path)) return;
+          Y.add(z.note.file.path);
         }
-        S++, O.note.status && V++;
-        for (let Z of O.children) H(Z);
-      }), "walk"))(K), { path: g.file.path, title: g.title, total: S, done: V };
-    }).sort((g, K) => K.total - g.total), A = /* @__PURE__ */ y((g) => ({ title: g.title, created: g.date || "", type: g.type || "", file: g.file }), "toItem"), f = t.filter((g) => g.date).sort((g, K) => String(K.date).localeCompare(String(g.date))).slice(0, 8).map(A), D = t.slice().sort((g, K) => (K.file.stat && K.file.stat.mtime || 0) - (g.file.stat && g.file.stat.mtime || 0)).slice(0, 6).map((g) => {
-      let K = A(g);
+        S++, z.note.status && V++;
+        for (let Z of z.children) H(Z);
+      }), "walk"))(O), { path: g.file.path, title: g.title, total: S, done: V };
+    }).sort((g, O) => O.total - g.total), A = /* @__PURE__ */ y((g) => ({ title: g.title, created: g.date || "", type: g.type || "", file: g.file }), "toItem"), f = t.filter((g) => g.date).sort((g, O) => String(O.date).localeCompare(String(g.date))).slice(0, 8).map(A), D = t.slice().sort((g, O) => (O.file.stat && O.file.stat.mtime || 0) - (g.file.stat && g.file.stat.mtime || 0)).slice(0, 6).map((g) => {
+      let O = A(g);
       try {
         let S = new Date(g.file.stat.mtime);
-        K.mtime = String(S.getFullYear()).slice(2) + "-" + String(S.getMonth() + 1).padStart(2, "0") + "-" + String(S.getDate()).padStart(2, "0") + " " + String(S.getHours()).padStart(2, "0") + ":" + String(S.getMinutes()).padStart(2, "0");
+        O.mtime = String(S.getFullYear()).slice(2) + "-" + String(S.getMonth() + 1).padStart(2, "0") + "-" + String(S.getDate()).padStart(2, "0") + " " + String(S.getHours()).padStart(2, "0") + ":" + String(S.getMinutes()).padStart(2, "0");
       } catch {
       }
-      return K;
+      return O;
     }), F = 0, T = 0;
     for (let g of t)
-      for (let K of g.childLinks) {
+      for (let O of g.childLinks) {
         F++;
-        let S = this.app.metadataCache.getFirstLinkpathDest(K, g.file.path);
+        let S = this.app.metadataCache.getFirstLinkpathDest(O, g.file.path);
         (!S || !this.notes.has(S.path)) && T++;
       }
-    return { total: s, zk: i, done: n, todo: a, noDate: o, orphan: l, noType: h, byTypeOrder: d, depthCount: m, depthMax: k, monthly: v, kw: C, heat: N, branches: x, recent: f, modified: D, linkCount: F, deadLinks: T };
+    return { total: s, zk: i, done: n, todo: a, noDate: o, orphan: l, noType: h, byTypeOrder: d, depthCount: m, depthMax: k, monthly: v, kw: C, heat: N, branches: b, recent: f, modified: D, linkCount: F, deadLinks: T };
   }
 };
 y(ke, "LinkMindmapView");
