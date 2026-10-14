@@ -70,18 +70,30 @@ All field names are customizable in settings.
 - **Pan & zoom**: drag to pan, scroll to zoom; pinch-to-zoom on mobile
 - **Fit-to-window**: one-click auto-fit all nodes into view
 - **Breadcrumb path navigation**: shows full path from root, click to jump
-- **Multi-select mindmap**: pick any subset of notes and display them together on one canvas — then drag-connect to build relationships
+- **Multi-select mindmap**: pick any subset of notes (filter by type/status/search) and display them together on one canvas — then drag-connect to build relationships
 - **Keyword index filtering**: use index notes to filter which notes appear
 - **Search any note as root**: search and set any note as the mindmap root
 - **Horizontal & vertical layouts**: switch between left-to-right and top-to-bottom
 - **Export to SVG / PNG / Markdown outline**
 - **Presets**: save and restore mindmap states (root, multi-select, depth, expand/collapse, zoom/pan) — switch between saved views with one click
+- **Node content preview**: hover 1s to preview note content without opening the file
+- **Search highlighting**: matched text highlighted in search results
+- **Expand/collapse memory**: expansion state persisted across sessions
+- **Selected node marker**: dashed border on user-selected root nodes in multi-select/keyword mode
+- **Cross-level drag**: drag before/after a non-sibling node auto-reparents to target's parent
+- **Sibling reorder**: drag to adjust order among siblings
+- **Node filter**: toolbar filter input to highlight/hide matching nodes
+- **Back history**: return to previous view position
+- **Auto-locate**: opening a note auto-expands its branch and centers the node in the mindmap
+- **Create standalone note**: create a new note not linked to any parent
+- **Display toggles**: show/hide creation time, type, child count, open/add icons
+- **Refresh**: re-read vault data after external changes
 
 ### Node Operations (right-click / long-press)
 
 | Operation | Description |
 |---|---|
-| Add child | Create a new note and link it as a child |
+| Add child | Create a new note and link it as a child (auto-selects template by type) |
 | Focus | Set this node as the mindmap root |
 | Rename | Rename file and auto-update all references |
 | Move to parent | Move node under a different parent |
@@ -130,6 +142,8 @@ A data dashboard with rich visualizations:
 
 ### Other
 
+- **Timeline view**: browse notes by creation time with filtering (8 time ranges: all/today/week/month/year/past week/past month/past year) and sorting (date/name, asc/desc)
+- **Normalize frontmatter**: batch or single-note command to sort and fill frontmatter fields per template
 - **i18n**: auto-detect language, supports Chinese and English
 - **Mobile support**: long-press menu, touch gestures, collapsible toolbar
 - **Config export/import** (JSON backup)
@@ -167,7 +181,7 @@ A data dashboard with rich visualizations:
 
 # Link Mindmap（链接思维导图）
 
-> 结合卢曼笔记层级思想，节点即笔记，frontmatter 双链关联。拖拽建连、多选导图、状态预设、统计工作台、导出 SVG/PNG/MD，适配手机端。
+> 在画布上可视化地建立和编辑笔记间的关联。**一个节点就是一篇笔记**，拖拽即可创建父子关系，frontmatter 自动更新——无需手动编辑链接。
 
 ![导图视图](img/img1.jpg)
 
@@ -240,20 +254,32 @@ date: "2026-10-11"
 | 全展/全折 | 工具栏一键展开或折叠所有节点 |
 | 平移缩放 | 鼠标拖动平移、滚轮缩放；手机端双指缩放 |
 | 面包屑路径 | 显示根节点到当前的完整路径，可点击跳转 |
-| 多选导图 | 筛选多篇笔记同时显示在一张导图上，再拖拽连线建立关联 |
+| 多选导图 | 按类型/状态/搜索筛选多篇笔记同时显示在一张导图上，再拖拽连线建立关联 |
 | 关键词索引 | 按关键词索引文件过滤显示导图 |
 | 搜索 | 搜索任意笔记作为导图根节点 |
 | 适应窗口 | 一键缩放至完整显示所有节点 |
 | 横纵布局 | 横向（左→右）或纵向（上→下）布局切换 |
 | 导出 | 导图为 SVG / PNG / Markdown 大纲 |
 | 预设 | 保存/恢复多个导图状态（根节点、多选、深度、折叠、缩放平移），一键切换 |
+| 节点预览 | 悬停 1 秒显示节点内容预览，无需打开文件 |
+| 搜索高亮 | 搜索时匹配文本高亮显示 |
+| 折叠记忆 | 展开/折叠状态跨会话保持 |
+| 选中标记 | 多选/关键词模式下选中节点虚线边框标记 |
+| 跨层级拖拽 | 拖到非兄弟节点 before/after 自动 reparent 到目标父节点下 |
+| 同级排序 | 拖拽调整同级节点顺序 |
+| 节点筛选 | 工具栏筛选输入框，按文本筛选节点 |
+| 返回历史 | 返回上一次视图位置 |
+| 自动定位 | 打开笔记时导图自动展开分支并居中该节点 |
+| 创建独立笔记 | 工具栏新增按钮，创建不关联任何父节点的笔记 |
+| 显示切换 | 显示/隐藏创建时间、类型、子数、打开/新增图标 |
+| 刷新 | 重新读取 vault 数据（外部修改后） |
 
 ### 节点操作（右键/长按菜单）
 
 | 操作 | 说明 |
 |---|---|
 | 打开笔记 | 在新标签页打开文件 |
-| 新增子节点 | 创建子笔记并自动写入 children 链接 |
+| 新增子节点 | 创建子笔记并自动写入 children 链接，按类型自动选择模板 |
 | 聚焦到此节点 | 将该节点设为导图根节点 |
 | 跳到上级 | 跳转到父笔记（多父时列出所有上级） |
 | 标记完成/取消 | 切换 status 字段 |
@@ -307,6 +333,8 @@ date: "2026-10-11"
 
 ### 其他功能
 
+- **时间线视图**：按文件创建时间浏览笔记，支持八档时间筛选（全部/今日/本周/本月/本年/近一周/近一月/近一年）和排序（日期/名称、新→旧/旧→新）
+- **整理笔记属性**：批量或单篇按模板整理 frontmatter 字段顺序并补充缺失字段
 - **中英文切换**：自动检测语言，支持中文/英文切换（设置中切换）
 - **导出/导入配置**：JSON 格式备份和恢复所有设置
 - **导图预设**：保存多个导图状态预设，一键恢复；保存位置可配置为插件数据或 vault 文件（支持跨设备同步）
