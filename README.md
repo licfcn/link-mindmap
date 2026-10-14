@@ -167,7 +167,7 @@ A data dashboard with rich visualizations:
 
 # Link Mindmap（链接思维导图）
 
-> 在画布上可视化地建立和编辑笔记间的关联。**一个节点就是一篇笔记**，拖拽即可创建父子关系，frontmatter 自动更新——无需手动编辑链接。
+> 可视化思维导图——节点即笔记，frontmatter 双链关联。拖拽建连、多选导图、状态预设、统计工作台、导出 SVG/PNG/MD，适配手机端。
 
 ![导图视图](img/img1.jpg)
 
