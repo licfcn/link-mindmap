@@ -1,7 +1,7 @@
 {
   "id": "link-mindmap",
   "name": "Link Mindmap",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "minAppVersion": "1.5.0",
   "description": "结合卢曼 Zettelkasten 笔记层级思想，节点即笔记，frontmatter 双链关联。多选导图、拖拽连线、批量操作、预设、导出，适配手机端。 Luhmann's Zettelkasten mindmap — node = note, linked via frontmatter. Drag to connect, multi-select, presets, dashboard, export. Mobile-friendly.",
   "author": "licf",
