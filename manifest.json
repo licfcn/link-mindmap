@@ -1,7 +1,7 @@
 {
   "id": "link-mindmap",
   "name": "Link Mindmap",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "minAppVersion": "1.5.0",
   "description": "结合卢曼笔记层级思想与双链功能，取消编号——每个节点是一篇笔记，通过 frontmatter children/parent 链接自然关联。支持多选导图、工作台统计、拖拽连线、批量操作、键盘快捷键、横纵布局、导出 SVG/PNG/Markdown，适配手机端触屏.",
   "author": "licf",
