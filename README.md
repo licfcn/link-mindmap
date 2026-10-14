@@ -159,7 +159,7 @@ A data dashboard with rich visualizations:
 
 ## License
 
-[MIT](LICENSE)
+[PolyForm Non-Commercial 1.0.0](LICENSE) — Free for personal and educational use. For commercial use, please contact the author.
 
 ---
 
