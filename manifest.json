@@ -3,7 +3,7 @@
   "name": "Link Mindmap",
   "version": "1.0.8",
   "minAppVersion": "1.5.0",
-  "description": "Visual mindmap — each node is a note linked via frontmatter. Drag to connect, multi-select, presets, dashboard, export SVG/PNG/MD. Mobile-friendly.",
+  "description": "Visual mindmap inspired by Zettelkasten — each node is a note linked via frontmatter. Drag to connect, multi-select, presets, dashboard, export. Mobile-friendly.",
   "author": "licf",
   "authorUrl": "https://github.com/licfcn",
   "isDesktopOnly": false

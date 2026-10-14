@@ -167,7 +167,7 @@ A data dashboard with rich visualizations:
 
 # Link Mindmap（链接思维导图）
 
-> 可视化思维导图——节点即笔记，frontmatter 双链关联。拖拽建连、多选导图、状态预设、统计工作台、导出 SVG/PNG/MD，适配手机端。
+> 结合卢曼笔记层级思想，节点即笔记，frontmatter 双链关联。拖拽建连、多选导图、状态预设、统计工作台、导出 SVG/PNG/MD，适配手机端。
 
 ![导图视图](img/img1.jpg)
 
