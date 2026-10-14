@@ -844,6 +844,11 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   stroke: var(--lkm-accent);
   stroke-width: 2.5;
 }
+.lkm-node.lkm-selected-root .lkm-card {
+  stroke: var(--lkm-accent);
+  stroke-width: 2;
+  stroke-dasharray: 4 2;
+}
 
 /* ---- 节点内容预览 ---- */
 .lkm-preview {
