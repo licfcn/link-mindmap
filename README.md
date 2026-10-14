@@ -75,6 +75,7 @@ All field names are customizable in settings.
 - **Search any note as root**: search and set any note as the mindmap root
 - **Horizontal & vertical layouts**: switch between left-to-right and top-to-bottom
 - **Export to SVG / PNG / Markdown outline**
+- **Presets**: save and restore mindmap states (root, multi-select, depth, expand/collapse, zoom/pan) — switch between saved views with one click
 
 ### Node Operations (right-click / long-press)
 
@@ -132,6 +133,7 @@ A data dashboard with rich visualizations:
 - **i18n**: auto-detect language, supports Chinese and English
 - **Mobile support**: long-press menu, touch gestures, collapsible toolbar
 - **Config export/import** (JSON backup)
+- **Preset save location**: save presets in plugin data (default) or a vault file for cross-device sync
 - **Performance**: incremental updates, viewport culling for large graphs
 
 ## Settings
@@ -244,6 +246,7 @@ date: "2026-10-11"
 | 适应窗口 | 一键缩放至完整显示所有节点 |
 | 横纵布局 | 横向（左→右）或纵向（上→下）布局切换 |
 | 导出 | 导图为 SVG / PNG / Markdown 大纲 |
+| 预设 | 保存/恢复多个导图状态（根节点、多选、深度、折叠、缩放平移），一键切换 |
 
 ### 节点操作（右键/长按菜单）
 
@@ -306,6 +309,7 @@ date: "2026-10-11"
 
 - **中英文切换**：自动检测语言，支持中文/英文切换（设置中切换）
 - **导出/导入配置**：JSON 格式备份和恢复所有设置
+- **导图预设**：保存多个导图状态预设，一键恢复；保存位置可配置为插件数据或 vault 文件（支持跨设备同步）
 - **性能优化**：文本宽度缓存、增量更新、视口裁剪（>500 节点）
 
 ## 设置项
