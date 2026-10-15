@@ -74,8 +74,8 @@ All field names are customizable in settings.
 - **Keyword index filtering**: use index notes to filter which notes appear
 - **Search any note as root**: search and set any note as the mindmap root
 - **Horizontal & vertical layouts**: switch between left-to-right and top-to-bottom
-- **Export to SVG / PNG / Markdown outline**
-- **Presets**: save and restore mindmap states (root, multi-select, depth, expand/collapse, zoom/pan) — switch between saved views with one click
+- **Export to SVG / PNG / Markdown outline / Obsidian Canvas**
+- **Presets**: save/update/restore/delete mindmap states (root, multi-select, depth, expand/collapse, zoom/pan) — auto-saves to vault file for cross-device sync
 - **Node content preview**: hover 1s to preview note content without opening the file
 - **Search highlighting**: matched text highlighted in search results
 - **Expand/collapse memory**: expansion state persisted across sessions
@@ -145,17 +145,19 @@ A data dashboard with rich visualizations:
 - **Timeline view**: browse notes by creation time with filtering (8 time ranges: all/today/week/month/year/past week/past month/past year) and sorting (date/name, asc/desc)
 - **Normalize frontmatter**: batch or single-note command to sort and fill frontmatter fields per template
 - **Clean invalid types/statuses**: commands to remove type/status values no longer in config
+- **Help manual**: toolbar `?` button or command palette "Show usage help" — full guide anytime
+- **Command palette**: 8 commands (open mindmap, open timeline, normalize all/current note, check links, clean invalid types/statuses, show help)
 - **i18n**: auto-detect language, supports Chinese and English
 - **Mobile support**: long-press menu, touch gestures, collapsible toolbar
 - **Config export/import** (JSON backup)
-- **Preset save location**: save presets in plugin data (default) or a vault file for cross-device sync
+- **Preset auto-save**: mindmap state auto-saved to vault file (`link-mindmap-presets.json`), cross-device sync auto-restore
 - **Performance**: incremental updates, viewport culling for large graphs
 
 ## Settings
 
 | Category | Options |
 |---|---|
-| Paths | Notes folder, index folder, template path |
+| Basic | Language, notes folder, index folder, template folder, default template |
 | Field names | All frontmatter fields customizable |
 | Layout | Default depth, max name length, spacing, node height |
 | Behavior | Auto-write backlinks, auto-locate current note |
@@ -163,7 +165,8 @@ A data dashboard with rich visualizations:
 | Colors | Primary, main note, duplicate, selected |
 | Types | Custom types with auto-assigned colors, reorder/delete |
 | Statuses | Custom statuses (todo/doing/done/archived/snoozed) with colors |
-| Language | Auto / Chinese / English |
+| Presets | Preset save location (vault file path) |
+| Config import/export | Export/import all settings as JSON |
 
 ## Compatibility
 
@@ -261,8 +264,8 @@ date: "2026-10-11"
 | 搜索 | 搜索任意笔记作为导图根节点 |
 | 适应窗口 | 一键缩放至完整显示所有节点 |
 | 横纵布局 | 横向（左→右）或纵向（上→下）布局切换 |
-| 导出 | 导图为 SVG / PNG / Markdown 大纲 |
-| 预设 | 保存/恢复多个导图状态（根节点、多选、深度、折叠、缩放平移），一键切换 |
+| 导出 | 导图为 SVG / PNG / Markdown 大纲 / Obsidian Canvas |
+| 预设 | 保存/更新/恢复/删除导图状态（根节点、多选、深度、折叠、缩放平移），自动保存到 vault 文件支持多端同步 |
 | 节点预览 | 悬停 1 秒显示节点内容预览，无需打开文件 |
 | 搜索高亮 | 搜索时匹配文本高亮显示 |
 | 折叠记忆 | 展开/折叠状态跨会话保持 |
@@ -338,16 +341,18 @@ date: "2026-10-11"
 - **时间线视图**：按文件创建时间浏览笔记，支持八档时间筛选（全部/今日/本周/本月/本年/近一周/近一月/近一年）和排序（日期/名称、新→旧/旧→新）
 - **整理笔记属性**：批量或单篇按模板整理 frontmatter 字段顺序并补充缺失字段
 - **清除失效类型/状态**：命令清除所有笔记中不在配置列表内的 type/status 值
+- **帮助手册**：工具栏 `?` 按钮或命令面板「查看使用帮助」，随时打开完整使用说明
+- **命令面板**：8 个命令（打开导图/打开时间线/整理所有笔记属性/整理当前笔记属性/检查链接完整性/清除失效类型/清除失效状态/查看使用帮助）
 - **中英文切换**：自动检测语言，支持中文/英文切换（设置中切换）
 - **导出/导入配置**：JSON 格式备份和恢复所有设置
-- **导图预设**：保存多个导图状态预设，一键恢复；保存位置可配置为插件数据或 vault 文件（支持跨设备同步）
+- **预设自动保存**：导图状态自动保存到 vault 文件（`link-mindmap-presets.json`），多端同步后自动还原
 - **性能优化**：文本宽度缓存、增量更新、视口裁剪（>500 节点）
 
 ## 设置项
 
 | 分类 | 选项 |
 |---|---|
-| 路径配置 | 笔记文件夹、索引文件夹、模板路径 |
+| 基本设置 | 语言、笔记文件夹、索引文件夹、模板文件夹、默认模板 |
 | 字段名配置 | 所有 frontmatter 字段名可自定义 |
 | 布局配置 | 默认层数、名称字数、间距、节点高度 |
 | 行为配置 | 写入反向链接、自动定位当前笔记 |
@@ -355,7 +360,8 @@ date: "2026-10-11"
 | 颜色配置 | 主色/主笔记/重复/选中 |
 | 类型配置 | 自定义类型，自动分配颜色，排序/删除 |
 | 状态配置 | 自定义状态（待办/进行中/已完成/已归档/已搁置），分配颜色，排序/删除 |
-| 语言配置 | 自动 / 中文 / English |
+| 导图预设 | 预设保存位置（vault 文件路径） |
+| 配置导入/导出 | 导出/导入所有设置为 JSON |
 
 ## 手机端适配
 

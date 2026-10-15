@@ -4,7 +4,7 @@
   --lkm-main: #f2a65a;
   --lkm-done: #3fa66a;
   --lkm-status-待办: #ef4444;
-  --lkm-status-进行中: #f97316;
+  --lkm-status-进行中: #0ea5e9;
   --lkm-status-已完成: #22c55e;
   --lkm-status-已归档: #94a3b8;
   --lkm-status-已搁置: #d946ef;
@@ -888,7 +888,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   .lkm-tl-search { flex: 1 1 100%; min-width: 0; }
   .lkm-tl-label { font-size: 11px; }
   .lkm-tl-typesel { font-size: 12px; padding: 3px 4px; }
-  .lkm-tl-datesel { font-size: 12px; padding: 3px 4px; }
+  .lkm-tl-datesel { font-size: 12px; padding: 3px 4px; max-width: 130px; }
 }
 .lkm-tl-search {
   flex: 1; min-width: 120px; padding: 4px 8px; border-radius: 4px;
@@ -966,13 +966,13 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 .lkm-sec-btn:hover:not(:disabled) { background: var(--background-secondary); color: var(--text-normal); }
 .lkm-sec-btn:disabled { opacity: .3; cursor: default; }
 
-/* ---- 帮助弹窗 ---- */
+/* ---- 帮助弹窗 / 欢迎页面共用 ---- */
 .lkm-help-modal { max-width: 700px; }
-.lkm-help-modal .lkm-guide-intro { margin: 8px 0 16px; line-height: 1.6; color: var(--text-muted); }
-.lkm-help-modal .lkm-guide-steps { margin-bottom: 16px; }
-.lkm-help-modal .lkm-guide-btns { margin-bottom: 16px; }
-.lkm-help-modal .lkm-guide-help { margin-bottom: 16px; }
-.lkm-help-modal .lkm-guide-row { display: flex; gap: 8px; margin: 4px 0; align-items: baseline; }
-.lkm-help-modal .lkm-guide-key { flex-shrink: 0; min-width: 80px; font-weight: 600; color: var(--text-normal); }
-.lkm-help-modal .lkm-guide-val { color: var(--text-muted); line-height: 1.5; }
+.lkm-guide-intro { margin: 8px 0 16px; line-height: 1.6; color: var(--text-muted); }
+.lkm-guide-steps { margin-bottom: 16px; }
+.lkm-guide-btns { margin-bottom: 16px; }
+.lkm-guide-help { margin-bottom: 16px; }
+.lkm-guide-row { display: block; margin: 4px 0; }
+.lkm-guide-key { display: inline; font-weight: 600; color: var(--text-normal); }
+.lkm-guide-val { display: block; color: var(--text-muted); line-height: 1.5; margin-top: 2px; word-break: break-word; }
 .lkm-help-modal .lkm-multipick-btns { margin-top: 20px; }
