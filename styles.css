@@ -875,7 +875,13 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 .lkm-tl-toolbar {
   display: flex; gap: 8px; padding: 8px 12px; align-items: center; flex-shrink: 0;
   border-bottom: 1px solid var(--background-modifier-border);
-
+}
+@media (max-width: 600px) {
+  .lkm-tl-toolbar { flex-wrap: wrap; gap: 4px; padding: 6px 8px; }
+  .lkm-tl-search { flex: 1 1 100%; min-width: 0; }
+  .lkm-tl-label { font-size: 11px; }
+  .lkm-tl-typesel { font-size: 12px; padding: 3px 4px; }
+  .lkm-tl-datesel { font-size: 12px; padding: 3px 4px; }
 }
 .lkm-tl-search {
   flex: 1; min-width: 120px; padding: 4px 8px; border-radius: 4px;

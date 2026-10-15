@@ -553,7 +553,11 @@ var it = bt((At, st) => {
       "Canvas \u5DF2\u5BFC\u51FA\u5230 vault \u6839\u76EE\u5F55\uFF1A": "Canvas exported to vault root: ",
       \u6CA1\u6709\u53EF\u5BFC\u51FA\u7684\u8282\u70B9: "No nodes to export",
       \u4FEE\u590D\u5931\u6548\u94FE\u63A5: "Fix Broken Links",
-      "\u6B64\u64CD\u4F5C\u5C06\u4ECE\u7B14\u8BB0\u7684 children/parent \u5B57\u6BB5\u4E2D\u5220\u9664\u5931\u6548\u94FE\u63A5\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F": "This will remove broken links from children/parent fields. Cannot be undone. Please backup first. Continue?"
+      "\u6B64\u64CD\u4F5C\u5C06\u4ECE\u7B14\u8BB0\u7684 children/parent \u5B57\u6BB5\u4E2D\u5220\u9664\u5931\u6548\u94FE\u63A5\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F": "This will remove broken links from children/parent fields. Cannot be undone. Please backup first. Continue?",
+      \u6807\u8BB0\u4E3B\u7B14\u8BB0: "Mark as Main",
+      \u53D6\u6D88\u4E3B\u7B14\u8BB0: "Unmark Main",
+      \u6279\u91CF\u6807\u8BB0\u9009\u4E2D\u8282\u70B9\u4E3A\u4E3B\u7B14\u8BB0: "Batch mark selected nodes as main",
+      \u6279\u91CF\u53D6\u6D88\u9009\u4E2D\u8282\u70B9\u7684\u4E3B\u7B14\u8BB0\u6807\u8BB0: "Batch unmark main from selected nodes"
     }
   }, Ye = "zh";
   function xt(x) {
@@ -640,7 +644,7 @@ function we(x) {
   return String(x ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
 }
 b(we, "cleanLink");
-function Ue(x) {
+function qe(x) {
   let e = [], s = /* @__PURE__ */ b((i) => {
     if (i == null) return;
     let n = String(i), a = /\[\[([^\[\]]+?)\]\]/g, o, l = !1;
@@ -653,11 +657,11 @@ function Ue(x) {
   }, "push");
   return Array.isArray(x) ? x.forEach(s) : s(x), e;
 }
-b(Ue, "extractLinks");
-function U(x, e) {
+b(qe, "extractLinks");
+function q(x, e) {
   return x = String(x ?? ""), e > 0 && x.length > e ? x.slice(0, e - 1) + "\u2026" : x;
 }
-b(U, "truncate");
+b(q, "truncate");
 function ct(x, e) {
   let s = 0;
   for (let i of String(x ?? ""))
@@ -761,8 +765,8 @@ function We(x, e) {
       type: p[o] != null ? String(p[o]).trim() : "",
       date: ht(p, d, l),
       ctime: dt(d),
-      childLinks: Ue(p[s]),
-      parentLinks: Ue(p[i])
+      childLinks: qe(p[s]),
+      parentLinks: qe(p[i])
     });
   }
   let h = /* @__PURE__ */ new Set();
@@ -838,7 +842,7 @@ function Ae(x, e) {
   let s = [], i = [], n = e.layoutDir === "v";
   return (/* @__PURE__ */ b((function a(o) {
     if (!o._w) {
-      let r = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, c = o.note.title, h = e.maxTitleLen > 0 ? U(c, e.maxTitleLen) : c, d = Ze(h, 13, !0), p = !o.note.file, u = e.showCreated && !p && o.note.date ? o.note.date : "", y = e.showType && !p && o.note.type ? o.note.type : "", v = e.showChildCount && !p && o.children.length ? t("\u5B50 ") + o.children.length : "", F = [y, v, u].filter(Boolean).join(" \xB7 "), T = Ze(F, 11, !1);
+      let r = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, c = o.note.title, h = e.maxTitleLen > 0 ? q(c, e.maxTitleLen) : c, d = Ze(h, 13, !0), p = !o.note.file, u = e.showCreated && !p && o.note.date ? o.note.date : "", y = e.showType && !p && o.note.type ? o.note.type : "", v = e.showChildCount && !p && o.children.length ? t("\u5B50 ") + o.children.length : "", F = [y, v, u].filter(Boolean).join(" \xB7 "), T = Ze(F, 11, !1);
       o._w = Math.max(110, 16 + Math.max(d, T) + r), o._shown = h;
     }
     let l = o.expanded ? o.children : [];
@@ -1098,7 +1102,7 @@ var Re = kt, wt = class extends ot {
   }
 };
 b(wt, "MoveModal");
-var qe = wt, yt = class extends Et {
+var Ue = wt, yt = class extends Et {
   constructor(e, s) {
     super(e), this.plugin = s, this.rootPath = null, this.depth = s.settings.defaultDepth, this.notes = /* @__PURE__ */ new Map(), this.referenced = /* @__PURE__ */ new Set(), this.currentRoot = null, this._cleanup = [], this._view = null, this._expandedMem = /* @__PURE__ */ new Map(), this._history = [], this._selected = /* @__PURE__ */ new Set(), this._batchMode = !1, this._selKey = null, this._mode = "map", this._kwFile = null, this._multiRoot = !1, this._toolbarCollapsed = !1, this._dashFilters = [], this._dashSort = "date", this._dashSearch = "", this._dashHeatIdx = 0, this._dashBranchAll = !1, this._dashTab = "stats", this._tlSort = "desc", this._tlTypeFilter = "", this._tlSearch = "", this._tlRange = "pweek", this._tlZkFilter = "all", this._tlStatusFilter = "all", this._tlDateFilter = "", this._nodeIndex = /* @__PURE__ */ new Map();
   }
@@ -1401,7 +1405,7 @@ var qe = wt, yt = class extends Et {
       let L = new Set(this._nodeIndex.keys());
       for (let m of this._selected) L.delete(m);
       this._selected = L, this.render();
-    }, "lkm-btn-action"), l(t("\u79FB\u52A8\u5230\u2026"), t("\u628A\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u79FB\u52A8\u5230\u6307\u5B9A\u7236\u7B14\u8BB0\u4E0B"), () => this._batchMoveDialog(), "lkm-btn-action"), l(t("\u5220\u9664\u9009\u4E2D"), t("\u5220\u9664\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u53CA\u5176\u7B14\u8BB0\uFF08\u79FB\u5165\u56DE\u6536\u7AD9\uFF09"), () => this._batchDelete(), "lkm-btn-action"), l(t("\u6539\u7C7B\u578B"), t("\u6279\u91CF\u4FEE\u6539\u9009\u4E2D\u8282\u70B9\u7684\u7C7B\u578B"), () => this._batchSetType(), "lkm-btn-action"), l(t("\u6807\u8BB0\u5B8C\u6210"), t("\u6279\u91CF\u6807\u8BB0\u9009\u4E2D\u8282\u70B9\u4E3A\u5DF2\u5B8C\u6210"), () => this._batchSetStatus(!0), "lkm-btn-action"), l(t("\u53D6\u6D88\u5B8C\u6210"), t("\u6279\u91CF\u53D6\u6D88\u9009\u4E2D\u8282\u70B9\u7684\u5B8C\u6210\u6807\u8BB0"), () => this._batchSetStatus(!1), "lkm-btn-action")), l(t("\u8BBE\u7F6E"), t("\u6253\u5F00\u63D2\u4EF6\u8BBE\u7F6E"), () => {
+    }, "lkm-btn-action"), l(t("\u79FB\u52A8\u5230\u2026"), t("\u628A\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u79FB\u52A8\u5230\u6307\u5B9A\u7236\u7B14\u8BB0\u4E0B"), () => this._batchMoveDialog(), "lkm-btn-action"), l(t("\u5220\u9664\u9009\u4E2D"), t("\u5220\u9664\u6279\u91CF\u9009\u4E2D\u7684\u8282\u70B9\u53CA\u5176\u7B14\u8BB0\uFF08\u79FB\u5165\u56DE\u6536\u7AD9\uFF09"), () => this._batchDelete(), "lkm-btn-action"), l(t("\u6539\u7C7B\u578B"), t("\u6279\u91CF\u4FEE\u6539\u9009\u4E2D\u8282\u70B9\u7684\u7C7B\u578B"), () => this._batchSetType(), "lkm-btn-action"), l(t("\u6807\u8BB0\u5B8C\u6210"), t("\u6279\u91CF\u6807\u8BB0\u9009\u4E2D\u8282\u70B9\u4E3A\u5DF2\u5B8C\u6210"), () => this._batchSetStatus(!0), "lkm-btn-action"), l(t("\u53D6\u6D88\u5B8C\u6210"), t("\u6279\u91CF\u53D6\u6D88\u9009\u4E2D\u8282\u70B9\u7684\u5B8C\u6210\u6807\u8BB0"), () => this._batchSetStatus(!1), "lkm-btn-action"), l(t("\u6807\u8BB0\u4E3B\u7B14\u8BB0"), t("\u6279\u91CF\u6807\u8BB0\u9009\u4E2D\u8282\u70B9\u4E3A\u4E3B\u7B14\u8BB0"), () => this._batchSetMain(!0), "lkm-btn-action"), l(t("\u53D6\u6D88\u4E3B\u7B14\u8BB0"), t("\u6279\u91CF\u53D6\u6D88\u9009\u4E2D\u8282\u70B9\u7684\u4E3B\u7B14\u8BB0\u6807\u8BB0"), () => this._batchSetMain(!1), "lkm-btn-action")), l(t("\u8BBE\u7F6E"), t("\u6253\u5F00\u63D2\u4EF6\u8BBE\u7F6E"), () => {
       this.app.setting.open(), this.app.setting.openTabById(this.plugin.manifest.id);
     }, "", !1, "\u2699"), l(t("\u83DC\u5355"), t("\u663E\u793A\u8282\u70B9\u64CD\u4F5C\u83DC\u5355\uFF08\u7B49\u540C\u53F3\u952E/\u957F\u6309\uFF09\uFF1A\u6253\u5F00/\u65B0\u589E/\u805A\u7126/\u4E0A\u7EA7/\u5B8C\u6210/\u4E3B\u7B14\u8BB0/\u91CD\u547D\u540D/\u590D\u5236/\u79FB\u52A8/\u6392\u5E8F/\u5220\u9664"), (k, L) => {
       let m = this._nodeIndex.get(this._selKey);
@@ -1414,7 +1418,7 @@ var qe = wt, yt = class extends Et {
       this._filterText = v.value.trim().toLowerCase(), this._applyFilter();
     });
     let F = a.createDiv("lkm-info");
-    r && F.createSpan({ text: t("\u5DF2\u9009\uFF1A") + U(r.note.title, 12) + " \uFF5C " });
+    r && F.createSpan({ text: t("\u5DF2\u9009\uFF1A") + q(r.note.title, 12) + " \uFF5C " });
     let T = this.rootPath ? this.notes.get(this.rootPath) : null;
     if (this._kwFile)
       F.createSpan({ text: t("\u5173\u952E\u8BCD\uFF1A") + this._kwFile.basename });
@@ -1430,7 +1434,7 @@ var qe = wt, yt = class extends Et {
         }
         if (k.length > 8 && m > 1 && m < k.length - 1) return;
         m && F.createSpan({ cls: "lkm-crumb-sep", text: ">" });
-        let M = m === k.length - 1, C = U(L.note.title, 10), S = F.createEl(M ? "span" : "a", { cls: "lkm-crumb-item" + (M ? " lkm-crumb-cur" : ""), text: C });
+        let M = m === k.length - 1, C = q(L.note.title, 10), S = F.createEl(M ? "span" : "a", { cls: "lkm-crumb-item" + (M ? " lkm-crumb-cur" : ""), text: C });
         S.title = L.note.title, !M && L.note.file && S.addEventListener("click", () => this._focusPath(L.note.file.path));
       });
     } else
@@ -1768,7 +1772,7 @@ var qe = wt, yt = class extends Et {
     }
     let i = this._parentPathsOf(s.file.path);
     if (!i.length) {
-      new g("\u300C" + U(s.title, 12) + t("\u300D\u6CA1\u6709\u4E0A\u7EA7\u7B14\u8BB0"));
+      new g("\u300C" + q(s.title, 12) + t("\u300D\u6CA1\u6709\u4E0A\u7EA7\u7B14\u8BB0"));
       return;
     }
     let n = s.file.path, a = /* @__PURE__ */ b((l) => {
@@ -1898,8 +1902,8 @@ var qe = wt, yt = class extends Et {
       new Re(
         this.app,
         t("\u79FB\u9664\u5173\u8054"),
-        "\u300C" + U(e.note.title, 16) + t(`\u300D\u662F\u91CD\u590D\u8282\u70B9\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\uFF09\u3002
-\u672C\u6B21\u53EA\u79FB\u9664\u4ECE\u300C`) + U(e.parent.note.title, 16) + t("\u300D\u5230\u5B83\u7684\u5173\u8054\uFF0C\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\u3002"),
+        "\u300C" + q(e.note.title, 16) + t(`\u300D\u662F\u91CD\u590D\u8282\u70B9\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\uFF09\u3002
+\u672C\u6B21\u53EA\u79FB\u9664\u4ECE\u300C`) + q(e.parent.note.title, 16) + t("\u300D\u5230\u5B83\u7684\u5173\u8054\uFF0C\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\u3002"),
         async () => {
           try {
             await me(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new g(t("\u5DF2\u79FB\u9664\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
@@ -1913,7 +1917,7 @@ var qe = wt, yt = class extends Et {
     let s = e.children.length, i = new ke(this.app);
     i.onOpen = () => {
       let { contentEl: n } = i;
-      n.createEl("h3", { text: t("\u5220\u9664\u8282\u70B9") }), n.createEl("p", { text: "\u300C" + U(e.note.title, 20) + "\u300D" + (s ? t("\uFF08\u542B ") + s + t(" \u4E2A\u5B50\u8282\u70B9\uFF09") : ""), cls: "lkm-modal-sub" });
+      n.createEl("h3", { text: t("\u5220\u9664\u8282\u70B9") }), n.createEl("p", { text: "\u300C" + q(e.note.title, 20) + "\u300D" + (s ? t("\uFF08\u542B ") + s + t(" \u4E2A\u5B50\u8282\u70B9\uFF09") : ""), cls: "lkm-modal-sub" });
       let a = n.createDiv("lkm-confirm-row");
       a.createEl("button", { cls: "lkm2-btn-ghost", text: t("\u53D6\u6D88") }).addEventListener("click", () => i.close());
       let l = a.createEl("button", { cls: "lkm-btn", text: t("\u79FB\u9664\u5F53\u524D\u5173\u8054") });
@@ -1924,7 +1928,7 @@ var qe = wt, yt = class extends Et {
         }
         i.close(), (async () => {
           try {
-            await me(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new g(t("\u5DF2\u79FB\u9664\u4ECE\u300C") + U(e.parent.note.title, 14) + t("\u300D\u5230\u300C") + U(e.note.title, 14) + t("\u300D\u7684\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
+            await me(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new g(t("\u5DF2\u79FB\u9664\u4ECE\u300C") + q(e.parent.note.title, 14) + t("\u300D\u5230\u300C") + q(e.note.title, 14) + t("\u300D\u7684\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
           } catch (h) {
             new g(t("\u79FB\u9664\u5173\u8054\u5931\u8D25\uFF1A") + (h && h.message ? h.message : h)), console.error("[link-mindmap] removeLink:", h);
           }
@@ -1952,7 +1956,7 @@ var qe = wt, yt = class extends Et {
         let h = new ke(this.app);
         h.onOpen = () => {
           let { contentEl: d } = h;
-          d.createEl("h3", { text: t("\u5220\u9664\u5B50\u8282\u70B9") }), d.createEl("p", { text: "\u300C" + U(e.note.title, 20) + t("\u300D\u542B ") + s + t(" \u4E2A\u5B50\u8282\u70B9\uFF0C\u662F\u5426\u4E00\u5E76\u5220\u9664\uFF1F"), cls: "lkm-modal-sub" });
+          d.createEl("h3", { text: t("\u5220\u9664\u5B50\u8282\u70B9") }), d.createEl("p", { text: "\u300C" + q(e.note.title, 20) + t("\u300D\u542B ") + s + t(" \u4E2A\u5B50\u8282\u70B9\uFF0C\u662F\u5426\u4E00\u5E76\u5220\u9664\uFF1F"), cls: "lkm-modal-sub" });
           let p = d.createDiv("lkm-confirm-row");
           p.createEl("button", { cls: "lkm2-btn-ghost", text: t("\u53D6\u6D88") }).addEventListener("click", () => h.close()), p.createEl("button", { cls: "lkm-btn", text: t("\u4EC5\u5220\u6B64\u8282\u70B9") }).addEventListener("click", () => {
             h.close(), i.close(), this._doDelete(e);
@@ -1976,7 +1980,7 @@ var qe = wt, yt = class extends Et {
       }
       this._selKey = null;
       let n = i.size;
-      new g(t("\u5DF2\u5220\u9664\u300C") + U(e.note.title, 16) + "\u300D" + (n > 1 ? t("\uFF08\u542B\u5B50\u8282\u70B9\u5171 ") + n + t(" \u4E2A\u6587\u4EF6\uFF09") : "") + t("\uFF08\u53EF\u5728\u56DE\u6536\u7AD9\u6062\u590D\uFF09")), await this.rebuild(!0);
+      new g(t("\u5DF2\u5220\u9664\u300C") + q(e.note.title, 16) + "\u300D" + (n > 1 ? t("\uFF08\u542B\u5B50\u8282\u70B9\u5171 ") + n + t(" \u4E2A\u6587\u4EF6\uFF09") : "") + t("\uFF08\u53EF\u5728\u56DE\u6536\u7AD9\u6062\u590D\uFF09")), await this.rebuild(!0);
     } catch (i) {
       new g(t("\u5220\u9664\u5931\u8D25\uFF1A") + (i && i.message ? i.message : i)), console.error("[link-mindmap] _deleteNode:", i);
     }
@@ -1991,7 +1995,7 @@ var qe = wt, yt = class extends Et {
     if (i.addItem((a) => a.setTitle(t("\u8DF3\u5230\u4E0A\u7EA7")).setIcon("arrow-up").onClick(() => this._up())), n.length > 1)
       for (let a of n) {
         let o = this.notes.get(a);
-        i.addItem((l) => l.setTitle("  \u21B3 " + U(o ? o.title : a, 20)).setIcon("arrow-up").onClick(() => {
+        i.addItem((l) => l.setTitle("  \u21B3 " + q(o ? o.title : a, 20)).setIcon("arrow-up").onClick(() => {
           this._focusPath(a);
           let r = [...this._nodeIndex.values()].find((c) => c.note.file && c.note.file.path === e.note.file.path);
           r && (this._selKey = r.key, this.render());
@@ -2011,7 +2015,7 @@ var qe = wt, yt = class extends Et {
       new g(t("\u6CA1\u6709\u53EF\u7528\u7684\u76EE\u6807\u7236\u7B14\u8BB0"));
       return;
     }
-    new qe(this.app, i, (n) => this._moveNode(e, n.path)).open();
+    new Ue(this.app, i, (n) => this._moveNode(e, n.path)).open();
   }
   async _moveNode(e, s) {
     let i = e.note;
@@ -2026,7 +2030,7 @@ var qe = wt, yt = class extends Et {
       return;
     }
     try {
-      e.parent && e.parent.note.file && await me(this.app, e.parent.note.file, this.s.linkField, i.file.path), await ze(this.app, n.file, this.s.linkField, i.file.basename), new g(t("\u5DF2\u79FB\u52A8\u300C") + U(i.title, 14) + t("\u300D\u5230\u300C") + U(n.title, 14) + "\u300D"), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
+      e.parent && e.parent.note.file && await me(this.app, e.parent.note.file, this.s.linkField, i.file.path), await ze(this.app, n.file, this.s.linkField, i.file.basename), new g(t("\u5DF2\u79FB\u52A8\u300C") + q(i.title, 14) + t("\u300D\u5230\u300C") + q(n.title, 14) + "\u300D"), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
     } catch (a) {
       new g(t("\u79FB\u52A8\u5931\u8D25\uFF1A") + (a && a.message ? a.message : a));
     }
@@ -2042,7 +2046,7 @@ var qe = wt, yt = class extends Et {
       return;
     }
     let n = i.map((a) => ({ label: a.note.title, path: a.note.file.path }));
-    new qe(this.app, n, (a) => this._reorderSiblings(e, a.path, s)).open();
+    new Ue(this.app, n, (a) => this._reorderSiblings(e, a.path, s)).open();
   }
   async _reorderSiblings(e, s, i) {
     if (!e.parent || !e.parent.note.file) {
@@ -2099,7 +2103,7 @@ var qe = wt, yt = class extends Et {
           o[a] = n.basename;
         });
       }
-      new g(t("\u5DF2\u79FB\u52A8\u300C") + U(e.note.title, 14) + t("\u300D\u5230\u300C") + U(s.parent.note.title, 14) + "\u300D" + t(i ? "\u4E4B\u540E" : "\u4E4B\u524D")), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
+      new g(t("\u5DF2\u79FB\u52A8\u300C") + q(e.note.title, 14) + t("\u300D\u5230\u300C") + q(s.parent.note.title, 14) + "\u300D" + t(i ? "\u4E4B\u540E" : "\u4E4B\u524D")), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
     } catch (a) {
       new g(t("\u79FB\u52A8\u5931\u8D25\uFF1A") + (a && a.message ? a.message : a));
     }
@@ -2136,11 +2140,11 @@ var qe = wt, yt = class extends Et {
       return;
     }
     if (Qe(this.app, this.notes, i, "child").some((n) => n.file.path === s.file.path)) {
-      new g("\u300C" + U(i.title, 12) + t("\u300D\u5DF2\u5173\u8054\u5230\u300C") + U(s.title, 12) + t("\u300D\uFF0C\u65E0\u9700\u91CD\u590D"));
+      new g("\u300C" + q(i.title, 12) + t("\u300D\u5DF2\u5173\u8054\u5230\u300C") + q(s.title, 12) + t("\u300D\uFF0C\u65E0\u9700\u91CD\u590D"));
       return;
     }
     if (this._wouldCycle(i.file.path, s.file.path)) {
-      new g(t("\u4E0D\u80FD\u5EFA\u7ACB\u5173\u8054\uFF1A\u4F1A\u5F62\u6210\u5FAA\u73AF\uFF08\u76EE\u6807\u5DF2\u662F\u300C") + U(i.title, 12) + t("\u300D\u7684\u4E0A\u7EA7\uFF09"));
+      new g(t("\u4E0D\u80FD\u5EFA\u7ACB\u5173\u8054\uFF1A\u4F1A\u5F62\u6210\u5FAA\u73AF\uFF08\u76EE\u6807\u5DF2\u662F\u300C") + q(i.title, 12) + t("\u300D\u7684\u4E0A\u7EA7\uFF09"));
       return;
     }
     try {
@@ -2150,7 +2154,7 @@ var qe = wt, yt = class extends Et {
           a[n] = i.file.basename;
         });
       }
-      new g(t("\u5DF2\u5EFA\u7ACB\u5173\u8054\uFF1A") + U(i.title, 12) + " \u2192 " + U(s.title, 12)), await new Promise((n) => setTimeout(n, 300)), await this.rebuild(!0);
+      new g(t("\u5DF2\u5EFA\u7ACB\u5173\u8054\uFF1A") + q(i.title, 12) + " \u2192 " + q(s.title, 12)), await new Promise((n) => setTimeout(n, 300)), await this.rebuild(!0);
     } catch (n) {
       new g(t("\u5EFA\u7ACB\u5173\u8054\u5931\u8D25\uFF1A") + (n && n.message ? n.message : n));
     }
@@ -2174,7 +2178,7 @@ var qe = wt, yt = class extends Et {
       new g(t("\u6CA1\u6709\u53EF\u7528\u7684\u76EE\u6807\u7236\u7B14\u8BB0"));
       return;
     }
-    new qe(this.app, n, async (a) => {
+    new Ue(this.app, n, async (a) => {
       let o = this.notes.get(a.path), l = 0;
       for (let r of s)
         if (r.note.file)
@@ -2262,6 +2266,28 @@ var qe = wt, yt = class extends Et {
       }
     new g(t("\u5DF2") + t(e ? "\u6807\u8BB0\u5B8C\u6210" : "\u53D6\u6D88\u5B8C\u6210") + " " + a + t(" \u4E2A\u8282\u70B9")), await this.rebuild(!0);
   }
+  async _batchSetMain(e) {
+    let s = [...this._selected];
+    if (!s.length) {
+      new g(t("\u8BF7\u5148\u9009\u62E9\u8282\u70B9"));
+      return;
+    }
+    let i = s.map((o) => this._nodeIndex.get(o)).filter((o) => o && o.note.file && !o.isAlias);
+    if (!i.length) {
+      new g(t("\u6CA1\u6709\u53EF\u5904\u7406\u7684\u8282\u70B9"));
+      return;
+    }
+    let n = this.s.zkField || "main", a = 0;
+    for (let o of i)
+      try {
+        await this.app.fileManager.processFrontMatter(o.note.file, (l) => {
+          l[n] = e;
+        }), a++;
+      } catch (l) {
+        console.error("[link-mindmap] _batchSetMain:", l);
+      }
+    new g(t("\u5DF2") + t(e ? "\u6807\u8BB0\u4E3B\u7B14\u8BB0" : "\u53D6\u6D88\u4E3B\u7B14\u8BB0") + " " + a + t(" \u4E2A\u8282\u70B9")), await this.rebuild(!0);
+  }
   async _setStatus(e, s) {
     if (e.note.file)
       try {
@@ -2306,7 +2332,7 @@ var qe = wt, yt = class extends Et {
     let s = new ke(this.app);
     s.onOpen = () => {
       let { contentEl: i } = s;
-      i.addClass("lkm-multipick"), i.createEl("h3", { text: t("\u4FEE\u6539\u65E5\u671F") }), i.createEl("p", { text: "\u300C" + U(e.note.title, 20) + t("\u300D\u5F53\u524D\u65E5\u671F\uFF1A") + (e.note.date || t("\u65E0")), cls: "lkm-modal-sub" });
+      i.addClass("lkm-multipick"), i.createEl("h3", { text: t("\u4FEE\u6539\u65E5\u671F") }), i.createEl("p", { text: "\u300C" + q(e.note.title, 20) + t("\u300D\u5F53\u524D\u65E5\u671F\uFF1A") + (e.note.date || t("\u65E0")), cls: "lkm-modal-sub" });
       let n = i.createEl("input", { type: "date", cls: "lkm-multipick-input" });
       n.value = e.note.date || "";
       let a = i.createDiv("lkm-multipick-btns");
@@ -2664,7 +2690,7 @@ ${c}: "${d}"
       let Te = n.showCreated && !V && f.note.date ? f.note.date : "", Fe = n.showType && !V && f.note.type ? f.note.type : "", be = n.showChildCount && !V && f.children.length ? t("\u5B50 ") + f.children.length : "", le = n.showWordCount && !V && f.note.file ? t("\u5B57 ") + Math.max(1, Math.round((f.note.file.stat.size || 0) / 3)) : "", te = [Fe, be, le, Te].filter(Boolean).join(" \xB7 "), se = !!te, de = z("text", { x: 16, y: se ? n.nodeHeight / 2 - 4 : n.nodeHeight / 2 + 5, class: "lkm-title" });
       if (de.textContent = f._shown || f.note.title, I.appendChild(de), se) {
         let H = z("text", { x: 16, y: n.nodeHeight - 8, class: "lkm-sub" });
-        H.textContent = U(te, 50), I.appendChild(H);
+        H.textContent = q(te, 50), I.appendChild(H);
       }
       let G = n.nodeHeight / 2, ve = window.innerWidth < 600, xe = ve ? 12 : 10, Oe = /* @__PURE__ */ b((H, Q) => {
         let oe = z("title");
@@ -2803,13 +2829,13 @@ ${c}: "${d}"
       S = D - (D - S) * (Z / C), w = I - (I - w) * (Z / C), C = Z, this._view = { k: C, tx: S, ty: w }, N();
     }, "onWheel");
     v.addEventListener("wheel", j, { passive: !1 }), this._cleanup.push(() => v.removeEventListener("wheel", j));
-    let K = !1, q = !1, ie = 0, J = 0, ne = /* @__PURE__ */ b((f) => {
-      K = !0, q = !1, ie = f.clientX - S, J = f.clientY - w, v.classList.add("lkm-grabbing");
+    let K = !1, U = !1, ie = 0, J = 0, ne = /* @__PURE__ */ b((f) => {
+      K = !0, U = !1, ie = f.clientX - S, J = f.clientY - w, v.classList.add("lkm-grabbing");
     }, "onDown"), $ = /* @__PURE__ */ b((f) => {
-      K && (!q && Math.hypot(f.clientX - (ie + S), f.clientY - (J + w)) > 3 && (q = !0), S = f.clientX - ie, w = f.clientY - J, this._view = { k: C, tx: S, ty: w }, N());
+      K && (!U && Math.hypot(f.clientX - (ie + S), f.clientY - (J + w)) > 3 && (U = !0), S = f.clientX - ie, w = f.clientY - J, this._view = { k: C, tx: S, ty: w }, N());
     }, "onMove"), O = /* @__PURE__ */ b(() => {
       let f = K;
-      K = !1, v.classList.remove("lkm-grabbing"), f && !q && !this._batchMode && this._select(null);
+      K = !1, v.classList.remove("lkm-grabbing"), f && !U && !this._batchMode && this._select(null);
     }, "onUp");
     v.addEventListener("mousedown", ne), window.addEventListener("mousemove", $), window.addEventListener("mouseup", O), this._cleanup.push(() => {
       v.removeEventListener("mousedown", ne), window.removeEventListener("mousemove", $), window.removeEventListener("mouseup", O);
@@ -2907,7 +2933,7 @@ ${c}: "${d}"
             return;
           }
           let v = /* @__PURE__ */ new Date(), F = v.getFullYear() + "-" + String(v.getMonth() + 1).padStart(2, "0") + "-" + String(v.getDate()).padStart(2, "0"), T = await this._buildNewNoteBody(e.note.file.basename, F, c, h, d);
-          await ze(this.app, e.note.file, s.linkField, fe(r)), await this.app.vault.create(y, T), new g(t("\u5DF2\u521B\u5EFA\u300C") + fe(r) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + U(e.note.title, 14) + "\u300D");
+          await ze(this.app, e.note.file, s.linkField, fe(r)), await this.app.vault.create(y, T), new g(t("\u5DF2\u521B\u5EFA\u300C") + fe(r) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + q(e.note.title, 14) + "\u300D");
           let E = e;
           for (; E; )
             this._expandedMem.set(E.note.file ? E.note.file.path : E.key, !0), E = E.parent;
@@ -3001,9 +3027,9 @@ ${c}: "${d}"
           let W = K.createDiv("lkm-legend-row lkm-type-click" + (this._isFilterActive(O.filter) ? " is-active" : ""));
           W.createSpan({ cls: "lkm-legend-dot" }).style.background = O.color, W.createSpan({ cls: "lkm-legend-name", text: O.label }), W.createSpan({ cls: "lkm-legend-num", text: String(O.value) }), W.addEventListener("click", () => this._toggleDashFilter(O.filter));
         }
-        let q = _.createDiv("lkm-dash-sec");
-        q.createDiv("lkm-dash-h").setText(t("\u5B8C\u6210\u72B6\u6001"));
-        let ie = q.createDiv("lkm-stackbar"), J = [
+        let U = _.createDiv("lkm-dash-sec");
+        U.createDiv("lkm-dash-h").setText(t("\u5B8C\u6210\u72B6\u6001"));
+        let ie = U.createDiv("lkm-stackbar"), J = [
           { label: t("\u5DF2\u5B8C\u6210"), value: o.done, color: "var(--lkm-done)", filter: { kind: "done" } },
           { label: t("\u672A\u5B8C\u6210"), value: o.total - o.done, color: "var(--lkm-accent)", filter: { kind: "undone" } }
         ];
@@ -3012,7 +3038,7 @@ ${c}: "${d}"
           let W = ie.createDiv("lkm-stackbar-seg");
           W.style.width = Math.max(6, O.value / o.total * 100) + "%", W.style.background = O.color, this._isFilterActive(O.filter) && W.addClass("is-active"), W.title = O.label + "\uFF1A" + O.value + t(" \u7BC7\uFF0C\u70B9\u51FB\u7B5B\u9009"), W.addEventListener("click", () => this._toggleDashFilter(O.filter));
         }
-        let ne = q.createDiv("lkm-chips"), $ = /* @__PURE__ */ b((O, W, ae, pe) => {
+        let ne = U.createDiv("lkm-chips"), $ = /* @__PURE__ */ b((O, W, ae, pe) => {
           let ye = ne.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(pe) ? " is-active" : ""));
           ye.createSpan({ cls: "lkm-legend-dot" }).style.background = ae, ye.createSpan({ text: O + " " + W }), ye.addEventListener("click", () => this._toggleDashFilter(pe));
         }, "chip");
@@ -3043,10 +3069,10 @@ ${c}: "${d}"
       let y = d.createDiv("lkm-heat-head");
       if (y.createDiv("lkm-dash-h").setText(t("\u521B\u5EFA\u70ED\u529B\u56FE \xB7 ") + (this._dashHeatIdx ? u[this._dashHeatIdx - 1] + t(" \u5E74") : t("\u8FD1\u4E00\u5E74")) + t("\uFF08\u6309 date \u5B57\u6BB5\uFF09")), this._dashHeatIdx || u.length > 1) {
         let _ = y.createDiv("lkm-heat-nav"), B = /* @__PURE__ */ b(() => {
-          let K = this.contentEl.querySelector(".lkm-dash"), q = K ? K.scrollTop : 0;
+          let K = this.contentEl.querySelector(".lkm-dash"), U = K ? K.scrollTop : 0;
           this.render();
           let ie = this.contentEl.querySelector(".lkm-dash");
-          ie && (ie.scrollTop = q);
+          ie && (ie.scrollTop = U);
         }, "rerender"), Y = _.createEl("button", { cls: "lkm-step", text: "\u2039" });
         Y.disabled = this._dashHeatIdx >= u.length;
         let j = _.createEl("button", { cls: "lkm-step", text: "\u203A" });
@@ -3068,7 +3094,7 @@ ${c}: "${d}"
       }
       if (d.createDiv("lkm-heat-sum").setText(o.heat.size ? (() => {
         let _ = this._ds(L), B = this._ds(m), Y = 0, j = 0, K = { date: "", count: 0 };
-        for (let [q, ie] of o.heat) q >= _ && q <= B && (Y += ie, j++, ie > K.count && (K = { date: q, count: ie }));
+        for (let [U, ie] of o.heat) U >= _ && U <= B && (Y += ie, j++, ie > K.count && (K = { date: U, count: ie }));
         return (j ? j + t(" \u5929\u6709\u521B\u5EFA \xB7 \u5171 ") + Y + t(" \u7BC7") : t("\u8BE5\u65F6\u95F4\u6BB5\u6682\u65E0\u521B\u5EFA\u8BB0\u5F55")) + (K.count ? t(" \xB7 \u6700\u591A\u4E00\u5929 ") + K.count + t(" \u7BC7\uFF08") + K.date + "\uFF09" : "");
       })() : t("\u8FD8\u6CA1\u6709\u5E26 date \u5B57\u6BB5\u7684\u7B14\u8BB0")), o.heat.size) {
         let _ = d.createDiv("lkm-heat-scroll"), B = _.createDiv("lkm-heat-grid");
@@ -3086,7 +3112,7 @@ ${c}: "${d}"
           let $ = B.createDiv("lkm-heat-wd");
           $.style.gridColumn = "1", $.style.gridRow = String(ne * 2 + 2), $.setText(J);
         });
-        let j = this._ds(L), K = this._ds(m), q = this._ds(F), ie = null;
+        let j = this._ds(L), K = this._ds(m), U = this._ds(F), ie = null;
         for (let J = 0; J < M; J++)
           for (let ne = 0; ne < 7; ne++) {
             let $ = new Date(k.getTime() + (J * 7 + ne) * v), O = B.createDiv("lkm-heat-cell");
@@ -3097,7 +3123,7 @@ ${c}: "${d}"
               continue;
             }
             let ae = o.heat.get(W) || 0, pe = ae === 0 ? 0 : ae === 1 ? 1 : ae <= 2 ? 2 : ae <= 4 ? 3 : 4;
-            pe && O.addClass("lkm-heat-l" + pe), this._isFilterActive({ kind: "date", value: W }) && O.addClass("is-active"), ae && O.addClass("lkm-heat-hit"), W === q && (O.addClass("lkm-heat-today"), ie = O), O.title = W + "\uFF1A" + ae + t(" \u7BC7") + (W === q ? t("\uFF08\u4ECA\u5929\uFF09") : ""), O.addEventListener("click", () => this._toggleDashFilter({ kind: "date", value: W }));
+            pe && O.addClass("lkm-heat-l" + pe), this._isFilterActive({ kind: "date", value: W }) && O.addClass("is-active"), ae && O.addClass("lkm-heat-hit"), W === U && (O.addClass("lkm-heat-today"), ie = O), O.title = W + "\uFF1A" + ae + t(" \u7BC7") + (W === U ? t("\uFF08\u4ECA\u5929\uFF09") : ""), O.addEventListener("click", () => this._toggleDashFilter({ kind: "date", value: W }));
           }
         ie && !this._dashHeatIdx && requestAnimationFrame(() => {
           let J = ie.getBoundingClientRect(), ne = _.getBoundingClientRect();
@@ -3126,8 +3152,8 @@ ${c}: "${d}"
         K.onclick = () => {
           this._dashSort = this._dashSort === "date" ? "name" : "date", this.render();
         };
-        let q = B.createEl("button", { cls: "lkm-btn", text: t("\u6E05\u9664") });
-        q.onclick = () => {
+        let U = B.createEl("button", { cls: "lkm-btn", text: t("\u6E05\u9664") });
+        U.onclick = () => {
           this._dashFilters = [], this._dashSearch = "", this.render();
         }, _.length || S.createDiv("lkm-heat-sum").setText(t("\u6CA1\u6709\u7B26\u5408\u6761\u4EF6\u7684\u7B14\u8BB0"));
         let ie = S.createDiv("lkm-filter-list"), J = [];
@@ -3152,12 +3178,12 @@ ${c}: "${d}"
         S.createDiv("lkm-dash-h").setText(t("\u5206\u652F\u5206\u5E03 \xB7 \u5B8C\u6210\u8FDB\u5EA6")), o.branches.length || S.createDiv("lkm-heat-sum").setText(t("\u8FD8\u6CA1\u6709 main: true \u7684\u4E3B\u7B14\u8BB0"));
         let _ = this._dashBranchAll && o.branches.length > 6, B = _ ? o.branches : o.branches.slice(0, 6), Y = S.createDiv("lkm-filter-list lkm-branch-list"), j = o.branches[0] && o.branches[0].total || 1;
         for (let K of B) {
-          let q = Y.createDiv("lkm-branch-row");
-          q.title = K.title + t("\uFF0C\u70B9\u51FB\u5728\u5BFC\u56FE\u4E2D\u6253\u5F00"), q.createSpan({ cls: "lkm-branch-name", text: U(K.title, 10) });
-          let ie = q.createDiv("lkm-type-bar").createDiv("lkm-branch-scaler");
+          let U = Y.createDiv("lkm-branch-row");
+          U.title = K.title + t("\uFF0C\u70B9\u51FB\u5728\u5BFC\u56FE\u4E2D\u6253\u5F00"), U.createSpan({ cls: "lkm-branch-name", text: q(K.title, 10) });
+          let ie = U.createDiv("lkm-type-bar").createDiv("lkm-branch-scaler");
           ie.style.width = Math.max(3, Math.round(K.total / j * 100)) + "%";
           let J = ie.createDiv("lkm-branch-done");
-          J.style.width = (K.total ? Math.round(K.done / K.total * 100) : 0) + "%", q.createSpan({ cls: "lkm-type-num", text: K.done + "/" + K.total + " \xB7 " + Math.round(K.done / K.total * 100) + "%" }), q.addEventListener("click", () => {
+          J.style.width = (K.total ? Math.round(K.done / K.total * 100) : 0) + "%", U.createSpan({ cls: "lkm-type-num", text: K.done + "/" + K.total + " \xB7 " + Math.round(K.done / K.total * 100) + "%" }), U.addEventListener("click", () => {
             this.rootPath = K.path, this._view = null, this._kwFile = null, this._multiRoot = !1, this._mode = "map", this._expandedMem.clear(), this.render();
           });
         }
@@ -3315,7 +3341,7 @@ ${c}: "${d}"
     let i = this.s, n = e.createDiv("lkm-recent-row");
     n.title = s.isIndex ? s.title + t("\uFF0C\u70B9\u51FB\u6253\u5F00\u5173\u952E\u8BCD\u89C6\u56FE") : s.title + t("\uFF0C\u70B9\u51FB\u6253\u5F00\u7B14\u8BB0");
     let a = (i.typeColors || {})[s.type];
-    if (a && (n.createSpan({ cls: "lkm-recent-dot" }).style.background = a), n.createSpan({ cls: "lkm-recent-name", text: U(s.title, 14) }), s.created && !s.mtime && n.createSpan({ cls: "lkm-recent-date", text: s.created }), s.mtime && n.createSpan({ cls: "lkm-recent-date", text: s.mtime }), !s.isIndex) {
+    if (a && (n.createSpan({ cls: "lkm-recent-dot" }).style.background = a), n.createSpan({ cls: "lkm-recent-name", text: q(s.title, 14) }), s.created && !s.mtime && n.createSpan({ cls: "lkm-recent-date", text: s.created }), s.mtime && n.createSpan({ cls: "lkm-recent-date", text: s.mtime }), !s.isIndex) {
       let o = n.createSpan({ cls: "lkm-row-jump", title: t("\u5728\u5BFC\u56FE\u4E2D\u5B9A\u4F4D") });
       try {
         nt(o, "crosshair");
@@ -3500,7 +3526,7 @@ ${c}: "${d}"
           Y.add(K.note.file.path);
         }
         _++, K.note.status && B++;
-        for (let q of K.children) j(q);
+        for (let U of K.children) j(U);
       }), "walk"))(N), { path: w.file.path, title: w.title, total: _, done: B };
     }).sort((w, N) => N.total - w.total), L = /* @__PURE__ */ b((w) => ({ title: w.title, created: w.date || "", type: w.type || "", file: w.file }), "toItem"), m = e.filter((w) => w.date).sort((w, N) => String(N.date).localeCompare(String(w.date))).slice(0, 8).map(L), M = e.slice().sort((w, N) => (N.file.stat && N.file.stat.mtime || 0) - (w.file.stat && w.file.stat.mtime || 0)).slice(0, 6).map((w) => {
       let N = L(w);
