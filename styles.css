@@ -3,6 +3,11 @@
   --lkm-accent: #6c8cff;
   --lkm-main: #f2a65a;
   --lkm-done: #3fa66a;
+  --lkm-status-待办: #ef4444;
+  --lkm-status-进行中: #f97316;
+  --lkm-status-已完成: #22c55e;
+  --lkm-status-已归档: #94a3b8;
+  --lkm-status-已搁置: #d946ef;
 }
 
 
@@ -439,10 +444,12 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 }
 
 
-/* ---- 状态圆点：zk / 完成 / 多ID 并行显示，互不覆盖 ---- */
+/* ---- 状态圆点：zk / 状态 / 多ID 并行显示，互不覆盖 ---- */
 .lkm-dot-zk { fill: var(--lkm-main); stroke: var(--background-primary); stroke-width: 1; }
-.lkm-dot-done { fill: var(--lkm-done); stroke: var(--background-primary); stroke-width: 1; }
+.lkm-dot-status { fill: var(--lkm-status-done, var(--lkm-done)); stroke: var(--background-primary); stroke-width: 1; }
 .lkm-dot-multi { fill: var(--lkm-multi); stroke: var(--background-primary); stroke-width: 1; }
+.lkm-node.lkm-archived { opacity: 0.35; }
+.lkm-node.lkm-archived .lkm-card { stroke-dasharray: 4 3; }
 
 /* ---- 悬停效果只对真正有指针的设备生效 ----
    触屏设备点击后 :hover 会“粘住”不消失，导致手机端节点一直带着悬停阴影/描边、
@@ -662,7 +669,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   border-radius: 5px;
   overflow: hidden;
 }
-.lkm-branch-done { height: 100%; background: var(--lkm-done); }
+.lkm-branch-done { height: 100%; background: var(--lkm-status-done, var(--lkm-done)); }
 .lkm-branch-list { max-height: 300px; }
 .lkm-row-jump {
   flex: none;
@@ -920,7 +927,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   font-size: 10px; padding: 1px 5px; border-radius: 3px; color: #fff; font-weight: 600;
   background: var(--lkm-main); white-space: nowrap; flex-shrink: 0;
 }
-.lkm-tl-status { color: var(--lkm-done); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.lkm-tl-status { font-size: 10px; padding: 1px 5px; border-radius: 3px; color: #fff; font-weight: 600; white-space: nowrap; flex-shrink: 0; background: var(--lkm-status-done, var(--lkm-done)); }
 .lkm-tl-title { font-size: 13px; color: var(--text-normal); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lkm-tl-empty { text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 14px; }
 
@@ -936,3 +943,36 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 .lkm-check-from { color: var(--text-normal); }
 .lkm-check-broken { color: var(--text-error); font-weight: 600; }
 .lkm-modal-btns { display: flex; gap: 8px; margin-top: 12px; }
+
+/* ---- 设置面板分组 ---- */
+.lkm-settings-title { display: flex; align-items: center; gap: 12px; }
+.lkm-settings-title h2 { margin: 0; }
+.lkm-jump-sel { margin-left: auto; font-size: 13px; }
+.lkm-sec-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  margin-bottom: 4px;
+
+}
+.lkm-sec-h span:first-child { flex: 1; }
+.lkm-sec-btns { display: flex; gap: 4px; }
+.lkm-sec-btn {
+  width: 24px; height: 24px; padding: 0; border: none; border-radius: 4px;
+  background: transparent; color: var(--text-muted); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.lkm-sec-btn:hover:not(:disabled) { background: var(--background-secondary); color: var(--text-normal); }
+.lkm-sec-btn:disabled { opacity: .3; cursor: default; }
+
+/* ---- 帮助弹窗 ---- */
+.lkm-help-modal { max-width: 700px; }
+.lkm-help-modal .lkm-guide-intro { margin: 8px 0 16px; line-height: 1.6; color: var(--text-muted); }
+.lkm-help-modal .lkm-guide-steps { margin-bottom: 16px; }
+.lkm-help-modal .lkm-guide-btns { margin-bottom: 16px; }
+.lkm-help-modal .lkm-guide-help { margin-bottom: 16px; }
+.lkm-help-modal .lkm-guide-row { display: flex; gap: 8px; margin: 4px 0; align-items: baseline; }
+.lkm-help-modal .lkm-guide-key { flex-shrink: 0; min-width: 80px; font-weight: 600; color: var(--text-normal); }
+.lkm-help-modal .lkm-guide-val { color: var(--text-muted); line-height: 1.5; }
+.lkm-help-modal .lkm-multipick-btns { margin-top: 20px; }

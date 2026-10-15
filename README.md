@@ -32,8 +32,8 @@ children:
   - "[[Child Note A]]"
   - "[[Child Note B]]"
 main: true
-status: false
-type: "todo"
+status: "todo"
+type: "灵感"
 date: "2026-10-11"
 ---
 ```
@@ -99,7 +99,7 @@ All field names are customizable in settings.
 | Move to parent | Move node under a different parent |
 | Reorder siblings | Adjust order among siblings |
 | Delete | Remove link or delete file (with subtree option) |
-| Toggle status | Mark as done/todo |
+| Change status | Set work status: todo / doing / done / archived / snoozed |
 | Modify type/date | Change type or date field |
 | Open note | Open in new tab |
 | Copy link / subtree outline | Copy `[[wikilink]]` or indented subtree |
@@ -112,7 +112,7 @@ All field names are customizable in settings.
 ### Batch Mode
 
 - Multi-select nodes with single click, select all / invert
-- Bulk move, delete, modify type, toggle status
+- Bulk move, delete, modify type, change status
 
 ### Keyboard Shortcuts
 
@@ -132,9 +132,9 @@ All field names are customizable in settings.
 
 A data dashboard with rich visualizations:
 
-- **Statistics cards**: total notes, main notes, keyword indexes, completed, unlinked, broken links, total links, pending todos
+- **Statistics cards**: total notes, main notes, keyword indexes, by status, unlinked, broken links, total links
 - **Type distribution**: donut chart (click to filter)
-- **Completion status**: stacked progress bar
+- **Status distribution**: stacked progress bar by status (todo/doing/done/archived/snoozed)
 - **Monthly creation**: bar chart for the past 12 months (click to filter)
 - **Tree depth distribution**: node count per depth level (click to filter)
 - **Creation heatmap**: GitHub-style yearly heatmap
@@ -144,6 +144,7 @@ A data dashboard with rich visualizations:
 
 - **Timeline view**: browse notes by creation time with filtering (8 time ranges: all/today/week/month/year/past week/past month/past year) and sorting (date/name, asc/desc)
 - **Normalize frontmatter**: batch or single-note command to sort and fill frontmatter fields per template
+- **Clean invalid types/statuses**: commands to remove type/status values no longer in config
 - **i18n**: auto-detect language, supports Chinese and English
 - **Mobile support**: long-press menu, touch gestures, collapsible toolbar
 - **Config export/import** (JSON backup)
@@ -159,8 +160,9 @@ A data dashboard with rich visualizations:
 | Layout | Default depth, max name length, spacing, node height |
 | Behavior | Auto-write backlinks, auto-locate current note |
 | Display | Show time/type/child count/icons, curve connections |
-| Colors | Primary, main note, duplicate, selected, completion |
-| Types | Custom types with auto-assigned colors |
+| Colors | Primary, main note, duplicate, selected |
+| Types | Custom types with auto-assigned colors, reorder/delete |
+| Statuses | Custom statuses (todo/doing/done/archived/snoozed) with colors |
 | Language | Auto / Chinese / English |
 
 ## Compatibility
@@ -214,8 +216,8 @@ children:
   - "[[子笔记A]]"
   - "[[子笔记B]]"
 main: true
-status: false
-type: "待办"
+status: "todo"
+type: "灵感"
 date: "2026-10-11"
 ---
 ```
@@ -282,7 +284,7 @@ date: "2026-10-11"
 | 新增子节点 | 创建子笔记并自动写入 children 链接，按类型自动选择模板 |
 | 聚焦到此节点 | 将该节点设为导图根节点 |
 | 跳到上级 | 跳转到父笔记（多父时列出所有上级） |
-| 标记完成/取消 | 切换 status 字段 |
+| 修改状态 | 设置工作状态：待办 / 进行中 / 已完成 / 已归档 / 已搁置 |
 | 修改类型/日期 | 弹出选择框修改对应字段 |
 | 重命名 | 重命名文件并同步更新所有引用 |
 | 复制链接 | 复制 `[[笔记名]]` 到剪贴板 |
@@ -301,7 +303,7 @@ date: "2026-10-11"
 ### 批量模式
 
 - 单击选中多个节点，全选/反选
-- 批量移动、删除、修改类型、标记完成
+- 批量移动、删除、修改类型、修改状态
 
 ### 快捷键
 
@@ -323,9 +325,9 @@ date: "2026-10-11"
 
 | 统计维度 | 说明 |
 |---|---|
-| 统计卡片 | 笔记总数/主笔记/关键词索引/已完成/未关联/失效链接/链接总数/待办未完成，含百分比 |
+| 统计卡片 | 笔记总数/主笔记/关键词索引/各状态/未关联/失效链接/链接总数，含百分比 |
 | 类型分布 | 环形图 + 图例（可点击筛选） |
-| 完成状态 | 堆叠进度条（已完成/未完成/未标日期） |
+| 状态分布 | 堆叠进度条（待办/进行中/已完成/已归档/已搁置/无状态/未标日期） |
 | 月度创建 | 近12个月柱状图（点击柱子筛选当月新增） |
 | 树深度分布 | 各层节点数横向柱状图（点击筛选该层节点） |
 | 创建热力图 | GitHub 风格年度热力图，含统计摘要 |
@@ -335,6 +337,7 @@ date: "2026-10-11"
 
 - **时间线视图**：按文件创建时间浏览笔记，支持八档时间筛选（全部/今日/本周/本月/本年/近一周/近一月/近一年）和排序（日期/名称、新→旧/旧→新）
 - **整理笔记属性**：批量或单篇按模板整理 frontmatter 字段顺序并补充缺失字段
+- **清除失效类型/状态**：命令清除所有笔记中不在配置列表内的 type/status 值
 - **中英文切换**：自动检测语言，支持中文/英文切换（设置中切换）
 - **导出/导入配置**：JSON 格式备份和恢复所有设置
 - **导图预设**：保存多个导图状态预设，一键恢复；保存位置可配置为插件数据或 vault 文件（支持跨设备同步）
@@ -349,8 +352,9 @@ date: "2026-10-11"
 | 布局配置 | 默认层数、名称字数、间距、节点高度 |
 | 行为配置 | 写入反向链接、自动定位当前笔记 |
 | 显示配置 | 显示时间/类型/子数/图标、曲线连接 |
-| 颜色配置 | 主色/主笔记/重复/选中/完成色 |
+| 颜色配置 | 主色/主笔记/重复/选中 |
 | 类型配置 | 自定义类型，自动分配颜色，排序/删除 |
+| 状态配置 | 自定义状态（待办/进行中/已完成/已归档/已搁置），分配颜色，排序/删除 |
 | 语言配置 | 自动 / 中文 / English |
 
 ## 手机端适配
