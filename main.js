@@ -806,22 +806,22 @@ function Ue(b) {
   return { todo: "\u5F85\u529E", doing: "\u8FDB\u884C\u4E2D", done: "\u5DF2\u5B8C\u6210", archived: "\u5DF2\u5F52\u6863", snoozed: "\u5DF2\u6401\u7F6E" }[e] || e;
 }
 _(Ue, "normalizeStatus");
-function Ve(b) {
+function Re(b) {
   return b == null ? [] : Array.isArray(b) ? b.slice() : [b];
 }
-_(Ve, "toArr");
-function _e(b) {
+_(Re, "toArr");
+function ke(b) {
   return String(b ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
 }
-_(_e, "cleanLink");
+_(ke, "cleanLink");
 function tt(b) {
   let e = [], s = /* @__PURE__ */ _((i) => {
     if (i == null) return;
     let a = String(i), n = /\[\[([^\[\]]+?)\]\]/g, o, c = !1;
     for (; (o = n.exec(a)) !== null; )
-      c = !0, e.push(_e(o[1]));
+      c = !0, e.push(ke(o[1]));
     if (!c) {
-      let h = _e(a.replace(/^["']+/, "").replace(/["']+$/, ""));
+      let h = ke(a.replace(/^["']+/, "").replace(/["']+$/, ""));
       h && e.push(h);
     }
   }, "push");
@@ -852,10 +852,10 @@ function st(b, e, s) {
   return We.size > 2e3 && We.clear(), We.set(i, n), n;
 }
 _(st, "measureTextWidth");
-function ye(b) {
+function ve(b) {
   return String(b).replace(/[\\/:*?"<>|#^\[\]]/g, "-").trim() || t("\u672A\u547D\u540D");
 }
-_(ye, "safeFileName");
+_(ve, "safeFileName");
 function nt(b) {
   let e = String(b ?? "").replace(/^﻿/, "").replace(/\r\n/g, `
 `).replace(/^\n+/, ""), s = e.match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
@@ -1054,22 +1054,22 @@ function je(b, e) {
 _(je, "layoutTree");
 async function He(b, e, s, i) {
   await b.fileManager.processFrontMatter(e, (a) => {
-    let n = Ve(a[s]);
-    n.some((c) => _e(c) === i) || n.push("[[" + i + "]]"), a[s] = n;
+    let n = Re(a[s]);
+    n.some((c) => ke(c) === i) || n.push("[[" + i + "]]"), a[s] = n;
   });
 }
 _(He, "addLink");
-async function ve(b, e, s, i) {
+async function _e(b, e, s, i) {
   let a = !1;
   return await b.fileManager.processFrontMatter(e, (n) => {
-    let o = Ve(n[s]), c = o.filter((h) => {
-      let d = b.metadataCache.getFirstLinkpathDest(_e(h), e.path);
+    let o = Re(n[s]), c = o.filter((h) => {
+      let d = b.metadataCache.getFirstLinkpathDest(ke(h), e.path);
       return !(d && d.path === i);
     });
     c.length !== o.length && (a = !0), c.length ? n[s] = c : delete n[s];
   }), a;
 }
-_(ve, "removeLinkByPath");
+_(_e, "removeLinkByPath");
 var wt = class extends pt {
   constructor(e, s, i, a) {
     super(e), this.items = s, this.onChoose = i, this.setPlaceholder(a || t("\u641C\u7D22\u2026"));
@@ -2045,18 +2045,18 @@ var Qe = xt, St = class extends It {
     }
     new Ot(this.app, e.note.file.basename, async (s) => {
       try {
-        let i = e.note.file.basename, a = e.note.file.parent ? e.note.file.parent.path : "", n = te((a ? a + "/" : "") + ye(s) + ".md");
+        let i = e.note.file.basename, a = e.note.file.parent ? e.note.file.parent.path : "", n = te((a ? a + "/" : "") + ve(s) + ".md");
         if (n === e.note.file.path) return;
         if (this.app.vault.getAbstractFileByPath(n)) {
-          new v(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + ye(s));
+          new v(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + ve(s));
           return;
         }
         await this.app.vault.rename(e.note.file, n);
-        let o = ye(s), c = this.s.linkField || "children", h = this.s.backField || "parent";
+        let o = ve(s), c = this.s.linkField || "children", h = this.s.backField || "parent";
         for (let l of this.notes.values())
           l.file.path !== n && await this.app.fileManager.processFrontMatter(l.file, (r) => {
-            let p = Ve(r[c]), g = !1, f = p.map((u) => _e(u) === i ? (g = !0, "[[" + o + "]]") : u);
-            g && (r[c] = f), r[h] != null && _e(r[h]) === i && (r[h] = o);
+            let p = Re(r[c]), g = !1, f = p.map((u) => ke(u) === i ? (g = !0, "[[" + o + "]]") : u);
+            g && (r[c] = f), r[h] != null && ke(r[h]) === i && (r[h] = o);
           });
         let d = this.s.titleField || "title";
         await this.app.fileManager.processFrontMatter(e.note.file, (l) => {
@@ -2090,7 +2090,7 @@ var Qe = xt, St = class extends It {
 \u672C\u6B21\u53EA\u79FB\u9664\u4ECE\u300C`) + Z(e.parent.note.title, 16) + t("\u300D\u5230\u5B83\u7684\u5173\u8054\uFF0C\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\u3002"),
         async () => {
           try {
-            await ve(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new v(t("\u5DF2\u79FB\u9664\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
+            await _e(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new v(t("\u5DF2\u79FB\u9664\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
           } catch (a) {
             new v(t("\u79FB\u9664\u5173\u8054\u5931\u8D25\uFF1A") + (a && a.message ? a.message : a)), console.error("[link-mindmap] removeLink:", a);
           }
@@ -2112,7 +2112,7 @@ var Qe = xt, St = class extends It {
         }
         i.close(), (async () => {
           try {
-            await ve(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new v(t("\u5DF2\u79FB\u9664\u4ECE\u300C") + Z(e.parent.note.title, 14) + t("\u300D\u5230\u300C") + Z(e.note.title, 14) + t("\u300D\u7684\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
+            await _e(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), this._selKey = null, new v(t("\u5DF2\u79FB\u9664\u4ECE\u300C") + Z(e.parent.note.title, 14) + t("\u300D\u5230\u300C") + Z(e.note.title, 14) + t("\u300D\u7684\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
           } catch (l) {
             new v(t("\u79FB\u9664\u5173\u8054\u5931\u8D25\uFF1A") + (l && l.message ? l.message : l)), console.error("[link-mindmap] removeLink:", l);
           }
@@ -2124,7 +2124,7 @@ var Qe = xt, St = class extends It {
           try {
             let l = e.note.file.path;
             for (let r of this.notes.values())
-              r.file.path !== l && r.childLinks.length && await ve(this.app, r.file, this.s.linkField, l);
+              r.file.path !== l && r.childLinks.length && await _e(this.app, r.file, this.s.linkField, l);
             this._selKey = null, new v(t("\u5DF2\u79FB\u9664\u6240\u6709\u5173\u8054\uFF08\u7B14\u8BB0\u6587\u4EF6\u4FDD\u7559\uFF09")), await this.rebuild(!0);
           } catch (l) {
             new v(t("\u79FB\u9664\u5173\u8054\u5931\u8D25\uFF1A") + (l && l.message ? l.message : l)), console.error("[link-mindmap] removeLink:", l);
@@ -2157,7 +2157,7 @@ var Qe = xt, St = class extends It {
       for (let n of this.notes.values())
         if (!i.has(n.file.path))
           for (let o of i)
-            n.childLinks.length && await ve(this.app, n.file, this.s.linkField, o);
+            n.childLinks.length && await _e(this.app, n.file, this.s.linkField, o);
       for (let n of i) {
         let o = this.app.vault.getAbstractFileByPath(n);
         o && o.path && await this.app.vault.trash(o, !0);
@@ -2214,7 +2214,7 @@ var Qe = xt, St = class extends It {
       return;
     }
     try {
-      e.parent && e.parent.note.file && await ve(this.app, e.parent.note.file, this.s.linkField, i.file.path), await He(this.app, a.file, this.s.linkField, i.file.basename), new v(t("\u5DF2\u79FB\u52A8\u300C") + Z(i.title, 14) + t("\u300D\u5230\u300C") + Z(a.title, 14) + "\u300D"), await new Promise((n) => setTimeout(n, 300)), await this.rebuild(!0);
+      e.parent && e.parent.note.file && await _e(this.app, e.parent.note.file, this.s.linkField, i.file.path), await He(this.app, a.file, this.s.linkField, i.file.basename), new v(t("\u5DF2\u79FB\u52A8\u300C") + Z(i.title, 14) + t("\u300D\u5230\u300C") + Z(a.title, 14) + "\u300D"), await new Promise((n) => setTimeout(n, 300)), await this.rebuild(!0);
     } catch (n) {
       new v(t("\u79FB\u52A8\u5931\u8D25\uFF1A") + (n && n.message ? n.message : n));
     }
@@ -2240,8 +2240,8 @@ var Qe = xt, St = class extends It {
     let a = e.parent.note.file;
     try {
       await this.app.fileManager.processFrontMatter(a, (n) => {
-        let o = this.s.linkField, c = Ve(n[o]), h = /* @__PURE__ */ _((p) => c.findIndex((g) => {
-          let f = this.app.metadataCache.getFirstLinkpathDest(_e(g), a.path);
+        let o = this.s.linkField, c = Re(n[o]), h = /* @__PURE__ */ _((p) => c.findIndex((g) => {
+          let f = this.app.metadataCache.getFirstLinkpathDest(ke(g), a.path);
           return f && f.path === p;
         }), "idxOf"), d = h(e.note.file.path);
         if (d < 0) return;
@@ -2267,11 +2267,11 @@ var Qe = xt, St = class extends It {
     }
     let a = s.parent.note.file;
     try {
-      if (e.parent && e.parent.note.file && await ve(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), await this.app.fileManager.processFrontMatter(a, (n) => {
-        let o = this.s.linkField, c = Ve(n[o]);
-        c.some((g) => _e(g) === e.note.file.basename) || c.push("[[" + e.note.file.basename + "]]");
+      if (e.parent && e.parent.note.file && await _e(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), await this.app.fileManager.processFrontMatter(a, (n) => {
+        let o = this.s.linkField, c = Re(n[o]);
+        c.some((g) => ke(g) === e.note.file.basename) || c.push("[[" + e.note.file.basename + "]]");
         let d = /* @__PURE__ */ _((g) => c.findIndex((f) => {
-          let u = this.app.metadataCache.getFirstLinkpathDest(_e(f), a.path);
+          let u = this.app.metadataCache.getFirstLinkpathDest(ke(f), a.path);
           return u && u.path === g;
         }), "idxOf"), l = d(e.note.file.path);
         if (l < 0) return;
@@ -2335,7 +2335,8 @@ var Qe = xt, St = class extends It {
       if (await He(this.app, i.file, this.s.linkField, s.file.basename), this.s.autoAddBackLink) {
         let a = this.s.backField || "parent";
         await this.app.fileManager.processFrontMatter(s.file, (n) => {
-          n[a] = i.file.basename;
+          let o = Re(n[a]);
+          o.some((h) => ke(h) === i.file.basename) || o.push(i.file.basename), o.length && (n[a] = o);
         });
       }
       new v(t("\u5DF2\u5EFA\u7ACB\u5173\u8054\uFF1A") + Z(i.title, 12) + " \u2192 " + Z(s.title, 12)), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
@@ -2367,7 +2368,7 @@ var Qe = xt, St = class extends It {
       for (let h of s)
         if (h.note.file)
           try {
-            h.parent && h.parent.note.file && await ve(this.app, h.parent.note.file, this.s.linkField, h.note.file.path), await He(this.app, o.file, this.s.linkField, h.note.file.basename), c++;
+            h.parent && h.parent.note.file && await _e(this.app, h.parent.note.file, this.s.linkField, h.note.file.path), await He(this.app, o.file, this.s.linkField, h.note.file.basename), c++;
           } catch {
           }
       new v(t("\u6279\u91CF\u79FB\u52A8\u5B8C\u6210\uFF1A") + c + t(" \u4E2A\u8282\u70B9")), this._selected.clear(), this._batchMode = !1, await this.rebuild(!0);
@@ -2388,14 +2389,14 @@ var Qe = xt, St = class extends It {
       let c = 0;
       for (let h of n)
         try {
-          h.parent && h.parent.note.file && (await ve(this.app, h.parent.note.file, this.s.linkField, h.note.file.path), c++);
+          h.parent && h.parent.note.file && (await _e(this.app, h.parent.note.file, this.s.linkField, h.note.file.path), c++);
         } catch {
         }
       for (let h of i)
         try {
           let d = h.note.file;
           for (let l of this.notes.values())
-            l.file.path !== d.path && l.childLinks.length && await ve(this.app, l.file, this.s.linkField, d.path);
+            l.file.path !== d.path && l.childLinks.length && await _e(this.app, l.file, this.s.linkField, d.path);
           await this.app.vault.trash(d, !0), c++;
         } catch {
         }
@@ -2777,7 +2778,7 @@ ${r}: ""
     e.templatePath = a, await this.plugin.saveSettings(), new v(t("\u5DF2\u521B\u5EFA\u6A21\u677F\u5E76\u8BBE\u4E3A\u9ED8\u8BA4\uFF1A") + a), this.render();
   }
   async _createFirstNote(e) {
-    let s = this.s, i = ye(e) + ".md", a = te(s.mainFolder), n = te(a + "/" + i);
+    let s = this.s, i = ve(e) + ".md", a = te(s.mainFolder), n = te(a + "/" + i);
     if (this.app.vault.getAbstractFileByPath(n)) {
       new v(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + i);
       return;
@@ -2924,8 +2925,8 @@ ${d}: "${r}"
       let H = j("g", { class: "lkm-status-dots" }), de = 6, xe = /* @__PURE__ */ _((Y, ee) => {
         let le = j("circle", { cx: 10, cy: de, r: 4, class: Y });
         H.appendChild(le);
-        let Se = j("circle", { cx: 10, cy: de, r: 7, class: "lkm-dot-hit" }), we = j("title");
-        return we.textContent = ee, Se.appendChild(we), H.appendChild(Se), de += 10, le;
+        let Se = j("circle", { cx: 10, cy: de, r: 7, class: "lkm-dot-hit" }), ye = j("title");
+        return ye.textContent = ee, Se.appendChild(ye), H.appendChild(Se), de += 10, le;
       }, "mkDot");
       if (m.note.zk && xe("lkm-dot-zk", t("\u4E3B\u7B14\u8BB0\uFF1A\u8BE5\u7B14\u8BB0 main: true\uFF0C\u662F\u5BFC\u56FE\u7684\u4E3B\u5165\u53E3")), m.note.status) {
         let Y = xe("lkm-dot-status", oe(m.note.status) + t("\uFF1Astatus: ") + m.note.status);
@@ -2948,26 +2949,26 @@ ${d}: "${r}"
         Y.appendChild(j("circle", { cx: ee, cy: le, r: Fe, class: "lkm-dot" }));
         let Se = j("text", { x: ee, y: le + 5, class: "lkm-sign", "text-anchor": "middle" });
         Se.textContent = m.expanded ? "\u2212" : "+", Y.appendChild(Se);
-        let we = j("circle", { cx: ee, cy: le, r: Fe + 5, class: "lkm-hit" });
-        we.addEventListener("click", (Be) => {
-          Be.stopPropagation(), m.expanded = !m.expanded, this._expandedMem.set(m.note.file ? m.note.file.path : m.key, m.expanded), M(m.key);
-        }), we.addEventListener("mouseenter", () => {
+        let ye = j("circle", { cx: ee, cy: le, r: Fe + 5, class: "lkm-hit" });
+        ye.addEventListener("click", (Ve) => {
+          Ve.stopPropagation(), m.expanded = !m.expanded, this._expandedMem.set(m.note.file ? m.note.file.path : m.key, m.expanded), M(m.key);
+        }), ye.addEventListener("mouseenter", () => {
           L && (clearTimeout(L), L = null);
-        }), Y.appendChild(we), N.appendChild(Y);
+        }), Y.appendChild(ye), N.appendChild(Y);
       }
       if (m.note.file) {
         let Y = Ze ? 26 : 24, ee = m._w - (Ze ? 20 : 18), le = j("g", { class: "lkm-connect" });
         Ye(le, t("\u62D6\u52A8\u8FDE\u7EBF\uFF1A\u5EFA\u7ACB\u989D\u5916\u5173\u8054\uFF08\u76EE\u6807\u6210\u4E3A\u672C\u8282\u70B9\u7684\u5B50\u8282\u70B9\uFF0C\u539F\u5173\u7CFB\u4FDD\u7559\uFF09"));
-        let Se = ee, we = he;
-        le.appendChild(j("circle", { cx: Se, cy: we, r: Fe, class: "lkm-connect-bg" })), le.appendChild(j("circle", { cx: Se, cy: we, r: 2.6, class: "lkm-connect-dot" }));
-        let Be = j("circle", { cx: Se, cy: we, r: Fe + 5, class: "lkm-hit" });
-        if (Be.addEventListener("mousedown", (pe) => {
+        let Se = ee, ye = he;
+        le.appendChild(j("circle", { cx: Se, cy: ye, r: Fe, class: "lkm-connect-bg" })), le.appendChild(j("circle", { cx: Se, cy: ye, r: 2.6, class: "lkm-connect-dot" }));
+        let Ve = j("circle", { cx: Se, cy: ye, r: Fe + 5, class: "lkm-hit" });
+        if (Ve.addEventListener("mousedown", (pe) => {
           this._batchMode || I(pe, m);
-        }), Be.addEventListener("mouseenter", () => {
+        }), Ve.addEventListener("mouseenter", () => {
           L && (clearTimeout(L), L = null);
-        }), Be.addEventListener("touchstart", (pe) => {
+        }), Ve.addEventListener("touchstart", (pe) => {
           this._batchMode || I(pe, m);
-        }, { passive: !1 }), le.appendChild(Be), N.appendChild(le), a.showOpenIcon !== !1) {
+        }, { passive: !1 }), le.appendChild(Ve), N.appendChild(le), a.showOpenIcon !== !1) {
           ee -= Y;
           let pe = j("g", { class: "lkm-open" });
           Ye(pe, t("\u6253\u5F00\u7B14\u8BB0")), pe.appendChild(j("circle", { cx: ee, cy: he, r: Fe, class: "lkm-open-bg" }));
@@ -3085,7 +3086,7 @@ ${d}: "${r}"
     u.addEventListener("mousedown", q), window.addEventListener("mousemove", $), window.addEventListener("mouseup", A), this._cleanup.push(() => {
       u.removeEventListener("mousedown", q), window.removeEventListener("mousemove", $), window.removeEventListener("mouseup", A);
     });
-    let K = null, ae = null, ke = /* @__PURE__ */ _((m) => {
+    let K = null, ae = null, we = /* @__PURE__ */ _((m) => {
       if (!D)
         if (m.stopPropagation(), m.touches.length === 2) {
           m.preventDefault();
@@ -3099,11 +3100,11 @@ ${d}: "${r}"
           let z = m.touches[0].clientX - m.touches[1].clientX, L = m.touches[0].clientY - m.touches[1].clientY, N = Math.max(0.2, Math.min(3, ae.k * (Math.hypot(z, L) / ae.dist))), J = u.getBoundingClientRect(), W = (m.touches[0].clientX + m.touches[1].clientX) / 2 - J.left, ue = (m.touches[0].clientY + m.touches[1].clientY) / 2 - J.top;
           E = W - (W - E) * (N / T), B = ue - (ue - B) * (N / T), T = N, this._view = { k: T, tx: E, ty: B }, G();
         } else m.touches.length === 1 && K ? (m.preventDefault(), E = m.touches[0].clientX - K.x, B = m.touches[0].clientY - K.y, this._view = { k: T, tx: E, ty: B }, G()) : m.touches.length && m.preventDefault();
-    }, "onTouchMove"), Re = /* @__PURE__ */ _((m) => {
+    }, "onTouchMove"), Be = /* @__PURE__ */ _((m) => {
       D || (m.stopPropagation(), m.touches.length === 0 && (K = null, ae = null, u.classList.remove("lkm-grabbing"), this._scheduleAutoSave()));
     }, "onTouchEnd");
-    u.addEventListener("touchstart", ke, { passive: !1 }), u.addEventListener("touchmove", be, { passive: !1 }), u.addEventListener("touchend", Re), u.addEventListener("touchcancel", Re), this._cleanup.push(() => {
-      u.removeEventListener("touchstart", ke), u.removeEventListener("touchmove", be), u.removeEventListener("touchend", Re), u.removeEventListener("touchcancel", Re);
+    u.addEventListener("touchstart", we, { passive: !1 }), u.addEventListener("touchmove", be, { passive: !1 }), u.addEventListener("touchend", Be), u.addEventListener("touchcancel", Be), this._cleanup.push(() => {
+      u.removeEventListener("touchstart", we), u.removeEventListener("touchmove", be), u.removeEventListener("touchend", Be), u.removeEventListener("touchcancel", Be);
     });
   }
   _templateFiles() {
@@ -3174,13 +3175,13 @@ ${d}: "${r}"
       zkField: s.zkField || "main",
       onSubmit: /* @__PURE__ */ _(async (l, r, p, g, f) => {
         try {
-          let u = ye(l) + ".md", S = te(s.mainFolder), x = te(S + "/" + u);
+          let u = ve(l) + ".md", S = te(s.mainFolder), x = te(S + "/" + u);
           if (this.app.vault.getAbstractFileByPath(x)) {
             new v(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + u);
             return;
           }
           let C = /* @__PURE__ */ new Date(), M = C.getFullYear() + "-" + String(C.getMonth() + 1).padStart(2, "0") + "-" + String(C.getDate()).padStart(2, "0"), w = await this._buildNewNoteBody(e.note.file.basename, M, r, p, g, f);
-          await He(this.app, e.note.file, s.linkField, ye(l)), await this.app.vault.create(x, w), new v(t("\u5DF2\u521B\u5EFA\u300C") + ye(l) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + Z(e.note.title, 14) + "\u300D");
+          await He(this.app, e.note.file, s.linkField, ve(l)), await this.app.vault.create(x, w), new v(t("\u5DF2\u521B\u5EFA\u300C") + ve(l) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + Z(e.note.title, 14) + "\u300D");
           let F = e;
           for (; F; )
             this._expandedMem.set(F.note.file ? F.note.file.path : F.key, !0), F = F.parent;
@@ -3211,13 +3212,13 @@ ${d}: "${r}"
       zkField: e.zkField || "main",
       onSubmit: /* @__PURE__ */ _(async (d, l, r, p, g) => {
         try {
-          let f = ye(d) + ".md", u = te(e.mainFolder), S = te(u + "/" + f);
+          let f = ve(d) + ".md", u = te(e.mainFolder), S = te(u + "/" + f);
           if (this.app.vault.getAbstractFileByPath(S)) {
             new v(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + f);
             return;
           }
           let x = /* @__PURE__ */ new Date(), C = x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0") + "-" + String(x.getDate()).padStart(2, "0"), M = await this._buildNewNoteBody(null, C, l, r, p, g);
-          await this.app.vault.create(S, M), new v(t("\u5DF2\u521B\u5EFA\u300C") + ye(d) + "\u300D"), await this._rebuildUntilReady(S, 30, !1), this._focusPath(S);
+          await this.app.vault.create(S, M), new v(t("\u5DF2\u521B\u5EFA\u300C") + ve(d) + "\u300D"), await this._rebuildUntilReady(S, 30, !1), this._focusPath(S);
         } catch (f) {
           new v(t("\u521B\u5EFA\u5931\u8D25\uFF1A") + (f && f.message ? f.message : f));
         }
@@ -3285,9 +3286,9 @@ ${d}: "${r}"
           let K = Q.createDiv("lkm-stackbar-seg");
           K.style.width = Math.max(6, A.value / o.total * 100) + "%", K.style.background = A.color, this._isFilterActive(A.filter) && K.addClass("is-active"), K.title = A.label + "\uFF1A" + A.value + t(" \u7BC7\uFF0C\u70B9\u51FB\u7B5B\u9009"), K.addEventListener("click", () => this._toggleDashFilter(A.filter));
         }
-        let q = X.createDiv("lkm-chips"), $ = /* @__PURE__ */ _((A, K, ae, ke) => {
-          let be = q.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(ke) ? " is-active" : ""));
-          be.createSpan({ cls: "lkm-legend-dot" }).style.background = ae, be.createSpan({ text: A + " " + K }), be.addEventListener("click", () => this._toggleDashFilter(ke));
+        let q = X.createDiv("lkm-chips"), $ = /* @__PURE__ */ _((A, K, ae, we) => {
+          let be = q.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(we) ? " is-active" : ""));
+          be.createSpan({ cls: "lkm-legend-dot" }).style.background = ae, be.createSpan({ text: A + " " + K }), be.addEventListener("click", () => this._toggleDashFilter(we));
         }, "chip");
         for (let A of o.byStatusOrder) $(oe(A.name), A.count, A.color, { kind: "status", value: A.name });
         o.noStatus && $(t("\u65E0\u72B6\u6001"), o.noStatus, "var(--text-faint)", { kind: "nostatus" }), $(t("\u672A\u6807\u65E5\u671F"), o.noDate, "var(--text-faint)", { kind: "nodate" });
@@ -3370,8 +3371,8 @@ ${d}: "${r}"
               A.addClass("lkm-heat-off");
               continue;
             }
-            let ae = o.heat.get(K) || 0, ke = ae === 0 ? 0 : ae === 1 ? 1 : ae <= 2 ? 2 : ae <= 4 ? 3 : 4;
-            ke && A.addClass("lkm-heat-l" + ke), this._isFilterActive({ kind: "date", value: K }) && A.addClass("is-active"), ae && A.addClass("lkm-heat-hit"), K === X && (A.addClass("lkm-heat-today"), Q = A), A.title = K + "\uFF1A" + ae + t(" \u7BC7") + (K === X ? t("\uFF08\u4ECA\u5929\uFF09") : ""), A.addEventListener("click", () => this._toggleDashFilter({ kind: "date", value: K }));
+            let ae = o.heat.get(K) || 0, we = ae === 0 ? 0 : ae === 1 ? 1 : ae <= 2 ? 2 : ae <= 4 ? 3 : 4;
+            we && A.addClass("lkm-heat-l" + we), this._isFilterActive({ kind: "date", value: K }) && A.addClass("is-active"), ae && A.addClass("lkm-heat-hit"), K === X && (A.addClass("lkm-heat-today"), Q = A), A.title = K + "\uFF1A" + ae + t(" \u7BC7") + (K === X ? t("\uFF08\u4ECA\u5929\uFF09") : ""), A.addEventListener("click", () => this._toggleDashFilter({ kind: "date", value: K }));
           }
         Q && !this._dashHeatIdx && requestAnimationFrame(() => {
           let U = Q.getBoundingClientRect(), q = D.getBoundingClientRect();
@@ -3388,12 +3389,12 @@ ${d}: "${r}"
           if (!window.matchMedia("(hover: none)").matches) return;
           let $ = this.contentEl.querySelector(".lkm-dash"), A = this.contentEl.querySelector(".lkm-toolbar");
           if (!$ || !A) return;
-          let K = $.scrollTop, ae = $.style.flex, ke = $.style.height, be = /* @__PURE__ */ _(() => {
-            let Re = A.getBoundingClientRect().bottom, m = window.visualViewport, L = (m ? m.height + m.offsetTop : window.innerHeight) - Re;
+          let K = $.scrollTop, ae = $.style.flex, we = $.style.height, be = /* @__PURE__ */ _(() => {
+            let Be = A.getBoundingClientRect().bottom, m = window.visualViewport, L = (m ? m.height + m.offsetTop : window.innerHeight) - Be;
             L > 60 && ($.style.flex = "none", $.style.height = L + "px"), $.scrollTop = Math.max(0, O.offsetTop - 50);
           }, "doAdjust");
           setTimeout(be, 300), setTimeout(be, 500), P.addEventListener("blur", () => {
-            $.style.flex = ae, $.style.height = ke, $.scrollTop = K;
+            $.style.flex = ae, $.style.height = we, $.scrollTop = K;
           }, { once: !0 });
         });
         let V = O.createEl("button", { cls: "lkm-btn", text: t("\u6392\u5E8F\uFF1A") + { date: t("\u65E5\u671F"), name: t("\u540D\u79F0") }[this._dashSort || "date"] });
