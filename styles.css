@@ -195,6 +195,10 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   pointer-events: none;
   font-variant-numeric: tabular-nums;
 }
+.lkm-desc {
+  fill: var(--text-faint);
+  font-style: normal;
+}
 
 /* ---- 展开/折叠圆点 ---- */
 .lkm-dot {
@@ -448,6 +452,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
 .lkm-dot-zk { fill: var(--lkm-main); stroke: var(--background-primary); stroke-width: 1; }
 .lkm-dot-status { fill: var(--lkm-status-done, var(--lkm-done)); stroke: var(--background-primary); stroke-width: 1; }
 .lkm-dot-multi { fill: var(--lkm-multi); stroke: var(--background-primary); stroke-width: 1; }
+
 .lkm-node.lkm-archived { opacity: 0.35; }
 .lkm-node.lkm-archived .lkm-card { stroke-dasharray: 4 3; }
 
