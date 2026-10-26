@@ -181,6 +181,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   stroke-width: 1.5;
   transition: filter .18s, stroke-width .18s, fill .18s;
 }
+.lkm-card.lkm-excalidraw { fill: rgba(124, 58, 237, 0.06); }
 
 
 .lkm-title {
