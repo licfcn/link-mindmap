@@ -106,6 +106,18 @@
   border-color: var(--lkm-accent);
   background: color-mix(in srgb, var(--lkm-accent) 15%, var(--background-primary));
 }
+.lkm-mode-sel { display: inline-flex; align-items: center; }
+.lkm-mode-dropdown {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  cursor: pointer;
+  outline: none;
+}
+.lkm-mode-dropdown:hover { border-color: var(--lkm-accent); }
 
 .lkm-info {
   margin-left: auto;
@@ -795,6 +807,7 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   .lkm-toolbar-toggle { display: inline-flex; }
   .lkm-toolbar.lkm-collapsed .lkm-btn:not(.lkm-toolbar-toggle),
   .lkm-toolbar.lkm-collapsed .lkm-depth,
+  .lkm-toolbar.lkm-collapsed .lkm-mode-sel,
   .lkm-toolbar.lkm-collapsed .lkm-toolbar-sep,
   .lkm-toolbar.lkm-collapsed .lkm-sel-count,
   .lkm-toolbar.lkm-collapsed .lkm-filter-input { display: none; }
@@ -862,14 +875,13 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   stroke: var(--lkm-accent);
   stroke-width: 3;
 }
-.lkm-git-node.lkm-sel .lkm-graph-dot {
-  fill-opacity: 0.55;
-  stroke: var(--lkm-selected, #E8861A);
-  stroke-width: 3.5;
-}
-.lkm-git-node.lkm-sel.lkm-main .lkm-graph-dot {
+.lkm-git-node.lkm-sel .lkm-git-dot {
   stroke: var(--lkm-selected, #E8861A);
   stroke-width: 4;
+}
+.lkm-git-node.lkm-sel.lkm-main .lkm-git-dot {
+  stroke: var(--lkm-selected, #E8861A);
+  stroke-width: 4.5;
 }
 .lkm-node.lkm-selected-root .lkm-card {
   stroke: var(--lkm-accent);
