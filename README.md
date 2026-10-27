@@ -11,6 +11,7 @@ A visual mindmap plugin for Obsidian — **each node is a note**, drag to build 
 - **Visual relationships**: drag to reparent, drag from port to connect — `children`/`parent` frontmatter auto-updated
 - **Node = Note**: Markdown files linked by `[[wikilinks]]`, no lock-in, rename freely
 - **Mindmap view**: expand/collapse, pan/zoom, fit, breadcrumbs, horizontal/vertical layout, presets, hover preview
+- **5 layout modes**: Tree / Branch / Git branch (swim-lane + jumps + time axis) / Link (flowchart + sibling chain) / Network (force-directed, drag to reposition)
 - **Multi-select**: filter by type/status/search, display together, drag-connect
 - **Node ops**: add child, rename, move, reorder, delete, change status/type/date — via right-click menu
 - **Batch**: multi-select, bulk move/delete/modify
@@ -49,6 +50,7 @@ A visual mindmap plugin for Obsidian — **each node is a note**, drag to build 
 - **可视化关联**：拖动换父级，从端口拖出连线——`children`/`parent` 自动更新
 - **节点即笔记**：Markdown 文件靠 `[[双链]]` 关联，无锁定，随时重命名
 - **导图视图**：展开/折叠、平移缩放、适应、面包屑、横纵布局、预设、悬停预览
+- **5 种导图模式**：树形图 / 分叉图 / 分支图（泳道+跳线+时间轴） / 链路图（流程图+兄弟串联） / 网络图（力导向布局，可拖拽节点）
 - **多选导图**：按类型/状态/搜索筛选，同屏显示，拖拽连线
 - **节点操作**：新增子节点、重命名、移动、排序、删除、改状态/类型/日期——右键菜单
 - **批量模式**：多选，批量移动/删除/修改
