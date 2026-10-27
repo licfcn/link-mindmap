@@ -2101,7 +2101,8 @@ var ft = Vt, Ot = class extends Ut {
           fromNode: I,
           toNode: U,
           fromSide: o ? "bottom" : "right",
-          toSide: o ? "top" : "left"
+          toSide: o ? "top" : "left",
+          color: "1"
         }), g(y);
       }
     }, "collectEdges");
