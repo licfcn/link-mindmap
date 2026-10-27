@@ -755,7 +755,7 @@ var x = (b, e) => b, Wt = require("obsidian"), {
   Plugin: Xt,
   ItemView: Ut,
   Notice: _,
-  Modal: Ce,
+  Modal: Se,
   Setting: H,
   PluginSettingTab: qt,
   TFile: je,
@@ -766,7 +766,7 @@ var x = (b, e) => b, Wt = require("obsidian"), {
   Menu: Ge,
   MarkdownRenderer: Jt,
   Component: Zt
-} = Wt, { t, setLang: bt } = vt(), be = "link-mindmap-view", Qt = "http://www.w3.org/2000/svg", Ft = {
+} = Wt, { t, setLang: bt } = vt(), Ce = "link-mindmap-view", Qt = "http://www.w3.org/2000/svg", Ft = {
   language: "auto",
   mainFolder: "01-\u7B14\u8BB0",
   indexFolder: "02-\u7D22\u5F15",
@@ -845,10 +845,10 @@ function ct(b) {
   return { todo: "\u5F85\u529E", doing: "\u8FDB\u884C\u4E2D", done: "\u5DF2\u5B8C\u6210", archived: "\u5DF2\u5F52\u6863", snoozed: "\u5DF2\u6401\u7F6E" }[e] || e;
 }
 x(ct, "normalizeStatus");
-function Ne(b) {
+function Ae(b) {
   return b == null ? [] : Array.isArray(b) ? b.slice() : [b];
 }
-x(Ne, "toArr");
+x(Ae, "toArr");
 function ve(b) {
   return String(b ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
 }
@@ -879,7 +879,7 @@ function Tt(b, e) {
 }
 x(Tt, "estWidth");
 var ot = null, lt = /* @__PURE__ */ new Map();
-function Ae(b, e, n) {
+function Ne(b, e, n) {
   let i = b + "|" + e + "|" + (n ? 1 : 0), a = lt.get(i);
   if (a !== void 0) return a;
   let s;
@@ -890,7 +890,7 @@ function Ae(b, e, n) {
   }
   return lt.size > 2e3 && lt.clear(), lt.set(i, s), s;
 }
-x(Ae, "measureTextWidth");
+x(Ne, "measureTextWidth");
 function ze(b) {
   return String(b).replace(/[\\/:*?"<>|#^\[\]]/g, "-").trim() || t("\u672A\u547D\u540D");
 }
@@ -1052,15 +1052,15 @@ function Lt(b, e, n) {
   let i = [], a = "";
   for (let s of String(b ?? "")) {
     let o = a + s;
-    a && Ae(o, n, !1) > e ? (i.push(a), a = s) : a = o;
+    a && Ne(o, n, !1) > e ? (i.push(a), a = s) : a = o;
   }
   return a && i.push(a), i;
 }
 x(Lt, "wrapLines");
 function wt(b, e, n) {
-  if (Ae(b, n, !1) <= e) return b;
+  if (Ne(b, n, !1) <= e) return b;
   let i = String(b);
-  for (; i.length > 1 && Ae(i + "\u2026", n, !1) > e; ) i = i.slice(0, -1);
+  for (; i.length > 1 && Ne(i + "\u2026", n, !1) > e; ) i = i.slice(0, -1);
   return i + "\u2026";
 }
 x(wt, "truncateByWidth");
@@ -1068,12 +1068,12 @@ function tt(b, e) {
   let n = [], i = [], a = e.layoutMode !== "branch" && e.layoutDir === "v";
   if ((/* @__PURE__ */ x((function s(o) {
     if (!o._w) {
-      let p = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, d = o.note.title, r = e.maxTitleLen > 0 ? le(d, e.maxTitleLen) : d, l = Ae(r, 13, !0), h = !o.note.file, g = e.showCreated && !h && o.note.date ? o.note.date : "", k = e.showType && !h && o.note.type ? ge(o.note.type) : "", m = e.showChildCount && !h && o.children.length ? t("\u5B50 ") + o.children.length : "", F = e.showWordCount && !h && o.note.file ? t("\u5B57 ") + Math.max(1, Math.round((o.note.file.stat.size || 0) / 3)) : "", w = [k, m, F, g].filter(Boolean).join(" \xB7 "), y = !!w, S = e.showDesc && !h && o.note.desc ? o.note.desc : "";
+      let p = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, d = o.note.title, r = e.maxTitleLen > 0 ? le(d, e.maxTitleLen) : d, l = Ne(r, 13, !0), h = !o.note.file, g = e.showCreated && !h && o.note.date ? o.note.date : "", k = e.showType && !h && o.note.type ? ge(o.note.type) : "", m = e.showChildCount && !h && o.children.length ? t("\u5B50 ") + o.children.length : "", F = e.showWordCount && !h && o.note.file ? t("\u5B57 ") + Math.max(1, Math.round((o.note.file.stat.size || 0) / 3)) : "", w = [k, m, F, g].filter(Boolean).join(" \xB7 "), y = !!w, S = e.showDesc && !h && o.note.desc ? o.note.desc : "";
       if (e.nodeHeight === 0) {
-        let f = Ae(w, 11, !1);
+        let f = Ne(w, 11, !1);
         o._w = Math.max(80, 16 + Math.max(l, f) + p + 4), o._descLines = S ? Lt(S, o._w - 16 - p - 4, 11) : [], o._autoH = 26 + o._descLines.length * 15 + (y ? 15 : 0) + 4;
       } else {
-        let f = S ? wt(S, 140, 11) : "", T = Math.max(Ae(w, 11, !1), Ae(f, 11, !1));
+        let f = S ? wt(S, 140, 11) : "", T = Math.max(Ne(w, 11, !1), Ne(f, 11, !1));
         o._w = Math.max(80, 16 + Math.max(l, T) + p + 4), o._descLines = null, o._autoH = e.nodeHeight;
       }
       o._shown = r;
@@ -1119,16 +1119,16 @@ function tt(b, e) {
       else {
         w(T[0], S, f + 1), y._glane = T[0]._glane, i.push([y, T[0]]);
         let C = S + T[0]._gw;
-        for (let A = 1; A < T.length; A++)
-          w(T[A], C, f + 1), i.push([y, T[A]]), C += T[A]._gw;
+        for (let N = 1; N < T.length; N++)
+          w(T[N], C, f + 1), i.push([y, T[N]]), C += T[N]._gw;
       }
     }), "assign"))(b, 0, 0);
     let c = 0, p = 0, d = 1 / 0, r = -1 / 0;
     for (let w of n) {
-      let y = w._shown || w.note.title, S = Ae(y, 13, !0);
+      let y = w._shown || w.note.title, S = Ne(y, 13, !0);
       w._w = Math.max(90, S + 36), w._autoH = 28, c = Math.max(c, w._w), p = Math.max(p, w._autoH), d = Math.min(d, w._glane), r = Math.max(r, w._glane);
     }
-    let l = Math.max(40, e.gapX), h = Math.max(10, e.gapY), g = [], k = 0;
+    let l = Math.max(40, e.gapX), h = Math.max(1, e.gapY), g = [], k = 0;
     for (let w = d; w <= r; w++) {
       let y = 0;
       for (let S of n) S._glane === w && (y = Math.max(y, S._w));
@@ -1175,7 +1175,7 @@ function st(b) {
 x(st, "linkNameOf");
 async function Je(b, e, n, i) {
   await b.fileManager.processFrontMatter(e, (a) => {
-    let s = Ne(a[n]);
+    let s = Ae(a[n]);
     s.some((c) => ve(c) === i) || s.push("[[" + i + "]]"), a[n] = s;
   });
 }
@@ -1183,7 +1183,7 @@ x(Je, "addLink");
 async function Me(b, e, n, i) {
   let a = !1;
   return await b.fileManager.processFrontMatter(e, (s) => {
-    let o = Ne(s[n]), c = o.filter((p) => {
+    let o = Ae(s[n]), c = o.filter((p) => {
       let d = b.metadataCache.getFirstLinkpathDest(ve(p), e.path);
       return !(d && d.path === i);
     });
@@ -1206,7 +1206,7 @@ var Pt = class extends St {
   }
 };
 x(Pt, "PickModal");
-var Ie = Pt, It = class extends Ce {
+var Ie = Pt, It = class extends Se {
   constructor(e, n, i, a, s, o) {
     if (super(e), this.items = n, this.onChoose = i, this.selected = /* @__PURE__ */ new Map(), this.searchVal = "", this.typeFilter = "", this.mainFilter = "", this.linkFilter = "", this.statusFilter = "", this.availableTypes = s || [], this.availableStatusColors = o || {}, a && a.length) {
       let c = new Map(n.map((p) => [p.path, p.label]));
@@ -1292,7 +1292,7 @@ var Ie = Pt, It = class extends Ce {
   }
 };
 x(It, "MultiPickModal");
-var es = It, Nt = class extends Ce {
+var es = It, At = class extends Se {
   constructor(e, n, i) {
     super(e), this.parentLabel = n, this.opts = i || {}, this.onSubmit = this.opts.onSubmit || (() => {
     });
@@ -1343,8 +1343,8 @@ var es = It, Nt = class extends Ce {
     this.contentEl.empty();
   }
 };
-x(Nt, "NewChildModal");
-var Ct = Nt, At = class extends Ce {
+x(At, "NewChildModal");
+var Ct = At, Nt = class extends Se {
   constructor(e, n, i) {
     super(e), this.currentName = n, this.onSubmit = i;
   }
@@ -1371,8 +1371,8 @@ var Ct = Nt, At = class extends Ce {
     this.contentEl.empty();
   }
 };
-x(At, "RenameModal");
-var ts = At, Bt = class extends Ce {
+x(Nt, "RenameModal");
+var ts = Nt, Bt = class extends Se {
   constructor(e, n, i) {
     super(e), this.currentDesc = n, this.onSubmit = i;
   }
@@ -1393,7 +1393,7 @@ var ts = At, Bt = class extends Ce {
   }
 };
 x(Bt, "DescModal");
-var ss = Bt, Rt = class extends Ce {
+var ss = Bt, Rt = class extends Se {
   constructor(e, n, i, a, s) {
     super(e), this.titleText = n, this.message = i, this.onConfirm = a, this.danger = s !== !1;
   }
@@ -1433,7 +1433,7 @@ var ft = Vt, $t = class extends Ut {
     return this.plugin.settings;
   }
   getViewType() {
-    return be;
+    return Ce;
   }
   getDisplayText() {
     return t("\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE");
@@ -1529,7 +1529,7 @@ var ft = Vt, $t = class extends Ut {
     n.showAtPosition({ x: a.left, y: a.bottom });
   }
   _promptSaveView() {
-    let e = new Ce(this.app);
+    let e = new Se(this.app);
     e.titleEl.setText(t("\u4FDD\u5B58\u5BFC\u56FE\u9884\u8BBE"));
     let n = "", i = new H(e.contentEl).setName(t("\u9884\u8BBE\u540D\u79F0")).addText((s) => {
       s.setPlaceholder(t("\u8F93\u5165\u9884\u8BBE\u540D\u79F0")), s.inputEl.focus(), s.onChange((o) => n = o), s.inputEl.addEventListener("keydown", (o) => {
@@ -1655,22 +1655,22 @@ var ft = Vt, $t = class extends Ut {
             !C.expanded && C.children.length ? (C.expanded = !0, this._expandedMem.set(C.note.file ? C.note.file.path : C.key, !0), this.render()) : C.children.length && this._select(C.children[0].key);
           else if (f.key === "ArrowUp") {
             if (C.parent) {
-              let A = C.parent.children, P = A.indexOf(C);
-              P > 0 ? this._select(A[P - 1].key) : this._select(C.parent.key);
+              let N = C.parent.children, P = N.indexOf(C);
+              P > 0 ? this._select(N[P - 1].key) : this._select(C.parent.key);
             }
           } else if (f.key === "ArrowDown") {
             if (C.expanded && C.children.length) {
               this._select(C.children[0].key);
               return;
             }
-            let A = C;
-            for (; A.parent; ) {
-              let P = A.parent.children, V = P.indexOf(A);
+            let N = C;
+            for (; N.parent; ) {
+              let P = N.parent.children, V = P.indexOf(N);
               if (V < P.length - 1) {
                 this._select(P[V + 1].key);
                 return;
               }
-              A = A.parent;
+              N = N.parent;
             }
           }
         } else if (f.key === " ") {
@@ -1692,8 +1692,8 @@ var ft = Vt, $t = class extends Ut {
     o.title = t("\u5C55\u5F00/\u6298\u53E0\u5DE5\u5177\u680F"), o.onclick = () => {
       this._toolbarCollapsed = !this._toolbarCollapsed, s.classList.toggle("lkm-collapsed", this._toolbarCollapsed), this._scheduleAutoSave();
     }, this._toolbarCollapsed && s.classList.add("lkm-collapsed");
-    let c = /* @__PURE__ */ x((f, T, C, A, P, V) => {
-      let Y = s.createEl("button", { cls: "lkm-btn" + (A ? " " + A : "") });
+    let c = /* @__PURE__ */ x((f, T, C, N, P, V) => {
+      let Y = s.createEl("button", { cls: "lkm-btn" + (N ? " " + N : "") });
       return V ? (Y.createEl("span", { cls: "lkm-btn-icon", text: V }), Y.createEl("span", { text: f })) : Y.textContent = f, Y.title = T, P && (Y.disabled = !0), Y.onclick = (ie) => {
         Y.disabled || C(Y, ie);
       }, Y;
@@ -1766,8 +1766,8 @@ var ft = Vt, $t = class extends Ut {
         }
         if (f.length > 8 && C > 1 && C < f.length - 1) return;
         C && F.createSpan({ cls: "lkm-crumb-sep", text: ">" });
-        let A = C === f.length - 1, P = le(T.note.title, 10), V = F.createEl(A ? "span" : "a", { cls: "lkm-crumb-item" + (A ? " lkm-crumb-cur" : ""), text: P });
-        V.title = T.note.title, !A && T.note.file && V.addEventListener("click", () => this._focusPath(T.note.file.path));
+        let N = C === f.length - 1, P = le(T.note.title, 10), V = F.createEl(N ? "span" : "a", { cls: "lkm-crumb-item" + (N ? " lkm-crumb-cur" : ""), text: P });
+        V.title = T.note.title, !N && T.note.file && V.addEventListener("click", () => this._focusPath(T.note.file.path));
       });
     } else
       F.createSpan({ text: t("\u672A\u627E\u5230\u7B14\u8BB0") });
@@ -1875,7 +1875,7 @@ var ft = Vt, $t = class extends Ut {
     this.render();
   }
   _showShortcutHelp() {
-    let e = new Ce(this.app);
+    let e = new Se(this.app);
     e.onOpen = () => {
       let { contentEl: n } = e;
       n.addClass("lkm-multipick"), n.createEl("h3", { text: t("\u952E\u76D8\u5FEB\u6377\u952E") });
@@ -1957,8 +1957,8 @@ var ft = Vt, $t = class extends Ut {
     g.textContent = h, n.insertBefore(g, n.firstChild);
     let k = "path, line, circle, rect, ellipse, polygon, polyline, text", m = e.querySelectorAll(k), F = n.querySelectorAll(k);
     for (let w = 0; w < m.length && w < F.length; w++) {
-      let y = getComputedStyle(m[w]), S = y.stroke, f = y.fill, T = y.strokeWidth, C = y.strokeDasharray, A = y.opacity;
-      if (S && S !== "none" && F[w].setAttribute("stroke", S), f && F[w].setAttribute("fill", f), T && T !== "0px" && F[w].setAttribute("stroke-width", T), C && C !== "none" && F[w].setAttribute("stroke-dasharray", C), A && A !== "1" && F[w].setAttribute("opacity", A), m[w].tagName === "text") {
+      let y = getComputedStyle(m[w]), S = y.stroke, f = y.fill, T = y.strokeWidth, C = y.strokeDasharray, N = y.opacity;
+      if (S && S !== "none" && F[w].setAttribute("stroke", S), f && F[w].setAttribute("fill", f), T && T !== "0px" && F[w].setAttribute("stroke-width", T), C && C !== "none" && F[w].setAttribute("stroke-dasharray", C), N && N !== "1" && F[w].setAttribute("opacity", N), m[w].tagName === "text") {
         let P = y.fontSize, V = y.fontWeight;
         P && F[w].setAttribute("font-size", P), V && F[w].setAttribute("font-weight", V);
       }
@@ -2020,10 +2020,10 @@ var ft = Vt, $t = class extends Ut {
       let f = (S.children || []).filter((T) => T.note.file);
       return f.length ? f.reduce((T, C) => T + h(C), 0) : 1;
     }, "subtreeSize"), g = /* @__PURE__ */ x((S, f, T) => {
-      let C = (S.children || []).filter((ie) => ie.note.file), A = T, P = [];
+      let C = (S.children || []).filter((ie) => ie.note.file), N = T, P = [];
       for (let ie of C) {
-        let $ = h(ie), J = g(ie, f + 1, A);
-        P.push(J), A += $;
+        let $ = h(ie), J = g(ie, f + 1, N);
+        P.push(J), N += $;
       }
       let V, Y;
       if (o ? (V = T * (n + a), Y = f * (i + s)) : (V = f * (n + a), P.length ? Y = (P[0].y + P[P.length - 1].y) / 2 : Y = T * (i + s)), S.note.file) {
@@ -2060,9 +2060,9 @@ var ft = Vt, $t = class extends Ut {
       for (let T of S.note.parentLinks) {
         let C = this.app.metadataCache.getFirstLinkpathDest(T, S.note.file.path);
         if (!(!C || C.path === f)) {
-          for (let A of this._nodeIndex.values())
-            if (A.note.file && A.note.file.path === C.path && !A.isAlias) {
-              let P = d.get(S.key), V = d.get(A.key);
+          for (let N of this._nodeIndex.values())
+            if (N.note.file && N.note.file.path === C.path && !N.isAlias) {
+              let P = d.get(S.key), V = d.get(N.key);
               P && V && p.push({ id: "e" + l++, fromNode: P, toNode: V, fromSide: o ? "bottom" : "right", toSide: o ? "top" : "left", color: "4" });
               break;
             }
@@ -2074,10 +2074,10 @@ var ft = Vt, $t = class extends Ut {
       for (let f of this._nodeIndex.values()) f.note.file && (S.has(f.note.file.path) || S.set(f.note.file.path, []), S.get(f.note.file.path).push(f));
       for (let [f, T] of S) {
         if (T.length < 2) continue;
-        let C = T.find((A) => !A.isAlias) || T[0];
-        for (let A of T) {
-          if (A === C) continue;
-          let P = d.get(A.key), V = d.get(C.key);
+        let C = T.find((N) => !N.isAlias) || T[0];
+        for (let N of T) {
+          if (N === C) continue;
+          let P = d.get(N.key), V = d.get(C.key);
           P && V && p.push({ id: "e" + l++, fromNode: P, toNode: V, fromSide: o ? "bottom" : "right", toSide: o ? "top" : "left", color: "4" });
         }
       }
@@ -2226,7 +2226,7 @@ var ft = Vt, $t = class extends Ut {
         let r = p + (n ? ".excalidraw" : ""), l = this.s.linkField || "children", h = this.s.backField || "parent";
         for (let k of this.notes.values())
           k.file.path !== d && await this.app.fileManager.processFrontMatter(k.file, (m) => {
-            let F = Ne(m[l]), w = !1, y = F.map((S) => ve(S) === s ? (w = !0, "[[" + r + "]]") : S);
+            let F = Ae(m[l]), w = !1, y = F.map((S) => ve(S) === s ? (w = !0, "[[" + r + "]]") : S);
             w && (m[l] = y), m[h] != null && ve(m[h]) === s && (m[h] = r);
           });
         let g = this.s.titleField || "title";
@@ -2269,7 +2269,7 @@ var ft = Vt, $t = class extends Ut {
       ).open();
       return;
     }
-    let n = e.children.length, i = new Ce(this.app);
+    let n = e.children.length, i = new Se(this.app);
     i.onOpen = () => {
       let { contentEl: a } = i;
       a.createEl("h3", { text: t("\u5220\u9664\u8282\u70B9") }), a.createEl("p", { text: "\u300C" + le(e.note.title, 20) + "\u300D" + (n ? t("\uFF08\u542B ") + n + t(" \u4E2A\u5B50\u8282\u70B9\uFF09") : ""), cls: "lkm-modal-sub" });
@@ -2308,7 +2308,7 @@ var ft = Vt, $t = class extends Ut {
           i.close(), this._doDelete(e);
           return;
         }
-        let r = new Ce(this.app);
+        let r = new Se(this.app);
         r.onOpen = () => {
           let { contentEl: l } = r;
           l.createEl("h3", { text: t("\u5220\u9664\u5B50\u8282\u70B9") }), l.createEl("p", { text: "\u300C" + le(e.note.title, 20) + t("\u300D\u542B ") + n + t(" \u4E2A\u5B50\u8282\u70B9\uFF0C\u662F\u5426\u4E00\u5E76\u5220\u9664\uFF1F"), cls: "lkm-modal-sub" });
@@ -2411,7 +2411,7 @@ var ft = Vt, $t = class extends Ut {
     let a = e.parent.note.file;
     try {
       await this.app.fileManager.processFrontMatter(a, (s) => {
-        let o = this.s.linkField, c = Ne(s[o]), p = /* @__PURE__ */ x((h) => c.findIndex((g) => {
+        let o = this.s.linkField, c = Ae(s[o]), p = /* @__PURE__ */ x((h) => c.findIndex((g) => {
           let k = this.app.metadataCache.getFirstLinkpathDest(ve(g), a.path);
           return k && k.path === h;
         }), "idxOf"), d = p(e.note.file.path);
@@ -2439,7 +2439,7 @@ var ft = Vt, $t = class extends Ut {
     let a = n.parent.note.file;
     try {
       if (e.parent && e.parent.note.file && await Me(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), await this.app.fileManager.processFrontMatter(a, (s) => {
-        let o = this.s.linkField, c = Ne(s[o]);
+        let o = this.s.linkField, c = Ae(s[o]);
         c.some((g) => ve(g) === e.note.file.basename) || c.push("[[" + e.note.file.basename + "]]");
         let d = /* @__PURE__ */ x((g) => c.findIndex((k) => {
           let m = this.app.metadataCache.getFirstLinkpathDest(ve(k), a.path);
@@ -2506,7 +2506,7 @@ var ft = Vt, $t = class extends Ut {
       if (await Je(this.app, i.file, this.s.linkField, st(n.file)), this.s.autoAddBackLink) {
         let a = this.s.backField || "parent";
         await this.app.fileManager.processFrontMatter(n.file, (s) => {
-          Ne(s[a]).some((p) => ve(p) !== "") || (s[a] = i.file.basename);
+          Ae(s[a]).some((p) => ve(p) !== "") || (s[a] = i.file.basename);
         });
       }
       new _(t("\u5DF2\u5EFA\u7ACB\u5173\u8054\uFF1A") + le(i.title, 12) + " \u2192 " + le(n.title, 12)), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
@@ -2536,7 +2536,7 @@ var ft = Vt, $t = class extends Ut {
           if (await Je(this.app, e.note.file, this.s.linkField, st(s.file)), this.s.autoAddBackLink) {
             let o = this.s.backField || "parent";
             await this.app.fileManager.processFrontMatter(s.file, (c) => {
-              Ne(c[o]).some((r) => ve(r) !== "") || (c[o] = e.note.file.basename);
+              Ae(c[o]).some((r) => ve(r) !== "") || (c[o] = e.note.file.basename);
             });
           }
           new _(t("\u5DF2\u5173\u8054\uFF1A") + le(e.note.title, 12) + " \u2192 " + le(s.title, 12)), await new Promise((o) => setTimeout(o, 300)), await this.rebuild(!0);
@@ -2738,7 +2738,7 @@ var ft = Vt, $t = class extends Ut {
   }
   _setDateDialog(e) {
     if (!e || !e.note.file) return;
-    let n = new Ce(this.app);
+    let n = new Se(this.app);
     n.onOpen = () => {
       let { contentEl: i } = n;
       i.addClass("lkm-multipick"), i.createEl("h3", { text: t("\u4FEE\u6539\u65E5\u671F") }), i.createEl("p", { text: "\u300C" + le(e.note.title, 20) + t("\u300D\u5F53\u524D\u65E5\u671F\uFF1A") + (e.note.date || t("\u65E0")), cls: "lkm-modal-sub" });
@@ -2949,7 +2949,7 @@ var ft = Vt, $t = class extends Ut {
     this._renderHelpContent(n);
   }
   _showHelp() {
-    let e = new Ce(this.app);
+    let e = new Se(this.app);
     e.onOpen = () => {
       let { contentEl: n } = e;
       n.addClass("lkm-help-modal"), this._renderHelpContent(n);
@@ -3056,33 +3056,33 @@ ${d}: "${l}"
     let y = B("g", { class: "lkm-viewport" });
     if (m.appendChild(y), e.appendChild(m), a.layoutMode === "git") {
       let u = n.gvert, L = n.depthH, M = /* @__PURE__ */ x((D) => {
-        let j = D.note.type ? (a.typeColors || {})[D.note.type] : null, N = Qe(a, D.note.status);
-        return j || N || a.accent || "#3A6B8A";
+        let j = D.note.type ? (a.typeColors || {})[D.note.type] : null, A = Qe(a, D.note.status);
+        return j || A || a.accent || "#3A6B8A";
       }, "dotColorOf"), E = /* @__PURE__ */ x((D) => D._x + D._w / 2, "cxOf");
       if (u) {
         let D = c - 30;
         y.appendChild(B("path", { d: `M${D},${p} L${D},${r}`, class: "lkm-git-axis" }));
         for (let j = 0; j <= n.maxDepth; j++) {
-          let N = j * L;
-          y.appendChild(B("line", { x1: D - 5, y1: N, x2: D + 5, y2: N, class: "lkm-git-axis" }));
-          let O = B("text", { x: D - 10, y: N + 4, class: "lkm-git-tick", "text-anchor": "end" });
+          let A = j * L;
+          y.appendChild(B("line", { x1: D - 5, y1: A, x2: D + 5, y2: A, class: "lkm-git-axis" }));
+          let O = B("text", { x: D - 10, y: A + 4, class: "lkm-git-tick", "text-anchor": "end" });
           O.textContent = "L" + (j + 1), y.appendChild(O);
         }
       } else {
         let D = p - 30, j = n.depthOffsets || [];
         y.appendChild(B("path", { d: `M${c},${D} L${d},${D}`, class: "lkm-git-axis" }));
-        for (let N = 0; N <= n.maxDepth; N++) {
-          let O = j[N] != null ? j[N] : N * L;
+        for (let A = 0; A <= n.maxDepth; A++) {
+          let O = j[A] != null ? j[A] : A * L;
           y.appendChild(B("line", { x1: O, y1: D - 5, x2: O, y2: D + 5, class: "lkm-git-axis" }));
           let se = B("text", { x: O, y: D - 10, class: "lkm-git-tick", "text-anchor": "middle" });
-          se.textContent = "L" + (N + 1), y.appendChild(se);
+          se.textContent = "L" + (A + 1), y.appendChild(se);
         }
       }
       let I = /* @__PURE__ */ new Map();
       for (let [D, j] of o)
         I.has(D) || I.set(D, []), I.get(D).push(j);
       for (let [D, j] of I) {
-        let N = E(D), O = D._y;
+        let A = E(D), O = D._y;
         if (j.length <= 1) {
           let se = j[0];
           if (!se) continue;
@@ -3090,59 +3090,59 @@ ${d}: "${l}"
           if (u)
             if (a.curve) {
               let we = (O + Z) / 2;
-              ne = `M${N},${O + 8} C${N},${we} ${q},${we} ${q},${Z - 8}`;
-            } else ne = `M${N},${O + 8} L${q},${Z - 8}`;
+              ne = `M${A},${O + 8} C${A},${we} ${q},${we} ${q},${Z - 8}`;
+            } else ne = `M${A},${O + 8} L${q},${Z - 8}`;
           else if (a.curve) {
-            let we = (N + q) / 2;
-            ne = `M${N + 8},${O} C${we},${O} ${we},${Z} ${q - 8},${Z}`;
-          } else ne = `M${N + 8},${O} L${q - 8},${Z}`;
-          y.appendChild(B("path", { d: ne, class: "lkm-git-lane", fill: "none", stroke: ee, "stroke-width": 3, "stroke-linecap": "round" }));
+            let we = (A + q) / 2;
+            ne = `M${A + 8},${O} C${we},${O} ${we},${Z} ${q - 8},${Z}`;
+          } else ne = `M${A + 8},${O} L${q - 8},${Z}`;
+          y.appendChild(B("path", { d: ne, class: "lkm-git-lane", fill: "none", stroke: ee, "stroke-width": 1.8, "stroke-linecap": "round" }));
         } else {
-          let se = u ? N : N + (E(j[0]) - N) * 0.5, q = u ? O + (j[0]._y - O) * 0.5 : O;
+          let se = u ? A : A + (E(j[0]) - A) * 0.5, q = u ? O + (j[0]._y - O) * 0.5 : O;
           for (let Z of j) {
             let ee = E(Z), ne = Z._y, we = M(Z), ye;
             if (u)
               if (a.curve) {
                 let Ee = (O + q) / 2, ke = (q + ne) / 2;
-                ye = `M${N},${O + 8} C${N},${Ee} ${N},${q} ${N},${q} C${N},${ke} ${ee},${ke} ${ee},${ne - 8}`;
-              } else ye = `M${N},${O + 8} L${N},${q} L${ee},${ne - 8}`;
+                ye = `M${A},${O + 8} C${A},${Ee} ${A},${q} ${A},${q} C${A},${ke} ${ee},${ke} ${ee},${ne - 8}`;
+              } else ye = `M${A},${O + 8} L${A},${q} L${ee},${ne - 8}`;
             else if (a.curve) {
-              let Ee = (N + se) / 2, ke = (se + ee) / 2;
-              ye = `M${N + 8},${O} C${Ee},${O} ${se},${O} ${se},${O} C${ke},${O} ${ke},${ne} ${ee - 8},${ne}`;
-            } else ye = `M${N + 8},${O} L${se},${O} L${ee - 8},${ne}`;
-            y.appendChild(B("path", { d: ye, class: "lkm-git-fork", fill: "none", stroke: we, "stroke-width": 2.4, "stroke-linecap": "round", "stroke-linejoin": "round" }));
+              let Ee = (A + se) / 2, ke = (se + ee) / 2;
+              ye = `M${A + 8},${O} C${Ee},${O} ${se},${O} ${se},${O} C${ke},${O} ${ke},${ne} ${ee - 8},${ne}`;
+            } else ye = `M${A + 8},${O} L${se},${O} L${ee - 8},${ne}`;
+            y.appendChild(B("path", { d: ye, class: "lkm-git-fork", fill: "none", stroke: we, "stroke-width": 1.5, "stroke-linecap": "round", "stroke-linejoin": "round" }));
           }
         }
       }
       for (let D of s) {
         if ((D.expanded ? D.children : []).length) continue;
-        let N = E(D), O = D._y, se = M(D);
+        let A = E(D), O = D._y, se = M(D);
         if (u) {
-          let q = B("line", { x1: N, y1: O + 8, x2: N, y2: O + 26, class: "lkm-git-fade" });
+          let q = B("line", { x1: A, y1: O + 8, x2: A, y2: O + 26, class: "lkm-git-fade" });
           q.setAttribute("stroke", se), y.appendChild(q);
         } else {
-          let q = B("line", { x1: N + 8, y1: O, x2: N + 26, y2: O, class: "lkm-git-fade" });
+          let q = B("line", { x1: A + 8, y1: O, x2: A + 26, y2: O, class: "lkm-git-fade" });
           q.setAttribute("stroke", se), y.appendChild(q);
         }
       }
       let G = /* @__PURE__ */ new Map();
       for (let D of s) D.note.file && G.set(D.note.file.path, D);
       let U = /* @__PURE__ */ x((D, j) => {
-        let N = E(D), O = D._y, se = E(j), q = j._y, Z = se - N, ee = q - O, ne = Math.hypot(Z, ee) || 1, we = se - Z / ne * 14, ye = q - ee / ne * 14, Ee;
+        let A = E(D), O = D._y, se = E(j), q = j._y, Z = se - A, ee = q - O, ne = Math.hypot(Z, ee) || 1, we = se - Z / ne * 14, ye = q - ee / ne * 14, Ee;
         if (u) {
-          let ke = (N + se) / 2, Xe = (O + q) / 2;
-          Ee = `M${N},${O} Q${ke},${Xe - 40} ${we},${ye}`;
+          let ke = (A + se) / 2, Xe = (O + q) / 2;
+          Ee = `M${A},${O} Q${ke},${Xe - 40} ${we},${ye}`;
         } else {
-          let ke = (N + se) / 2, Xe = (O + q) / 2;
-          Ee = `M${N},${O} Q${ke - 10},${Xe} ${we},${ye}`;
+          let ke = (A + se) / 2, Xe = (O + q) / 2;
+          Ee = `M${A},${O} Q${ke - 10},${Xe} ${we},${ye}`;
         }
         y.appendChild(B("path", { d: Ee, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" }));
       }, "drawJump");
       for (let D of s) {
         if (!D.note.file || D.isAlias) continue;
         let j = D.parent && D.parent.note.file ? D.parent.note.file.path : null;
-        for (let N of D.note.parentLinks) {
-          let O = this.app.metadataCache.getFirstLinkpathDest(N, D.note.file.path);
+        for (let A of D.note.parentLinks) {
+          let O = this.app.metadataCache.getFirstLinkpathDest(A, D.note.file.path);
           if (!O || O.path === j) continue;
           let se = G.get(O.path);
           !se || se === D || U(D, se);
@@ -3152,8 +3152,8 @@ ${d}: "${l}"
       for (let D of s) D.note.file && (R.has(D.note.file.path) || R.set(D.note.file.path, []), R.get(D.note.file.path).push(D));
       if (a.showDupLine) for (let [D, j] of R) {
         if (j.length < 2) continue;
-        let N = j.find((O) => !O.isAlias) || j[0];
-        for (let O of j) O !== N && U(O, N);
+        let A = j.find((O) => !O.isAlias) || j[0];
+        for (let O of j) O !== A && U(O, A);
       }
     } else if (a.layoutMode === "branch") {
       let u = /* @__PURE__ */ new Map();
@@ -3185,9 +3185,9 @@ ${d}: "${l}"
           let I = E.find((G) => !G.isAlias) || E[0];
           for (let G of E) {
             if (G === I) continue;
-            let U = I._x + I._w / 2 - (G._x + G._w / 2), R = I._y - G._y, D, j, N, O;
-            Math.abs(U) > Math.abs(R) ? U > 0 ? (D = G._x + G._w, j = G._y, N = I._x, O = I._y) : (D = G._x, j = G._y, N = I._x + I._w, O = I._y) : R > 0 ? (D = G._x + G._w / 2, j = G._y + G._autoH / 2, N = I._x + I._w / 2, O = I._y - I._autoH / 2) : (D = G._x + G._w / 2, j = G._y - G._autoH / 2, N = I._x + I._w / 2, O = I._y + I._autoH / 2);
-            let se = a.curve ? `M${D},${j} C${(D + N) / 2},${j} ${(D + N) / 2},${O} ${N},${O}` : `M${D},${j} L${N},${O}`;
+            let U = I._x + I._w / 2 - (G._x + G._w / 2), R = I._y - G._y, D, j, A, O;
+            Math.abs(U) > Math.abs(R) ? U > 0 ? (D = G._x + G._w, j = G._y, A = I._x, O = I._y) : (D = G._x, j = G._y, A = I._x + I._w, O = I._y) : R > 0 ? (D = G._x + G._w / 2, j = G._y + G._autoH / 2, A = I._x + I._w / 2, O = I._y - I._autoH / 2) : (D = G._x + G._w / 2, j = G._y - G._autoH / 2, A = I._x + I._w / 2, O = I._y + I._autoH / 2);
+            let se = a.curve ? `M${D},${j} C${(D + A) / 2},${j} ${(D + A) / 2},${O} ${A},${O}` : `M${D},${j} L${A},${O}`;
             y.appendChild(B("path", { d: se, class: "lkm-edge", "stroke-dasharray": "4 3", opacity: 0.5, "marker-end": "url(#lkm-arrow)" }));
           }
         }
@@ -3212,9 +3212,9 @@ ${d}: "${l}"
         let E = M.find((I) => !I.isAlias) || M[0];
         for (let I of M) {
           if (I === E) continue;
-          let G = E._x + E._w / 2 - (I._x + I._w / 2), U = E._y - I._y, R, D, j, N;
-          Math.abs(G) > Math.abs(U) ? G > 0 ? (R = I._x + I._w, D = I._y, j = E._x, N = E._y) : (R = I._x, D = I._y, j = E._x + E._w, N = E._y) : U > 0 ? (R = I._x + I._w / 2, D = I._y + I._autoH / 2, j = E._x + E._w / 2, N = E._y - E._autoH / 2) : (R = I._x + I._w / 2, D = I._y - I._autoH / 2, j = E._x + E._w / 2, N = E._y + E._autoH / 2);
-          let O = a.curve ? `M${R},${D} C${(R + j) / 2},${D} ${(R + j) / 2},${N} ${j},${N}` : `M${R},${D} L${j},${N}`;
+          let G = E._x + E._w / 2 - (I._x + I._w / 2), U = E._y - I._y, R, D, j, A;
+          Math.abs(G) > Math.abs(U) ? G > 0 ? (R = I._x + I._w, D = I._y, j = E._x, A = E._y) : (R = I._x, D = I._y, j = E._x + E._w, A = E._y) : U > 0 ? (R = I._x + I._w / 2, D = I._y + I._autoH / 2, j = E._x + E._w / 2, A = E._y - E._autoH / 2) : (R = I._x + I._w / 2, D = I._y - I._autoH / 2, j = E._x + E._w / 2, A = E._y + E._autoH / 2);
+          let O = a.curve ? `M${R},${D} C${(R + j) / 2},${D} ${(R + j) / 2},${A} ${j},${A}` : `M${R},${D} L${j},${A}`;
           y.appendChild(B("path", { d: O, class: "lkm-edge", "stroke-dasharray": "4 3", opacity: 0.5, "marker-end": "url(#lkm-arrow)" }));
         }
       }
@@ -3229,7 +3229,7 @@ ${d}: "${l}"
         let D = R.clientX - f.sx, j = R.clientY - f.sy;
         if (!f.moved && Math.hypot(D, j) < 6) return;
         f.moved = !0, m.classList.add("lkm-dragging");
-        let N = e.getBoundingClientRect(), O = (R.clientX - N.left - V) / P, se = (R.clientY - N.top - Y) / P, q = null, Z = "child";
+        let A = e.getBoundingClientRect(), O = (R.clientX - A.left - V) / P, se = (R.clientY - A.top - Y) / P, q = null, Z = "child";
         for (let ee of s)
           if (!(ee.key === L.key || !ee.note.file) && O >= ee._x && O <= ee._x + ee._w && se >= ee._y - ee._autoH / 2 && se <= ee._y + ee._autoH / 2) {
             if (q = ee, a.layoutMode !== "branch" && a.layoutDir === "v") {
@@ -3250,7 +3250,7 @@ ${d}: "${l}"
         R.touches.length && E({ clientX: R.touches[0].clientX, clientY: R.touches[0].clientY });
       }, "onTouchMove2"), U = /* @__PURE__ */ x(() => I(), "onTouchEnd2");
       window.addEventListener("mousemove", E), window.addEventListener("mouseup", I), window.addEventListener("touchmove", G, { passive: !1 }), window.addEventListener("touchend", U);
-    }, "startNodeDrag"), A = /* @__PURE__ */ x((u, L) => {
+    }, "startNodeDrag"), N = /* @__PURE__ */ x((u, L) => {
       if (!L.note.file) return;
       u.preventDefault(), u.stopPropagation(), $ = !0;
       let M = B("path", { class: "lkm-wire" });
@@ -3273,35 +3273,35 @@ ${d}: "${l}"
             break;
           }
         ee !== U && (U && U._el && U._el.classList.remove("lkm-wire-target"), U = ee, U && U._el && U._el.classList.add("lkm-wire-target"));
-      }, "onMove"), N = /* @__PURE__ */ x(async () => {
-        $ = !1, window.removeEventListener("mousemove", j), window.removeEventListener("mouseup", N), window.removeEventListener("touchmove", O), window.removeEventListener("touchend", se), M.remove(), U && U._el && U._el.classList.remove("lkm-wire-target"), U && await this._addRelation(L, U.note);
+      }, "onMove"), A = /* @__PURE__ */ x(async () => {
+        $ = !1, window.removeEventListener("mousemove", j), window.removeEventListener("mouseup", A), window.removeEventListener("touchmove", O), window.removeEventListener("touchend", se), M.remove(), U && U._el && U._el.classList.remove("lkm-wire-target"), U && await this._addRelation(L, U.note);
       }, "onUp"), O = /* @__PURE__ */ x((q) => {
         q.preventDefault();
         let Z = q.touches[0];
         j({ clientX: Z.clientX, clientY: Z.clientY });
-      }, "onTouchMove"), se = /* @__PURE__ */ x(() => N(), "onTouchEnd");
-      window.addEventListener("mousemove", j), window.addEventListener("mouseup", N), window.addEventListener("touchmove", O, { passive: !1 }), window.addEventListener("touchend", se);
+      }, "onTouchMove"), se = /* @__PURE__ */ x(() => A(), "onTouchEnd");
+      window.addEventListener("mousemove", j), window.addEventListener("mouseup", A), window.addEventListener("touchmove", O, { passive: !1 }), window.addEventListener("touchend", se);
     }, "startWire");
     for (let u of s) {
       if (a.layoutMode === "git") {
-        let X = u._x + u._w / 2, te = u._y, ue = u.note.type ? (a.typeColors || {})[u.note.type] : null, Se = Qe(a, u.note.status), _e = ue || a.accent || "#3A6B8A", $e = Se || "#ffffff", oe = B("g", { class: "lkm-git-node" + (u.note.zk ? " lkm-main" : "") + (u.isAlias ? " lkm-multi" : "") });
+        let X = u._x + u._w / 2, te = u._y, ue = u.note.type ? (a.typeColors || {})[u.note.type] : null, Fe = Qe(a, u.note.status), _e = ue || a.accent || "#3A6B8A", $e = Fe || "#ffffff", oe = B("g", { class: "lkm-git-node" + (u.note.zk ? " lkm-main" : "") + (u.isAlias ? " lkm-multi" : "") });
         u.note.zk && oe.appendChild(B("circle", { cx: X, cy: te, r: 15, fill: a.mainColor || "#3A6B8A", opacity: 0.18 })), oe.appendChild(B("circle", { cx: X, cy: te, r: 12, fill: _e, opacity: 0.14 }));
         let Oe = B("circle", { cx: X, cy: te, r: 8, fill: _e, stroke: $e, "stroke-width": 2.5 });
         u.isAlias && Oe.setAttribute("stroke-dasharray", "3 2"), oe.appendChild(Oe);
-        let Fe = n.gvert, Te = B("text", { class: "lkm-git-label" });
-        if (Te.textContent = u._shown || u.note.title, Fe ? (Te.setAttribute("x", X + 18), Te.setAttribute("y", te)) : (Te.setAttribute("x", X), Te.setAttribute("y", te - 18), Te.setAttribute("text-anchor", "middle")), oe.appendChild(Te), u.children.length) {
-          let xe = Fe ? X : X + 16, Ze = Fe ? te + 18 : te, Ue = B("circle", { cx: xe, cy: Ze, r: 14, class: "lkm-hit" });
+        let Te = n.gvert, xe = B("text", { class: "lkm-git-label" });
+        if (xe.textContent = u._shown || u.note.title, Te ? (xe.setAttribute("x", X + 18), xe.setAttribute("y", te), xe.setAttribute("dominant-baseline", "central")) : (xe.setAttribute("x", X), xe.setAttribute("y", te - 18), xe.setAttribute("text-anchor", "middle")), oe.appendChild(xe), u.children.length) {
+          let be = Te ? X : X + 16, Ze = Te ? te + 18 : te, Ue = B("circle", { cx: be, cy: Ze, r: 14, class: "lkm-hit" });
           Ue.addEventListener("click", (Ht) => {
             Ht.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), S(u.key);
           }), oe.appendChild(Ue);
-          let qe = B("text", { x: xe, y: Ze + 4, class: "lkm-git-sign", "text-anchor": "middle" });
+          let qe = B("text", { x: be, y: Ze + 4, class: "lkm-git-sign", "text-anchor": "middle" });
           qe.textContent = u.expanded ? "\u2212" : "+", oe.appendChild(qe);
         }
         u._el = oe, this._batchMode && this._selected.has(u.key) && oe.classList.add("lkm-selected"), this._selKey === u.key && oe.classList.add("lkm-sel");
         let ut = 0;
-        oe.addEventListener("click", (xe) => {
+        oe.addEventListener("click", (be) => {
           if (this._batchMode) {
-            xe.stopPropagation(), this._toggleSelect(u.key);
+            be.stopPropagation(), this._toggleSelect(u.key);
             return;
           }
           let Ze = Date.now();
@@ -3316,16 +3316,16 @@ ${d}: "${l}"
             qe && qe._el && qe._el.classList.remove("lkm-sel");
           }
           oe.classList.add("lkm-sel");
-        }), oe.addEventListener("contextmenu", (xe) => {
-          xe.preventDefault(), xe.stopPropagation(), !this._batchMode && (this._selKey = u.key, oe.classList.add("lkm-sel"), this._showNodeMenu(u, xe));
+        }), oe.addEventListener("contextmenu", (be) => {
+          be.preventDefault(), be.stopPropagation(), !this._batchMode && (this._selKey = u.key, oe.classList.add("lkm-sel"), this._showNodeMenu(u, be));
         });
         let Ye = null;
-        oe.addEventListener("mouseenter", (xe) => {
+        oe.addEventListener("mouseenter", (be) => {
           f || (Ye && clearTimeout(Ye), Ye = setTimeout(() => {
-            f || (Ye = null, this._showPreview(u, xe));
+            f || (Ye = null, this._showPreview(u, be));
           }, 1e3));
-        }), oe.addEventListener("mousemove", (xe) => {
-          this._previewEl && this._positionPreview(xe);
+        }), oe.addEventListener("mousemove", (be) => {
+          this._previewEl && this._positionPreview(be);
         }), oe.addEventListener("mouseleave", () => {
           Ye && (clearTimeout(Ye), Ye = null), this._hideTimer && clearTimeout(this._hideTimer), this._hideTimer = setTimeout(() => {
             this._hidePreview(), this._hideTimer = null;
@@ -3341,15 +3341,15 @@ ${d}: "${l}"
       let R = B("g", { class: "lkm-status-dots" }), D = 6, j = /* @__PURE__ */ x((X, te) => {
         let ue = B("circle", { cx: 10, cy: D, r: 4, class: X });
         R.appendChild(ue);
-        let Se = B("circle", { cx: 10, cy: D, r: 7, class: "lkm-dot-hit" }), _e = B("title");
-        return _e.textContent = te, Se.appendChild(_e), R.appendChild(Se), D += 10, ue;
+        let Fe = B("circle", { cx: 10, cy: D, r: 7, class: "lkm-dot-hit" }), _e = B("title");
+        return _e.textContent = te, Fe.appendChild(_e), R.appendChild(Fe), D += 10, ue;
       }, "mkDot");
       if (u.note.zk && j("lkm-dot-zk", t("\u4E3B\u7B14\u8BB0\uFF1A\u8BE5\u7B14\u8BB0 main: true\uFF0C\u662F\u5BFC\u56FE\u7684\u4E3B\u5165\u53E3")), u.note.status) {
         let X = j("lkm-dot-status", me(u.note.status) + t("\uFF1Astatus: ") + u.note.status);
         U && (X.style.fill = U);
       }
       u.isAlias && j("lkm-dot-multi", t("\u91CD\u590D\u8282\u70B9\uFF1A\u8BE5\u7B14\u8BB0\u5728\u5BFC\u56FE\u4E2D\u51FA\u73B0\u591A\u6B21\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\u7684\u6302\u70B9\uFF09")), D > 9 && E.appendChild(R);
-      let N = a.showCreated && !L && u.note.date ? u.note.date : "", O = a.showType && !L && u.note.type ? ge(u.note.type) : "", se = a.showChildCount && !L && u.children.length ? t("\u5B50 ") + u.children.length : "", q = a.showWordCount && !L && u.note.file ? t("\u5B57 ") + Math.max(1, Math.round((u.note.file.stat.size || 0) / 3)) : "", Z = a.nodeHeight === 0, ee = a.showDesc && !L && u.note.desc ? Z ? le(u.note.desc, 40) : wt(u.note.desc, Math.max(20, Math.min(u._w - 32, 140)), 11) : "", ne = [O, se, q, N].filter(Boolean).join(" \xB7 "), we = !!ne, ye = !!ee, Ee = Z && ye ? u._descLines || [ee] : ye ? [ee] : [], ke;
+      let A = a.showCreated && !L && u.note.date ? u.note.date : "", O = a.showType && !L && u.note.type ? ge(u.note.type) : "", se = a.showChildCount && !L && u.children.length ? t("\u5B50 ") + u.children.length : "", q = a.showWordCount && !L && u.note.file ? t("\u5B57 ") + Math.max(1, Math.round((u.note.file.stat.size || 0) / 3)) : "", Z = a.nodeHeight === 0, ee = a.showDesc && !L && u.note.desc ? Z ? le(u.note.desc, 40) : wt(u.note.desc, Math.max(20, Math.min(u._w - 32, 140)), 11) : "", ne = [O, se, q, A].filter(Boolean).join(" \xB7 "), we = !!ne, ye = !!ee, Ee = Z && ye ? u._descLines || [ee] : ye ? [ee] : [], ke;
       Z ? ke = 18 : ye && we ? ke = 14 : ye || we ? ke = a.nodeHeight / 2 - 2 : ke = a.nodeHeight / 2 + 5;
       let Xe = B("text", { x: 16, y: ke, class: "lkm-title" });
       if (Xe.textContent = u._shown || u.note.title, E.appendChild(Xe), Ee.length) {
@@ -3372,8 +3372,8 @@ ${d}: "${l}"
         it(X, u.expanded ? t("\u6298\u53E0\u5B50\u8282\u70B9") : t("\u5C55\u5F00\u5B50\u8282\u70B9"));
         let te = kt ? u._w / 2 : u._w + 14, ue = kt ? u._autoH + 14 : Pe;
         X.appendChild(B("circle", { cx: te, cy: ue, r: Re, class: "lkm-dot" }));
-        let Se = B("text", { x: te, y: ue + 5, class: "lkm-sign", "text-anchor": "middle" });
-        Se.textContent = u.expanded ? "\u2212" : "+", X.appendChild(Se);
+        let Fe = B("text", { x: te, y: ue + 5, class: "lkm-sign", "text-anchor": "middle" });
+        Fe.textContent = u.expanded ? "\u2212" : "+", X.appendChild(Fe);
         let _e = B("circle", { cx: te, cy: ue, r: Re + 5, class: "lkm-hit" });
         _e.addEventListener("click", ($e) => {
           $e.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), S(u.key);
@@ -3384,27 +3384,27 @@ ${d}: "${l}"
       if (u.note.file) {
         let X = pt ? 26 : 24, te = u._w - (pt ? 20 : 18), ue = B("g", { class: "lkm-connect" });
         it(ue, t("\u62D6\u52A8\u8FDE\u7EBF\uFF1A\u5EFA\u7ACB\u989D\u5916\u5173\u8054\uFF08\u76EE\u6807\u6210\u4E3A\u672C\u8282\u70B9\u7684\u5B50\u8282\u70B9\uFF0C\u539F\u5173\u7CFB\u4FDD\u7559\uFF09"));
-        let Se = te, _e = Pe;
-        ue.appendChild(B("circle", { cx: Se, cy: _e, r: Re, class: "lkm-connect-bg" })), ue.appendChild(B("circle", { cx: Se, cy: _e, r: 2.6, class: "lkm-connect-dot" }));
-        let $e = B("circle", { cx: Se, cy: _e, r: Re + 5, class: "lkm-hit" });
+        let Fe = te, _e = Pe;
+        ue.appendChild(B("circle", { cx: Fe, cy: _e, r: Re, class: "lkm-connect-bg" })), ue.appendChild(B("circle", { cx: Fe, cy: _e, r: 2.6, class: "lkm-connect-dot" }));
+        let $e = B("circle", { cx: Fe, cy: _e, r: Re + 5, class: "lkm-hit" });
         if ($e.addEventListener("mousedown", (oe) => {
-          this._batchMode || A(oe, u);
+          this._batchMode || N(oe, u);
         }), $e.addEventListener("mouseenter", () => {
           M && (clearTimeout(M), M = null);
         }), $e.addEventListener("touchstart", (oe) => {
-          this._batchMode || A(oe, u);
+          this._batchMode || N(oe, u);
         }, { passive: !1 }), ue.appendChild($e), E.appendChild(ue), a.showOpenIcon !== !1) {
           te -= X;
           let oe = B("g", { class: "lkm-open" });
           it(oe, t("\u6253\u5F00\u7B14\u8BB0")), oe.appendChild(B("circle", { cx: te, cy: Pe, r: Re, class: "lkm-open-bg" }));
           let Oe = B("text", { x: te, y: Pe + 4, class: "lkm-open-sign", "text-anchor": "middle", transform: "rotate(90 " + te + " " + Pe + ")" });
           Oe.textContent = "\u270E", oe.appendChild(Oe);
-          let Fe = B("circle", { cx: te, cy: Pe, r: Re + 3, class: "lkm-hit" });
-          Fe.addEventListener("click", (Te) => {
-            Te.stopPropagation(), this.app.workspace.getLeaf(!0).openFile(u.note.file);
-          }), Fe.addEventListener("mouseenter", () => {
+          let Te = B("circle", { cx: te, cy: Pe, r: Re + 3, class: "lkm-hit" });
+          Te.addEventListener("click", (xe) => {
+            xe.stopPropagation(), this.app.workspace.getLeaf(!0).openFile(u.note.file);
+          }), Te.addEventListener("mouseenter", () => {
             M && (clearTimeout(M), M = null);
-          }), oe.appendChild(Fe), E.appendChild(oe);
+          }), oe.appendChild(Te), E.appendChild(oe);
         }
         if (a.showAddIcon !== !1) {
           te -= X;
@@ -3412,12 +3412,12 @@ ${d}: "${l}"
           it(oe, t("\u65B0\u589E\u5B50\u8282\u70B9\uFF08\u81EA\u52A8\u5199\u5165\u94FE\u63A5\uFF09")), oe.appendChild(B("circle", { cx: te, cy: Pe, r: Re, class: "lkm-add-bg" }));
           let Oe = B("text", { x: te, y: Pe + 4, class: "lkm-add-sign", "text-anchor": "middle" });
           Oe.textContent = "\uFF0B", oe.appendChild(Oe);
-          let Fe = B("circle", { cx: te, cy: Pe, r: Re + 3, class: "lkm-hit" });
-          Fe.addEventListener("click", (Te) => {
-            Te.stopPropagation(), this.createChild(u);
-          }), Fe.addEventListener("mouseenter", () => {
+          let Te = B("circle", { cx: te, cy: Pe, r: Re + 3, class: "lkm-hit" });
+          Te.addEventListener("click", (xe) => {
+            xe.stopPropagation(), this.createChild(u);
+          }), Te.addEventListener("mouseenter", () => {
             M && (clearTimeout(M), M = null);
-          }), oe.appendChild(Fe), E.appendChild(oe);
+          }), oe.appendChild(Te), E.appendChild(oe);
         }
       }
       u._el = E, this._batchMode && this._selected.has(u.key) && E.classList.add("lkm-selected"), this._selKey === u.key && E.classList.add("lkm-sel"), this._selectedRootPaths && u.note.file && this._selectedRootPaths.has(u.note.file.path) && E.classList.add("lkm-selected-root"), E.addEventListener("click", (X) => {
@@ -3554,21 +3554,21 @@ ${d}: "${l}"
     if (a) {
       let C = this.app.vault.getAbstractFileByPath(pe(a));
       if (C instanceof je) {
-        let A = gt(await this.app.vault.read(C));
-        y = A.body;
-        let P = new Map(A.fields);
+        let N = gt(await this.app.vault.read(C));
+        y = N.body;
+        let P = new Map(N.fields);
         i || (P.get(k) != null ? i = nt(P.get(k)) : P.get("type") != null && (i = nt(P.get("type"))));
         let V = [];
         for (let [Y, ie] of [["zk", h], ["status", g], ["date", m], ["type", k], ["title", F]])
           Y !== ie && P.has(Y) && !P.has(ie) && V.push(Y + "\u2192" + ie);
         V.length && new _(t("\u6A21\u677F\u5B57\u6BB5\u4E0E\u914D\u7F6E\u4E0D\u4E00\u81F4\uFF1A") + V.join("\uFF0C") + t("\u3002\u5DF2\u7528\u914D\u7F6E\u5B57\u6BB5\u540D\u521B\u5EFA\uFF0C\u5EFA\u8BAE\u66F4\u65B0\u6A21\u677F\u3002"), 1e4);
-        for (let [Y, ie] of A.fields)
+        for (let [Y, ie] of N.fields)
           w.has(Y) || S.push([Y, ie]);
       }
     }
     let f = ["---"];
     f.push(r + ": []"), e && d.autoAddBackLink && f.push(l + ': "' + e + '"'), f.push(h + ": " + (s ? "true" : "false")), f.push(g + ": " + (o ? '"' + o + '"' : '""')), f.push(m + ": " + n), f.push(k + ': "' + (i || "") + '"'), f.push(F + ': "' + (c === "excalidraw" && p ? p : "") + '"');
-    for (let [C, A] of S) f.push(C + ": " + (A ?? ""));
+    for (let [C, N] of S) f.push(C + ": " + (N ?? ""));
     if (f.push("---", ""), c === "excalidraw") {
       let C = f.lastIndexOf("---");
       return C > 0 && f.splice(C, 0, "excalidraw-plugin: parsed", "tags: [excalidraw]"), f.join(`
@@ -3624,9 +3624,9 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
           }
           let f = /* @__PURE__ */ new Date(), T = f.getFullYear() + "-" + String(f.getMonth() + 1).padStart(2, "0") + "-" + String(f.getDate()).padStart(2, "0"), C = await this._buildNewNoteBody(e.note.file.basename, T, l, h, g, k, m, r);
           await Je(this.app, e.note.file, n.linkField, ze(r) + (m === "excalidraw" ? ".excalidraw" : "")), await this.app.vault.create(S, C), new _(t("\u5DF2\u521B\u5EFA\u300C") + ze(r) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + le(e.note.title, 14) + "\u300D");
-          let A = e;
-          for (; A; )
-            this._expandedMem.set(A.note.file ? A.note.file.path : A.key, !0), A = A.parent;
+          let N = e;
+          for (; N; )
+            this._expandedMem.set(N.note.file ? N.note.file.path : N.key, !0), N = N.parent;
           await this._rebuildUntilReady(S);
         } catch (F) {
           new _(t("\u521B\u5EFA\u5931\u8D25\uFF1A") + (F && F.message ? F.message : F));
@@ -3776,13 +3776,13 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       }
       let m = 864e5, F = /* @__PURE__ */ new Date();
       F.setHours(0, 0, 0, 0);
-      let w = (F.getDay() + 6) % 7, y = window.innerWidth < 600, S = y ? 10 : 12, f, T, C, A;
+      let w = (F.getDay() + 6) % 7, y = window.innerWidth < 600, S = y ? 10 : 12, f, T, C, N;
       if (this._dashHeatIdx) {
         let $ = parseInt(g[this._dashHeatIdx - 1], 10), J = new Date($, 0, 1), v = new Date($, 11, 31);
-        f = new Date(J.getTime() - (J.getDay() + 6) % 7 * m), T = J, C = v, A = Math.round((v.getTime() + (6 - (v.getDay() + 6) % 7) * m - f.getTime()) / m / 7);
+        f = new Date(J.getTime() - (J.getDay() + 6) % 7 * m), T = J, C = v, N = Math.round((v.getTime() + (6 - (v.getDay() + 6) % 7) * m - f.getTime()) / m / 7);
       } else {
         let $ = new Date(F.getTime() + (6 - w) * m);
-        A = y ? 26 : 53, f = new Date($.getTime() - (A * 7 - 1) * m), T = f, C = F;
+        N = y ? 26 : 53, f = new Date($.getTime() - (N * 7 - 1) * m), T = f, C = F;
       }
       if (l.createDiv("lkm-heat-sum").setText(o.heat.size ? (() => {
         let $ = this._ds(T), J = this._ds(C), v = 0, z = 0, K = { date: "", count: 0 };
@@ -3790,9 +3790,9 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         return (z ? z + t(" \u5929\u6709\u521B\u5EFA \xB7 \u5171 ") + v + t(" \u7BC7") : t("\u8BE5\u65F6\u95F4\u6BB5\u6682\u65E0\u521B\u5EFA\u8BB0\u5F55")) + (K.count ? t(" \xB7 \u6700\u591A\u4E00\u5929 ") + K.count + t(" \u7BC7\uFF08") + K.date + "\uFF09" : "");
       })() : t("\u8FD8\u6CA1\u6709\u5E26 date \u5B57\u6BB5\u7684\u7B14\u8BB0")), o.heat.size) {
         let $ = l.createDiv("lkm-heat-scroll"), J = $.createDiv("lkm-heat-grid");
-        J.style.gridTemplateColumns = "26px repeat(" + A + ", " + S + "px)", J.style.gridAutoRows = S + "px";
+        J.style.gridTemplateColumns = "26px repeat(" + N + ", " + S + "px)", J.style.gridAutoRows = S + "px";
         let v = -1;
-        for (let ce = 0; ce < A; ce++) {
+        for (let ce = 0; ce < N; ce++) {
           let de = new Date(f.getTime() + ce * 7 * m);
           if (de.getMonth() !== v) {
             v = de.getMonth();
@@ -3805,7 +3805,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
           Q.style.gridColumn = "1", Q.style.gridRow = String(de * 2 + 2), Q.setText(ce);
         });
         let z = this._ds(T), K = this._ds(C), re = this._ds(F), he = null;
-        for (let ce = 0; ce < A; ce++)
+        for (let ce = 0; ce < N; ce++)
           for (let de = 0; de < 7; de++) {
             let Q = new Date(f.getTime() + (ce * 7 + de) * m), W = J.createDiv("lkm-heat-cell");
             W.style.gridColumn = String(ce + 2), W.style.gridRow = String(de + 2);
@@ -4220,8 +4220,8 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     }
     let T = 0, C = this.app.vault.getAbstractFileByPath(pe(this.s.indexFolder));
     C && C.children && (T = C.children.filter((v) => v instanceof je && v.extension === "md").length);
-    let A = /* @__PURE__ */ new Map();
-    for (let v of e) v.date && A.set(v.date, (A.get(v.date) || 0) + 1);
+    let N = /* @__PURE__ */ new Map();
+    for (let v of e) v.date && N.set(v.date, (N.get(v.date) || 0) + 1);
     let P = e.filter((v) => v.zk).map((v) => {
       let z = et(this.app, this.notes, v), K = 0, re = 0, he = /* @__PURE__ */ new Set();
       return (/* @__PURE__ */ x((function ce(de) {
@@ -4247,7 +4247,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         let K = this.app.metadataCache.getFirstLinkpathDest(z, v.file.path);
         (!K || !this.notes.has(K.path)) && J++;
       }
-    return { total: n, zk: i, done: p, todo: d, noDate: r, orphan: l, noType: k, byTypeOrder: m, byStatusOrder: c, noStatus: o, depthCount: w, depthMax: y, monthly: f, kw: T, heat: A, branches: P, recent: Y, modified: ie, linkCount: $, deadLinks: J };
+    return { total: n, zk: i, done: p, todo: d, noDate: r, orphan: l, noType: k, byTypeOrder: m, byStatusOrder: c, noStatus: o, depthCount: w, depthMax: y, monthly: f, kw: T, heat: N, branches: P, recent: Y, modified: ie, linkCount: $, deadLinks: J };
   }
 };
 x($t, "LinkMindmapView");
@@ -4336,7 +4336,7 @@ var He = $t, Ot = class extends qt {
       layout() {
         new H(e).setName(t("\u9ED8\u8BA4\u663E\u793A\u5C42\u6570")).setDesc(t("\u6253\u5F00\u65F6\u9ED8\u8BA4\u5C55\u5F00\u5230\u7B2C\u51E0\u5C42")).addText((r) => r.setValue(String(s.plugin.settings.defaultDepth)).onChange(async (l) => {
           s.plugin.settings.defaultDepth = Math.max(1, parseInt(l, 10) || 3), await s.plugin.saveSettings();
-          for (let h of s.plugin.app.workspace.getLeavesOfType(be))
+          for (let h of s.plugin.app.workspace.getLeavesOfType(Ce))
             h.view instanceof He && (h.view.depth = s.plugin.settings.defaultDepth, h.view._expandedMem.clear());
           s.plugin.refreshViews();
         })), new H(e).setName(t("\u540D\u79F0\u6700\u5927\u5B57\u6570")).setDesc(t("\u8282\u70B9\u6807\u9898\u6700\u591A\u663E\u793A\u7684\u5B57\u6570\uFF0C\u8D85\u51FA\u90E8\u5206\u663E\u793A\u7701\u7565\u53F7\uFF1B0 = \u663E\u793A\u5168\u90E8\u540D\u79F0")).addText((r) => r.setValue(String(s.plugin.settings.maxTitleLen)).onChange(async (l) => {
@@ -4535,17 +4535,17 @@ var He = $t, Ot = class extends qt {
 x(Ot, "LinkMindmapSettingTab");
 var ns = Ot, zt = class extends Xt {
   async onload() {
-    this._autoState = null, this._loadedPresets = [], await this.loadSettings(), this._initLang(), await this._loadViewsFromFile(), this.registerView(be, (n) => new He(n, this)), this.addRibbonIcon("git-merge", t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), () => this.activateView()), this.addCommand({ id: "open-link-mindmap", name: t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), callback: /* @__PURE__ */ x(() => this.activateView(), "callback") }), this.addCommand({ id: "open-timeline", name: t("\u6253\u5F00\u65F6\u95F4\u7EBF"), callback: /* @__PURE__ */ x(() => this.activateTimeline(), "callback") }), this.addCommand({ id: "normalize-frontmatter", name: t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ x(() => this._normalizeFrontmatter(), "callback") }), this.addCommand({ id: "normalize-frontmatter-current", name: t("\u6574\u7406\u5F53\u524D\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ x(() => this._normalizeFrontmatter(!0), "callback") }), this.addCommand({ id: "check-links", name: t("\u68C0\u67E5\u94FE\u63A5\u5B8C\u6574\u6027"), callback: /* @__PURE__ */ x(() => this._checkLinks(), "callback") }), this.addCommand({ id: "clean-invalid-types", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u7C7B\u578B"), callback: /* @__PURE__ */ x(() => this._cleanInvalidTypes(), "callback") }), this.addCommand({ id: "clean-invalid-status", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u72B6\u6001"), callback: /* @__PURE__ */ x(() => this._cleanInvalidStatus(), "callback") }), this.addCommand({ id: "convert-to-excalidraw", name: t("\u8F6C\u6362\u5F53\u524D\u7B14\u8BB0\u4E3A excalidraw"), callback: /* @__PURE__ */ x(() => {
+    this._autoState = null, this._loadedPresets = [], await this.loadSettings(), this._initLang(), await this._loadViewsFromFile(), this.registerView(Ce, (n) => new He(n, this)), this.addRibbonIcon("git-merge", t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), () => this.activateView()), this.addCommand({ id: "open-link-mindmap", name: t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), callback: /* @__PURE__ */ x(() => this.activateView(), "callback") }), this.addCommand({ id: "open-timeline", name: t("\u6253\u5F00\u65F6\u95F4\u7EBF"), callback: /* @__PURE__ */ x(() => this.activateTimeline(), "callback") }), this.addCommand({ id: "normalize-frontmatter", name: t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ x(() => this._normalizeFrontmatter(), "callback") }), this.addCommand({ id: "normalize-frontmatter-current", name: t("\u6574\u7406\u5F53\u524D\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ x(() => this._normalizeFrontmatter(!0), "callback") }), this.addCommand({ id: "check-links", name: t("\u68C0\u67E5\u94FE\u63A5\u5B8C\u6574\u6027"), callback: /* @__PURE__ */ x(() => this._checkLinks(), "callback") }), this.addCommand({ id: "clean-invalid-types", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u7C7B\u578B"), callback: /* @__PURE__ */ x(() => this._cleanInvalidTypes(), "callback") }), this.addCommand({ id: "clean-invalid-status", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u72B6\u6001"), callback: /* @__PURE__ */ x(() => this._cleanInvalidStatus(), "callback") }), this.addCommand({ id: "convert-to-excalidraw", name: t("\u8F6C\u6362\u5F53\u524D\u7B14\u8BB0\u4E3A excalidraw"), callback: /* @__PURE__ */ x(() => {
       let n = this.app.workspace.getActiveFile();
       n ? this._convertToExcalidraw(n) : new _(t("\u8BF7\u5148\u6253\u5F00\u4E00\u7BC7\u7B14\u8BB0"));
     }, "callback") }), this.addCommand({ id: "show-help", name: t("\u67E5\u770B\u4F7F\u7528\u5E2E\u52A9"), callback: /* @__PURE__ */ x(async () => {
-      for (let n of this.app.workspace.getLeavesOfType(be))
+      for (let n of this.app.workspace.getLeavesOfType(Ce))
         if (n.view instanceof He) {
           n.view._showHelp();
           return;
         }
       await this.activateView();
-      for (let n of this.app.workspace.getLeavesOfType(be))
+      for (let n of this.app.workspace.getLeavesOfType(Ce))
         n.view instanceof He && n.view._showHelp();
     }, "callback") }), this.addSettingTab(new ns(this.app, this)), this.applyThemeVars();
     let e = () => this.settings.savedViewLocation || "link-mindmap-presets.json";
@@ -4554,19 +4554,19 @@ var ns = Ot, zt = class extends Xt {
     })), this.registerEvent(this.app.vault.on("modify", (n) => {
       n.path === e() && (!this._autoState || !this._loadedPresets) && this._loadViewsFromFile().then(() => this._rebuildAllViews()).catch((i) => console.error("[link-mindmap] reload presets:", i)), this._onVaultChange(n);
     })), this.registerEvent(this.app.vault.on("delete", (n) => this._onVaultChange(n))), this.registerEvent(this.app.vault.on("rename", (n, i) => this._onVaultChange(n, i))), this.registerEvent(this.app.metadataCache.on("changed", (n) => this._onVaultChange(n))), this.registerEvent(this.app.metadataCache.on("resolved", () => this._rebuildAllViews())), this.registerEvent(this.app.workspace.on("file-open", (n) => {
-      for (let i of this.app.workspace.getLeavesOfType(be))
+      for (let i of this.app.workspace.getLeavesOfType(Ce))
         i.view instanceof He && i.view.locateFile(n);
     }));
   }
   onunload() {
-    clearTimeout(this._refreshTimer), this.app.workspace.detachLeavesOfType(be);
+    clearTimeout(this._refreshTimer), this.app.workspace.detachLeavesOfType(Ce);
   }
   _onVaultChange(e, n) {
     let i = pe(this.settings.mainFolder || ""), a = /* @__PURE__ */ x((o) => !!o && (o === i || o.startsWith(i + "/")), "inFolder"), s = e && e.path;
     e && e.extension && e.extension !== "md" && !a(n) || !a(s) && !a(n) || (clearTimeout(this._refreshTimer), this._refreshTimer = setTimeout(() => this._rebuildAllViews(), 400));
   }
   _rebuildAllViews() {
-    for (let e of this.app.workspace.getLeavesOfType(be))
+    for (let e of this.app.workspace.getLeavesOfType(Ce))
       e.view instanceof He && e.view.rebuild(!0);
   }
   async _checkLinks() {
@@ -4586,7 +4586,7 @@ var ns = Ot, zt = class extends Xt {
       new _(t("\u94FE\u63A5\u5B8C\u6574\u6027\u68C0\u67E5\u901A\u8FC7 \u2713"));
       return;
     }
-    let p = new Ce(this.app);
+    let p = new Se(this.app);
     p.titleEl.setText(t("\u94FE\u63A5\u5B8C\u6574\u6027\u68C0\u67E5"));
     let d = p.contentEl.createDiv();
     if (d.createEl("p", { text: t("\u53D1\u73B0 ") + c + t(" \u4E2A\u5931\u6548\u94FE\u63A5\uFF1A"), cls: "lkm-modal-sub" }), s.length) {
@@ -4663,8 +4663,8 @@ var ns = Ot, zt = class extends Xt {
       }
       let y = k.find((v) => v.key === i), S = y ? nt((y.lines[0].match(/^.*:\s*(.*)$/) || [])[1] || "") : "", f = n.typeTemplates || {}, T = S && f[S] ? f[S] : (n.templatePath || "").trim(), C = await s(T);
       if (!C) return { changed: !1, skipped: !0 };
-      let A = C.map(([v]) => v), P = /* @__PURE__ */ new Map(C), V = /* @__PURE__ */ new Map(k.map((v) => [v.key, v])), Y = [];
-      for (let v of A)
+      let N = C.map(([v]) => v), P = /* @__PURE__ */ new Map(C), V = /* @__PURE__ */ new Map(k.map((v) => [v.key, v])), Y = [];
+      for (let v of N)
         V.has(v) ? (Y.push(V.get(v)), V.delete(v)) : Y.push({ key: v, lines: [v + ": " + (P.get(v) || "")] });
       for (let [, v] of V) Y.push(v);
       let ie = [];
@@ -4760,7 +4760,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         for (let d of Ke(this.app, this.settings.mainFolder))
           d.path !== e.path && await this.app.fileManager.processFrontMatter(d, (r) => {
             for (let l of [this.settings.linkField, this.settings.backField]) {
-              let h = Ne(r[l]), g = !1, k = h.map((m) => ve(m) === c ? (g = !0, "[[" + p + "]]") : m);
+              let h = Ae(r[l]), g = !1, k = h.map((m) => ve(m) === c ? (g = !0, "[[" + p + "]]") : m);
               g && (r[l] = k);
             }
           });
@@ -4800,17 +4800,17 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     for (let [i, a] of Object.entries(n)) e.style.setProperty("--lkm-status-" + i, a);
   }
   async activateView() {
-    let { workspace: e } = this.app, n = e.getLeavesOfType(be)[0];
-    n || (n = e.getLeaf(!0), await n.setViewState({ type: be, active: !0 })), e.revealLeaf(n);
+    let { workspace: e } = this.app, n = e.getLeavesOfType(Ce)[0];
+    n || (n = e.getLeaf(!0), await n.setViewState({ type: Ce, active: !0 })), e.revealLeaf(n);
   }
   async activateTimeline() {
     await this.activateView();
-    for (let e of this.app.workspace.getLeavesOfType(be))
+    for (let e of this.app.workspace.getLeavesOfType(Ce))
       e.view instanceof He && (e.view._mode = "dash", e.view._dashTab = "timeline", e.view.render());
   }
   refreshViews() {
     this.applyThemeVars();
-    for (let e of this.app.workspace.getLeavesOfType(be))
+    for (let e of this.app.workspace.getLeavesOfType(Ce))
       e.view instanceof He && e.view.render();
   }
   async loadSettings() {
