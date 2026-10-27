@@ -862,6 +862,15 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   stroke: var(--lkm-accent);
   stroke-width: 3;
 }
+.lkm-git-node.lkm-sel .lkm-graph-dot {
+  fill-opacity: 0.55;
+  stroke: var(--lkm-selected, #E8861A);
+  stroke-width: 3.5;
+}
+.lkm-git-node.lkm-sel.lkm-main .lkm-graph-dot {
+  stroke: var(--lkm-selected, #E8861A);
+  stroke-width: 4;
+}
 .lkm-node.lkm-selected-root .lkm-card {
   stroke: var(--lkm-accent);
   stroke-width: 2;
