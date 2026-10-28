@@ -259,6 +259,19 @@ a.lkm-crumb-item:hover { color: var(--lkm-accent); text-decoration: underline; }
   font-size: 12px;
   margin-top: -6px;
 }
+.lkm-batch-input {
+  width: 100%;
+  min-height: 200px;
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  font-family: var(--font-monospace);
+  font-size: 13px;
+  resize: vertical;
+  background: var(--background-secondary);
+  color: var(--text-normal);
+}
 /* ---- 父节点按钮 ---- */
 .lkm-parent { cursor: pointer; opacity: 0; transition: opacity .15s; }
 .lkm-node:hover .lkm-parent { opacity: 1; }
