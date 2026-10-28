@@ -5,4 +5,7 @@ node_modules/
 .codeartsdoer/
 .DS_Store
 *.log
-DEVELOP.md
+DEVELOP.md*.jpg
+*.png
+luhmann_git_graph.html
+*.excalidraw.md
