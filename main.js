@@ -1,5 +1,5 @@
 "use strict";
-var jt = (M, e) => () => {
+var Yt = (M, e) => () => {
   try {
     return e || M((e = { exports: {} }).exports, e), e.exports;
   } catch (n) {
@@ -8,7 +8,7 @@ var jt = (M, e) => () => {
 };
 
 // ../i18n.js
-var xt = jt((os, vt) => {
+var xt = Yt((os, vt) => {
   "use strict";
   var _t = {
     zh: {},
@@ -747,7 +747,7 @@ Only removing link from "`,
       "\u8282\u70B9\u5361\u7247\u9AD8\u5EA6\uFF080 = \u81EA\u9002\u5E94\uFF0C\u6309\u5185\u5BB9\u81EA\u52A8\u8C03\u6574\uFF09": "Node card height (0 = auto-fit by content)"
     }
   }, rt = "zh";
-  function Yt(M) {
+  function jt(M) {
     rt = M || "zh";
   }
   function Kt() {
@@ -758,7 +758,7 @@ Only removing link from "`,
     if (e) for (let i in e) n = n.split("{" + i + "}").join(e[i]);
     return n;
   }
-  vt.exports = { t: Gt, setLang: Yt, getLang: Kt };
+  vt.exports = { t: Gt, setLang: jt, getLang: Kt };
 });
 
 // ../src.js
@@ -766,7 +766,7 @@ var S = (M, e) => M, Wt = require("obsidian"), {
   Plugin: Xt,
   ItemView: Ut,
   Notice: b,
-  Modal: Pe,
+  Modal: Ae,
   Setting: Z,
   PluginSettingTab: qt,
   TFile: Xe,
@@ -777,7 +777,7 @@ var S = (M, e) => M, Wt = require("obsidian"), {
   Menu: qe,
   MarkdownRenderer: Jt,
   Component: Zt
-} = Wt, { t, setLang: Ct } = xt(), Le = "link-mindmap-view", Qt = "http://www.w3.org/2000/svg", Ft = {
+} = Wt, { t, setLang: Ct } = xt(), Pe = "link-mindmap-view", Qt = "http://www.w3.org/2000/svg", Ft = {
   language: "auto",
   mainFolder: "01-\u7B14\u8BB0",
   indexFolder: "02-\u7D22\u5F15",
@@ -840,10 +840,10 @@ function Ce(M) {
   return M ? t(M) : "";
 }
 S(Ce, "statusLabel");
-function Se(M) {
+function Te(M) {
   return M ? t(M) : "";
 }
-S(Se, "typeLabel");
+S(Te, "typeLabel");
 function ze(M, e) {
   return e && (M.statusColors || {})[e] || null;
 }
@@ -860,18 +860,18 @@ function He(M) {
   return M == null ? [] : Array.isArray(M) ? M.slice() : [M];
 }
 S(He, "toArr");
-function Me(M) {
+function De(M) {
   return String(M ?? "").replace(/^\[\[/, "").replace(/\]\]$/, "").split("|")[0].split("#")[0].split("^")[0].trim();
 }
-S(Me, "cleanLink");
+S(De, "cleanLink");
 function gt(M) {
   let e = [], n = /* @__PURE__ */ S((i) => {
     if (i == null) return;
     let a = String(i), s = /\[\[([^\[\]]+?)\]\]/g, o, c = !1;
     for (; (o = s.exec(a)) !== null; )
-      c = !0, e.push(Me(o[1]));
+      c = !0, e.push(De(o[1]));
     if (!c) {
-      let p = Me(a.replace(/^["']+/, "").replace(/["']+$/, ""));
+      let p = De(a.replace(/^["']+/, "").replace(/["']+$/, ""));
       p && e.push(p);
     }
   }, "push");
@@ -1079,12 +1079,12 @@ function at(M, e) {
   let n = [], i = [], a = e.layoutMode !== "branch" && e.layoutDir === "v";
   if ((/* @__PURE__ */ S((function s(o) {
     {
-      let p = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, d = o.note.title, l = e.maxTitleLen > 0 ? me(d, e.maxTitleLen) : d, r = $e(l, 13, !0), h = !o.note.file, w = e.showCreated && !h && o.note.date ? o.note.date : "", k = e.showType && !h && o.note.type ? Se(o.note.type) : "", m = e.showChildCount && !h && o.children.length ? t("\u5B50 ") + o.children.length : "", L = e.showWordCount && !h && o.note.file ? t("\u5B57 ") + Math.max(1, Math.round((o.note.file.stat.size || 0) / 3)) : "", y = [k, m, L, w].filter(Boolean).join(" \xB7 "), _ = !!y, T = e.showDesc && !h && o.note.desc ? o.note.desc : "";
+      let p = (1 + (e.showOpenIcon !== !1 ? 1 : 0) + (e.showAddIcon !== !1 ? 1 : 0)) * 24 + 12, d = o.note.title, l = e.maxTitleLen > 0 ? me(d, e.maxTitleLen) : d, r = $e(l, 13, !0), h = !o.note.file, w = e.showCreated && !h && o.note.date ? o.note.date : "", k = e.showType && !h && o.note.type ? Te(o.note.type) : "", m = e.showChildCount && !h && o.children.length ? t("\u5B50 ") + o.children.length : "", L = e.showWordCount && !h && o.note.file ? t("\u5B57 ") + Math.max(1, Math.round((o.note.file.stat.size || 0) / 3)) : "", y = [k, m, L, w].filter(Boolean).join(" \xB7 "), _ = !!y, F = e.showDesc && !h && o.note.desc ? o.note.desc : "";
       if (e.nodeHeight === 0) {
         let g = $e(y, 11, !1);
-        o._w = Math.max(80, 16 + Math.max(r, g) + p + 4), o._descLines = T ? Pt(T, o._w - 16 - p - 4, 11) : [], o._autoH = 26 + o._descLines.length * 15 + (_ ? 15 : 0) + 4;
+        o._w = Math.max(80, 16 + Math.max(r, g) + p + 4), o._descLines = F ? Pt(F, o._w - 16 - p - 4, 11) : [], o._autoH = 26 + o._descLines.length * 15 + (_ ? 15 : 0) + 4;
       } else {
-        let g = T ? kt(T, 140, 11) : "", D = Math.max($e(y, 11, !1), $e(g, 11, !1));
+        let g = F ? kt(F, 140, 11) : "", D = Math.max($e(y, 11, !1), $e(g, 11, !1));
         o._w = Math.max(80, 16 + Math.max(r, D) + p + 4), o._descLines = null, o._autoH = e.nodeHeight;
       }
       o._shown = l;
@@ -1108,41 +1108,41 @@ function at(M, e) {
   }), "measure"))(M), e.layoutMode === "git") {
     let s = e.layoutDir === "v";
     (/* @__PURE__ */ S((function y(_) {
-      let T = _.expanded ? _.children : [];
-      if (!T.length)
+      let F = _.expanded ? _.children : [];
+      if (!F.length)
         return _._gw = 1, 1;
-      if (T.length === 1)
-        return _._gw = y(T[0]), _._gw;
+      if (F.length === 1)
+        return _._gw = y(F[0]), _._gw;
       _._gw = 0;
-      for (let g of T) _._gw += y(g);
+      for (let g of F) _._gw += y(g);
       return _._gw;
     }), "gw"))(M);
     let o = 0;
-    (/* @__PURE__ */ S((function y(_, T, g) {
+    (/* @__PURE__ */ S((function y(_, F, g) {
       _._gdepth = g, g > o && (o = g), n.push(_);
       let D = _.expanded ? _.children : [];
       if (!D.length) {
-        _._glane = T;
+        _._glane = F;
         return;
       }
       if (D.length === 1)
-        y(D[0], T, g + 1), _._glane = D[0]._glane, i.push([_, D[0]]);
+        y(D[0], F, g + 1), _._glane = D[0]._glane, i.push([_, D[0]]);
       else {
-        y(D[0], T, g + 1), _._glane = D[0]._glane, i.push([_, D[0]]);
-        let X = T + D[0]._gw;
+        y(D[0], F, g + 1), _._glane = D[0]._glane, i.push([_, D[0]]);
+        let X = F + D[0]._gw;
         for (let C = 1; C < D.length; C++)
           y(D[C], X, g + 1), i.push([_, D[C]]), X += D[C]._gw;
       }
     }), "assign"))(M, 0, 0);
     let c = 0, p = 0, d = 1 / 0, l = -1 / 0;
     for (let y of n) {
-      let _ = y._shown || y.note.title, T = $e(_, 13, !0);
-      y._w = Math.max(90, T + 36), y._autoH = 28, c = Math.max(c, y._w), p = Math.max(p, y._autoH), d = Math.min(d, y._glane), l = Math.max(l, y._glane);
+      let _ = y._shown || y.note.title, F = $e(_, 13, !0);
+      y._w = Math.max(90, F + 36), y._autoH = 28, c = Math.max(c, y._w), p = Math.max(p, y._autoH), d = Math.min(d, y._glane), l = Math.max(l, y._glane);
     }
     let r = Math.max(40, e.gapX), h = Math.max(1, e.gapY), w = [], k = 0;
     for (let y = d; y <= l; y++) {
       let _ = 0;
-      for (let T of n) T._glane === y && (_ = Math.max(_, s ? T._w : T._autoH + 20));
+      for (let F of n) F._glane === y && (_ = Math.max(_, s ? F._w : F._autoH + 20));
       _ += h, w[y] = k + _ / 2, k += _;
     }
     let m = k / Math.max(1, l - d + 1), L = null;
@@ -1150,9 +1150,9 @@ function at(M, e) {
       L = [];
       let y = 0;
       for (let _ = 0; _ <= o; _++) {
-        let T = 0;
-        for (let g of n) g._gdepth === _ && (T = Math.max(T, g._w));
-        T += r, L[_] = y + T / 2, y += T;
+        let F = 0;
+        for (let g of n) g._gdepth === _ && (F = Math.max(F, g._w));
+        F += r, L[_] = y + F / 2, y += F;
       }
     }
     for (let y of n)
@@ -1179,8 +1179,8 @@ function at(M, e) {
         _._grow = m, _._cx = L, L += _._w + o;
       let y = m;
       for (let _ = k.length - 1; _ >= 0; _--) {
-        let T = k[_];
-        (T.expanded ? T.children : []).length && (y = d(T, y + 1, T._cx, !0));
+        let F = k[_];
+        (F.expanded ? F.children : []).length && (y = d(F, y + 1, F._cx, !0));
       }
       return y > p && (p = y), y;
     }), "layout"))(M, 0, 0, !1);
@@ -1215,13 +1215,13 @@ function at(M, e) {
         for (let I = C + 1; I < c; I++) {
           let x = n[C]._fx - n[I]._fx, G = n[C]._fy - n[I]._fy, se = x * x + G * G;
           se < 0.01 && (se = 0.01, x = 0.1, G = 0.1);
-          let O = Math.sqrt(se), q = d * d / se, v = x / O * q, U = G / O * q;
+          let z = Math.sqrt(se), q = d * d / se, v = x / z * q, U = G / z * q;
           D[C] += v, X[C] += U, D[I] -= v, X[I] -= U;
         }
       for (let [C, I] of i) {
         let x = p.get(C), G = p.get(I);
         if (x == null || G == null) continue;
-        let se = n[G]._fx - n[x]._fx, O = n[G]._fy - n[x]._fy, q = Math.sqrt(se * se + O * O) || 0.01, v = q / d, U = se / q * v, Q = O / q * v;
+        let se = n[G]._fx - n[x]._fx, z = n[G]._fy - n[x]._fy, q = Math.sqrt(se * se + z * z) || 0.01, v = q / d, U = se / q * v, Q = z / q * v;
         D[x] += U, X[x] += Q, D[G] -= U, X[G] -= Q;
       }
       for (let C = 0; C < c; C++)
@@ -1241,8 +1241,8 @@ function at(M, e) {
     let y = 40;
     for (let g of n)
       g._x = g._fx - w + y - g._w / 2, g._y = g._fy - k + y;
-    let _ = m - w + y * 2, T = L - k + y * 2;
-    return { nodes: n, edges: i, force: !0, fvert: s, degree: o, fw: _, fh: T, maxDepth: 0 };
+    let _ = m - w + y * 2, F = L - k + y * 2;
+    return { nodes: n, edges: i, force: !0, fvert: s, degree: o, fw: _, fh: F, maxDepth: 0 };
   }
   return (/* @__PURE__ */ S((function s(o, c, p) {
     o._x = c, o._y = p + o._h / 2, n.push(o);
@@ -1272,7 +1272,7 @@ S(ot, "linkNameOf");
 async function et(M, e, n, i) {
   await M.fileManager.processFrontMatter(e, (a) => {
     let s = He(a[n]);
-    s.some((c) => Me(c) === i) || s.push("[[" + i + "]]"), a[n] = s;
+    s.some((c) => De(c) === i) || s.push("[[" + i + "]]"), a[n] = s;
   });
 }
 S(et, "addLink");
@@ -1280,7 +1280,7 @@ async function Re(M, e, n, i) {
   let a = !1;
   return await M.fileManager.processFrontMatter(e, (s) => {
     let o = He(s[n]), c = o.filter((p) => {
-      let d = M.metadataCache.getFirstLinkpathDest(Me(p), e.path);
+      let d = M.metadataCache.getFirstLinkpathDest(De(p), e.path);
       return !(d && d.path === i);
     });
     c.length !== o.length && (a = !0), c.length ? s[n] = c : delete s[n];
@@ -1302,7 +1302,7 @@ var At = class extends Tt {
   }
 };
 S(At, "PickModal");
-var Oe = At, It = class extends Pe {
+var Oe = At, It = class extends Ae {
   constructor(e, n, i, a, s, o) {
     if (super(e), this.items = n, this.onChoose = i, this.selected = /* @__PURE__ */ new Map(), this.searchVal = "", this.typeFilter = "", this.mainFilter = "", this.linkFilter = "", this.statusFilter = "", this.availableTypes = s || [], this.availableStatusColors = o || {}, a && a.length) {
       let c = new Map(n.map((p) => [p.path, p.label]));
@@ -1322,13 +1322,13 @@ var Oe = At, It = class extends Pe {
     let a = [...i], s = e.createDiv("lkm-multipick-filter"), o = s.createEl("input", { type: "text", placeholder: t("\u641C\u7D22\u7B14\u8BB0\u6807\u9898\u2026") });
     o.addClass("lkm-multipick-input");
     let c = /* @__PURE__ */ S((y) => {
-      let _ = /* @__PURE__ */ S((T) => T.stopPropagation(), "stop");
+      let _ = /* @__PURE__ */ S((F) => F.stopPropagation(), "stop");
       y.addEventListener("mousedown", _), y.addEventListener("pointerdown", _), y.addEventListener("touchstart", _, { passive: !0 }), y.addEventListener("touchend", _, { passive: !0 }), y.addEventListener("click", _);
     }, "stopModalSwallow");
     if (a.length) {
       let y = s.createEl("select", { cls: "lkm-multipick-select" });
       y.createEl("option", { value: "", text: t("\u7C7B\u578B") }), y.createEl("option", { value: "__none__", text: t("\u65E0\u7C7B\u578B") });
-      for (let _ of a) y.createEl("option", { value: _, text: Se(_) });
+      for (let _ of a) y.createEl("option", { value: _, text: Te(_) });
       c(y), y.addEventListener("change", () => {
         this.typeFilter = y.value, m();
       });
@@ -1349,22 +1349,22 @@ var Oe = At, It = class extends Pe {
       this.statusFilter = l.value, m();
     });
     let r = e.createDiv("lkm-multipick-list"), h = e.createDiv("lkm-multipick-sel"), w = null, k = /* @__PURE__ */ S(() => {
-      let y = this.searchVal.toLowerCase(), _ = this.typeFilter, T = [];
+      let y = this.searchVal.toLowerCase(), _ = this.typeFilter, F = [];
       for (let g of this.items)
-        y && !g.label.toLowerCase().includes(y) || _ && _ === "__none__" && g.type || _ && _ !== "__none__" && g.type !== _ || this.mainFilter === "1" && !g.isMain || this.mainFilter === "0" && g.isMain || this.linkFilter === "orphan" && !g.orphan || this.linkFilter === "linked" && g.orphan || this.statusFilter === "__none__" && g.status || this.statusFilter && this.statusFilter !== "__none__" && g.status !== this.statusFilter || T.push(g);
-      return T;
+        y && !g.label.toLowerCase().includes(y) || _ && _ === "__none__" && g.type || _ && _ !== "__none__" && g.type !== _ || this.mainFilter === "1" && !g.isMain || this.mainFilter === "0" && g.isMain || this.linkFilter === "orphan" && !g.orphan || this.linkFilter === "linked" && g.orphan || this.statusFilter === "__none__" && g.status || this.statusFilter && this.statusFilter !== "__none__" && g.status !== this.statusFilter || F.push(g);
+      return F;
     }, "getFiltered"), m = /* @__PURE__ */ S(() => {
       r.empty();
-      let y = k(), _ = 0, T = 100;
-      for (let g = 0; g < y.length && _ < T; g++) {
+      let y = k(), _ = 0, F = 100;
+      for (let g = 0; g < y.length && _ < F; g++) {
         let D = y[g], X = r.createDiv("lkm-multipick-row");
         this.selected.has(D.path) && X.classList.add("is-selected"), X.createSpan({ text: D.label });
         let I = [];
-        D.isMain && I.push(t("\u4E3B\u7B14\u8BB0")), D.type && I.push(Se(D.type)), I.length && X.createSpan({ text: " \xB7 " + I.join(" \xB7 "), cls: "lkm-multipick-type" }), X.addEventListener("click", () => {
+        D.isMain && I.push(t("\u4E3B\u7B14\u8BB0")), D.type && I.push(Te(D.type)), I.length && X.createSpan({ text: " \xB7 " + I.join(" \xB7 "), cls: "lkm-multipick-type" }), X.addEventListener("click", () => {
           this.selected.has(D.path) ? this.selected.delete(D.path) : this.selected.set(D.path, D.label), X.classList.toggle("is-selected"), h.setText(t("\u5DF2\u9009 ") + this.selected.size + t(" \u7BC7\u7B14\u8BB0"));
         }), _++;
       }
-      _ === 0 ? r.createEl("p", { text: t("\u65E0\u5339\u914D\u7ED3\u679C"), cls: "lkm-modal-sub" }) : _ === T && r.createEl("p", { text: t("\u4EC5\u663E\u793A\u524D ") + T + t(" \u6761\uFF0C\u8BF7\u641C\u7D22\u7F29\u5C0F\u8303\u56F4"), cls: "lkm-modal-sub" });
+      _ === 0 ? r.createEl("p", { text: t("\u65E0\u5339\u914D\u7ED3\u679C"), cls: "lkm-modal-sub" }) : _ === F && r.createEl("p", { text: t("\u4EC5\u663E\u793A\u524D ") + F + t(" \u6761\uFF0C\u8BF7\u641C\u7D22\u7F29\u5C0F\u8303\u56F4"), cls: "lkm-modal-sub" });
     }, "renderList");
     o.addEventListener("input", () => {
       this.searchVal = o.value, w && clearTimeout(w), w = setTimeout(m, 150);
@@ -1388,7 +1388,7 @@ var Oe = At, It = class extends Pe {
   }
 };
 S(It, "MultiPickModal");
-var es = It, Nt = class extends Pe {
+var es = It, Nt = class extends Ae {
   constructor(e, n, i) {
     super(e), this.parentLabel = n, this.opts = i || {}, this.onSubmit = this.opts.onSubmit || (() => {
     });
@@ -1402,7 +1402,7 @@ var es = It, Nt = class extends Pe {
         h.key === "Enter" && (h.preventDefault(), l());
       });
     }), new Z(e).setName(t("\u7C7B\u578B")).setDesc(t("\u5199\u5165\u7B14\u8BB0\u7684 type \u5B57\u6BB5\uFF0C\u53EF\u4E0D\u9009")).addDropdown((r) => {
-      r.addOption("", t("\u4E0D\u9009")), (n.types || []).forEach((h) => r.addOption(h, Se(h))), r.setValue(a), r.onChange((h) => {
+      r.addOption("", t("\u4E0D\u9009")), (n.types || []).forEach((h) => r.addOption(h, Te(h))), r.setValue(a), r.onChange((h) => {
         a = h;
         let w = n.typeTemplates && n.typeTemplates[h];
         if (w && p) {
@@ -1440,7 +1440,7 @@ var es = It, Nt = class extends Pe {
   }
 };
 S(Nt, "NewChildModal");
-var St = Nt, $t = class extends Pe {
+var St = Nt, $t = class extends Ae {
   constructor(e, n, i) {
     super(e), this.currentName = n, this.onSubmit = i;
   }
@@ -1468,7 +1468,7 @@ var St = Nt, $t = class extends Pe {
   }
 };
 S($t, "RenameModal");
-var ts = $t, Bt = class extends Pe {
+var ts = $t, Bt = class extends Ae {
   constructor(e, n, i) {
     super(e), this.currentDesc = n, this.onSubmit = i;
   }
@@ -1489,7 +1489,7 @@ var ts = $t, Bt = class extends Pe {
   }
 };
 S(Bt, "DescModal");
-var ss = Bt, Rt = class extends Pe {
+var ss = Bt, Rt = class extends Ae {
   constructor(e, n, i, a, s) {
     super(e), this.titleText = n, this.message = i, this.onConfirm = a, this.danger = s !== !1;
   }
@@ -1506,7 +1506,7 @@ var ss = Bt, Rt = class extends Pe {
   }
 };
 S(Rt, "ConfirmModal");
-var je = Rt, Vt = class extends Tt {
+var Ye = Rt, Vt = class extends Tt {
   constructor(e, n, i) {
     super(e), this.items = n, this.onChoose = i, this.setPlaceholder(t("\u9009\u62E9\u65B0\u7684\u7236\u8282\u70B9\u2026"));
   }
@@ -1529,7 +1529,7 @@ var mt = Vt, Ot = class extends Ut {
     return this.plugin.settings;
   }
   getViewType() {
-    return Le;
+    return Pe;
   }
   getDisplayText() {
     return t("\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE");
@@ -1625,7 +1625,7 @@ var mt = Vt, Ot = class extends Ut {
     n.showAtPosition({ x: a.left, y: a.bottom });
   }
   _promptSaveView() {
-    let e = new Pe(this.app);
+    let e = new Ae(this.app);
     e.titleEl.setText(t("\u4FDD\u5B58\u5BFC\u56FE\u9884\u8BBE"));
     let n = "", i = new Z(e.contentEl).setName(t("\u9884\u8BBE\u540D\u79F0")).addText((s) => {
       s.setPlaceholder(t("\u8F93\u5165\u9884\u8BBE\u540D\u79F0")), s.inputEl.focus(), s.onChange((o) => n = o), s.inputEl.addEventListener("keydown", (o) => {
@@ -1637,7 +1637,7 @@ var mt = Vt, Ot = class extends Ut {
         new b(t("\u540D\u79F0\u4E0D\u80FD\u4E3A\u7A7A"));
         return;
       }
-      this.plugin._getSavedViews().some((c) => c.name === s) ? new je(this.app, t("\u8986\u76D6\u9884\u8BBE"), t("\u5DF2\u5B58\u5728\u540C\u540D\u9884\u8BBE\u300C") + s + t("\u300D\uFF0C\u662F\u5426\u8986\u76D6\uFF1F"), async () => {
+      this.plugin._getSavedViews().some((c) => c.name === s) ? new Ye(this.app, t("\u8986\u76D6\u9884\u8BBE"), t("\u5DF2\u5B58\u5728\u540C\u540D\u9884\u8BBE\u300C") + s + t("\u300D\uFF0C\u662F\u5426\u8986\u76D6\uFF1F"), async () => {
         await this.plugin._saveViewPreset(s, this._captureViewState()), e.close(), new b(t("\u5DF2\u4FDD\u5B58\u9884\u8BBE\uFF1A") + s);
       }).open() : (await this.plugin._saveViewPreset(s, this._captureViewState()), e.close(), new b(t("\u5DF2\u4FDD\u5B58\u9884\u8BBE\uFF1A") + s));
     }, "done");
@@ -1761,9 +1761,9 @@ var mt = Vt, Ot = class extends Ut {
             }
             let G = x;
             for (; G.parent; ) {
-              let se = G.parent.children, O = se.indexOf(G);
-              if (O < se.length - 1) {
-                this._select(se[O + 1].key);
+              let se = G.parent.children, z = se.indexOf(G);
+              if (z < se.length - 1) {
+                this._select(se[z + 1].key);
                 return;
               }
               G = G.parent;
@@ -1788,9 +1788,9 @@ var mt = Vt, Ot = class extends Ut {
     o.title = t("\u5C55\u5F00/\u6298\u53E0\u5DE5\u5177\u680F"), o.onclick = () => {
       this._toolbarCollapsed = !this._toolbarCollapsed, s.classList.toggle("lkm-collapsed", this._toolbarCollapsed), this._scheduleAutoSave();
     }, this._toolbarCollapsed && s.classList.add("lkm-collapsed");
-    let c = /* @__PURE__ */ S((C, I, x, G, se, O) => {
+    let c = /* @__PURE__ */ S((C, I, x, G, se, z) => {
       let q = s.createEl("button", { cls: "lkm-btn" + (G ? " " + G : "") });
-      return O ? (q.createEl("span", { cls: "lkm-btn-icon", text: O }), q.createEl("span", { text: C })) : q.textContent = C, q.title = I, se && (q.disabled = !0), q.onclick = (v) => {
+      return z ? (q.createEl("span", { cls: "lkm-btn-icon", text: z }), q.createEl("span", { text: C })) : q.textContent = C, q.title = I, se && (q.disabled = !0), q.onclick = (v) => {
         q.disabled || x(q, v);
       }, q;
     }, "mkBtn"), p = this._selKey ? this._nodeIndex.get(this._selKey) : null, d = !p;
@@ -1859,28 +1859,28 @@ var mt = Vt, Ot = class extends Ut {
     _.value = this._filterText || "", _.addEventListener("input", () => {
       this._filterText = _.value.trim().toLowerCase(), this._applyFilter();
     });
-    let T = s.createDiv("lkm-info");
-    p && T.createSpan({ text: t("\u5DF2\u9009\uFF1A") + me(p.note.title, 12) + " \uFF5C " });
+    let F = s.createDiv("lkm-info");
+    p && F.createSpan({ text: t("\u5DF2\u9009\uFF1A") + me(p.note.title, 12) + " \uFF5C " });
     let g = this.rootPath ? this.notes.get(this.rootPath) : null;
     if (this._kwFile)
-      T.createSpan({ text: t("\u5173\u952E\u8BCD\uFF1A") + this._kwFile.basename });
+      F.createSpan({ text: t("\u5173\u952E\u8BCD\uFF1A") + this._kwFile.basename });
     else if (this._multiRoot)
-      T.createSpan({ text: t("\u591A\u9009\u5BFC\u56FE\uFF08") + (this.currentRoot ? this.currentRoot.children.length : 0) + t(" \u7BC7\uFF09") });
+      F.createSpan({ text: t("\u591A\u9009\u5BFC\u56FE\uFF08") + (this.currentRoot ? this.currentRoot.children.length : 0) + t(" \u7BC7\uFF09") });
     else if (g) {
-      T.createSpan({ text: t("\u8DEF\u5F84\uFF1A") });
+      F.createSpan({ text: t("\u8DEF\u5F84\uFF1A") });
       let C = this._buildCrumbChain();
       C.forEach((I, x) => {
         if (C.length > 8 && x === 1) {
-          T.createEl("span", { cls: "lkm-crumb-sep", text: "\u2026>" });
+          F.createEl("span", { cls: "lkm-crumb-sep", text: "\u2026>" });
           return;
         }
         if (C.length > 8 && x > 1 && x < C.length - 1) return;
-        x && T.createSpan({ cls: "lkm-crumb-sep", text: ">" });
-        let G = x === C.length - 1, se = me(I.note.title, 10), O = T.createEl(G ? "span" : "a", { cls: "lkm-crumb-item" + (G ? " lkm-crumb-cur" : ""), text: se });
-        O.title = I.note.title, !G && I.note.file && O.addEventListener("click", () => this._focusPath(I.note.file.path));
+        x && F.createSpan({ cls: "lkm-crumb-sep", text: ">" });
+        let G = x === C.length - 1, se = me(I.note.title, 10), z = F.createEl(G ? "span" : "a", { cls: "lkm-crumb-item" + (G ? " lkm-crumb-cur" : ""), text: se });
+        z.title = I.note.title, !G && I.note.file && z.addEventListener("click", () => this._focusPath(I.note.file.path));
       });
     } else
-      T.createSpan({ text: t("\u672A\u627E\u5230\u7B14\u8BB0") });
+      F.createSpan({ text: t("\u672A\u627E\u5230\u7B14\u8BB0") });
     let D = n.createDiv("lkm-canvas");
     if (this._kwFile && !this.app.vault.getAbstractFileByPath(this._kwFile.path) && (this._kwFile = null), !this._kwFile && !this._multiRoot && (this._selectedRootPaths = null), this._kwFile) {
       this.showKeyword(this._kwFile, e);
@@ -1985,7 +1985,7 @@ var mt = Vt, Ot = class extends Ut {
     this.render();
   }
   _showShortcutHelp() {
-    let e = new Pe(this.app);
+    let e = new Ae(this.app);
     e.onOpen = () => {
       let { contentEl: n } = e;
       n.addClass("lkm-multipick"), n.createEl("h3", { text: t("\u952E\u76D8\u5FEB\u6377\u952E") });
@@ -2050,9 +2050,9 @@ var mt = Vt, Ot = class extends Ut {
           continue;
         }
         if (_)
-          for (let T of _) {
-            let g = T.selectorText || "";
-            g.includes("lkm-") && !g.includes("lkm-toolbar") && !g.includes("lkm-btn") && !g.includes("lkm-dash") && !g.includes("lkm-cards") && !g.includes("lkm-modal") && !g.includes("lkm-multipick") && !g.includes("lkm-empty") && !g.includes("lkm-guide") && !g.includes("lkm-heat") && !g.includes("lkm-branch") && !g.includes("lkm-legend") && !g.includes("lkm-donut") && !g.includes("lkm-bars") && !g.includes("lkm-stackbar") && !g.includes("lkm-chips") && !g.includes("lkm-shortcut") && !g.includes("lkm-step") && !g.includes("lkm-depth") && !g.includes("lkm-info") && !g.includes("lkm-crumb") && !g.includes("lkm-sel-count") && (r += T.cssText + `
+          for (let F of _) {
+            let g = F.selectorText || "";
+            g.includes("lkm-") && !g.includes("lkm-toolbar") && !g.includes("lkm-btn") && !g.includes("lkm-dash") && !g.includes("lkm-cards") && !g.includes("lkm-modal") && !g.includes("lkm-multipick") && !g.includes("lkm-empty") && !g.includes("lkm-guide") && !g.includes("lkm-heat") && !g.includes("lkm-branch") && !g.includes("lkm-legend") && !g.includes("lkm-donut") && !g.includes("lkm-bars") && !g.includes("lkm-stackbar") && !g.includes("lkm-chips") && !g.includes("lkm-shortcut") && !g.includes("lkm-step") && !g.includes("lkm-depth") && !g.includes("lkm-info") && !g.includes("lkm-crumb") && !g.includes("lkm-sel-count") && (r += F.cssText + `
 `);
           }
       }
@@ -2067,8 +2067,8 @@ var mt = Vt, Ot = class extends Ut {
     w.textContent = h, n.insertBefore(w, n.firstChild);
     let k = "path, line, circle, rect, ellipse, polygon, polyline, text", m = e.querySelectorAll(k), L = n.querySelectorAll(k);
     for (let y = 0; y < m.length && y < L.length; y++) {
-      let _ = getComputedStyle(m[y]), T = _.stroke, g = _.fill, D = _.strokeWidth, X = _.strokeDasharray, C = _.opacity;
-      if (T && T !== "none" && L[y].setAttribute("stroke", T), g && L[y].setAttribute("fill", g), D && D !== "0px" && L[y].setAttribute("stroke-width", D), X && X !== "none" && L[y].setAttribute("stroke-dasharray", X), C && C !== "1" && L[y].setAttribute("opacity", C), m[y].tagName === "text") {
+      let _ = getComputedStyle(m[y]), F = _.stroke, g = _.fill, D = _.strokeWidth, X = _.strokeDasharray, C = _.opacity;
+      if (F && F !== "none" && L[y].setAttribute("stroke", F), g && L[y].setAttribute("fill", g), D && D !== "0px" && L[y].setAttribute("stroke-width", D), X && X !== "none" && L[y].setAttribute("stroke-dasharray", X), C && C !== "1" && L[y].setAttribute("opacity", C), m[y].tagName === "text") {
         let I = _.fontSize, x = _.fontWeight;
         I && L[y].setAttribute("font-size", I), x && L[y].setAttribute("font-weight", x);
       }
@@ -2108,7 +2108,7 @@ var mt = Vt, Ot = class extends Ut {
       return;
     }
     let n = [], i = /* @__PURE__ */ S((c, p) => {
-      let d = p === 0 ? "# " : "  ".repeat(p) + "- ", l = c.note.status ? " [" + Ce(c.note.status) + "]" : "", r = c.note.type ? " `" + Se(c.note.type) + "`" : "", h = this.s.showDesc && c.note.desc ? " \u2014 " + c.note.desc : "";
+      let d = p === 0 ? "# " : "  ".repeat(p) + "- ", l = c.note.status ? " [" + Ce(c.note.status) + "]" : "", r = c.note.type ? " `" + Te(c.note.type) + "`" : "", h = this.s.showDesc && c.note.desc ? " \u2014 " + c.note.desc : "";
       n.push(d + (c.note.title || c.note.file?.name || "?") + r + l + h);
       for (let w of c.children || []) i(w, p + 1);
     }, "walk");
@@ -2126,22 +2126,22 @@ var mt = Vt, Ot = class extends Ut {
       new b(t("\u6CA1\u6709\u53EF\u5BFC\u51FA\u7684\u5BFC\u56FE"));
       return;
     }
-    let n = 300, i = 60, a = 180, s = 20, o = this.s.layoutMode !== "branch" && this.s.layoutDir === "v", c = [], p = [], d = /* @__PURE__ */ new Map(), l = 0, r = 0, h = /* @__PURE__ */ S((T) => {
-      let g = (T.children || []).filter((D) => D.note.file);
+    let n = 300, i = 60, a = 180, s = 20, o = this.s.layoutMode !== "branch" && this.s.layoutDir === "v", c = [], p = [], d = /* @__PURE__ */ new Map(), l = 0, r = 0, h = /* @__PURE__ */ S((F) => {
+      let g = (F.children || []).filter((D) => D.note.file);
       return g.length ? g.reduce((D, X) => D + h(X), 0) : 1;
-    }, "subtreeSize"), w = /* @__PURE__ */ S((T, g, D) => {
-      let X = (T.children || []).filter((se) => se.note.file), C = D, I = [];
+    }, "subtreeSize"), w = /* @__PURE__ */ S((F, g, D) => {
+      let X = (F.children || []).filter((se) => se.note.file), C = D, I = [];
       for (let se of X) {
-        let O = h(se), q = w(se, g + 1, C);
-        I.push(q), C += O;
+        let z = h(se), q = w(se, g + 1, C);
+        I.push(q), C += z;
       }
       let x, G;
-      if (o ? (x = D * (n + a), G = g * (i + s)) : (x = g * (n + a), I.length ? G = (I[0].y + I[I.length - 1].y) / 2 : G = D * (i + s)), T.note.file) {
+      if (o ? (x = D * (n + a), G = g * (i + s)) : (x = g * (n + a), I.length ? G = (I[0].y + I[I.length - 1].y) / 2 : G = D * (i + s)), F.note.file) {
         let se = "n" + l++;
-        d.set(T.key, se), c.push({
+        d.set(F.key, se), c.push({
           id: se,
           type: "file",
-          file: T.note.file.path,
+          file: F.note.file.path,
           x: Math.round(x),
           y: Math.round(G),
           width: n,
@@ -2151,9 +2151,9 @@ var mt = Vt, Ot = class extends Ut {
       return { x, y: G };
     }, "layout");
     w(e, 0, 0);
-    let k = /* @__PURE__ */ S((T) => {
-      for (let g of T.children || []) {
-        let D = d.get(T.key), X = d.get(g.key);
+    let k = /* @__PURE__ */ S((F) => {
+      for (let g of F.children || []) {
+        let D = d.get(F.key), X = d.get(g.key);
         D && X && p.push({
           id: "e" + r++,
           fromNode: D,
@@ -2165,15 +2165,15 @@ var mt = Vt, Ot = class extends Ut {
       }
     }, "collectEdges");
     k(e);
-    for (let T of this._nodeIndex.values()) {
-      if (!T.note.file || T.isAlias) continue;
-      let g = T.parent && T.parent.note.file ? T.parent.note.file.path : null;
-      for (let D of T.note.parentLinks) {
-        let X = this.app.metadataCache.getFirstLinkpathDest(D, T.note.file.path);
+    for (let F of this._nodeIndex.values()) {
+      if (!F.note.file || F.isAlias) continue;
+      let g = F.parent && F.parent.note.file ? F.parent.note.file.path : null;
+      for (let D of F.note.parentLinks) {
+        let X = this.app.metadataCache.getFirstLinkpathDest(D, F.note.file.path);
         if (!(!X || X.path === g)) {
           for (let C of this._nodeIndex.values())
             if (C.note.file && C.note.file.path === X.path && !C.isAlias) {
-              let I = d.get(T.key), x = d.get(C.key);
+              let I = d.get(F.key), x = d.get(C.key);
               I && x && p.push({ id: "e" + r++, fromNode: I, toNode: x, fromSide: o ? "bottom" : "right", toSide: o ? "top" : "left", color: "4" });
               break;
             }
@@ -2181,9 +2181,9 @@ var mt = Vt, Ot = class extends Ut {
       }
     }
     if (this.s.showDupLine) {
-      let T = /* @__PURE__ */ new Map();
-      for (let g of this._nodeIndex.values()) g.note.file && (T.has(g.note.file.path) || T.set(g.note.file.path, []), T.get(g.note.file.path).push(g));
-      for (let [g, D] of T) {
+      let F = /* @__PURE__ */ new Map();
+      for (let g of this._nodeIndex.values()) g.note.file && (F.has(g.note.file.path) || F.set(g.note.file.path, []), F.get(g.note.file.path).push(g));
+      for (let [g, D] of F) {
         if (D.length < 2) continue;
         let X = D.find((C) => !C.isAlias) || D[0];
         for (let C of D) {
@@ -2200,7 +2200,7 @@ var mt = Vt, Ot = class extends Ut {
     let L = JSON.stringify({ nodes: c, edges: p }, null, 2), _ = "link-mindmap-canvas-" + (/* @__PURE__ */ new Date()).toISOString().slice(0, 19).replace(/[:T]/g, "-") + ".canvas";
     this.app.vault.create(_, L).then(
       () => new b(t("Canvas \u5DF2\u5BFC\u51FA\u5230 vault \u6839\u76EE\u5F55\uFF1A") + _),
-      (T) => new b(t("\u5BFC\u51FA\u5931\u8D25\uFF1A") + (T && T.message ? T.message : T))
+      (F) => new b(t("\u5BFC\u51FA\u5931\u8D25\uFF1A") + (F && F.message ? F.message : F))
     );
   }
   _parentPathsOf(e) {
@@ -2337,8 +2337,8 @@ var mt = Vt, Ot = class extends Ut {
         let l = p + (n ? ".excalidraw" : ""), r = this.s.linkField || "children", h = this.s.backField || "parent";
         for (let k of this.notes.values())
           k.file.path !== d && await this.app.fileManager.processFrontMatter(k.file, (m) => {
-            let L = He(m[r]), y = !1, _ = L.map((T) => Me(T) === s ? (y = !0, "[[" + l + "]]") : T);
-            y && (m[r] = _), m[h] != null && Me(m[h]) === s && (m[h] = l);
+            let L = He(m[r]), y = !1, _ = L.map((F) => De(F) === s ? (y = !0, "[[" + l + "]]") : F);
+            y && (m[r] = _), m[h] != null && De(m[h]) === s && (m[h] = l);
           });
         let w = this.s.titleField || "title";
         await this.app.fileManager.processFrontMatter(e.note.file, (k) => {
@@ -2365,7 +2365,7 @@ var mt = Vt, Ot = class extends Ut {
         new b(t("\u65E0\u6CD5\u786E\u5B9A\u8BE5\u6302\u70B9\u7684\u7236\u8282\u70B9"));
         return;
       }
-      new je(
+      new Ye(
         this.app,
         t("\u79FB\u9664\u5173\u8054"),
         "\u300C" + me(e.note.title, 16) + t(`\u300D\u662F\u91CD\u590D\u8282\u70B9\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\uFF09\u3002
@@ -2380,7 +2380,7 @@ var mt = Vt, Ot = class extends Ut {
       ).open();
       return;
     }
-    let n = e.children.length, i = new Pe(this.app);
+    let n = e.children.length, i = new Ae(this.app);
     i.onOpen = () => {
       let { contentEl: a } = i;
       a.createEl("h3", { text: t("\u5220\u9664\u8282\u70B9") }), a.createEl("p", { text: "\u300C" + me(e.note.title, 20) + "\u300D" + (n ? t("\uFF08\u542B ") + n + t(" \u4E2A\u5B50\u8282\u70B9\uFF09") : ""), cls: "lkm-modal-sub" });
@@ -2419,7 +2419,7 @@ var mt = Vt, Ot = class extends Ut {
           i.close(), this._doDelete(e);
           return;
         }
-        let l = new Pe(this.app);
+        let l = new Ae(this.app);
         l.onOpen = () => {
           let { contentEl: r } = l;
           r.createEl("h3", { text: t("\u5220\u9664\u5B50\u8282\u70B9") }), r.createEl("p", { text: "\u300C" + me(e.note.title, 20) + t("\u300D\u542B ") + n + t(" \u4E2A\u5B50\u8282\u70B9\uFF0C\u662F\u5426\u4E00\u5E76\u5220\u9664\uFF1F"), cls: "lkm-modal-sub" });
@@ -2524,7 +2524,7 @@ var mt = Vt, Ot = class extends Ut {
     try {
       await this.app.fileManager.processFrontMatter(a, (s) => {
         let o = this.s.linkField, c = He(s[o]), p = /* @__PURE__ */ S((h) => c.findIndex((w) => {
-          let k = this.app.metadataCache.getFirstLinkpathDest(Me(w), a.path);
+          let k = this.app.metadataCache.getFirstLinkpathDest(De(w), a.path);
           return k && k.path === h;
         }), "idxOf"), d = p(e.note.file.path);
         if (d < 0) return;
@@ -2552,9 +2552,9 @@ var mt = Vt, Ot = class extends Ut {
     try {
       if (e.parent && e.parent.note.file && await Re(this.app, e.parent.note.file, this.s.linkField, e.note.file.path), await this.app.fileManager.processFrontMatter(a, (s) => {
         let o = this.s.linkField, c = He(s[o]);
-        c.some((w) => Me(w) === e.note.file.basename) || c.push("[[" + e.note.file.basename + "]]");
+        c.some((w) => De(w) === e.note.file.basename) || c.push("[[" + e.note.file.basename + "]]");
         let d = /* @__PURE__ */ S((w) => c.findIndex((k) => {
-          let m = this.app.metadataCache.getFirstLinkpathDest(Me(k), a.path);
+          let m = this.app.metadataCache.getFirstLinkpathDest(De(k), a.path);
           return m && m.path === w;
         }), "idxOf"), l = d(e.note.file.path);
         if (l < 0) return;
@@ -2618,7 +2618,7 @@ var mt = Vt, Ot = class extends Ut {
       if (await et(this.app, i.file, this.s.linkField, ot(n.file)), this.s.autoAddBackLink) {
         let a = this.s.backField || "parent";
         await this.app.fileManager.processFrontMatter(n.file, (s) => {
-          He(s[a]).some((p) => Me(p) !== "") || (s[a] = i.file.basename);
+          He(s[a]).some((p) => De(p) !== "") || (s[a] = i.file.basename);
         });
       }
       new b(t("\u5DF2\u5EFA\u7ACB\u5173\u8054\uFF1A") + me(i.title, 12) + " \u2192 " + me(n.title, 12)), await new Promise((a) => setTimeout(a, 300)), await this.rebuild(!0);
@@ -2648,7 +2648,7 @@ var mt = Vt, Ot = class extends Ut {
           if (await et(this.app, e.note.file, this.s.linkField, ot(s.file)), this.s.autoAddBackLink) {
             let o = this.s.backField || "parent";
             await this.app.fileManager.processFrontMatter(s.file, (c) => {
-              He(c[o]).some((l) => Me(l) !== "") || (c[o] = e.note.file.basename);
+              He(c[o]).some((l) => De(l) !== "") || (c[o] = e.note.file.basename);
             });
           }
           new b(t("\u5DF2\u5173\u8054\uFF1A") + me(e.note.title, 12) + " \u2192 " + me(s.title, 12)), await new Promise((o) => setTimeout(o, 300)), await this.rebuild(!0);
@@ -2710,7 +2710,7 @@ var mt = Vt, Ot = class extends Ut {
       new b(t("\u6CA1\u6709\u53EF\u5904\u7406\u7684\u8282\u70B9"));
       return;
     }
-    new je(this.app, t("\u6279\u91CF\u5220\u9664"), o, async () => {
+    new Ye(this.app, t("\u6279\u91CF\u5220\u9664"), o, async () => {
       let c = 0;
       for (let p of s)
         try {
@@ -2834,7 +2834,7 @@ var mt = Vt, Ot = class extends Ut {
   _setTypeDialog(e) {
     if (!e || !e.note.file) return;
     let n = this.s.typeColors || {}, i = Object.keys(n), a = [{ label: t("\u65E0\u7C7B\u578B\uFF08\u6E05\u9664\uFF09"), path: "" }];
-    for (let s of i) a.push({ label: Se(s) + (e.note.type === s ? " \u2713" : ""), path: s });
+    for (let s of i) a.push({ label: Te(s) + (e.note.type === s ? " \u2713" : ""), path: s });
     new Oe(this.app, a, (s) => this._setType(e, s.path), t("\u9009\u62E9\u7C7B\u578B\u2026")).open();
   }
   async _setType(e, n) {
@@ -2850,7 +2850,7 @@ var mt = Vt, Ot = class extends Ut {
   }
   _setDateDialog(e) {
     if (!e || !e.note.file) return;
-    let n = new Pe(this.app);
+    let n = new Ae(this.app);
     n.onOpen = () => {
       let { contentEl: i } = n;
       i.addClass("lkm-multipick"), i.createEl("h3", { text: t("\u4FEE\u6539\u65E5\u671F") }), i.createEl("p", { text: "\u300C" + me(e.note.title, 20) + t("\u300D\u5F53\u524D\u65E5\u671F\uFF1A") + (e.note.date || t("\u65E0")), cls: "lkm-modal-sub" });
@@ -2984,8 +2984,8 @@ var mt = Vt, Ot = class extends Ut {
     for (let [m, L, y] of i) {
       let _ = n.createDiv("lkm-guide-step");
       _.createEl("span", { cls: "lkm-step-num", text: m });
-      let T = _.createDiv("lkm-step-body");
-      T.createEl("span", { cls: "lkm-step-title", text: L }), T.createEl("span", { cls: "lkm-step-desc", text: y });
+      let F = _.createDiv("lkm-step-body");
+      F.createEl("span", { cls: "lkm-step-title", text: L }), F.createEl("span", { cls: "lkm-step-desc", text: y });
     }
     let a = e.createDiv("lkm-guide-btns"), s = a.createEl("button", { cls: "lkm-btn lkm-btn-action", text: t("\u521B\u5EFA\u7B14\u8BB0") });
     s.onclick = () => this.createStandaloneNote();
@@ -3062,7 +3062,7 @@ var mt = Vt, Ot = class extends Ut {
     this._renderHelpContent(n);
   }
   _showHelp() {
-    let e = new Pe(this.app);
+    let e = new Ae(this.app);
     e.onOpen = () => {
       let { contentEl: n } = e;
       n.addClass("lkm-help-modal"), this._renderHelpContent(n);
@@ -3168,477 +3168,486 @@ ${d}: "${r}"
     y.appendChild(V("path", { d: "M0,0 L10,5 L0,10 z", class: "lkm-arrow-fill" })), L.appendChild(y), m.appendChild(L);
     let _ = V("g", { class: "lkm-viewport" });
     if (m.appendChild(_), e.appendChild(m), a.layoutMode === "git") {
-      let u = n.gvert, P = n.depthH, $ = /* @__PURE__ */ S((A) => {
-        let f = A.note.type ? (a.typeColors || {})[A.note.type] : null, F = ze(a, A.note.status);
-        return f || F || a.accent || "#3A6B8A";
-      }, "dotColorOf"), N = /* @__PURE__ */ S((A) => A._x + A._w / 2, "cxOf");
+      let u = n.gvert, A = n.depthH, $ = /* @__PURE__ */ S((P) => {
+        let f = P.note.type ? (a.typeColors || {})[P.note.type] : null, T = ze(a, P.note.status);
+        return f || T || a.accent || "#3A6B8A";
+      }, "dotColorOf"), N = /* @__PURE__ */ S((P) => P._x + P._w / 2, "cxOf");
       if (u) {
-        let A = c - 30;
-        _.appendChild(V("path", { d: `M${A},${p} L${A},${l}`, class: "lkm-git-axis" }));
+        let P = c - 30;
+        _.appendChild(V("path", { d: `M${P},${p} L${P},${l}`, class: "lkm-git-axis" }));
         for (let f = 0; f <= n.maxDepth; f++) {
-          let F = f * P;
-          _.appendChild(V("line", { x1: A - 5, y1: F, x2: A + 5, y2: F, class: "lkm-git-axis" }));
-          let E = V("text", { x: A - 10, y: F + 4, class: "lkm-git-tick", "text-anchor": "end" });
+          let T = f * A;
+          _.appendChild(V("line", { x1: P - 5, y1: T, x2: P + 5, y2: T, class: "lkm-git-axis" }));
+          let E = V("text", { x: P - 10, y: T + 4, class: "lkm-git-tick", "text-anchor": "end" });
           E.textContent = "L" + (f + 1), _.appendChild(E);
         }
       } else {
-        let A = p - 30, f = n.depthOffsets || [];
-        _.appendChild(V("path", { d: `M${c},${A} L${d},${A}`, class: "lkm-git-axis" }));
-        for (let F = 0; F <= n.maxDepth; F++) {
-          let E = f[F] != null ? f[F] : F * P;
-          _.appendChild(V("line", { x1: E, y1: A - 5, x2: E, y2: A + 5, class: "lkm-git-axis" }));
-          let K = V("text", { x: E, y: A - 10, class: "lkm-git-tick", "text-anchor": "middle" });
-          K.textContent = "L" + (F + 1), _.appendChild(K);
+        let P = p - 30, f = n.depthOffsets || [];
+        _.appendChild(V("path", { d: `M${c},${P} L${d},${P}`, class: "lkm-git-axis" }));
+        for (let T = 0; T <= n.maxDepth; T++) {
+          let E = f[T] != null ? f[T] : T * A;
+          _.appendChild(V("line", { x1: E, y1: P - 5, x2: E, y2: P + 5, class: "lkm-git-axis" }));
+          let W = V("text", { x: E, y: P - 10, class: "lkm-git-tick", "text-anchor": "middle" });
+          W.textContent = "L" + (T + 1), _.appendChild(W);
         }
       }
       let R = /* @__PURE__ */ new Map();
-      for (let [A, f] of o)
-        R.has(A) || R.set(A, []), R.get(A).push(f);
-      for (let [A, f] of R) {
-        let F = N(A), E = A._y;
+      for (let [P, f] of o)
+        R.has(P) || R.set(P, []), R.get(P).push(f);
+      for (let [P, f] of R) {
+        let T = N(P), E = P._y;
         if (f.length <= 1) {
-          let K = f[0];
-          if (!K) continue;
-          let B = N(K), z = K._y, j = $(K), H;
+          let W = f[0];
+          if (!W) continue;
+          let B = N(W), H = W._y, Y = $(W), O;
           if (u)
             if (a.curve) {
-              let ie = (E + z) / 2;
-              H = `M${F},${E + 8} C${F},${ie} ${B},${ie} ${B},${z - 8}`;
-            } else H = `M${F},${E + 8} L${B},${z - 8}`;
+              let ie = (E + H) / 2;
+              O = `M${T},${E + 8} C${T},${ie} ${B},${ie} ${B},${H - 8}`;
+            } else O = `M${T},${E + 8} L${B},${H - 8}`;
           else if (a.curve) {
-            let ie = (F + B) / 2;
-            H = `M${F + 8},${E} C${ie},${E} ${ie},${z} ${B - 8},${z}`;
-          } else H = `M${F + 8},${E} L${B - 8},${z}`;
-          _.appendChild(V("path", { d: H, class: "lkm-git-lane", fill: "none", stroke: j, "stroke-width": 1.8, "stroke-linecap": "round" }));
+            let ie = (T + B) / 2;
+            O = `M${T + 8},${E} C${ie},${E} ${ie},${H} ${B - 8},${H}`;
+          } else O = `M${T + 8},${E} L${B - 8},${H}`;
+          _.appendChild(V("path", { d: O, class: "lkm-git-lane", fill: "none", stroke: Y, "stroke-width": 1.8, "stroke-linecap": "round" }));
         } else {
-          let K = u ? F : F + (N(f[0]) - F) * 0.5, B = u ? E + (f[0]._y - E) * 0.5 : E;
-          for (let z of f) {
-            let j = N(z), H = z._y, ie = $(z), ee;
+          let W = u ? T : T + (N(f[0]) - T) * 0.5, B = u ? E + (f[0]._y - E) * 0.5 : E;
+          for (let H of f) {
+            let Y = N(H), O = H._y, ie = $(H), ee;
             if (u)
               if (a.curve) {
-                let ue = (E + B) / 2, le = (B + H) / 2;
-                ee = `M${F},${E + 8} C${F},${ue} ${F},${B} ${F},${B} C${F},${le} ${j},${le} ${j},${H - 8}`;
-              } else ee = `M${F},${E + 8} L${F},${B} L${j},${H - 8}`;
+                let pe = (E + B) / 2, le = (B + O) / 2;
+                ee = `M${T},${E + 8} C${T},${pe} ${T},${B} ${T},${B} C${T},${le} ${Y},${le} ${Y},${O - 8}`;
+              } else ee = `M${T},${E + 8} L${T},${B} L${Y},${O - 8}`;
             else if (a.curve) {
-              let ue = (F + K) / 2, le = (K + j) / 2;
-              ee = `M${F + 8},${E} C${ue},${E} ${K},${E} ${K},${E} C${le},${E} ${le},${H} ${j - 8},${H}`;
-            } else ee = `M${F + 8},${E} L${K},${E} L${j - 8},${H}`;
+              let pe = (T + W) / 2, le = (W + Y) / 2;
+              ee = `M${T + 8},${E} C${pe},${E} ${W},${E} ${W},${E} C${le},${E} ${le},${O} ${Y - 8},${O}`;
+            } else ee = `M${T + 8},${E} L${W},${E} L${Y - 8},${O}`;
             _.appendChild(V("path", { d: ee, class: "lkm-git-fork", fill: "none", stroke: ie, "stroke-width": 1.5, "stroke-linecap": "round", "stroke-linejoin": "round" }));
           }
         }
       }
-      for (let A of s) {
-        if ((A.expanded ? A.children : []).length) continue;
-        let F = N(A), E = A._y, K = $(A);
+      for (let P of s) {
+        if ((P.expanded ? P.children : []).length) continue;
+        let T = N(P), E = P._y, W = $(P);
         if (u) {
-          let B = V("line", { x1: F, y1: E + 8, x2: F, y2: E + 26, class: "lkm-git-fade" });
-          B.setAttribute("stroke", K), _.appendChild(B);
+          let B = V("line", { x1: T, y1: E + 8, x2: T, y2: E + 26, class: "lkm-git-fade" });
+          B.setAttribute("stroke", W), _.appendChild(B);
         } else {
-          let B = V("line", { x1: F + 8, y1: E, x2: F + 26, y2: E, class: "lkm-git-fade" });
-          B.setAttribute("stroke", K), _.appendChild(B);
+          let B = V("line", { x1: T + 8, y1: E, x2: T + 26, y2: E, class: "lkm-git-fade" });
+          B.setAttribute("stroke", W), _.appendChild(B);
         }
       }
       let J = /* @__PURE__ */ new Map();
-      for (let A of s) A.note.file && J.set(A.note.file.path, A);
-      let Y = /* @__PURE__ */ S((A, f) => {
-        let F = N(A), E = A._y, K = N(f), B = f._y, z = K - F, j = B - E, H = Math.hypot(z, j) || 1, ie = K - z / H * 14, ee = B - j / H * 14, ue;
+      for (let P of s) P.note.file && J.set(P.note.file.path, P);
+      let j = /* @__PURE__ */ S((P, f) => {
+        let T = N(P), E = P._y, W = N(f), B = f._y, H = W - T, Y = B - E, O = Math.hypot(H, Y) || 1, ie = W - H / O * 14, ee = B - Y / O * 14, pe;
         if (u) {
-          let le = (F + K) / 2, he = (E + B) / 2;
-          ue = `M${F},${E} Q${le},${he - 40} ${ie},${ee}`;
+          let le = (T + W) / 2, ue = (E + B) / 2;
+          pe = `M${T},${E} Q${le},${ue - 40} ${ie},${ee}`;
         } else {
-          let le = (F + K) / 2, he = (E + B) / 2;
-          ue = `M${F},${E} Q${le - 10},${he} ${ie},${ee}`;
+          let le = (T + W) / 2, ue = (E + B) / 2;
+          pe = `M${T},${E} Q${le - 10},${ue} ${ie},${ee}`;
         }
-        _.appendChild(V("path", { d: ue, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" }));
+        _.appendChild(V("path", { d: pe, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" }));
       }, "drawJump");
-      for (let A of s) {
-        if (!A.note.file || A.isAlias) continue;
-        let f = A.parent && A.parent.note.file ? A.parent.note.file.path : null;
-        for (let F of A.note.parentLinks) {
-          let E = this.app.metadataCache.getFirstLinkpathDest(F, A.note.file.path);
+      for (let P of s) {
+        if (!P.note.file || P.isAlias) continue;
+        let f = P.parent && P.parent.note.file ? P.parent.note.file.path : null;
+        for (let T of P.note.parentLinks) {
+          let E = this.app.metadataCache.getFirstLinkpathDest(T, P.note.file.path);
           if (!E || E.path === f) continue;
-          let K = J.get(E.path);
-          !K || K === A || Y(A, K);
+          let W = J.get(E.path);
+          !W || W === P || j(P, W);
         }
       }
-      let W = /* @__PURE__ */ new Map();
-      for (let A of s) A.note.file && (W.has(A.note.file.path) || W.set(A.note.file.path, []), W.get(A.note.file.path).push(A));
-      if (a.showDupLine) for (let [A, f] of W) {
+      let K = /* @__PURE__ */ new Map();
+      for (let P of s) P.note.file && (K.has(P.note.file.path) || K.set(P.note.file.path, []), K.get(P.note.file.path).push(P));
+      if (a.showDupLine) for (let [P, f] of K) {
         if (f.length < 2) continue;
-        let F = f.find((E) => !E.isAlias) || f[0];
-        for (let E of f) E !== F && Y(E, F);
+        let T = f.find((E) => !E.isAlias) || f[0];
+        for (let E of f) E !== T && j(E, T);
       }
     } else if (a.layoutMode === "graph") {
-      let u = n.gvert, P = 8, $ = "var(--text-faint)", N = /* @__PURE__ */ S((f) => {
-        let F = f.note.type ? (a.typeColors || {})[f.note.type] : null, E = ze(a, f.note.status);
-        return F || E || a.accent || "#3A6B8A";
+      let u = n.gvert, A = 8, $ = "var(--text-faint)", N = /* @__PURE__ */ S((f) => {
+        let T = f.note.type ? (a.typeColors || {})[f.note.type] : null, E = ze(a, f.note.status);
+        return T || E || a.accent || "#3A6B8A";
       }, "dotColorOf"), R = /* @__PURE__ */ S((f) => f._x + f._w / 2, "cxOf"), J = /* @__PURE__ */ new Set();
-      for (let [f, F] of o) {
+      for (let [f, T] of o) {
         if (J.has(f)) continue;
         J.add(f);
-        let E = R(f), K = f._y, B = R(F), z = F._y, j = N(F), H;
+        let E = R(f), W = f._y, B = R(T), H = T._y, Y = N(T), O;
         if (u)
           if (a.curve) {
             let ie = (E + B) / 2;
-            H = `M${E + P},${K} C${ie},${K} ${ie},${z} ${B - P},${z}`;
-          } else H = `M${E + P},${K} L${B - P},${z}`;
+            O = `M${E + A},${W} C${ie},${W} ${ie},${H} ${B - A},${H}`;
+          } else O = `M${E + A},${W} L${B - A},${H}`;
         else if (a.curve) {
-          let ie = (K + z) / 2;
-          H = `M${E},${K + P} C${E},${ie} ${B},${ie} ${B},${z - P}`;
-        } else H = `M${E},${K + P} L${B},${z - P}`;
-        _.appendChild(V("path", { d: H, class: "lkm-edge", fill: "none", stroke: j, "stroke-width": 1.8, "stroke-linecap": "round" }));
+          let ie = (W + H) / 2;
+          O = `M${E},${W + A} C${E},${ie} ${B},${ie} ${B},${H - A}`;
+        } else O = `M${E},${W + A} L${B},${H - A}`;
+        _.appendChild(V("path", { d: O, class: "lkm-edge", fill: "none", stroke: Y, "stroke-width": 1.8, "stroke-linecap": "round" }));
       }
-      let Y = /* @__PURE__ */ new Map();
-      for (let [f, F] of o)
-        Y.has(f) || Y.set(f, []), Y.get(f).push(F);
-      for (let [f, F] of Y)
-        for (let E = 0; E < F.length - 1; E++) {
-          let K = F[E], B = F[E + 1], z = R(K), j = K._y, H = R(B), ie = B._y, ee;
+      let j = /* @__PURE__ */ new Map();
+      for (let [f, T] of o)
+        j.has(f) || j.set(f, []), j.get(f).push(T);
+      for (let [f, T] of j)
+        for (let E = 0; E < T.length - 1; E++) {
+          let W = T[E], B = T[E + 1], H = R(W), Y = W._y, O = R(B), ie = B._y, ee;
           if (u)
             if (a.curve) {
-              let ue = (j + ie) / 2;
-              ee = `M${z},${j + P} C${z},${ue} ${H},${ue} ${H},${ie - P}`;
-            } else ee = `M${z},${j + P} L${H},${ie - P}`;
+              let pe = (Y + ie) / 2;
+              ee = `M${H},${Y + A} C${H},${pe} ${O},${pe} ${O},${ie - A}`;
+            } else ee = `M${H},${Y + A} L${O},${ie - A}`;
           else if (a.curve) {
-            let ue = (z + H) / 2;
-            ee = `M${z + P},${j} C${ue},${j} ${ue},${ie} ${H - P},${ie}`;
-          } else ee = `M${z + P},${j} L${H - P},${ie}`;
+            let pe = (H + O) / 2;
+            ee = `M${H + A},${Y} C${pe},${Y} ${pe},${ie} ${O - A},${ie}`;
+          } else ee = `M${H + A},${Y} L${O - A},${ie}`;
           _.appendChild(V("path", { d: ee, class: "lkm-edge", fill: "none", stroke: $, "stroke-width": 1.2, "stroke-linecap": "round", opacity: 0.5 }));
         }
-      let W = /* @__PURE__ */ new Map();
-      for (let f of s) f.note.file && W.set(f.note.file.path, f);
+      let K = /* @__PURE__ */ new Map();
+      for (let f of s) f.note.file && K.set(f.note.file.path, f);
       for (let f of s) {
         if (!f.note.file || f.isAlias) continue;
-        let F = f.parent && f.parent.note.file ? f.parent.note.file.path : null;
+        let T = f.parent && f.parent.note.file ? f.parent.note.file.path : null;
         for (let E of f.note.parentLinks) {
-          let K = this.app.metadataCache.getFirstLinkpathDest(E, f.note.file.path);
-          if (!K || K.path === F) continue;
-          let B = W.get(K.path);
+          let W = this.app.metadataCache.getFirstLinkpathDest(E, f.note.file.path);
+          if (!W || W.path === T) continue;
+          let B = K.get(W.path);
           if (!B || B === f) continue;
-          let z = R(f), j = f._y, H = R(B), ie = B._y, ee = H - z, ue = ie - j, le = Math.hypot(ee, ue) || 1, he = H - ee / le * (P + 4), pe = ie - ue / le * (P + 4), oe;
+          let H = R(f), Y = f._y, O = R(B), ie = B._y, ee = O - H, pe = ie - Y, le = Math.hypot(ee, pe) || 1, ue = O - ee / le * (A + 4), fe = ie - pe / le * (A + 4), ae;
           if (a.curve) {
-            let fe = (z + H) / 2, ye = (j + ie) / 2;
-            u ? oe = `M${z},${j} Q${fe + 20},${ye} ${he},${pe}` : oe = `M${z},${j} Q${fe},${ye + 20} ${he},${pe}`;
+            let de = (H + O) / 2, ke = (Y + ie) / 2;
+            u ? ae = `M${H},${Y} Q${de + 20},${ke} ${ue},${fe}` : ae = `M${H},${Y} Q${de},${ke + 20} ${ue},${fe}`;
           } else
-            oe = `M${z},${j} L${he},${pe}`;
-          _.appendChild(V("path", { d: oe, class: "lkm-git-jump", fill: "none", "marker-end": "url(#lkm-arrow)" }));
+            ae = `M${H},${Y} L${ue},${fe}`;
+          _.appendChild(V("path", { d: ae, class: "lkm-git-jump", fill: "none", "marker-end": "url(#lkm-arrow)" }));
         }
       }
       if (a.showDupLine) {
         let f = /* @__PURE__ */ new Map();
-        for (let F of s) F.note.file && (f.has(F.note.file.path) || f.set(F.note.file.path, []), f.get(F.note.file.path).push(F));
-        for (let [F, E] of f) {
+        for (let T of s) T.note.file && (f.has(T.note.file.path) || f.set(T.note.file.path, []), f.get(T.note.file.path).push(T));
+        for (let [T, E] of f) {
           if (E.length < 2) continue;
-          let K = E.find((B) => !B.isAlias) || E[0];
+          let W = E.find((B) => !B.isAlias) || E[0];
           for (let B of E) {
-            if (B === K) continue;
-            let z = R(B), j = B._y, H = R(K), ie = K._y, ee = H - z, ue = ie - j, le = Math.hypot(ee, ue) || 1, he = z + ee / le * P, pe = j + ue / le * P, oe = H - ee / le * (P + 4), fe = ie - ue / le * (P + 4), ye = a.curve ? `M${he},${pe} C${(he + oe) / 2},${pe} ${(he + oe) / 2},${fe} ${oe},${fe}` : `M${he},${pe} L${oe},${fe}`;
-            _.appendChild(V("path", { d: ye, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" }));
+            if (B === W) continue;
+            let H = R(B), Y = B._y, O = R(W), ie = W._y, ee = O - H, pe = ie - Y, le = Math.hypot(ee, pe) || 1, ue = H + ee / le * A, fe = Y + pe / le * A, ae = O - ee / le * (A + 4), de = ie - pe / le * (A + 4), ke = a.curve ? `M${ue},${fe} C${(ue + ae) / 2},${fe} ${(ue + ae) / 2},${de} ${ae},${de}` : `M${ue},${fe} L${ae},${de}`;
+            _.appendChild(V("path", { d: ke, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" }));
           }
         }
       }
-      let A = !1;
+      let P = !1;
       for (let f of s) {
-        let F = R(f), E = f._y, K = f.note.type ? (a.typeColors || {})[f.note.type] : null, B = ze(a, f.note.status), z = K || a.accent || "#3A6B8A", j = B || "#ffffff", H = V("g", { class: "lkm-git-node" + (f.note.zk ? " lkm-main" : "") + (f.isAlias ? " lkm-multi" : "") + (this._selKey === f.key ? " lkm-sel" : "") });
-        f._el = H, f.note.zk && H.appendChild(V("circle", { cx: F, cy: E, r: 15, fill: a.mainColor || "#3A6B8A", opacity: 0.18 })), H.appendChild(V("circle", { cx: F, cy: E, r: 12, fill: z, opacity: 0.14 }));
-        let ie = V("circle", { cx: F, cy: E, r: P, class: "lkm-git-dot", fill: z, stroke: j, "stroke-width": 2.5 });
-        f.isAlias && ie.setAttribute("stroke-dasharray", "3 2"), H.appendChild(ie);
+        let T = R(f), E = f._y, W = f.note.type ? (a.typeColors || {})[f.note.type] : null, B = ze(a, f.note.status), H = W || a.accent || "#3A6B8A", Y = B || "#ffffff", O = V("g", { class: "lkm-git-node" + (f.note.zk ? " lkm-main" : "") + (f.isAlias ? " lkm-multi" : "") + (this._selKey === f.key ? " lkm-sel" : "") });
+        f._el = O, f.note.zk && O.appendChild(V("circle", { cx: T, cy: E, r: 15, fill: a.mainColor || "#3A6B8A", opacity: 0.18 })), O.appendChild(V("circle", { cx: T, cy: E, r: 12, fill: H, opacity: 0.14 }));
+        let ie = V("circle", { cx: T, cy: E, r: A, class: "lkm-git-dot", fill: H, stroke: Y, "stroke-width": 2.5 });
+        f.isAlias && ie.setAttribute("stroke-dasharray", "3 2"), O.appendChild(ie);
         let ee = V("text", { class: "lkm-git-label" });
-        if (ee.textContent = f._shown || f.note.title, u ? (ee.setAttribute("x", F + 18), ee.setAttribute("y", E), ee.setAttribute("dominant-baseline", "central")) : (ee.setAttribute("x", F), ee.setAttribute("y", E - 18), ee.setAttribute("text-anchor", "middle")), H.appendChild(ee), f.children.length) {
-          let he = u ? F : F + 22, pe = u ? E + 22 : E, oe = V("circle", { cx: he, cy: pe, r: 12, class: "lkm-hit" });
-          oe.addEventListener("click", (ye) => {
-            ye.stopPropagation(), f.expanded = !f.expanded, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, f.expanded), T(f.key);
-          }), H.appendChild(oe);
-          let fe = V("text", { x: he, y: pe + 5, class: "lkm-git-sign", "text-anchor": "middle" });
-          fe.textContent = f.expanded ? "\u2212" : "+", H.appendChild(fe);
+        if (ee.textContent = f._shown || f.note.title, u ? (ee.setAttribute("x", T + 18), ee.setAttribute("y", E), ee.setAttribute("dominant-baseline", "central")) : (ee.setAttribute("x", T), ee.setAttribute("y", E - 18), ee.setAttribute("text-anchor", "middle")), O.appendChild(ee), f.children.length) {
+          let ue = u ? T : T + 22, fe = u ? E + 22 : E, ae = V("circle", { cx: ue, cy: fe, r: 12, class: "lkm-hit" });
+          ae.addEventListener("click", (ke) => {
+            ke.stopPropagation(), f.expanded = !f.expanded, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, f.expanded), F(f.key);
+          }), O.appendChild(ae);
+          let de = V("text", { x: ue, y: fe + 5, class: "lkm-git-sign", "text-anchor": "middle" });
+          de.textContent = f.expanded ? "\u2212" : "+", O.appendChild(de);
         }
-        let ue = 0;
-        H.addEventListener("click", (he) => {
+        let pe = 0;
+        O.addEventListener("click", (ue) => {
           if (this._batchMode) {
-            he.stopPropagation(), this._toggleSelect(f.key);
+            ue.stopPropagation(), this._toggleSelect(f.key);
             return;
           }
-          let pe = Date.now(), oe = pe - ue < 350;
-          ue = oe ? 0 : pe, oe && f.note.file && (this._hidePreview(), this.app.workspace.getLeaf(!0).openFile(f.note.file));
-          let fe = this._selKey;
-          if (this._selKey = f.key, fe !== f.key) {
-            let ye = this._nodeIndex && this._nodeIndex.get(fe);
-            ye && ye._el && ye._el.classList.remove("lkm-sel");
+          let fe = Date.now(), ae = fe - pe < 350;
+          pe = ae ? 0 : fe, ae && f.note.file && (this._hidePreview(), this.app.workspace.getLeaf(!0).openFile(f.note.file));
+          let de = this._selKey;
+          if (this._selKey = f.key, de !== f.key) {
+            let ke = this._nodeIndex && this._nodeIndex.get(de);
+            ke && ke._el && ke._el.classList.remove("lkm-sel");
           }
-          H.classList.add("lkm-sel");
-        }), H.addEventListener("contextmenu", (he) => {
-          he.preventDefault(), he.stopPropagation(), !this._batchMode && (this._selKey = f.key, H.classList.add("lkm-sel"), this._showNodeMenu(f, he));
+          O.classList.add("lkm-sel");
+        }), O.addEventListener("contextmenu", (ue) => {
+          ue.preventDefault(), ue.stopPropagation(), !this._batchMode && (this._selKey = f.key, O.classList.add("lkm-sel"), this._showNodeMenu(f, ue));
         });
         let le = null;
-        H.addEventListener("mouseenter", (he) => {
-          A || (le && clearTimeout(le), le = setTimeout(() => {
-            A || (le = null, this._showPreview(f, he));
+        O.addEventListener("mouseenter", (ue) => {
+          P || (le && clearTimeout(le), le = setTimeout(() => {
+            P || (le = null, this._showPreview(f, ue));
           }, 1e3));
-        }), H.addEventListener("mousemove", (he) => {
-          this._previewEl && this._positionPreview(he);
-        }), H.addEventListener("mouseleave", () => {
+        }), O.addEventListener("mousemove", (ue) => {
+          this._previewEl && this._positionPreview(ue);
+        }), O.addEventListener("mouseleave", () => {
           le && (clearTimeout(le), le = null), this._hideTimer && clearTimeout(this._hideTimer), this._hideTimer = setTimeout(() => {
             this._hidePreview(), this._hideTimer = null;
           }, 200);
-        }), _.appendChild(H);
+        }), _.appendChild(O);
       }
     } else if (a.layoutMode === "force") {
-      let u = n.degree || /* @__PURE__ */ new Map(), P = /* @__PURE__ */ S((f) => {
-        let F = f.note.type ? (a.typeColors || {})[f.note.type] : null, E = ze(a, f.note.status);
-        return F || E || a.accent || "#3A6B8A";
+      let u = n.degree || /* @__PURE__ */ new Map(), A = /* @__PURE__ */ S((f) => {
+        let T = f.note.type ? (a.typeColors || {})[f.note.type] : null, E = ze(a, f.note.status);
+        return T || E || a.accent || "#3A6B8A";
       }, "dotColorOf"), $ = /* @__PURE__ */ S((f) => f._x + f._w / 2, "cxOf"), N = [];
-      for (let [f, F] of o) {
-        let E = $(f), K = f._y, B = $(F), z = F._y, j = P(F), H = V("line", { x1: E, y1: K, x2: B, y2: z, class: "lkm-edge", stroke: j, "stroke-width": 1.5, opacity: 0.6 });
-        _.appendChild(H), N.push({ el: H, from: f, to: F });
+      for (let [f, T] of o) {
+        let E = $(f), W = f._y, B = $(T), H = T._y, Y = A(T), O = V("line", { x1: E, y1: W, x2: B, y2: H, class: "lkm-edge", stroke: Y, "stroke-width": 1.5, opacity: 0.6 });
+        _.appendChild(O), N.push({ el: O, from: f, to: T });
       }
       let R = [], J = /* @__PURE__ */ new Map();
       for (let f of s) f.note.file && J.set(f.note.file.path, f);
       for (let f of s) {
         if (!f.note.file || f.isAlias) continue;
-        let F = f.parent && f.parent.note.file ? f.parent.note.file.path : null;
+        let T = f.parent && f.parent.note.file ? f.parent.note.file.path : null;
         for (let E of f.note.parentLinks) {
-          let K = this.app.metadataCache.getFirstLinkpathDest(E, f.note.file.path);
-          if (!K || K.path === F) continue;
-          let B = J.get(K.path);
+          let W = this.app.metadataCache.getFirstLinkpathDest(E, f.note.file.path);
+          if (!W || W.path === T) continue;
+          let B = J.get(W.path);
           B && B !== f && R.push([f, B]);
         }
       }
-      for (let [f, F] of R) {
-        let E = $(f), K = f._y, B = $(F), z = F._y, j = V("line", { x1: E, y1: K, x2: B, y2: z, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" });
-        _.appendChild(j), N.push({ el: j, from: f, to: F });
+      for (let [f, T] of R) {
+        let E = $(f), W = f._y, B = $(T), H = T._y, Y = V("line", { x1: E, y1: W, x2: B, y2: H, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" });
+        _.appendChild(Y), N.push({ el: Y, from: f, to: T });
       }
       if (a.showDupLine) {
         let f = /* @__PURE__ */ new Map();
-        for (let F of s) F.note.file && (f.has(F.note.file.path) || f.set(F.note.file.path, []), f.get(F.note.file.path).push(F));
-        for (let [F, E] of f) {
+        for (let T of s) T.note.file && (f.has(T.note.file.path) || f.set(T.note.file.path, []), f.get(T.note.file.path).push(T));
+        for (let [T, E] of f) {
           if (E.length < 2) continue;
-          let K = E.find((B) => !B.isAlias) || E[0];
+          let W = E.find((B) => !B.isAlias) || E[0];
           for (let B of E) {
-            if (B === K) continue;
-            let z = $(B), j = B._y, H = $(K), ie = K._y, ee = V("line", { x1: z, y1: j, x2: H, y2: ie, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" });
-            _.appendChild(ee), N.push({ el: ee, from: B, to: K });
+            if (B === W) continue;
+            let H = $(B), Y = B._y, O = $(W), ie = W._y, ee = V("line", { x1: H, y1: Y, x2: O, y2: ie, class: "lkm-git-jump", "marker-end": "url(#lkm-arrow)" });
+            _.appendChild(ee), N.push({ el: ee, from: B, to: W });
           }
         }
       }
-      let Y = null;
+      let j = null;
       for (let f of s) {
-        let F = $(f), E = f._y, K = u.get(f) || 0, B = Math.min(8, 3 + K * 0.5), z = f.note.type ? (a.typeColors || {})[f.note.type] : null, j = ze(a, f.note.status), H = z || a.accent || "#3A6B8A", ie = j || "#ffffff", ee = V("g", { class: "lkm-git-node" + (f.note.zk ? " lkm-main" : "") + (f.isAlias ? " lkm-multi" : "") + (this._selKey === f.key ? " lkm-sel" : "") });
+        let T = $(f), E = f._y, W = u.get(f) || 0, B = Math.min(8, 3 + W * 0.5), H = f.note.type ? (a.typeColors || {})[f.note.type] : null, Y = ze(a, f.note.status), O = H || a.accent || "#3A6B8A", ie = Y || "#ffffff", ee = V("g", { class: "lkm-git-node" + (f.note.zk ? " lkm-main" : "") + (f.isAlias ? " lkm-multi" : "") + (this._selKey === f.key ? " lkm-sel" : "") });
         f._el = ee;
-        let ue = V("circle", { cx: F, cy: E, r: B, class: "lkm-git-dot", fill: H, stroke: ie, "stroke-width": 2 });
-        f.isAlias && ue.setAttribute("stroke-dasharray", "3 2"), ee.appendChild(ue);
+        let pe = V("circle", { cx: T, cy: E, r: B, class: "lkm-git-dot", fill: O, stroke: ie, "stroke-width": 2 });
+        f.isAlias && pe.setAttribute("stroke-dasharray", "3 2"), ee.appendChild(pe);
         let le = V("text", { class: "lkm-git-label" });
-        if (le.textContent = f._shown || f.note.title, le.setAttribute("x", F), le.setAttribute("y", E + B + 12), le.setAttribute("text-anchor", "middle"), ee.appendChild(le), f.children.length) {
-          let oe = F, fe = E + B + 24, ye = V("circle", { cx: oe, cy: fe, r: 8, class: "lkm-hit" });
-          ye.addEventListener("click", (Te) => {
-            Te.stopPropagation(), f.expanded = !f.expanded, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, f.expanded), T(f.key);
-          }), ee.appendChild(ye);
-          let Ae = V("text", { x: oe, y: fe + 4, class: "lkm-git-sign", "text-anchor": "middle" });
-          Ae.textContent = f.expanded ? "\u2212" : "+", ee.appendChild(Ae);
+        if (le.textContent = f._shown || f.note.title, le.setAttribute("x", T), le.setAttribute("y", E + B + 12), le.setAttribute("text-anchor", "middle"), ee.appendChild(le), f.children.length) {
+          let ae = T, de = E + B + 24, ke = V("circle", { cx: ae, cy: de, r: 8, class: "lkm-hit" });
+          ke.addEventListener("click", (Se) => {
+            Se.stopPropagation(), f.expanded = !f.expanded, this._expandedMem.set(f.note.file ? f.note.file.path : f.key, f.expanded), F(f.key);
+          }), ee.appendChild(ke);
+          let Fe = V("text", { x: ae, y: de + 4, class: "lkm-git-sign", "text-anchor": "middle" });
+          Fe.textContent = f.expanded ? "\u2212" : "+", ee.appendChild(Fe);
         }
-        let he = 0;
-        ee.addEventListener("click", (oe) => {
+        let ue = 0;
+        ee.addEventListener("click", (ae) => {
           if (this._batchMode) {
-            oe.stopPropagation(), this._toggleSelect(f.key);
+            ae.stopPropagation(), this._toggleSelect(f.key);
             return;
           }
-          let fe = Date.now(), ye = fe - he < 350;
-          he = ye ? 0 : fe, ye && f.note.file && (this._hidePreview(), this.app.workspace.getLeaf(!0).openFile(f.note.file));
-          let Ae = this._selKey;
-          if (this._selKey = f.key, Ae !== f.key) {
-            let Te = this._nodeIndex && this._nodeIndex.get(Ae);
-            Te && Te._el && Te._el.classList.remove("lkm-sel");
+          let de = Date.now(), ke = de - ue < 350;
+          ue = ke ? 0 : de, ke && f.note.file && (this._hidePreview(), this.app.workspace.getLeaf(!0).openFile(f.note.file));
+          let Fe = this._selKey;
+          if (this._selKey = f.key, Fe !== f.key) {
+            let Se = this._nodeIndex && this._nodeIndex.get(Fe);
+            Se && Se._el && Se._el.classList.remove("lkm-sel");
           }
           ee.classList.add("lkm-sel");
-        }), ee.addEventListener("contextmenu", (oe) => {
-          oe.preventDefault(), oe.stopPropagation(), !this._batchMode && (this._selKey = f.key, ee.classList.add("lkm-sel"), this._showNodeMenu(f, oe));
+        }), ee.addEventListener("contextmenu", (ae) => {
+          ae.preventDefault(), ae.stopPropagation(), !this._batchMode && (this._selKey = f.key, ee.classList.add("lkm-sel"), this._showNodeMenu(f, ae));
         });
-        let pe = null;
-        ee.addEventListener("mouseenter", (oe) => {
-          Y || (pe && clearTimeout(pe), pe = setTimeout(() => {
-            Y || (pe = null, this._showPreview(f, oe));
+        let fe = null;
+        ee.addEventListener("mouseenter", (ae) => {
+          j || (fe && clearTimeout(fe), fe = setTimeout(() => {
+            j || (fe = null, this._showPreview(f, ae));
           }, 1e3));
-        }), ee.addEventListener("mousemove", (oe) => {
-          this._previewEl && this._positionPreview(oe);
+        }), ee.addEventListener("mousemove", (ae) => {
+          this._previewEl && this._positionPreview(ae);
         }), ee.addEventListener("mouseleave", () => {
-          pe && (clearTimeout(pe), pe = null), this._hideTimer && clearTimeout(this._hideTimer), this._hideTimer = setTimeout(() => {
+          fe && (clearTimeout(fe), fe = null), this._hideTimer && clearTimeout(this._hideTimer), this._hideTimer = setTimeout(() => {
             this._hidePreview(), this._hideTimer = null;
           }, 200);
-        }), ee.addEventListener("mousedown", (oe) => {
-          if (oe.button !== 0 || oe.target.classList && oe.target.classList.contains("lkm-hit")) return;
-          oe.preventDefault();
-          let fe = m.getScreenCTM();
-          if (!fe) return;
-          let ye = m.createSVGPoint();
-          ye.x = oe.clientX, ye.y = oe.clientY;
-          let Ae = ye.matrixTransform(fe.inverse());
-          Y = { node: f, dot: ue, label: le, NR: B, offsetX: Ae.x - F, offsetY: Ae.y - E }, ee.classList.add("lkm-dragging");
-        }), _.appendChild(ee);
+        }), ee.addEventListener("mousedown", (ae) => {
+          if (ae.button !== 0 || ae.target.classList && ae.target.classList.contains("lkm-hit")) return;
+          ae.preventDefault();
+          let de = m.getScreenCTM();
+          if (!de) return;
+          let ke = m.createSVGPoint();
+          ke.x = ae.clientX, ke.y = ae.clientY;
+          let Fe = ke.matrixTransform(de.inverse());
+          j = { node: f, dot: pe, label: le, NR: B, offsetX: Fe.x - T, offsetY: Fe.y - E }, ee.classList.add("lkm-dragging");
+        }), ee.addEventListener("touchstart", (ae) => {
+          if (ae.target.classList && ae.target.classList.contains("lkm-hit") || !ae.touches.length) return;
+          ae.preventDefault();
+          let de = ae.touches[0], ke = m.getScreenCTM();
+          if (!ke) return;
+          let Fe = m.createSVGPoint();
+          Fe.x = de.clientX, Fe.y = de.clientY;
+          let Se = Fe.matrixTransform(ke.inverse());
+          j = { node: f, dot: pe, label: le, NR: B, offsetX: Se.x - T, offsetY: Se.y - E }, ee.classList.add("lkm-dragging");
+        }, { passive: !1 }), _.appendChild(ee);
       }
       this._forceCleanup && this._forceCleanup();
-      let W = /* @__PURE__ */ S((f) => {
-        if (!Y) return;
-        let F = m.getScreenCTM();
-        if (!F) return;
-        let E = m.createSVGPoint();
-        E.x = f.clientX, E.y = f.clientY;
-        let K = E.matrixTransform(F.inverse()), B = K.x - Y.offsetX, z = K.y - Y.offsetY;
-        Y.node._x = B - Y.node._w / 2, Y.node._y = z, Y.dot.setAttribute("cx", B), Y.dot.setAttribute("cy", z), Y.label.setAttribute("x", B), Y.label.setAttribute("y", z + Y.NR + 12);
-        for (let j of N)
-          j.from === Y.node ? (j.el.setAttribute("x1", B), j.el.setAttribute("y1", z)) : j.to === Y.node && (j.el.setAttribute("x2", B), j.el.setAttribute("y2", z));
-      }, "onForceMove"), A = /* @__PURE__ */ S(() => {
-        Y && (Y.node._el && Y.node._el.classList.remove("lkm-dragging"), Y = null);
+      let K = /* @__PURE__ */ S((f) => {
+        if (!j) return;
+        let T = m.getScreenCTM();
+        if (!T) return;
+        let E = m.createSVGPoint(), W = f.touches ? f.touches[0].clientX : f.clientX, B = f.touches ? f.touches[0].clientY : f.clientY;
+        E.x = W, E.y = B;
+        let H = E.matrixTransform(T.inverse()), Y = H.x - j.offsetX, O = H.y - j.offsetY;
+        j.node._x = Y - j.node._w / 2, j.node._y = O, j.dot.setAttribute("cx", Y), j.dot.setAttribute("cy", O), j.label.setAttribute("x", Y), j.label.setAttribute("y", O + j.NR + 12);
+        for (let ie of N)
+          ie.from === j.node ? (ie.el.setAttribute("x1", Y), ie.el.setAttribute("y1", O)) : ie.to === j.node && (ie.el.setAttribute("x2", Y), ie.el.setAttribute("y2", O));
+      }, "onForceMove"), P = /* @__PURE__ */ S(() => {
+        j && (j.node._el && j.node._el.classList.remove("lkm-dragging"), j = null);
       }, "onForceUp");
-      document.addEventListener("mousemove", W), document.addEventListener("mouseup", A), this._forceCleanup = () => {
-        document.removeEventListener("mousemove", W), document.removeEventListener("mouseup", A);
+      document.addEventListener("mousemove", K), document.addEventListener("mouseup", P), document.addEventListener("touchmove", K, { passive: !1 }), document.addEventListener("touchend", P), this._forceCleanup = () => {
+        document.removeEventListener("mousemove", K), document.removeEventListener("mouseup", P), document.removeEventListener("touchmove", K), document.removeEventListener("touchend", P);
       };
     } else if (a.layoutMode === "branch") {
       let u = /* @__PURE__ */ new Map();
-      for (let [P, $] of o)
-        u.has(P) || u.set(P, []), u.get(P).push($);
-      for (let [P, $] of u) {
-        let N = P._x + P._w, R = P._y;
+      for (let [A, $] of o)
+        u.has(A) || u.set(A, []), u.get(A).push($);
+      for (let [A, $] of u) {
+        let N = A._x + A._w, R = A._y;
         if ($.length <= 1) {
           let J = $[0];
           if (!J) continue;
-          let Y = J._x, W = J._y, A = (N + Y) / 2, f = a.curve ? `M${N},${R} C${A},${R} ${A},${W} ${Y},${W}` : `M${N},${R} L${Y},${W}`;
+          let j = J._x, K = J._y, P = (N + j) / 2, f = a.curve ? `M${N},${R} C${P},${R} ${P},${K} ${j},${K}` : `M${N},${R} L${j},${K}`;
           _.appendChild(V("path", { d: f, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
         } else {
           let J = N + ($[0]._x - N) / 2;
           _.appendChild(V("path", { d: `M${N},${R} L${J},${R}`, class: "lkm-edge" }));
-          let Y = 1 / 0, W = -1 / 0;
-          for (let A of $)
-            Y = Math.min(Y, A._y), W = Math.max(W, A._y);
-          _.appendChild(V("path", { d: `M${J},${Y} L${J},${W}`, class: "lkm-edge" }));
-          for (let A of $)
-            _.appendChild(V("path", { d: `M${J},${A._y} L${A._x},${A._y}`, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
+          let j = 1 / 0, K = -1 / 0;
+          for (let P of $)
+            j = Math.min(j, P._y), K = Math.max(K, P._y);
+          _.appendChild(V("path", { d: `M${J},${j} L${J},${K}`, class: "lkm-edge" }));
+          for (let P of $)
+            _.appendChild(V("path", { d: `M${J},${P._y} L${P._x},${P._y}`, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
         }
       }
       if (a.showDupLine) {
-        let P = /* @__PURE__ */ new Map();
-        for (let $ of s) $.note.file && (P.has($.note.file.path) || P.set($.note.file.path, []), P.get($.note.file.path).push($));
-        for (let [$, N] of P) {
+        let A = /* @__PURE__ */ new Map();
+        for (let $ of s) $.note.file && (A.has($.note.file.path) || A.set($.note.file.path, []), A.get($.note.file.path).push($));
+        for (let [$, N] of A) {
           if (N.length < 2) continue;
           let R = N.find((J) => !J.isAlias) || N[0];
           for (let J of N) {
             if (J === R) continue;
-            let Y = R._x + R._w / 2 - (J._x + J._w / 2), W = R._y - J._y, A, f, F, E;
-            Math.abs(Y) > Math.abs(W) ? Y > 0 ? (A = J._x + J._w, f = J._y, F = R._x, E = R._y) : (A = J._x, f = J._y, F = R._x + R._w, E = R._y) : W > 0 ? (A = J._x + J._w / 2, f = J._y + J._autoH / 2, F = R._x + R._w / 2, E = R._y - R._autoH / 2) : (A = J._x + J._w / 2, f = J._y - J._autoH / 2, F = R._x + R._w / 2, E = R._y + R._autoH / 2);
-            let K = a.curve ? `M${A},${f} C${(A + F) / 2},${f} ${(A + F) / 2},${E} ${F},${E}` : `M${A},${f} L${F},${E}`;
-            _.appendChild(V("path", { d: K, class: "lkm-edge", "stroke-dasharray": "4 3", opacity: 0.5, "marker-end": "url(#lkm-arrow)" }));
+            let j = R._x + R._w / 2 - (J._x + J._w / 2), K = R._y - J._y, P, f, T, E;
+            Math.abs(j) > Math.abs(K) ? j > 0 ? (P = J._x + J._w, f = J._y, T = R._x, E = R._y) : (P = J._x, f = J._y, T = R._x + R._w, E = R._y) : K > 0 ? (P = J._x + J._w / 2, f = J._y + J._autoH / 2, T = R._x + R._w / 2, E = R._y - R._autoH / 2) : (P = J._x + J._w / 2, f = J._y - J._autoH / 2, T = R._x + R._w / 2, E = R._y + R._autoH / 2);
+            let W = a.curve ? `M${P},${f} C${(P + T) / 2},${f} ${(P + T) / 2},${E} ${T},${E}` : `M${P},${f} L${T},${E}`;
+            _.appendChild(V("path", { d: W, class: "lkm-edge", "stroke-dasharray": "4 3", opacity: 0.5, "marker-end": "url(#lkm-arrow)" }));
           }
         }
       }
     } else {
-      for (let [P, $] of o) {
-        let N, R, J, Y, W, A;
+      for (let [A, $] of o) {
+        let N, R, J, j, K, P;
         if (a.layoutDir === "v") {
-          N = P._x + P._w / 2, R = P._y + P._autoH / 2, J = $._x + $._w / 2, Y = $._y - $._autoH / 2, A = (R + Y) / 2;
-          let f = a.curve ? `M${N},${R} C${N},${A} ${J},${A} ${J},${Y}` : `M${N},${R} L${J},${Y}`;
+          N = A._x + A._w / 2, R = A._y + A._autoH / 2, J = $._x + $._w / 2, j = $._y - $._autoH / 2, P = (R + j) / 2;
+          let f = a.curve ? `M${N},${R} C${N},${P} ${J},${P} ${J},${j}` : `M${N},${R} L${J},${j}`;
           _.appendChild(V("path", { d: f, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
         } else {
-          N = P._x + P._w, R = P._y, J = $._x, Y = $._y, W = (N + J) / 2;
-          let f = a.curve ? `M${N},${R} C${W},${R} ${W},${Y} ${J},${Y}` : `M${N},${R} L${J},${Y}`;
+          N = A._x + A._w, R = A._y, J = $._x, j = $._y, K = (N + J) / 2;
+          let f = a.curve ? `M${N},${R} C${K},${R} ${K},${j} ${J},${j}` : `M${N},${R} L${J},${j}`;
           _.appendChild(V("path", { d: f, class: "lkm-edge", "marker-end": "url(#lkm-arrow)" }));
         }
       }
       let u = /* @__PURE__ */ new Map();
-      for (let P of s) P.note.file && (u.has(P.note.file.path) || u.set(P.note.file.path, []), u.get(P.note.file.path).push(P));
-      if (a.showDupLine) for (let [P, $] of u) {
+      for (let A of s) A.note.file && (u.has(A.note.file.path) || u.set(A.note.file.path, []), u.get(A.note.file.path).push(A));
+      if (a.showDupLine) for (let [A, $] of u) {
         if ($.length < 2) continue;
         let N = $.find((R) => !R.isAlias) || $[0];
         for (let R of $) {
           if (R === N) continue;
-          let J = N._x + N._w / 2 - (R._x + R._w / 2), Y = N._y - R._y, W, A, f, F;
-          Math.abs(J) > Math.abs(Y) ? J > 0 ? (W = R._x + R._w, A = R._y, f = N._x, F = N._y) : (W = R._x, A = R._y, f = N._x + N._w, F = N._y) : Y > 0 ? (W = R._x + R._w / 2, A = R._y + R._autoH / 2, f = N._x + N._w / 2, F = N._y - N._autoH / 2) : (W = R._x + R._w / 2, A = R._y - R._autoH / 2, f = N._x + N._w / 2, F = N._y + N._autoH / 2);
-          let E = a.curve ? `M${W},${A} C${(W + f) / 2},${A} ${(W + f) / 2},${F} ${f},${F}` : `M${W},${A} L${f},${F}`;
+          let J = N._x + N._w / 2 - (R._x + R._w / 2), j = N._y - R._y, K, P, f, T;
+          Math.abs(J) > Math.abs(j) ? J > 0 ? (K = R._x + R._w, P = R._y, f = N._x, T = N._y) : (K = R._x, P = R._y, f = N._x + N._w, T = N._y) : j > 0 ? (K = R._x + R._w / 2, P = R._y + R._autoH / 2, f = N._x + N._w / 2, T = N._y - N._autoH / 2) : (K = R._x + R._w / 2, P = R._y - R._autoH / 2, f = N._x + N._w / 2, T = N._y + N._autoH / 2);
+          let E = a.curve ? `M${K},${P} C${(K + f) / 2},${P} ${(K + f) / 2},${T} ${f},${T}` : `M${K},${P} L${f},${T}`;
           _.appendChild(V("path", { d: E, class: "lkm-edge", "stroke-dasharray": "4 3", opacity: 0.5, "marker-end": "url(#lkm-arrow)" }));
         }
       }
     }
-    let T = /* @__PURE__ */ S((u) => this._draw(e, at(this.currentRoot, a), { anchorKey: u }), "redraw"), g = null, D = { before: t("\u2191 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u524D"), after: t("\u2193 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u540E"), child: t("\u2192 \u4F5C\u4E3A\u5B50\u8282\u70B9") }, X = /* @__PURE__ */ S((u, P) => {
-      if (!P.note.file) return;
-      this._hidePreview(), g = { node: P, sx: u.clientX, sy: u.clientY, moved: !1, target: null, zone: "child" };
+    let F = /* @__PURE__ */ S((u) => this._draw(e, at(this.currentRoot, a), { anchorKey: u }), "redraw"), g = null, D = { before: t("\u2191 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u524D"), after: t("\u2193 \u63D2\u5165\u5230\u540C\u7EA7\u4E4B\u540E"), child: t("\u2192 \u4F5C\u4E3A\u5B50\u8282\u70B9") }, X = /* @__PURE__ */ S((u, A) => {
+      if (!A.note.file) return;
+      this._hidePreview(), g = { node: A, sx: u.clientX, sy: u.clientY, moved: !1, target: null, zone: "child" };
       let $ = document.createElement("div");
       $.className = "lkm-drag-hint", $.style.display = "none", document.body.appendChild($);
-      let N = /* @__PURE__ */ S((W) => {
+      let N = /* @__PURE__ */ S((K) => {
         if (!g) return;
-        let A = W.clientX - g.sx, f = W.clientY - g.sy;
-        if (!g.moved && Math.hypot(A, f) < 6) return;
+        let P = K.clientX - g.sx, f = K.clientY - g.sy;
+        if (!g.moved && Math.hypot(P, f) < 6) return;
         g.moved = !0, m.classList.add("lkm-dragging");
-        let F = e.getBoundingClientRect(), E = (W.clientX - F.left - x) / I, K = (W.clientY - F.top - G) / I, B = null, z = "child";
-        for (let j of s)
-          if (!(j.key === P.key || !j.note.file) && E >= j._x && E <= j._x + j._w && K >= j._y - j._autoH / 2 && K <= j._y + j._autoH / 2) {
-            if (B = j, a.layoutMode !== "branch" && a.layoutDir === "v") {
-              let H = (E - j._x) / j._w;
-              z = H < 0.3 ? "before" : H > 0.7 ? "after" : "child";
+        let T = e.getBoundingClientRect(), E = (K.clientX - T.left - x) / I, W = (K.clientY - T.top - G) / I, B = null, H = "child";
+        for (let Y of s)
+          if (!(Y.key === A.key || !Y.note.file) && E >= Y._x && E <= Y._x + Y._w && W >= Y._y - Y._autoH / 2 && W <= Y._y + Y._autoH / 2) {
+            if (B = Y, a.layoutMode !== "branch" && a.layoutDir === "v") {
+              let O = (E - Y._x) / Y._w;
+              H = O < 0.3 ? "before" : O > 0.7 ? "after" : "child";
             } else {
-              let H = (K - (j._y - j._autoH / 2)) / j._autoH;
-              z = H < 0.3 ? "before" : H > 0.7 ? "after" : "child";
+              let O = (W - (Y._y - Y._autoH / 2)) / Y._autoH;
+              H = O < 0.3 ? "before" : O > 0.7 ? "after" : "child";
             }
             break;
           }
-        (B !== g.target || z !== g.zone) && (g.target && g.target._el && g.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), g.target = B, g.zone = z, B && B._el && (B._el.classList.add("lkm-drop-target"), z === "before" && B._el.classList.add("lkm-drop-before"), z === "after" && B._el.classList.add("lkm-drop-after"))), $.style.display = B ? "block" : "none", B && ($.textContent = D[z], $.style.left = W.clientX + 16 + "px", $.style.top = W.clientY + 16 + "px");
+        (B !== g.target || H !== g.zone) && (g.target && g.target._el && g.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), g.target = B, g.zone = H, B && B._el && (B._el.classList.add("lkm-drop-target"), H === "before" && B._el.classList.add("lkm-drop-before"), H === "after" && B._el.classList.add("lkm-drop-after"))), $.style.display = B ? "block" : "none", B && ($.textContent = D[H], $.style.left = K.clientX + 16 + "px", $.style.top = K.clientY + 16 + "px");
       }, "onMove"), R = /* @__PURE__ */ S(() => {
-        window.removeEventListener("mousemove", N), window.removeEventListener("mouseup", R), window.removeEventListener("touchmove", J), window.removeEventListener("touchend", Y), m.classList.remove("lkm-dragging"), $.remove();
-        let W = g;
-        g = null, W && (W.target && W.target._el && W.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), W.moved && W.target && (W.zone === "child" ? this._moveNode(W.node, W.target.note.file.path) : W.node.parent && W.target.parent && W.node.parent.note.file && W.target.parent.note.file && W.node.parent.note.file.path === W.target.parent.note.file.path ? this._reorderSiblings(W.node, W.target.note.file.path, W.zone === "after") : this._moveAndReorder(W.node, W.target, W.zone === "after")));
-      }, "onUp"), J = /* @__PURE__ */ S((W) => {
-        W.touches.length && N({ clientX: W.touches[0].clientX, clientY: W.touches[0].clientY });
-      }, "onTouchMove2"), Y = /* @__PURE__ */ S(() => R(), "onTouchEnd2");
-      window.addEventListener("mousemove", N), window.addEventListener("mouseup", R), window.addEventListener("touchmove", J, { passive: !1 }), window.addEventListener("touchend", Y);
-    }, "startNodeDrag"), C = /* @__PURE__ */ S((u, P) => {
-      if (!P.note.file) return;
-      u.preventDefault(), u.stopPropagation(), O = !0;
+        window.removeEventListener("mousemove", N), window.removeEventListener("mouseup", R), window.removeEventListener("touchmove", J), window.removeEventListener("touchend", j), m.classList.remove("lkm-dragging"), $.remove();
+        let K = g;
+        g = null, K && (K.target && K.target._el && K.target._el.classList.remove("lkm-drop-target", "lkm-drop-before", "lkm-drop-after"), K.moved && K.target && (K.zone === "child" ? this._moveNode(K.node, K.target.note.file.path) : K.node.parent && K.target.parent && K.node.parent.note.file && K.target.parent.note.file && K.node.parent.note.file.path === K.target.parent.note.file.path ? this._reorderSiblings(K.node, K.target.note.file.path, K.zone === "after") : this._moveAndReorder(K.node, K.target, K.zone === "after")));
+      }, "onUp"), J = /* @__PURE__ */ S((K) => {
+        K.touches.length && N({ clientX: K.touches[0].clientX, clientY: K.touches[0].clientY });
+      }, "onTouchMove2"), j = /* @__PURE__ */ S(() => R(), "onTouchEnd2");
+      window.addEventListener("mousemove", N), window.addEventListener("mouseup", R), window.addEventListener("touchmove", J, { passive: !1 }), window.addEventListener("touchend", j);
+    }, "startNodeDrag"), C = /* @__PURE__ */ S((u, A) => {
+      if (!A.note.file) return;
+      u.preventDefault(), u.stopPropagation(), z = !0;
       let $ = V("path", { class: "lkm-wire" });
       _.appendChild($);
-      let N = a.layoutMode !== "branch" && a.layoutDir === "v", R = N ? P._x + P._w / 2 : P._x + P._w, J = N ? P._y + P._autoH / 2 : P._y, Y = null, W = /* @__PURE__ */ S((B, z) => {
-        let j = e.getBoundingClientRect();
-        return { x: (B - j.left - x) / I, y: (z - j.top - G) / I };
-      }, "local"), A = /* @__PURE__ */ S((B, z) => {
-        let j = (R + B) / 2;
-        $.setAttribute("d", `M${R},${J} C${j},${J} ${j},${z} ${B},${z}`);
+      let N = a.layoutMode !== "branch" && a.layoutDir === "v", R = N ? A._x + A._w / 2 : A._x + A._w, J = N ? A._y + A._autoH / 2 : A._y, j = null, K = /* @__PURE__ */ S((B, H) => {
+        let Y = e.getBoundingClientRect();
+        return { x: (B - Y.left - x) / I, y: (H - Y.top - G) / I };
+      }, "local"), P = /* @__PURE__ */ S((B, H) => {
+        let Y = (R + B) / 2;
+        $.setAttribute("d", `M${R},${J} C${Y},${J} ${Y},${H} ${B},${H}`);
       }, "setWire");
-      A(R, J);
+      P(R, J);
       let f = /* @__PURE__ */ S((B) => {
-        let z = W(B.clientX, B.clientY);
-        A(z.x, z.y);
-        let j = null;
-        for (let H of s)
-          if (!(!H.note.file || H.key === P.key) && z.x >= H._x && z.x <= H._x + H._w && z.y >= H._y - H._autoH / 2 && z.y <= H._y + H._autoH / 2) {
-            j = H;
+        let H = K(B.clientX, B.clientY);
+        P(H.x, H.y);
+        let Y = null;
+        for (let O of s)
+          if (!(!O.note.file || O.key === A.key) && H.x >= O._x && H.x <= O._x + O._w && H.y >= O._y - O._autoH / 2 && H.y <= O._y + O._autoH / 2) {
+            Y = O;
             break;
           }
-        j !== Y && (Y && Y._el && Y._el.classList.remove("lkm-wire-target"), Y = j, Y && Y._el && Y._el.classList.add("lkm-wire-target"));
-      }, "onMove"), F = /* @__PURE__ */ S(async () => {
-        O = !1, window.removeEventListener("mousemove", f), window.removeEventListener("mouseup", F), window.removeEventListener("touchmove", E), window.removeEventListener("touchend", K), $.remove(), Y && Y._el && Y._el.classList.remove("lkm-wire-target"), Y && await this._addRelation(P, Y.note);
+        Y !== j && (j && j._el && j._el.classList.remove("lkm-wire-target"), j = Y, j && j._el && j._el.classList.add("lkm-wire-target"));
+      }, "onMove"), T = /* @__PURE__ */ S(async () => {
+        z = !1, window.removeEventListener("mousemove", f), window.removeEventListener("mouseup", T), window.removeEventListener("touchmove", E), window.removeEventListener("touchend", W), $.remove(), j && j._el && j._el.classList.remove("lkm-wire-target"), j && await this._addRelation(A, j.note);
       }, "onUp"), E = /* @__PURE__ */ S((B) => {
         B.preventDefault();
-        let z = B.touches[0];
-        f({ clientX: z.clientX, clientY: z.clientY });
-      }, "onTouchMove"), K = /* @__PURE__ */ S(() => F(), "onTouchEnd");
-      window.addEventListener("mousemove", f), window.addEventListener("mouseup", F), window.addEventListener("touchmove", E, { passive: !1 }), window.addEventListener("touchend", K);
+        let H = B.touches[0];
+        f({ clientX: H.clientX, clientY: H.clientY });
+      }, "onTouchMove"), W = /* @__PURE__ */ S(() => T(), "onTouchEnd");
+      window.addEventListener("mousemove", f), window.addEventListener("mouseup", T), window.addEventListener("touchmove", E, { passive: !1 }), window.addEventListener("touchend", W);
     }, "startWire");
     for (let u of s) {
       if (a.layoutMode === "graph" || a.layoutMode === "force") continue;
       if (a.layoutMode === "git") {
-        let ne = u._x + u._w / 2, re = u._y, xe = u.note.type ? (a.typeColors || {})[u.note.type] : null, Ie = ze(a, u.note.status), Fe = xe || a.accent || "#3A6B8A", Ye = Ie || "#ffffff", de = V("g", { class: "lkm-git-node" + (u.note.zk ? " lkm-main" : "") + (u.isAlias ? " lkm-multi" : "") });
-        u.note.zk && de.appendChild(V("circle", { cx: ne, cy: re, r: 15, fill: a.mainColor || "#3A6B8A", opacity: 0.18 })), de.appendChild(V("circle", { cx: ne, cy: re, r: 12, fill: Fe, opacity: 0.14 }));
-        let Ke = V("circle", { cx: ne, cy: re, r: 8, class: "lkm-git-dot", fill: Fe, stroke: Ye, "stroke-width": 2.5 });
-        u.isAlias && Ke.setAttribute("stroke-dasharray", "3 2"), de.appendChild(Ke);
-        let Ne = n.gvert, De = V("text", { class: "lkm-git-label" });
-        if (De.textContent = u._shown || u.note.title, Ne ? (De.setAttribute("x", ne + 18), De.setAttribute("y", re), De.setAttribute("dominant-baseline", "central")) : (De.setAttribute("x", ne), De.setAttribute("y", re - 18), De.setAttribute("text-anchor", "middle")), de.appendChild(De), u.children.length) {
-          let Ee = Ne ? ne : ne + 22, tt = Ne ? re + 22 : re, st = V("circle", { cx: Ee, cy: tt, r: 12, class: "lkm-hit" });
+        let ne = u._x + u._w / 2, re = u._y, xe = u.note.type ? (a.typeColors || {})[u.note.type] : null, Ie = ze(a, u.note.status), Me = xe || a.accent || "#3A6B8A", je = Ie || "#ffffff", he = V("g", { class: "lkm-git-node" + (u.note.zk ? " lkm-main" : "") + (u.isAlias ? " lkm-multi" : "") });
+        u.note.zk && he.appendChild(V("circle", { cx: ne, cy: re, r: 15, fill: a.mainColor || "#3A6B8A", opacity: 0.18 })), he.appendChild(V("circle", { cx: ne, cy: re, r: 12, fill: Me, opacity: 0.14 }));
+        let Ke = V("circle", { cx: ne, cy: re, r: 8, class: "lkm-git-dot", fill: Me, stroke: je, "stroke-width": 2.5 });
+        u.isAlias && Ke.setAttribute("stroke-dasharray", "3 2"), he.appendChild(Ke);
+        let Ne = n.gvert, Ee = V("text", { class: "lkm-git-label" });
+        if (Ee.textContent = u._shown || u.note.title, Ne ? (Ee.setAttribute("x", ne + 18), Ee.setAttribute("y", re), Ee.setAttribute("dominant-baseline", "central")) : (Ee.setAttribute("x", ne), Ee.setAttribute("y", re - 18), Ee.setAttribute("text-anchor", "middle")), he.appendChild(Ee), u.children.length) {
+          let Le = Ne ? ne : ne + 22, tt = Ne ? re + 22 : re, st = V("circle", { cx: Le, cy: tt, r: 12, class: "lkm-hit" });
           st.addEventListener("click", (nt) => {
-            nt.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), T(u.key);
-          }), de.appendChild(st);
-          let Qe = V("text", { x: Ee, y: tt + 4, class: "lkm-git-sign", "text-anchor": "middle" });
-          Qe.textContent = u.expanded ? "\u2212" : "+", de.appendChild(Qe);
+            nt.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), F(u.key);
+          }), he.appendChild(st);
+          let Qe = V("text", { x: Le, y: tt + 4, class: "lkm-git-sign", "text-anchor": "middle" });
+          Qe.textContent = u.expanded ? "\u2212" : "+", he.appendChild(Qe);
         }
-        u._el = de, this._batchMode && this._selected.has(u.key) && de.classList.add("lkm-selected"), this._selKey === u.key && de.classList.add("lkm-sel");
+        u._el = he, this._batchMode && this._selected.has(u.key) && he.classList.add("lkm-selected"), this._selKey === u.key && he.classList.add("lkm-sel");
         let yt = 0;
-        de.addEventListener("click", (Ee) => {
+        he.addEventListener("click", (Le) => {
           if (this._batchMode) {
-            Ee.stopPropagation(), this._toggleSelect(u.key);
+            Le.stopPropagation(), this._toggleSelect(u.key);
             return;
           }
           let tt = Date.now(), st = tt - yt < 350;
@@ -3648,109 +3657,109 @@ ${d}: "${r}"
             let nt = this._nodeIndex && this._nodeIndex.get(Qe);
             nt && nt._el && nt._el.classList.remove("lkm-sel");
           }
-          de.classList.add("lkm-sel");
-        }), de.addEventListener("contextmenu", (Ee) => {
-          Ee.preventDefault(), Ee.stopPropagation(), !this._batchMode && (this._selKey = u.key, de.classList.add("lkm-sel"), this._showNodeMenu(u, Ee));
+          he.classList.add("lkm-sel");
+        }), he.addEventListener("contextmenu", (Le) => {
+          Le.preventDefault(), Le.stopPropagation(), !this._batchMode && (this._selKey = u.key, he.classList.add("lkm-sel"), this._showNodeMenu(u, Le));
         });
         let Ue = null;
-        de.addEventListener("mouseenter", (Ee) => {
+        he.addEventListener("mouseenter", (Le) => {
           g || (Ue && clearTimeout(Ue), Ue = setTimeout(() => {
-            g || (Ue = null, this._showPreview(u, Ee));
+            g || (Ue = null, this._showPreview(u, Le));
           }, 1e3));
-        }), de.addEventListener("mousemove", (Ee) => {
-          this._previewEl && this._positionPreview(Ee);
-        }), de.addEventListener("mouseleave", () => {
+        }), he.addEventListener("mousemove", (Le) => {
+          this._previewEl && this._positionPreview(Le);
+        }), he.addEventListener("mouseleave", () => {
           Ue && (clearTimeout(Ue), Ue = null), this._hideTimer && clearTimeout(this._hideTimer), this._hideTimer = setTimeout(() => {
             this._hidePreview(), this._hideTimer = null;
           }, 200);
-        }), _.appendChild(de);
+        }), _.appendChild(he);
         continue;
       }
-      let P = !u.note.file, $ = null, N = V("g", {
+      let A = !u.note.file, $ = null, N = V("g", {
         class: "lkm-node" + (u.note.zk ? " lkm-main" : "") + (u.isAlias ? " lkm-multi" : "") + (u.note.status ? " lkm-has-status" : "") + (u.note.status === "\u5DF2\u5F52\u6863" ? " lkm-archived" : ""),
         transform: `translate(${u._x},${u._y - u._autoH / 2})`
-      }), R = V("rect", { width: u._w, height: u._autoH, rx: 12, ry: 12, class: "lkm-card" + (u.note.file && u.note.file.basename.endsWith(".excalidraw") ? " lkm-excalidraw" : "") }), J = u.note.type ? (a.typeColors || {})[u.note.type] : null, Y = ze(a, u.note.status);
+      }), R = V("rect", { width: u._w, height: u._autoH, rx: 12, ry: 12, class: "lkm-card" + (u.note.file && u.note.file.basename.endsWith(".excalidraw") ? " lkm-excalidraw" : "") }), J = u.note.type ? (a.typeColors || {})[u.note.type] : null, j = ze(a, u.note.status);
       J && R.style.setProperty("--lkm-card-stroke", J), N.appendChild(R);
-      let W = V("g", { class: "lkm-status-dots" }), A = 6, f = /* @__PURE__ */ S((ne, re) => {
-        let xe = V("circle", { cx: 10, cy: A, r: 4, class: ne });
-        W.appendChild(xe);
-        let Ie = V("circle", { cx: 10, cy: A, r: 7, class: "lkm-dot-hit" }), Fe = V("title");
-        return Fe.textContent = re, Ie.appendChild(Fe), W.appendChild(Ie), A += 10, xe;
+      let K = V("g", { class: "lkm-status-dots" }), P = 6, f = /* @__PURE__ */ S((ne, re) => {
+        let xe = V("circle", { cx: 10, cy: P, r: 4, class: ne });
+        K.appendChild(xe);
+        let Ie = V("circle", { cx: 10, cy: P, r: 7, class: "lkm-dot-hit" }), Me = V("title");
+        return Me.textContent = re, Ie.appendChild(Me), K.appendChild(Ie), P += 10, xe;
       }, "mkDot");
       if (u.note.zk && f("lkm-dot-zk", t("\u4E3B\u7B14\u8BB0\uFF1A\u8BE5\u7B14\u8BB0 main: true\uFF0C\u662F\u5BFC\u56FE\u7684\u4E3B\u5165\u53E3")), u.note.status) {
         let ne = f("lkm-dot-status", Ce(u.note.status) + t("\uFF1Astatus: ") + u.note.status);
-        Y && (ne.style.fill = Y);
+        j && (ne.style.fill = j);
       }
-      u.isAlias && f("lkm-dot-multi", t("\u91CD\u590D\u8282\u70B9\uFF1A\u8BE5\u7B14\u8BB0\u5728\u5BFC\u56FE\u4E2D\u51FA\u73B0\u591A\u6B21\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\u7684\u6302\u70B9\uFF09")), A > 9 && N.appendChild(W);
-      let F = a.showCreated && !P && u.note.date ? u.note.date : "", E = a.showType && !P && u.note.type ? Se(u.note.type) : "", K = a.showChildCount && !P && u.children.length ? t("\u5B50 ") + u.children.length : "", B = a.showWordCount && !P && u.note.file ? t("\u5B57 ") + Math.max(1, Math.round((u.note.file.stat.size || 0) / 3)) : "", z = a.nodeHeight === 0, j = a.showDesc && !P && u.note.desc ? z ? me(u.note.desc, 40) : kt(u.note.desc, Math.max(20, Math.min(u._w - 32, 140)), 11) : "", H = [E, K, B, F].filter(Boolean).join(" \xB7 "), ie = !!H, ee = !!j, ue = z && ee ? u._descLines || [j] : ee ? [j] : [], le;
-      z ? le = 18 : ee && ie ? le = 14 : ee || ie ? le = a.nodeHeight / 2 - 2 : le = a.nodeHeight / 2 + 5;
-      let he = V("text", { x: 16, y: le, class: "lkm-title" });
-      if (he.textContent = u._shown || u.note.title, N.appendChild(he), ue.length) {
-        let ne = z ? 32 : ie ? 28 : a.nodeHeight / 2 + 8;
-        for (let re of ue) {
+      u.isAlias && f("lkm-dot-multi", t("\u91CD\u590D\u8282\u70B9\uFF1A\u8BE5\u7B14\u8BB0\u5728\u5BFC\u56FE\u4E2D\u51FA\u73B0\u591A\u6B21\uFF08\u88AB\u989D\u5916\u5173\u8054\u5F15\u5165\u7684\u6302\u70B9\uFF09")), P > 9 && N.appendChild(K);
+      let T = a.showCreated && !A && u.note.date ? u.note.date : "", E = a.showType && !A && u.note.type ? Te(u.note.type) : "", W = a.showChildCount && !A && u.children.length ? t("\u5B50 ") + u.children.length : "", B = a.showWordCount && !A && u.note.file ? t("\u5B57 ") + Math.max(1, Math.round((u.note.file.stat.size || 0) / 3)) : "", H = a.nodeHeight === 0, Y = a.showDesc && !A && u.note.desc ? H ? me(u.note.desc, 40) : kt(u.note.desc, Math.max(20, Math.min(u._w - 32, 140)), 11) : "", O = [E, W, B, T].filter(Boolean).join(" \xB7 "), ie = !!O, ee = !!Y, pe = H && ee ? u._descLines || [Y] : ee ? [Y] : [], le;
+      H ? le = 18 : ee && ie ? le = 14 : ee || ie ? le = a.nodeHeight / 2 - 2 : le = a.nodeHeight / 2 + 5;
+      let ue = V("text", { x: 16, y: le, class: "lkm-title" });
+      if (ue.textContent = u._shown || u.note.title, N.appendChild(ue), pe.length) {
+        let ne = H ? 32 : ie ? 28 : a.nodeHeight / 2 + 8;
+        for (let re of pe) {
           let xe = V("text", { x: 16, y: ne, class: "lkm-sub lkm-desc" });
           xe.textContent = re, N.appendChild(xe), ne += 15;
         }
       }
       if (ie) {
-        let ne = z ? u._autoH - 6 : a.nodeHeight - 9, re = V("text", { x: 16, y: ne, class: "lkm-sub" });
-        re.textContent = me(H, 50), N.appendChild(re);
+        let ne = H ? u._autoH - 6 : a.nodeHeight - 9, re = V("text", { x: 16, y: ne, class: "lkm-sub" });
+        re.textContent = me(O, 50), N.appendChild(re);
       }
-      let pe = u._autoH / 2, oe = window.innerWidth < 600, fe = oe ? 12 : 10, ye = /* @__PURE__ */ S((ne, re) => {
+      let fe = u._autoH / 2, ae = window.innerWidth < 600, de = ae ? 12 : 10, ke = /* @__PURE__ */ S((ne, re) => {
         let xe = V("title");
         xe.textContent = re, ne.appendChild(xe);
-      }, "addTip"), Ae = a.layoutMode !== "branch" && a.layoutDir === "v";
+      }, "addTip"), Fe = a.layoutMode !== "branch" && a.layoutDir === "v";
       if (u.children.length) {
         let ne = V("g", { class: "lkm-expand" });
-        ye(ne, u.expanded ? t("\u6298\u53E0\u5B50\u8282\u70B9") : t("\u5C55\u5F00\u5B50\u8282\u70B9"));
-        let re = Ae ? u._w / 2 : u._w + 14, xe = Ae ? u._autoH + 14 : pe;
-        ne.appendChild(V("circle", { cx: re, cy: xe, r: fe, class: "lkm-dot" }));
+        ke(ne, u.expanded ? t("\u6298\u53E0\u5B50\u8282\u70B9") : t("\u5C55\u5F00\u5B50\u8282\u70B9"));
+        let re = Fe ? u._w / 2 : u._w + 14, xe = Fe ? u._autoH + 14 : fe;
+        ne.appendChild(V("circle", { cx: re, cy: xe, r: de, class: "lkm-dot" }));
         let Ie = V("text", { x: re, y: xe + 5, class: "lkm-sign", "text-anchor": "middle" });
         Ie.textContent = u.expanded ? "\u2212" : "+", ne.appendChild(Ie);
-        let Fe = V("circle", { cx: re, cy: xe, r: fe + 5, class: "lkm-hit" });
-        Fe.addEventListener("click", (Ye) => {
-          Ye.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), T(u.key);
-        }), Fe.addEventListener("mouseenter", () => {
+        let Me = V("circle", { cx: re, cy: xe, r: de + 5, class: "lkm-hit" });
+        Me.addEventListener("click", (je) => {
+          je.stopPropagation(), u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), F(u.key);
+        }), Me.addEventListener("mouseenter", () => {
           $ && (clearTimeout($), $ = null);
-        }), ne.appendChild(Fe), N.appendChild(ne);
+        }), ne.appendChild(Me), N.appendChild(ne);
       }
       if (u.note.file) {
-        let ne = oe ? 26 : 24, re = u._w - (oe ? 20 : 18), xe = V("g", { class: "lkm-connect" });
-        ye(xe, t("\u62D6\u52A8\u8FDE\u7EBF\uFF1A\u5EFA\u7ACB\u989D\u5916\u5173\u8054\uFF08\u76EE\u6807\u6210\u4E3A\u672C\u8282\u70B9\u7684\u5B50\u8282\u70B9\uFF0C\u539F\u5173\u7CFB\u4FDD\u7559\uFF09"));
-        let Ie = re, Fe = pe;
-        xe.appendChild(V("circle", { cx: Ie, cy: Fe, r: fe, class: "lkm-connect-bg" })), xe.appendChild(V("circle", { cx: Ie, cy: Fe, r: 2.6, class: "lkm-connect-dot" }));
-        let Ye = V("circle", { cx: Ie, cy: Fe, r: fe + 5, class: "lkm-hit" });
-        if (Ye.addEventListener("mousedown", (de) => {
-          this._batchMode || C(de, u);
-        }), Ye.addEventListener("mouseenter", () => {
+        let ne = ae ? 26 : 24, re = u._w - (ae ? 20 : 18), xe = V("g", { class: "lkm-connect" });
+        ke(xe, t("\u62D6\u52A8\u8FDE\u7EBF\uFF1A\u5EFA\u7ACB\u989D\u5916\u5173\u8054\uFF08\u76EE\u6807\u6210\u4E3A\u672C\u8282\u70B9\u7684\u5B50\u8282\u70B9\uFF0C\u539F\u5173\u7CFB\u4FDD\u7559\uFF09"));
+        let Ie = re, Me = fe;
+        xe.appendChild(V("circle", { cx: Ie, cy: Me, r: de, class: "lkm-connect-bg" })), xe.appendChild(V("circle", { cx: Ie, cy: Me, r: 2.6, class: "lkm-connect-dot" }));
+        let je = V("circle", { cx: Ie, cy: Me, r: de + 5, class: "lkm-hit" });
+        if (je.addEventListener("mousedown", (he) => {
+          this._batchMode || C(he, u);
+        }), je.addEventListener("mouseenter", () => {
           $ && (clearTimeout($), $ = null);
-        }), Ye.addEventListener("touchstart", (de) => {
-          this._batchMode || C(de, u);
-        }, { passive: !1 }), xe.appendChild(Ye), N.appendChild(xe), a.showOpenIcon !== !1) {
+        }), je.addEventListener("touchstart", (he) => {
+          this._batchMode || C(he, u);
+        }, { passive: !1 }), xe.appendChild(je), N.appendChild(xe), a.showOpenIcon !== !1) {
           re -= ne;
-          let de = V("g", { class: "lkm-open" });
-          ye(de, t("\u6253\u5F00\u7B14\u8BB0")), de.appendChild(V("circle", { cx: re, cy: pe, r: fe, class: "lkm-open-bg" }));
-          let Ke = V("text", { x: re, y: pe + 4, class: "lkm-open-sign", "text-anchor": "middle", transform: "rotate(90 " + re + " " + pe + ")" });
-          Ke.textContent = "\u270E", de.appendChild(Ke);
-          let Ne = V("circle", { cx: re, cy: pe, r: fe + 3, class: "lkm-hit" });
-          Ne.addEventListener("click", (De) => {
-            De.stopPropagation(), this.app.workspace.getLeaf(!0).openFile(u.note.file);
+          let he = V("g", { class: "lkm-open" });
+          ke(he, t("\u6253\u5F00\u7B14\u8BB0")), he.appendChild(V("circle", { cx: re, cy: fe, r: de, class: "lkm-open-bg" }));
+          let Ke = V("text", { x: re, y: fe + 4, class: "lkm-open-sign", "text-anchor": "middle", transform: "rotate(90 " + re + " " + fe + ")" });
+          Ke.textContent = "\u270E", he.appendChild(Ke);
+          let Ne = V("circle", { cx: re, cy: fe, r: de + 3, class: "lkm-hit" });
+          Ne.addEventListener("click", (Ee) => {
+            Ee.stopPropagation(), this.app.workspace.getLeaf(!0).openFile(u.note.file);
           }), Ne.addEventListener("mouseenter", () => {
             $ && (clearTimeout($), $ = null);
-          }), de.appendChild(Ne), N.appendChild(de);
+          }), he.appendChild(Ne), N.appendChild(he);
         }
         if (a.showAddIcon !== !1) {
           re -= ne;
-          let de = V("g", { class: "lkm-add" });
-          ye(de, t("\u65B0\u589E\u5B50\u8282\u70B9\uFF08\u81EA\u52A8\u5199\u5165\u94FE\u63A5\uFF09")), de.appendChild(V("circle", { cx: re, cy: pe, r: fe, class: "lkm-add-bg" }));
-          let Ke = V("text", { x: re, y: pe + 4, class: "lkm-add-sign", "text-anchor": "middle" });
-          Ke.textContent = "\uFF0B", de.appendChild(Ke);
-          let Ne = V("circle", { cx: re, cy: pe, r: fe + 3, class: "lkm-hit" });
-          Ne.addEventListener("click", (De) => {
-            De.stopPropagation(), this.createChild(u);
+          let he = V("g", { class: "lkm-add" });
+          ke(he, t("\u65B0\u589E\u5B50\u8282\u70B9\uFF08\u81EA\u52A8\u5199\u5165\u94FE\u63A5\uFF09")), he.appendChild(V("circle", { cx: re, cy: fe, r: de, class: "lkm-add-bg" }));
+          let Ke = V("text", { x: re, y: fe + 4, class: "lkm-add-sign", "text-anchor": "middle" });
+          Ke.textContent = "\uFF0B", he.appendChild(Ke);
+          let Ne = V("circle", { cx: re, cy: fe, r: de + 3, class: "lkm-hit" });
+          Ne.addEventListener("click", (Ee) => {
+            Ee.stopPropagation(), this.createChild(u);
           }), Ne.addEventListener("mouseenter", () => {
             $ && (clearTimeout($), $ = null);
-          }), de.appendChild(Ne), N.appendChild(de);
+          }), he.appendChild(Ne), N.appendChild(he);
         }
       }
       u._el = N, this._batchMode && this._selected.has(u.key) && N.classList.add("lkm-selected"), this._selKey === u.key && N.classList.add("lkm-sel"), this._selectedRootPaths && u.note.file && this._selectedRootPaths.has(u.note.file.path) && N.classList.add("lkm-selected-root"), N.addEventListener("click", (ne) => {
@@ -3762,7 +3771,7 @@ ${d}: "${r}"
       }), N.addEventListener("contextmenu", (ne) => {
         ne.preventDefault(), ne.stopPropagation(), !this._batchMode && (this._select(u.key), this._showNodeMenu(u, ne));
       }), N.addEventListener("dblclick", (ne) => {
-        ne.stopPropagation(), $ && (clearTimeout($), $ = null), this._hidePreview(), !this._batchMode && (u.note.file ? this.app.workspace.getLeaf(!0).openFile(u.note.file) : u.children.length && (u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), T(u.key)));
+        ne.stopPropagation(), $ && (clearTimeout($), $ = null), this._hidePreview(), !this._batchMode && (u.note.file ? this.app.workspace.getLeaf(!0).openFile(u.note.file) : u.children.length && (u.expanded = !u.expanded, this._expandedMem.set(u.note.file ? u.note.file.path : u.key, u.expanded), F(u.key)));
       }), N.addEventListener("mousedown", (ne) => {
         ne.button !== 0 || this._batchMode || (ne.stopPropagation(), X(ne, u));
       }), N.addEventListener("touchstart", (ne) => {
@@ -3770,18 +3779,18 @@ ${d}: "${r}"
         let re = ne.touches[0], xe = { clientX: re.clientX, clientY: re.clientY, preventDefault: /* @__PURE__ */ S(() => ne.preventDefault(), "preventDefault"), stopPropagation: /* @__PURE__ */ S(() => ne.stopPropagation(), "stopPropagation") };
         X(xe, u);
       }, { passive: !1 });
-      let Te = null;
+      let Se = null;
       N.addEventListener("touchstart", (ne) => {
         if (this._batchMode || !u.note.file) return;
         let re = ne.touches[0];
-        Te = setTimeout(() => {
-          Te = null, this._select(u.key), this._showNodeMenu(u, { clientX: re.clientX, clientY: re.clientY });
+        Se = setTimeout(() => {
+          Se = null, this._select(u.key), this._showNodeMenu(u, { clientX: re.clientX, clientY: re.clientY });
         }, 500);
       }, { passive: !0 }), N.addEventListener("touchmove", () => {
-        Te && (clearTimeout(Te), Te = null);
+        Se && (clearTimeout(Se), Se = null);
       }, { passive: !0 }), N.addEventListener("touchend", () => {
-        Te && (clearTimeout(Te), Te = null);
-      }, { passive: !0 }), u.note.file && !P && (N.addEventListener("mouseenter", (ne) => {
+        Se && (clearTimeout(Se), Se = null);
+      }, { passive: !0 }), u.note.file && !A && (N.addEventListener("mouseenter", (ne) => {
         g || ($ && clearTimeout($), $ = setTimeout(() => {
           g || ($ = null, this._showPreview(u, ne));
         }, 1e3));
@@ -3796,74 +3805,74 @@ ${d}: "${r}"
     this._applyFilter();
     let I = 1, x = 0, G = 0;
     this._view && (I = this._view.k, x = this._view.tx, G = this._view.ty);
-    let se = /* @__PURE__ */ S(() => _.setAttribute("transform", `translate(${x},${G}) scale(${I})`), "apply"), O = !1, q = /* @__PURE__ */ S(() => {
-      let u = e.getBoundingClientRect(), P = u.width || e.clientWidth || 800, $ = u.height || e.clientHeight || 600;
-      if (I = Math.min(P / w, $ / k, 1.4) || 1, r && s.length) {
+    let se = /* @__PURE__ */ S(() => _.setAttribute("transform", `translate(${x},${G}) scale(${I})`), "apply"), z = !1, q = /* @__PURE__ */ S(() => {
+      let u = e.getBoundingClientRect(), A = u.width || e.clientWidth || 800, $ = u.height || e.clientHeight || 600;
+      if (I = Math.min(A / w, $ / k, 1.4) || 1, r && s.length) {
         let N = s[0];
-        x = P / 2 - (N._x + N._w / 2) * I, G = h * I - p * I;
+        x = A / 2 - (N._x + N._w / 2) * I, G = h * I - p * I;
       } else
-        x = (P - w * I) / 2 - (c - h) * I, G = ($ - k * I) / 2 - (p - h) * I;
+        x = (A - w * I) / 2 - (c - h) * I, G = ($ - k * I) / 2 - (p - h) * I;
       this._view = { k: I, tx: x, ty: G }, se();
     }, "fit");
     this._fit = q;
     let v = /* @__PURE__ */ S((u) => {
-      let P = s.find((N) => N.note.file && N.note.file.path === u);
-      if (!P) return;
+      let A = s.find((N) => N.note.file && N.note.file.path === u);
+      if (!A) return;
       let $ = e.getBoundingClientRect();
-      !$.width || !$.height || (x = $.width / 2 - (P._x + P._w / 2) * I, G = $.height / 2 - P._y * I, this._view = { k: I, tx: x, ty: G }, se());
+      !$.width || !$.height || (x = $.width / 2 - (A._x + A._w / 2) * I, G = $.height / 2 - A._y * I, this._view = { k: I, tx: x, ty: G }, se());
     }, "centerOnPath");
     if (!this._view || i.fit) {
       if (requestAnimationFrame(() => {
         q(), i.centerPath && v(i.centerPath);
       }), !i.centerPath) {
-        let u = 3, P = /* @__PURE__ */ S(() => {
+        let u = 3, A = /* @__PURE__ */ S(() => {
           u-- > 0 && q();
         }, "onResize");
-        window.addEventListener("resize", P);
-        let $ = setTimeout(() => window.removeEventListener("resize", P), 1500);
+        window.addEventListener("resize", A);
+        let $ = setTimeout(() => window.removeEventListener("resize", A), 1500);
         this._cleanup.push(() => {
-          window.removeEventListener("resize", P), clearTimeout($);
+          window.removeEventListener("resize", A), clearTimeout($);
         });
       }
     } else
       se(), i.centerPath && v(i.centerPath);
     let U = /* @__PURE__ */ S((u) => {
       u.preventDefault();
-      let P = m.getBoundingClientRect(), $ = u.clientX - P.left, N = u.clientY - P.top, R = Math.max(0.2, Math.min(3, I * (u.deltaY < 0 ? 1.1 : 0.9)));
+      let A = m.getBoundingClientRect(), $ = u.clientX - A.left, N = u.clientY - A.top, R = Math.max(0.2, Math.min(3, I * (u.deltaY < 0 ? 1.1 : 0.9)));
       x = $ - ($ - x) * (R / I), G = N - (N - G) * (R / I), I = R, this._view = { k: I, tx: x, ty: G }, se();
     }, "onWheel");
     m.addEventListener("wheel", U, { passive: !1 }), this._cleanup.push(() => m.removeEventListener("wheel", U));
-    let Q = !1, ge = !1, _e = 0, we = 0, ke = /* @__PURE__ */ S((u) => {
+    let Q = !1, ge = !1, _e = 0, we = 0, ye = /* @__PURE__ */ S((u) => {
       Q = !0, ge = !1, _e = u.clientX - x, we = u.clientY - G, m.classList.add("lkm-grabbing");
-    }, "onDown"), ae = /* @__PURE__ */ S((u) => {
+    }, "onDown"), oe = /* @__PURE__ */ S((u) => {
       Q && (!ge && Math.hypot(u.clientX - (_e + x), u.clientY - (we + G)) > 3 && (ge = !0), x = u.clientX - _e, G = u.clientY - we, this._view = { k: I, tx: x, ty: G }, se());
     }, "onMove"), te = /* @__PURE__ */ S(() => {
       let u = Q;
       if (Q = !1, m.classList.remove("lkm-grabbing"), u && !ge && !this._batchMode && this._selKey) {
-        let P = this._nodeIndex && this._nodeIndex.get(this._selKey);
-        P && P._el && P._el.classList.remove("lkm-sel"), this._selKey = null;
+        let A = this._nodeIndex && this._nodeIndex.get(this._selKey);
+        A && A._el && A._el.classList.remove("lkm-sel"), this._selKey = null;
       }
       ge && this._scheduleAutoSave();
     }, "onUp");
-    m.addEventListener("mousedown", ke), window.addEventListener("mousemove", ae), window.addEventListener("mouseup", te), this._cleanup.push(() => {
-      m.removeEventListener("mousedown", ke), window.removeEventListener("mousemove", ae), window.removeEventListener("mouseup", te);
+    m.addEventListener("mousedown", ye), window.addEventListener("mousemove", oe), window.addEventListener("mouseup", te), this._cleanup.push(() => {
+      m.removeEventListener("mousedown", ye), window.removeEventListener("mousemove", oe), window.removeEventListener("mouseup", te);
     });
     let ce = null, be = null, Be = /* @__PURE__ */ S((u) => {
-      if (!O)
+      if (!z)
         if (u.stopPropagation(), u.touches.length === 2) {
           u.preventDefault();
-          let P = u.touches[0].clientX - u.touches[1].clientX, $ = u.touches[0].clientY - u.touches[1].clientY;
-          be = { dist: Math.hypot(P, $), k: I }, ce = null;
+          let A = u.touches[0].clientX - u.touches[1].clientX, $ = u.touches[0].clientY - u.touches[1].clientY;
+          be = { dist: Math.hypot(A, $), k: I }, ce = null;
         } else u.touches.length === 1 && (ce = { x: u.touches[0].clientX - x, y: u.touches[0].clientY - G }, be = null, m.classList.add("lkm-grabbing"));
     }, "onTouchStart"), Ve = /* @__PURE__ */ S((u) => {
-      if (!O)
+      if (!z)
         if (u.stopPropagation(), u.touches.length === 2 && be) {
           u.preventDefault();
-          let P = u.touches[0].clientX - u.touches[1].clientX, $ = u.touches[0].clientY - u.touches[1].clientY, N = Math.max(0.2, Math.min(3, be.k * (Math.hypot(P, $) / be.dist))), R = m.getBoundingClientRect(), J = (u.touches[0].clientX + u.touches[1].clientX) / 2 - R.left, Y = (u.touches[0].clientY + u.touches[1].clientY) / 2 - R.top;
-          x = J - (J - x) * (N / I), G = Y - (Y - G) * (N / I), I = N, this._view = { k: I, tx: x, ty: G }, se();
+          let A = u.touches[0].clientX - u.touches[1].clientX, $ = u.touches[0].clientY - u.touches[1].clientY, N = Math.max(0.2, Math.min(3, be.k * (Math.hypot(A, $) / be.dist))), R = m.getBoundingClientRect(), J = (u.touches[0].clientX + u.touches[1].clientX) / 2 - R.left, j = (u.touches[0].clientY + u.touches[1].clientY) / 2 - R.top;
+          x = J - (J - x) * (N / I), G = j - (j - G) * (N / I), I = N, this._view = { k: I, tx: x, ty: G }, se();
         } else u.touches.length === 1 && ce ? (u.preventDefault(), x = u.touches[0].clientX - ce.x, G = u.touches[0].clientY - ce.y, this._view = { k: I, tx: x, ty: G }, se()) : u.touches.length && u.preventDefault();
     }, "onTouchMove"), Ze = /* @__PURE__ */ S((u) => {
-      O || (u.stopPropagation(), u.touches.length === 0 && (ce = null, be = null, m.classList.remove("lkm-grabbing"), this._scheduleAutoSave()));
+      z || (u.stopPropagation(), u.touches.length === 0 && (ce = null, be = null, m.classList.remove("lkm-grabbing"), this._scheduleAutoSave()));
     }, "onTouchEnd");
     m.addEventListener("touchstart", Be, { passive: !1 }), m.addEventListener("touchmove", Ve, { passive: !1 }), m.addEventListener("touchend", Ze), m.addEventListener("touchcancel", Ze), this._cleanup.push(() => {
       m.removeEventListener("touchstart", Be), m.removeEventListener("touchmove", Ve), m.removeEventListener("touchend", Ze), m.removeEventListener("touchcancel", Ze);
@@ -3883,7 +3892,7 @@ ${d}: "${r}"
     return !i || !i.children ? [] : i.children.filter((a) => a instanceof Xe && a.extension === "md");
   }
   async _buildNewNoteBody(e, n, i, a, s, o, c, p) {
-    let d = this.s, l = d.linkField || "children", r = d.backField || "parent", h = d.zkField || "main", w = d.statusField || "status", k = d.typeField || "type", m = d.dateField || "date", L = d.titleField || "title", y = /* @__PURE__ */ new Set([l, r, h, w, m, k, L]), _ = "", T = [];
+    let d = this.s, l = d.linkField || "children", r = d.backField || "parent", h = d.zkField || "main", w = d.statusField || "status", k = d.typeField || "type", m = d.dateField || "date", L = d.titleField || "title", y = /* @__PURE__ */ new Set([l, r, h, w, m, k, L]), _ = "", F = [];
     if (a) {
       let X = this.app.vault.getAbstractFileByPath(ve(a));
       if (X instanceof Xe) {
@@ -3896,12 +3905,12 @@ ${d}: "${r}"
           G !== se && I.has(G) && !I.has(se) && x.push(G + "\u2192" + se);
         x.length && new b(t("\u6A21\u677F\u5B57\u6BB5\u4E0E\u914D\u7F6E\u4E0D\u4E00\u81F4\uFF1A") + x.join("\uFF0C") + t("\u3002\u5DF2\u7528\u914D\u7F6E\u5B57\u6BB5\u540D\u521B\u5EFA\uFF0C\u5EFA\u8BAE\u66F4\u65B0\u6A21\u677F\u3002"), 1e4);
         for (let [G, se] of C.fields)
-          y.has(G) || T.push([G, se]);
+          y.has(G) || F.push([G, se]);
       }
     }
     let g = ["---"];
     g.push(l + ": []"), e && d.autoAddBackLink && g.push(r + ': "' + e + '"'), g.push(h + ": " + (s ? "true" : "false")), g.push(w + ": " + (o ? '"' + o + '"' : '""')), g.push(m + ": " + n), g.push(k + ': "' + (i || "") + '"'), g.push(L + ': "' + (c === "excalidraw" && p ? p : "") + '"');
-    for (let [X, C] of T) g.push(X + ": " + (C ?? ""));
+    for (let [X, C] of F) g.push(X + ": " + (C ?? ""));
     if (g.push("---", ""), c === "excalidraw") {
       let X = g.lastIndexOf("---");
       return X > 0 && g.splice(X, 0, "excalidraw-plugin: parsed", "tags: [excalidraw]"), g.join(`
@@ -3950,17 +3959,17 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       zkField: n.zkField || "main",
       onSubmit: /* @__PURE__ */ S(async (l, r, h, w, k, m) => {
         try {
-          let L = m === "excalidraw" ? ".excalidraw.md" : ".md", y = Ge(l) + L, _ = ve(n.mainFolder), T = ve(_ + "/" + y);
-          if (this.app.vault.getAbstractFileByPath(T)) {
+          let L = m === "excalidraw" ? ".excalidraw.md" : ".md", y = Ge(l) + L, _ = ve(n.mainFolder), F = ve(_ + "/" + y);
+          if (this.app.vault.getAbstractFileByPath(F)) {
             new b(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + y);
             return;
           }
           let g = /* @__PURE__ */ new Date(), D = g.getFullYear() + "-" + String(g.getMonth() + 1).padStart(2, "0") + "-" + String(g.getDate()).padStart(2, "0"), X = await this._buildNewNoteBody(e.note.file.basename, D, r, h, w, k, m, l);
-          await et(this.app, e.note.file, n.linkField, Ge(l) + (m === "excalidraw" ? ".excalidraw" : "")), await this.app.vault.create(T, X), new b(t("\u5DF2\u521B\u5EFA\u300C") + Ge(l) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + me(e.note.title, 14) + "\u300D");
+          await et(this.app, e.note.file, n.linkField, Ge(l) + (m === "excalidraw" ? ".excalidraw" : "")), await this.app.vault.create(F, X), new b(t("\u5DF2\u521B\u5EFA\u300C") + Ge(l) + t("\u300D\u5E76\u5173\u8054\u5230\u300C") + me(e.note.title, 14) + "\u300D");
           let C = e;
           for (; C; )
             this._expandedMem.set(C.note.file ? C.note.file.path : C.key, !0), C = C.parent;
-          await this._rebuildUntilReady(T);
+          await this._rebuildUntilReady(F);
         } catch (L) {
           new b(t("\u521B\u5EFA\u5931\u8D25\uFF1A") + (L && L.message ? L.message : L));
         }
@@ -3993,7 +4002,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
             new b(t("\u540C\u540D\u6587\u4EF6\u5DF2\u5B58\u5728\uFF1A") + L);
             return;
           }
-          let T = /* @__PURE__ */ new Date(), g = T.getFullYear() + "-" + String(T.getMonth() + 1).padStart(2, "0") + "-" + String(T.getDate()).padStart(2, "0"), D = await this._buildNewNoteBody(null, g, l, r, h, w, k, d);
+          let F = /* @__PURE__ */ new Date(), g = F.getFullYear() + "-" + String(F.getMonth() + 1).padStart(2, "0") + "-" + String(F.getDate()).padStart(2, "0"), D = await this._buildNewNoteBody(null, g, l, r, h, w, k, d);
           await this.app.vault.create(_, D), new b(t("\u5DF2\u521B\u5EFA\u300C") + Ge(d) + "\u300D"), await this._rebuildUntilReady(_, 30, !1), this._focusPath(_);
         } catch (m) {
           new b(t("\u521B\u5EFA\u5931\u8D25\uFF1A") + (m && m.message ? m.message : m));
@@ -4032,19 +4041,19 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         { num: o.linkCount, label: t("\u94FE\u63A5\u603B\u6570"), icon: "link", color: "#6c8cff" },
         { num: o.deadLinks, label: t("\u5931\u6548\u94FE\u63A5"), icon: "alert-triangle", color: "#e5534b" }
       ];
-      for (let O of l) {
-        let q = O.filter && this._isFilterActive(O.filter), v = d.createDiv("lkm-card-stat lkm-card-click" + (q ? " is-active" : "")), U = v.createDiv("lkm-card-ico");
-        U.style.background = "color-mix(in srgb, " + O.color + " 16%, transparent)", U.style.color = O.color;
+      for (let z of l) {
+        let q = z.filter && this._isFilterActive(z.filter), v = d.createDiv("lkm-card-stat lkm-card-click" + (q ? " is-active" : "")), U = v.createDiv("lkm-card-ico");
+        U.style.background = "color-mix(in srgb, " + z.color + " 16%, transparent)", U.style.color = z.color;
         try {
-          bt(U, O.icon);
+          bt(U, z.icon);
         } catch {
         }
-        v.createDiv("lkm-stat-num").setText(String(O.num)), v.createDiv("lkm-stat-label").setText(O.label + (O.filter && o.total ? " \xB7 " + Math.round(O.num / o.total * 100) + "%" : "")), O.filter && (v.title = t("\u70B9\u51FB\u67E5\u770B\u300C") + O.label + t("\u300D\u5217\u8868"), v.addEventListener("click", () => this._toggleDashFilter(O.filter)));
+        v.createDiv("lkm-stat-num").setText(String(z.num)), v.createDiv("lkm-stat-label").setText(z.label + (z.filter && o.total ? " \xB7 " + Math.round(z.num / o.total * 100) + "%" : "")), z.filter && (v.title = t("\u70B9\u51FB\u67E5\u770B\u300C") + z.label + t("\u300D\u5217\u8868"), v.addEventListener("click", () => this._toggleDashFilter(z.filter)));
       }
       {
-        let O = p.createDiv("lkm-dash-two"), q = O.createDiv("lkm-dash-sec");
+        let z = p.createDiv("lkm-dash-two"), q = z.createDiv("lkm-dash-sec");
         q.createDiv("lkm-dash-h").setText(t("\u7C7B\u578B\u5206\u5E03"));
-        let v = o.byTypeOrder.map((te) => ({ label: Se(te.name), value: te.count, color: te.color, filter: { kind: "type", value: te.name } }));
+        let v = o.byTypeOrder.map((te) => ({ label: Te(te.name), value: te.count, color: te.color, filter: { kind: "type", value: te.name } }));
         o.noType && v.push({ label: t("\u672A\u6807\u6CE8"), value: o.noType, color: "var(--text-faint)", filter: { kind: "notype" } });
         let U = q.createDiv("lkm-donut-wrap");
         this._renderDonut(U, v, o.total);
@@ -4053,7 +4062,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
           let ce = Q.createDiv("lkm-legend-row lkm-type-click" + (this._isFilterActive(te.filter) ? " is-active" : ""));
           ce.createSpan({ cls: "lkm-legend-dot" }).style.background = te.color, ce.createSpan({ cls: "lkm-legend-name", text: te.label }), ce.createSpan({ cls: "lkm-legend-num", text: String(te.value) }), ce.addEventListener("click", () => this._toggleDashFilter(te.filter));
         }
-        let ge = O.createDiv("lkm-dash-sec");
+        let ge = z.createDiv("lkm-dash-sec");
         ge.createDiv("lkm-dash-h").setText(t("\u72B6\u6001\u5206\u5E03"));
         let _e = ge.createDiv("lkm-stackbar"), we = o.byStatusOrder.map((te) => ({ label: Ce(te.name), value: te.count, color: te.color, filter: { kind: "status", value: te.name } }));
         o.noStatus && we.push({ label: t("\u65E0\u72B6\u6001"), value: o.noStatus, color: "var(--text-faint)", filter: { kind: "nostatus" } });
@@ -4062,17 +4071,17 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
           let ce = _e.createDiv("lkm-stackbar-seg");
           ce.style.width = Math.max(6, te.value / o.total * 100) + "%", ce.style.background = te.color, this._isFilterActive(te.filter) && ce.addClass("is-active"), ce.title = te.label + "\uFF1A" + te.value + t(" \u7BC7\uFF0C\u70B9\u51FB\u7B5B\u9009"), ce.addEventListener("click", () => this._toggleDashFilter(te.filter));
         }
-        let ke = ge.createDiv("lkm-chips"), ae = /* @__PURE__ */ S((te, ce, be, Be) => {
-          let Ve = ke.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(Be) ? " is-active" : ""));
+        let ye = ge.createDiv("lkm-chips"), oe = /* @__PURE__ */ S((te, ce, be, Be) => {
+          let Ve = ye.createDiv("lkm-chip lkm-type-click" + (this._isFilterActive(Be) ? " is-active" : ""));
           Ve.createSpan({ cls: "lkm-legend-dot" }).style.background = be, Ve.createSpan({ text: te + " " + ce }), Ve.addEventListener("click", () => this._toggleDashFilter(Be));
         }, "chip");
-        for (let te of o.byStatusOrder) ae(Ce(te.name), te.count, te.color, { kind: "status", value: te.name });
-        o.noStatus && ae(t("\u65E0\u72B6\u6001"), o.noStatus, "var(--text-faint)", { kind: "nostatus" }), ae(t("\u672A\u6807\u65E5\u671F"), o.noDate, "var(--text-faint)", { kind: "nodate" });
+        for (let te of o.byStatusOrder) oe(Ce(te.name), te.count, te.color, { kind: "status", value: te.name });
+        o.noStatus && oe(t("\u65E0\u72B6\u6001"), o.noStatus, "var(--text-faint)", { kind: "nostatus" }), oe(t("\u672A\u6807\u65E5\u671F"), o.noDate, "var(--text-faint)", { kind: "nodate" });
       }
       {
-        let O = p.createDiv("lkm-dash-sec");
-        O.createDiv("lkm-dash-h").setText(t("\u6708\u5EA6\u521B\u5EFA \xB7 \u8FD112\u4E2A\u6708\uFF08\u70B9\u51FB\u67F1\u5B50\u7B5B\u9009\u5F53\u6708\u65B0\u589E\uFF09"));
-        let q = O.createDiv("lkm-chart-body");
+        let z = p.createDiv("lkm-dash-sec");
+        z.createDiv("lkm-dash-h").setText(t("\u6708\u5EA6\u521B\u5EFA \xB7 \u8FD112\u4E2A\u6708\uFF08\u70B9\u51FB\u67F1\u5B50\u7B5B\u9009\u5F53\u6708\u65B0\u589E\uFF09"));
+        let q = z.createDiv("lkm-chart-body");
         this._renderBarChart(
           q,
           o.monthly.map((v) => ({ label: parseInt(v.key.slice(5, 7), 10) + t("\u6708"), value: v.count, filter: { kind: "month", value: v.key } })),
@@ -4080,27 +4089,27 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         );
       }
       {
-        let O = p.createDiv("lkm-dash-sec");
-        if (O.createDiv("lkm-dash-h").setText(t("\u6811\u6DF1\u5EA6\u5206\u5E03\uFF08\u70B9\u51FB\u67F1\u5B50\u7B5B\u9009\u8BE5\u5C42\u8282\u70B9\uFF09")), o.depthMax) {
-          let q = O.createDiv("lkm-chart-body"), v = [];
+        let z = p.createDiv("lkm-dash-sec");
+        if (z.createDiv("lkm-dash-h").setText(t("\u6811\u6DF1\u5EA6\u5206\u5E03\uFF08\u70B9\u51FB\u67F1\u5B50\u7B5B\u9009\u8BE5\u5C42\u8282\u70B9\uFF09")), o.depthMax) {
+          let q = z.createDiv("lkm-chart-body"), v = [];
           for (let U = 1; U <= o.depthMax; U++) v.push({ label: t("\u7B2C") + U + t("\u5C42"), value: o.depthCount.get(U) || 0, filter: { kind: "depth", value: String(U) } });
           this._renderBarChart(q, v, { height: window.innerWidth < 600 ? 100 : 120 });
-        } else O.createDiv("lkm-heat-sum").setText(t("\u8FD8\u6CA1\u6709\u53EF\u7EDF\u8BA1\u7684\u5C42\u7EA7\u6570\u636E"));
+        } else z.createDiv("lkm-heat-sum").setText(t("\u8FD8\u6CA1\u6709\u53EF\u7EDF\u8BA1\u7684\u5C42\u7EA7\u6570\u636E"));
       }
-      let r = p.createDiv("lkm-dash-sec"), h = new Set([...o.heat.keys()].map((O) => O.slice(0, 4)));
+      let r = p.createDiv("lkm-dash-sec"), h = new Set([...o.heat.keys()].map((z) => z.slice(0, 4)));
       h.add(String((/* @__PURE__ */ new Date()).getFullYear()));
       let w = [...h].sort().reverse();
       this._dashHeatIdx = Math.min(this._dashHeatIdx || 0, w.length);
       let k = r.createDiv("lkm-heat-head");
       if (k.createDiv("lkm-dash-h").setText(t("\u521B\u5EFA\u70ED\u529B\u56FE \xB7 ") + (this._dashHeatIdx ? w[this._dashHeatIdx - 1] + t(" \u5E74") : t("\u8FD1\u4E00\u5E74")) + t("\uFF08\u6309 date \u5B57\u6BB5\uFF09")), this._dashHeatIdx || w.length > 1) {
-        let O = k.createDiv("lkm-heat-nav"), q = /* @__PURE__ */ S(() => {
+        let z = k.createDiv("lkm-heat-nav"), q = /* @__PURE__ */ S(() => {
           let Q = this.contentEl.querySelector(".lkm-dash"), ge = Q ? Q.scrollTop : 0;
           this.render();
           let _e = this.contentEl.querySelector(".lkm-dash");
           _e && (_e.scrollTop = ge);
-        }, "rerender"), v = O.createEl("button", { cls: "lkm-step", text: "\u2039" });
+        }, "rerender"), v = z.createEl("button", { cls: "lkm-step", text: "\u2039" });
         v.disabled = this._dashHeatIdx >= w.length;
-        let U = O.createEl("button", { cls: "lkm-step", text: "\u203A" });
+        let U = z.createEl("button", { cls: "lkm-step", text: "\u203A" });
         U.disabled = this._dashHeatIdx <= 0, v.onclick = () => {
           this._dashHeatIdx++, q();
         }, U.onclick = () => {
@@ -4109,41 +4118,41 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       }
       let m = 864e5, L = /* @__PURE__ */ new Date();
       L.setHours(0, 0, 0, 0);
-      let y = (L.getDay() + 6) % 7, _ = window.innerWidth < 600, T = _ ? 10 : 12, g, D, X, C;
+      let y = (L.getDay() + 6) % 7, _ = window.innerWidth < 600, F = _ ? 10 : 12, g, D, X, C;
       if (this._dashHeatIdx) {
-        let O = parseInt(w[this._dashHeatIdx - 1], 10), q = new Date(O, 0, 1), v = new Date(O, 11, 31);
+        let z = parseInt(w[this._dashHeatIdx - 1], 10), q = new Date(z, 0, 1), v = new Date(z, 11, 31);
         g = new Date(q.getTime() - (q.getDay() + 6) % 7 * m), D = q, X = v, C = Math.round((v.getTime() + (6 - (v.getDay() + 6) % 7) * m - g.getTime()) / m / 7);
       } else {
-        let O = new Date(L.getTime() + (6 - y) * m);
-        C = _ ? 26 : 53, g = new Date(O.getTime() - (C * 7 - 1) * m), D = g, X = L;
+        let z = new Date(L.getTime() + (6 - y) * m);
+        C = _ ? 26 : 53, g = new Date(z.getTime() - (C * 7 - 1) * m), D = g, X = L;
       }
       if (r.createDiv("lkm-heat-sum").setText(o.heat.size ? (() => {
-        let O = this._ds(D), q = this._ds(X), v = 0, U = 0, Q = { date: "", count: 0 };
-        for (let [ge, _e] of o.heat) ge >= O && ge <= q && (v += _e, U++, _e > Q.count && (Q = { date: ge, count: _e }));
+        let z = this._ds(D), q = this._ds(X), v = 0, U = 0, Q = { date: "", count: 0 };
+        for (let [ge, _e] of o.heat) ge >= z && ge <= q && (v += _e, U++, _e > Q.count && (Q = { date: ge, count: _e }));
         return (U ? U + t(" \u5929\u6709\u521B\u5EFA \xB7 \u5171 ") + v + t(" \u7BC7") : t("\u8BE5\u65F6\u95F4\u6BB5\u6682\u65E0\u521B\u5EFA\u8BB0\u5F55")) + (Q.count ? t(" \xB7 \u6700\u591A\u4E00\u5929 ") + Q.count + t(" \u7BC7\uFF08") + Q.date + "\uFF09" : "");
       })() : t("\u8FD8\u6CA1\u6709\u5E26 date \u5B57\u6BB5\u7684\u7B14\u8BB0")), o.heat.size) {
-        let O = r.createDiv("lkm-heat-scroll"), q = O.createDiv("lkm-heat-grid");
-        q.style.gridTemplateColumns = "26px repeat(" + C + ", " + T + "px)", q.style.gridAutoRows = T + "px";
+        let z = r.createDiv("lkm-heat-scroll"), q = z.createDiv("lkm-heat-grid");
+        q.style.gridTemplateColumns = "26px repeat(" + C + ", " + F + "px)", q.style.gridAutoRows = F + "px";
         let v = -1;
         for (let we = 0; we < C; we++) {
-          let ke = new Date(g.getTime() + we * 7 * m);
-          if (ke.getMonth() !== v) {
-            v = ke.getMonth();
-            let ae = q.createDiv("lkm-heat-mon");
-            ae.style.gridColumn = String(we + 2), ae.style.gridRow = "1", ae.setText(ke.getMonth() + 1 + t("\u6708"));
+          let ye = new Date(g.getTime() + we * 7 * m);
+          if (ye.getMonth() !== v) {
+            v = ye.getMonth();
+            let oe = q.createDiv("lkm-heat-mon");
+            oe.style.gridColumn = String(we + 2), oe.style.gridRow = "1", oe.setText(ye.getMonth() + 1 + t("\u6708"));
           }
         }
-        [t("\u4E00"), t("\u4E09"), t("\u4E94")].forEach((we, ke) => {
-          let ae = q.createDiv("lkm-heat-wd");
-          ae.style.gridColumn = "1", ae.style.gridRow = String(ke * 2 + 2), ae.setText(we);
+        [t("\u4E00"), t("\u4E09"), t("\u4E94")].forEach((we, ye) => {
+          let oe = q.createDiv("lkm-heat-wd");
+          oe.style.gridColumn = "1", oe.style.gridRow = String(ye * 2 + 2), oe.setText(we);
         });
         let U = this._ds(D), Q = this._ds(X), ge = this._ds(L), _e = null;
         for (let we = 0; we < C; we++)
-          for (let ke = 0; ke < 7; ke++) {
-            let ae = new Date(g.getTime() + (we * 7 + ke) * m), te = q.createDiv("lkm-heat-cell");
-            te.style.gridColumn = String(we + 2), te.style.gridRow = String(ke + 2);
-            let ce = this._ds(ae);
-            if (ae > L || ce < U || ce > Q) {
+          for (let ye = 0; ye < 7; ye++) {
+            let oe = new Date(g.getTime() + (we * 7 + ye) * m), te = q.createDiv("lkm-heat-cell");
+            te.style.gridColumn = String(we + 2), te.style.gridRow = String(ye + 2);
+            let ce = this._ds(oe);
+            if (oe > L || ce < U || ce > Q) {
               te.addClass("lkm-heat-off");
               continue;
             }
@@ -4151,26 +4160,26 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
             Be && te.addClass("lkm-heat-l" + Be), this._isFilterActive({ kind: "date", value: ce }) && te.addClass("is-active"), be && te.addClass("lkm-heat-hit"), ce === ge && (te.addClass("lkm-heat-today"), _e = te), te.title = ce + "\uFF1A" + be + t(" \u7BC7") + (ce === ge ? t("\uFF08\u4ECA\u5929\uFF09") : ""), te.addEventListener("click", () => this._toggleDashFilter({ kind: "date", value: ce }));
           }
         _e && !this._dashHeatIdx && requestAnimationFrame(() => {
-          let we = _e.getBoundingClientRect(), ke = O.getBoundingClientRect();
-          we.right > ke.right - 20 && (O.scrollLeft += we.right - ke.right + 30);
+          let we = _e.getBoundingClientRect(), ye = z.getBoundingClientRect();
+          we.right > ye.right - 20 && (z.scrollLeft += we.right - ye.right + 30);
         });
       }
       let I = p.createDiv("lkm-dash-two"), x = I.createDiv("lkm-dash-sec"), G = this._dashFilters || [];
       if (G.length) {
         x.addClass("lkm-filter-sec");
-        let O = this._sortDashItems(this._dashFilterItems(G)), q = x.createDiv("lkm-filter-head");
+        let z = this._sortDashItems(this._dashFilterItems(G)), q = x.createDiv("lkm-filter-head");
         q.createSpan({ cls: "lkm-dash-h lkm-filter-title", text: this._dashFilterGroupLabel(G) });
-        let v = q.createSpan({ cls: "lkm-filter-count", text: "\uFF08" + O.length + "\uFF09" }), U = q.createEl("input", { cls: "lkm-filter-search", type: "text", attr: { placeholder: t("\u8FC7\u6EE4\u2026") } });
+        let v = q.createSpan({ cls: "lkm-filter-count", text: "\uFF08" + z.length + "\uFF09" }), U = q.createEl("input", { cls: "lkm-filter-search", type: "text", attr: { placeholder: t("\u8FC7\u6EE4\u2026") } });
         U.value = this._dashSearch || "", U.addEventListener("focus", () => {
           if (!window.matchMedia("(hover: none)").matches) return;
-          let ae = this.contentEl.querySelector(".lkm-dash"), te = this.contentEl.querySelector(".lkm-toolbar");
-          if (!ae || !te) return;
-          let ce = ae.scrollTop, be = ae.style.flex, Be = ae.style.height, Ve = /* @__PURE__ */ S(() => {
+          let oe = this.contentEl.querySelector(".lkm-dash"), te = this.contentEl.querySelector(".lkm-toolbar");
+          if (!oe || !te) return;
+          let ce = oe.scrollTop, be = oe.style.flex, Be = oe.style.height, Ve = /* @__PURE__ */ S(() => {
             let Ze = te.getBoundingClientRect().bottom, u = window.visualViewport, $ = (u ? u.height + u.offsetTop : window.innerHeight) - Ze;
-            $ > 60 && (ae.style.flex = "none", ae.style.height = $ + "px"), ae.scrollTop = Math.max(0, q.offsetTop - 50);
+            $ > 60 && (oe.style.flex = "none", oe.style.height = $ + "px"), oe.scrollTop = Math.max(0, q.offsetTop - 50);
           }, "doAdjust");
           setTimeout(Ve, 300), setTimeout(Ve, 500), U.addEventListener("blur", () => {
-            ae.style.flex = be, ae.style.height = Be, ae.scrollTop = ce;
+            oe.style.flex = be, oe.style.height = Be, oe.scrollTop = ce;
           }, { once: !0 });
         });
         let Q = q.createEl("button", { cls: "lkm-btn", text: t("\u6392\u5E8F\uFF1A") + { date: t("\u65E5\u671F"), name: t("\u540D\u79F0") }[this._dashSort || "date"] });
@@ -4180,28 +4189,28 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         let ge = q.createEl("button", { cls: "lkm-btn", text: t("\u6E05\u9664") });
         ge.onclick = () => {
           this._dashFilters = [], this._dashSearch = "", this.render();
-        }, O.length || x.createDiv("lkm-heat-sum").setText(t("\u6CA1\u6709\u7B26\u5408\u6761\u4EF6\u7684\u7B14\u8BB0"));
+        }, z.length || x.createDiv("lkm-heat-sum").setText(t("\u6CA1\u6709\u7B26\u5408\u6761\u4EF6\u7684\u7B14\u8BB0"));
         let _e = x.createDiv("lkm-filter-list"), we = [];
-        for (let ae of O) {
-          let te = this._dashRow(_e, ae);
-          we.push({ el: te, text: (ae.title + " " + (ae.type || "")).toLowerCase() }), te.addEventListener("click", () => {
-            ae.isIndex ? (this._kwFile = ae.file, this._multiRoot = !1, this._mode = "map", this.render()) : this.app.workspace.getLeaf(!0).openFile(ae.file);
+        for (let oe of z) {
+          let te = this._dashRow(_e, oe);
+          we.push({ el: te, text: (oe.title + " " + (oe.type || "")).toLowerCase() }), te.addEventListener("click", () => {
+            oe.isIndex ? (this._kwFile = oe.file, this._multiRoot = !1, this._mode = "map", this.render()) : this.app.workspace.getLeaf(!0).openFile(oe.file);
           });
         }
-        let ke = /* @__PURE__ */ S(() => {
-          let ae = (this._dashSearch || "").trim().toLowerCase(), te = 0;
+        let ye = /* @__PURE__ */ S(() => {
+          let oe = (this._dashSearch || "").trim().toLowerCase(), te = 0;
           for (let ce of we) {
-            let be = !ae || ce.text.includes(ae);
+            let be = !oe || ce.text.includes(oe);
             ce.el.style.display = be ? "" : "none", be && te++;
           }
-          v.setText("\uFF08" + (ae ? te + "/" : "") + O.length + "\uFF09");
+          v.setText("\uFF08" + (oe ? te + "/" : "") + z.length + "\uFF09");
         }, "applySearch");
         U.addEventListener("input", () => {
-          this._dashSearch = U.value, ke();
-        }), ke();
+          this._dashSearch = U.value, ye();
+        }), ye();
       } else {
         x.createDiv("lkm-dash-h").setText(t("\u5206\u652F\u5206\u5E03 \xB7 \u5B8C\u6210\u8FDB\u5EA6")), o.branches.length || x.createDiv("lkm-heat-sum").setText(t("\u8FD8\u6CA1\u6709 main: true \u7684\u4E3B\u7B14\u8BB0"));
-        let O = this._dashBranchAll && o.branches.length > 6, q = O ? o.branches : o.branches.slice(0, 6), v = x.createDiv("lkm-filter-list lkm-branch-list"), U = o.branches[0] && o.branches[0].total || 1;
+        let z = this._dashBranchAll && o.branches.length > 6, q = z ? o.branches : o.branches.slice(0, 6), v = x.createDiv("lkm-filter-list lkm-branch-list"), U = o.branches[0] && o.branches[0].total || 1;
         for (let Q of q) {
           let ge = v.createDiv("lkm-branch-row");
           ge.title = Q.title + t("\uFF0C\u70B9\u51FB\u5728\u5BFC\u56FE\u4E2D\u6253\u5F00"), ge.createSpan({ cls: "lkm-branch-name", text: me(Q.title, 10) });
@@ -4213,7 +4222,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
           });
         }
         if (o.branches.length > 6) {
-          let Q = x.createEl("button", { cls: "lkm-btn", text: O ? t("\u6536\u8D77") : t("\u5C55\u5F00\u5168\u90E8 ") + o.branches.length + t(" \u4E2A\u5206\u652F") });
+          let Q = x.createEl("button", { cls: "lkm-btn", text: z ? t("\u6536\u8D77") : t("\u5C55\u5F00\u5168\u90E8 ") + o.branches.length + t(" \u4E2A\u5206\u652F") });
           Q.onclick = () => {
             this._dashBranchAll = !this._dashBranchAll, this.render();
           };
@@ -4221,12 +4230,12 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       }
       let se = I.createDiv("lkm-dash-sec");
       se.createDiv("lkm-dash-h").setText(t("\u6700\u8FD1\u521B\u5EFA"));
-      for (let O of o.recent)
-        this._dashRow(se, O).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(O.file));
+      for (let z of o.recent)
+        this._dashRow(se, z).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(z.file));
       if (o.modified.length) {
         se.createDiv("lkm-dash-h lkm-sec-gap").setText(t("\u6700\u8FD1\u4FEE\u6539"));
-        for (let O of o.modified)
-          this._dashRow(se, O).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(O.file));
+        for (let z of o.modified)
+          this._dashRow(se, z).addEventListener("click", () => this.app.workspace.getLeaf(!0).openFile(z.file));
       }
     } else
       this._renderTimelineDash(e);
@@ -4240,7 +4249,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     o.createEl("option", { value: "", text: t("\u7C7B\u578B") });
     let c = [...new Set(i.map((m) => m.type).filter(Boolean))].sort();
     for (let m of c)
-      o.createEl("option", { value: m, text: Se(m) });
+      o.createEl("option", { value: m, text: Te(m) });
     o.value = this._tlTypeFilter, o.addEventListener("change", () => {
       this._tlTypeFilter = o.value, this._renderTimelineBody(k, i);
     });
@@ -4320,7 +4329,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
   _renderTimelineItem(e, n) {
     let i = e.createDiv({ cls: "lkm-tl-item" }), a = i.createDiv({ cls: "lkm-tl-item-content" });
     if (n.type) {
-      let c = this.s.typeColors && this.s.typeColors[n.type], p = a.createEl("span", { cls: "lkm-tl-badge", text: Se(n.type) });
+      let c = this.s.typeColors && this.s.typeColors[n.type], p = a.createEl("span", { cls: "lkm-tl-badge", text: Te(n.type) });
       c && (p.style.background = c);
     }
     if (n.zk && a.createEl("span", { cls: "lkm-tl-main-badge", text: t("\u4E3B\u7B14\u8BB0") }), a.createEl("span", { cls: "lkm-tl-title", text: n.title }), n.status) {
@@ -4420,12 +4429,12 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     n.forEach((h, w) => {
       let k = h.value > 0 ? Math.max(3, l * h.value / p) : 0, m = w * d + d * 0.22, L = d * 0.56, y = a - o - k, _ = V("rect", { x: m, y, width: L, height: k, rx: Math.min(4, L / 2), class: "lkm-bar" + (this._isFilterActive(h.filter) ? " is-active" : "") });
       if (h.color && (_.style.fill = h.color), h.filter && _.addEventListener("click", () => this._toggleDashFilter(h.filter)), r.appendChild(_), h.value > 0) {
-        let T = V("text", { x: m + L / 2, y: y - 4, class: "lkm-bars-val", "text-anchor": "middle" });
-        T.textContent = String(h.value), r.appendChild(T);
+        let F = V("text", { x: m + L / 2, y: y - 4, class: "lkm-bars-val", "text-anchor": "middle" });
+        F.textContent = String(h.value), r.appendChild(F);
       }
       if (!i.thinLabels || w % 2 === 0) {
-        let T = V("text", { x: m + L / 2, y: a - 5, class: "lkm-bars-lab", "text-anchor": "middle" });
-        T.textContent = h.label, r.appendChild(T);
+        let F = V("text", { x: m + L / 2, y: a - 5, class: "lkm-bars-lab", "text-anchor": "middle" });
+        F.textContent = h.label, r.appendChild(F);
       }
     }), e.appendChild(r);
   }
@@ -4451,7 +4460,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     });
   }
   _dashFilterLabel(e) {
-    return e.kind === "all" ? t("\u5168\u90E8\u7B14\u8BB0") : e.kind === "zk" ? t("\u4E3B\u7B14\u8BB0") : e.kind === "kw" ? t("\u5173\u952E\u8BCD\u7D22\u5F15") : e.kind === "status" ? Ce(e.value) : e.kind === "nostatus" ? t("\u65E0\u72B6\u6001") : e.kind === "orphan" ? t("\u672A\u5173\u8054") : e.kind === "type" ? t("\u7C7B\u578B\uFF1A") + Se(e.value) : e.kind === "notype" ? t("\u672A\u6807\u6CE8\u7C7B\u578B") : e.kind === "date" || e.kind === "month" ? t("\u521B\u5EFA\u4E8E ") + e.value : e.kind === "depth" ? t("\u7B2C") + e.value + t("\u5C42") : e.kind === "nodate" ? t("\u672A\u6807\u65E5\u671F") : t("\u7B5B\u9009");
+    return e.kind === "all" ? t("\u5168\u90E8\u7B14\u8BB0") : e.kind === "zk" ? t("\u4E3B\u7B14\u8BB0") : e.kind === "kw" ? t("\u5173\u952E\u8BCD\u7D22\u5F15") : e.kind === "status" ? Ce(e.value) : e.kind === "nostatus" ? t("\u65E0\u72B6\u6001") : e.kind === "orphan" ? t("\u672A\u5173\u8054") : e.kind === "type" ? t("\u7C7B\u578B\uFF1A") + Te(e.value) : e.kind === "notype" ? t("\u672A\u6807\u6CE8\u7C7B\u578B") : e.kind === "date" || e.kind === "month" ? t("\u521B\u5EFA\u4E8E ") + e.value : e.kind === "depth" ? t("\u7B2C") + e.value + t("\u5C42") : e.kind === "nodate" ? t("\u672A\u6807\u65E5\u671F") : t("\u7B5B\u9009");
   }
   _dashFilterGroupLabel(e) {
     let n = /* @__PURE__ */ new Set(["date", "month", "type", "depth", "status"]), i = /* @__PURE__ */ new Map(), a = [];
@@ -4463,7 +4472,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         s.push(this._dashFilterLabel(c[0]));
         continue;
       }
-      let p = t(o === "date" || o === "month" ? "\u521B\u5EFA\u4E8E " : o === "type" ? "\u7C7B\u578B\uFF1A" : o === "status" ? "\u72B6\u6001\uFF1A" : "\u7B2C"), d = o === "depth" ? t(" \u5C42") : "", l = o === "status" ? (r) => Ce(r.value) : o === "type" ? (r) => Se(r.value) : (r) => r.value;
+      let p = t(o === "date" || o === "month" ? "\u521B\u5EFA\u4E8E " : o === "type" ? "\u7C7B\u578B\uFF1A" : o === "status" ? "\u72B6\u6001\uFF1A" : "\u7B2C"), d = o === "depth" ? t(" \u5C42") : "", l = o === "status" ? (r) => Ce(r.value) : o === "type" ? (r) => Te(r.value) : (r) => r.value;
       s.push(p + c.map(l).join("\u3001") + d);
     }
     for (let o of a) s.push(this._dashFilterLabel(o));
@@ -4505,7 +4514,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     for (let i of e.byStatusOrder) n.push("| " + Ce(i.name) + " | " + i.count + " |");
     if (e.noStatus && n.push(t("| \u65E0\u72B6\u6001 | ") + e.noStatus + " |"), n.push(t("| \u672A\u6807\u6CE8\u7C7B\u578B | ") + e.noType + " |"), n.push(t("| \u672A\u6807\u65E5\u671F | ") + e.noDate + " |"), n.push(""), e.byTypeOrder.length) {
       n.push(t("### \u7C7B\u578B\u5206\u5E03")), n.push(t("| \u7C7B\u578B | \u6570\u91CF | \u5360\u6BD4 |")), n.push("| --- | --- | --- |");
-      for (let i of e.byTypeOrder) n.push("| " + Se(i.name) + " | " + i.count + " | " + (e.total ? Math.round(i.count / e.total * 100) : 0) + "% |");
+      for (let i of e.byTypeOrder) n.push("| " + Te(i.name) + " | " + i.count + " | " + (e.total ? Math.round(i.count / e.total * 100) : 0) + "% |");
       n.push("");
     }
     if (e.depthMax) {
@@ -4539,11 +4548,11 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     for (let [v, U] of w) h[v] || m.push({ name: v, color: "var(--text-faint)", count: U });
     let L = this._depthMap(), y = /* @__PURE__ */ new Map();
     for (let v of L.values()) v && y.set(v, (y.get(v) || 0) + 1);
-    let _ = y.size ? Math.max(...y.keys()) : 0, T = /* @__PURE__ */ new Date();
-    T.setHours(0, 0, 0, 0);
+    let _ = y.size ? Math.max(...y.keys()) : 0, F = /* @__PURE__ */ new Date();
+    F.setHours(0, 0, 0, 0);
     let g = [];
     for (let v = 11; v >= 0; v--) {
-      let U = new Date(T.getFullYear(), T.getMonth() - v, 1);
+      let U = new Date(F.getFullYear(), F.getMonth() - v, 1);
       g.push({ key: U.getFullYear() + "-" + String(U.getMonth() + 1).padStart(2, "0"), count: 0 });
     }
     for (let v of e) {
@@ -4557,13 +4566,13 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     for (let v of e) v.date && C.set(v.date, (C.get(v.date) || 0) + 1);
     let I = e.filter((v) => v.zk).map((v) => {
       let U = it(this.app, this.notes, v), Q = 0, ge = 0, _e = /* @__PURE__ */ new Set();
-      return (/* @__PURE__ */ S((function we(ke) {
-        if (ke.note.file) {
-          if (_e.has(ke.note.file.path)) return;
-          _e.add(ke.note.file.path);
+      return (/* @__PURE__ */ S((function we(ye) {
+        if (ye.note.file) {
+          if (_e.has(ye.note.file.path)) return;
+          _e.add(ye.note.file.path);
         }
-        Q++, ke.note.status === "\u5DF2\u5B8C\u6210" && ge++;
-        for (let ae of ke.children) we(ae);
+        Q++, ye.note.status === "\u5DF2\u5B8C\u6210" && ge++;
+        for (let oe of ye.children) we(oe);
       }), "walk"))(U), { path: v.file.path, title: v.title, total: Q, done: ge };
     }).sort((v, U) => U.total - v.total), x = /* @__PURE__ */ S((v) => ({ title: v.title, created: v.date || "", type: v.type || "", file: v.file }), "toItem"), G = e.filter((v) => v.date).sort((v, U) => String(U.date).localeCompare(String(v.date))).slice(0, 8).map(x), se = e.slice().sort((v, U) => (U.file.stat && U.file.stat.mtime || 0) - (v.file.stat && v.file.stat.mtime || 0)).slice(0, 6).map((v) => {
       let U = x(v);
@@ -4573,14 +4582,14 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       } catch {
       }
       return U;
-    }), O = 0, q = 0;
+    }), z = 0, q = 0;
     for (let v of e)
       for (let U of v.childLinks) {
-        O++;
+        z++;
         let Q = this.app.metadataCache.getFirstLinkpathDest(U, v.file.path);
         (!Q || !this.notes.has(Q.path)) && q++;
       }
-    return { total: n, zk: i, done: p, todo: d, noDate: l, orphan: r, noType: k, byTypeOrder: m, byStatusOrder: c, noStatus: o, depthCount: y, depthMax: _, monthly: g, kw: D, heat: C, branches: I, recent: G, modified: se, linkCount: O, deadLinks: q };
+    return { total: n, zk: i, done: p, todo: d, noDate: l, orphan: r, noType: k, byTypeOrder: m, byStatusOrder: c, noStatus: o, depthCount: y, depthMax: _, monthly: g, kw: D, heat: C, branches: I, recent: G, modified: se, linkCount: z, deadLinks: q };
   }
 };
 S(Ot, "LinkMindmapView");
@@ -4669,7 +4678,7 @@ var We = Ot, zt = class extends qt {
       layout() {
         new Z(e).setName(t("\u9ED8\u8BA4\u663E\u793A\u5C42\u6570")).setDesc(t("\u6253\u5F00\u65F6\u9ED8\u8BA4\u5C55\u5F00\u5230\u7B2C\u51E0\u5C42")).addText((l) => l.setValue(String(s.plugin.settings.defaultDepth)).onChange(async (r) => {
           s.plugin.settings.defaultDepth = Math.max(1, parseInt(r, 10) || 3), await s.plugin.saveSettings();
-          for (let h of s.plugin.app.workspace.getLeavesOfType(Le))
+          for (let h of s.plugin.app.workspace.getLeavesOfType(Pe))
             h.view instanceof We && (h.view.depth = s.plugin.settings.defaultDepth, h.view._expandedMem.clear());
           s.plugin.refreshViews();
         })), new Z(e).setName(t("\u540D\u79F0\u6700\u5927\u5B57\u6570")).setDesc(t("\u8282\u70B9\u6807\u9898\u6700\u591A\u663E\u793A\u7684\u5B57\u6570\uFF0C\u8D85\u51FA\u90E8\u5206\u663E\u793A\u7701\u7565\u53F7\uFF1B0 = \u663E\u793A\u5168\u90E8\u540D\u79F0")).addText((l) => l.setValue(String(s.plugin.settings.maxTitleLen)).onChange(async (r) => {
@@ -4732,7 +4741,7 @@ var We = Ot, zt = class extends qt {
         let l = s.plugin.settings.typeColors || (s.plugin.settings.typeColors = {});
         new Z(e).setName(t("\u9ED8\u8BA4\u7C7B\u578B")).setDesc(t("\u65B0\u5EFA\u5B50\u8282\u70B9\u65F6\u9ED8\u8BA4\u9009\u4E2D\u7684\u7C7B\u578B\uFF08\u521B\u5EFA\u5F39\u7A97\u91CC\u4ECD\u53EF\u66F4\u6539\u6216\u4E0D\u9009\uFF09")).addDropdown((k) => {
           k.addOption("", t("\u4E0D\u9009"));
-          for (let m of Object.keys(l)) k.addOption(m, Se(m));
+          for (let m of Object.keys(l)) k.addOption(m, Te(m));
           k.setValue(l[s.plugin.settings.defaultType] !== void 0 ? s.plugin.settings.defaultType : ""), k.onChange(async (m) => {
             s.plugin.settings.defaultType = m, await s.plugin.saveSettings();
           });
@@ -4757,14 +4766,14 @@ var We = Ot, zt = class extends qt {
         }).addButton((k) => k.setButtonText(t("\u6DFB\u52A0")).setCta().onClick(h));
         let w = Object.keys(l);
         for (let k = 0; k < w.length; k++) {
-          let m = w[k], L = k, y = s.plugin.settings.typeTemplates || (s.plugin.settings.typeTemplates = {}), _ = s.plugin.app.vault.getAbstractFileByPath(ve(s.plugin.settings.templateFolder || "99-\u6A21\u677F")), T = [{ path: "", name: t("\u9ED8\u8BA4") }];
-          if (_ && _.children) for (let g of _.children) g instanceof Xe && g.extension === "md" && T.push({ path: g.path, name: g.basename });
-          new Z(e).setName(Se(m)).setDesc(t("type \u4E3A\u300C") + m + t("\u300D\u7684\u8282\u70B9\u8FB9\u6846\u4F7F\u7528\u8BE5\u989C\u8272")).addColorPicker((g) => {
+          let m = w[k], L = k, y = s.plugin.settings.typeTemplates || (s.plugin.settings.typeTemplates = {}), _ = s.plugin.app.vault.getAbstractFileByPath(ve(s.plugin.settings.templateFolder || "99-\u6A21\u677F")), F = [{ path: "", name: t("\u9ED8\u8BA4") }];
+          if (_ && _.children) for (let g of _.children) g instanceof Xe && g.extension === "md" && F.push({ path: g.path, name: g.basename });
+          new Z(e).setName(Te(m)).setDesc(t("type \u4E3A\u300C") + m + t("\u300D\u7684\u8282\u70B9\u8FB9\u6846\u4F7F\u7528\u8BE5\u989C\u8272")).addColorPicker((g) => {
             g.setValue(String(l[m])), g.onChange(async (D) => {
               D && D !== l[m] && (l[m] = D, await s.plugin.saveSettings(), s.plugin.refreshViews());
             });
           }).addDropdown((g) => {
-            for (let D of T) g.addOption(D.path, D.name);
+            for (let D of F) g.addOption(D.path, D.name);
             g.setValue(y[m] || ""), g.onChange(async (D) => {
               D ? y[m] = D : delete y[m], await s.plugin.saveSettings();
             });
@@ -4852,7 +4861,7 @@ var We = Ot, zt = class extends qt {
               }
           }, r.click();
         })), new Z(e).setName(t("\u6062\u590D\u9ED8\u8BA4\u914D\u7F6E")).setDesc(t("\u5C06\u6240\u6709\u8BBE\u7F6E\u6062\u590D\u4E3A\u9ED8\u8BA4\u503C\uFF08\u4E0D\u4F1A\u5220\u9664\u7B14\u8BB0\uFF09")).addButton((l) => l.setButtonText(t("\u6062\u590D\u9ED8\u8BA4")).onClick(() => {
-          new je(s.app, t("\u6062\u590D\u9ED8\u8BA4\u914D\u7F6E"), t("\u786E\u5B9A\u5C06\u6240\u6709\u8BBE\u7F6E\u6062\u590D\u4E3A\u9ED8\u8BA4\u503C\u5417\uFF1F"), async () => {
+          new Ye(s.app, t("\u6062\u590D\u9ED8\u8BA4\u914D\u7F6E"), t("\u786E\u5B9A\u5C06\u6240\u6709\u8BBE\u7F6E\u6062\u590D\u4E3A\u9ED8\u8BA4\u503C\u5417\uFF1F"), async () => {
             s.plugin.settings = JSON.parse(JSON.stringify(Ft)), await s.plugin.saveSettings(), s.plugin.applyThemeVars(), s.plugin.refreshViews(), s.display(), new b(t("\u5DF2\u6062\u590D\u9ED8\u8BA4\u914D\u7F6E"));
           }).open();
         }));
@@ -4868,17 +4877,17 @@ var We = Ot, zt = class extends qt {
 S(zt, "LinkMindmapSettingTab");
 var ns = zt, Ht = class extends Xt {
   async onload() {
-    this._autoState = null, this._loadedPresets = [], await this.loadSettings(), this._initLang(), await this._loadViewsFromFile(), this.registerView(Le, (n) => new We(n, this)), this.addRibbonIcon("git-merge", t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), () => this.activateView()), this.addCommand({ id: "open-link-mindmap", name: t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), callback: /* @__PURE__ */ S(() => this.activateView(), "callback") }), this.addCommand({ id: "open-timeline", name: t("\u6253\u5F00\u65F6\u95F4\u7EBF"), callback: /* @__PURE__ */ S(() => this.activateTimeline(), "callback") }), this.addCommand({ id: "normalize-frontmatter", name: t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ S(() => this._normalizeFrontmatter(), "callback") }), this.addCommand({ id: "normalize-frontmatter-current", name: t("\u6574\u7406\u5F53\u524D\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ S(() => this._normalizeFrontmatter(!0), "callback") }), this.addCommand({ id: "check-links", name: t("\u68C0\u67E5\u94FE\u63A5\u5B8C\u6574\u6027"), callback: /* @__PURE__ */ S(() => this._checkLinks(), "callback") }), this.addCommand({ id: "clean-invalid-types", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u7C7B\u578B"), callback: /* @__PURE__ */ S(() => this._cleanInvalidTypes(), "callback") }), this.addCommand({ id: "clean-invalid-status", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u72B6\u6001"), callback: /* @__PURE__ */ S(() => this._cleanInvalidStatus(), "callback") }), this.addCommand({ id: "convert-to-excalidraw", name: t("\u8F6C\u6362\u5F53\u524D\u7B14\u8BB0\u4E3A excalidraw"), callback: /* @__PURE__ */ S(() => {
+    this._autoState = null, this._loadedPresets = [], await this.loadSettings(), this._initLang(), await this._loadViewsFromFile(), this.registerView(Pe, (n) => new We(n, this)), this.addRibbonIcon("git-merge", t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), () => this.activateView()), this.addCommand({ id: "open-link-mindmap", name: t("\u6253\u5F00\u94FE\u63A5\u601D\u7EF4\u5BFC\u56FE"), callback: /* @__PURE__ */ S(() => this.activateView(), "callback") }), this.addCommand({ id: "open-timeline", name: t("\u6253\u5F00\u65F6\u95F4\u7EBF"), callback: /* @__PURE__ */ S(() => this.activateTimeline(), "callback") }), this.addCommand({ id: "normalize-frontmatter", name: t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ S(() => this._normalizeFrontmatter(), "callback") }), this.addCommand({ id: "normalize-frontmatter-current", name: t("\u6574\u7406\u5F53\u524D\u7B14\u8BB0\u5C5E\u6027\uFF08\u6309\u6A21\u677F\uFF09"), callback: /* @__PURE__ */ S(() => this._normalizeFrontmatter(!0), "callback") }), this.addCommand({ id: "check-links", name: t("\u68C0\u67E5\u94FE\u63A5\u5B8C\u6574\u6027"), callback: /* @__PURE__ */ S(() => this._checkLinks(), "callback") }), this.addCommand({ id: "clean-invalid-types", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u7C7B\u578B"), callback: /* @__PURE__ */ S(() => this._cleanInvalidTypes(), "callback") }), this.addCommand({ id: "clean-invalid-status", name: t("\u6E05\u9664\u6240\u6709\u7B14\u8BB0\u5931\u6548\u72B6\u6001"), callback: /* @__PURE__ */ S(() => this._cleanInvalidStatus(), "callback") }), this.addCommand({ id: "convert-to-excalidraw", name: t("\u8F6C\u6362\u5F53\u524D\u7B14\u8BB0\u4E3A excalidraw"), callback: /* @__PURE__ */ S(() => {
       let n = this.app.workspace.getActiveFile();
       n ? this._convertToExcalidraw(n) : new b(t("\u8BF7\u5148\u6253\u5F00\u4E00\u7BC7\u7B14\u8BB0"));
     }, "callback") }), this.addCommand({ id: "show-help", name: t("\u67E5\u770B\u4F7F\u7528\u5E2E\u52A9"), callback: /* @__PURE__ */ S(async () => {
-      for (let n of this.app.workspace.getLeavesOfType(Le))
+      for (let n of this.app.workspace.getLeavesOfType(Pe))
         if (n.view instanceof We) {
           n.view._showHelp();
           return;
         }
       await this.activateView();
-      for (let n of this.app.workspace.getLeavesOfType(Le))
+      for (let n of this.app.workspace.getLeavesOfType(Pe))
         n.view instanceof We && n.view._showHelp();
     }, "callback") }), this.addSettingTab(new ns(this.app, this)), this.applyThemeVars();
     let e = () => this.settings.savedViewLocation || "link-mindmap-presets.json";
@@ -4887,19 +4896,19 @@ var ns = zt, Ht = class extends Xt {
     })), this.registerEvent(this.app.vault.on("modify", (n) => {
       n.path === e() && (!this._autoState || !this._loadedPresets) && this._loadViewsFromFile().then(() => this._rebuildAllViews()).catch((i) => console.error("[link-mindmap] reload presets:", i)), this._onVaultChange(n);
     })), this.registerEvent(this.app.vault.on("delete", (n) => this._onVaultChange(n))), this.registerEvent(this.app.vault.on("rename", (n, i) => this._onVaultChange(n, i))), this.registerEvent(this.app.metadataCache.on("changed", (n) => this._onVaultChange(n))), this.registerEvent(this.app.metadataCache.on("resolved", () => this._rebuildAllViews())), this.registerEvent(this.app.workspace.on("file-open", (n) => {
-      for (let i of this.app.workspace.getLeavesOfType(Le))
+      for (let i of this.app.workspace.getLeavesOfType(Pe))
         i.view instanceof We && i.view.locateFile(n);
     }));
   }
   onunload() {
-    clearTimeout(this._refreshTimer), this.app.workspace.detachLeavesOfType(Le);
+    clearTimeout(this._refreshTimer), this.app.workspace.detachLeavesOfType(Pe);
   }
   _onVaultChange(e, n) {
     let i = ve(this.settings.mainFolder || ""), a = /* @__PURE__ */ S((o) => !!o && (o === i || o.startsWith(i + "/")), "inFolder"), s = e && e.path;
     e && e.extension && e.extension !== "md" && !a(n) || !a(s) && !a(n) || (clearTimeout(this._refreshTimer), this._refreshTimer = setTimeout(() => this._rebuildAllViews(), 400));
   }
   _rebuildAllViews() {
-    for (let e of this.app.workspace.getLeavesOfType(Le))
+    for (let e of this.app.workspace.getLeavesOfType(Pe))
       e.view instanceof We && e.view.rebuild(!0);
   }
   async _checkLinks() {
@@ -4919,7 +4928,7 @@ var ns = zt, Ht = class extends Xt {
       new b(t("\u94FE\u63A5\u5B8C\u6574\u6027\u68C0\u67E5\u901A\u8FC7 \u2713"));
       return;
     }
-    let p = new Pe(this.app);
+    let p = new Ae(this.app);
     p.titleEl.setText(t("\u94FE\u63A5\u5B8C\u6574\u6027\u68C0\u67E5"));
     let d = p.contentEl.createDiv();
     if (d.createEl("p", { text: t("\u53D1\u73B0 ") + c + t(" \u4E2A\u5931\u6548\u94FE\u63A5\uFF1A"), cls: "lkm-modal-sub" }), s.length) {
@@ -4940,7 +4949,7 @@ var ns = zt, Ht = class extends Xt {
     }
     let l = d.createDiv("lkm-modal-btns");
     l.createEl("button", { cls: "lkm-btn lkm-btn-action", text: t("\u4FEE\u590D\u5168\u90E8") }).onclick = async () => {
-      p.close(), new je(this.app, t("\u4FEE\u590D\u5931\u6548\u94FE\u63A5"), t("\u6B64\u64CD\u4F5C\u5C06\u4ECE\u7B14\u8BB0\u7684 children/parent \u5B57\u6BB5\u4E2D\u5220\u9664\u5931\u6548\u94FE\u63A5\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), () => this._doFixBrokenLinks(allBroken)).open();
+      p.close(), new Ye(this.app, t("\u4FEE\u590D\u5931\u6548\u94FE\u63A5"), t("\u6B64\u64CD\u4F5C\u5C06\u4ECE\u7B14\u8BB0\u7684 children/parent \u5B57\u6BB5\u4E2D\u5220\u9664\u5931\u6548\u94FE\u63A5\uFF0C\u4E0D\u53EF\u64A4\u9500\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), () => this._doFixBrokenLinks(allBroken)).open();
     }, l.createEl("button", { cls: "lkm-btn", text: t("\u5173\u95ED") }).onclick = () => p.close(), p.open();
   }
   async _doFixBrokenLinks(e) {
@@ -4994,7 +5003,7 @@ var ns = zt, Ht = class extends Xt {
         let v = (y.lines[0].match(/^.*:\s*(.*)$/) || [])[1] || "", U = lt(v), Q = pt(U);
         Q !== U && (y.lines[0] = L + ": " + (Q ? '"' + Q + '"' : '""'));
       }
-      let _ = k.find((v) => v.key === i), T = _ ? lt((_.lines[0].match(/^.*:\s*(.*)$/) || [])[1] || "") : "", g = n.typeTemplates || {}, D = T && g[T] ? g[T] : (n.templatePath || "").trim(), X = await s(D);
+      let _ = k.find((v) => v.key === i), F = _ ? lt((_.lines[0].match(/^.*:\s*(.*)$/) || [])[1] || "") : "", g = n.typeTemplates || {}, D = F && g[F] ? g[F] : (n.templatePath || "").trim(), X = await s(D);
       if (!X) return { changed: !1, skipped: !0 };
       let C = X.map(([v]) => v), I = /* @__PURE__ */ new Map(X), x = /* @__PURE__ */ new Map(k.map((v) => [v.key, v])), G = [];
       for (let v of C)
@@ -5002,11 +5011,11 @@ var ns = zt, Ht = class extends Xt {
       for (let [, v] of x) G.push(v);
       let se = [];
       for (let v of G) se.push(...v.lines);
-      let O = se.join(`
-`), q = h !== O;
+      let z = se.join(`
+`), q = h !== z;
       if (q) {
         let v = `---
-` + O + `
+` + z + `
 ---
 ` + w;
         await this.app.vault.modify(d, v);
@@ -5028,7 +5037,7 @@ var ns = zt, Ht = class extends Xt {
       new b(t("\u672A\u627E\u5230\u7B14\u8BB0\u6587\u4EF6"));
       return;
     }
-    new je(this.app, t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027"), t("\u6B64\u64CD\u4F5C\u5C06\u6309\u6A21\u677F\u91CD\u6392\u6240\u6709\u7B14\u8BB0\u7684 frontmatter \u5B57\u6BB5\u987A\u5E8F\u5E76\u8865\u5145\u7F3A\u5931\u5B57\u6BB5\u3002\u5DF2\u6709\u503C\u4E0D\u4F1A\u88AB\u4FEE\u6539\uFF0C\u4F46\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
+    new Ye(this.app, t("\u6574\u7406\u6240\u6709\u7B14\u8BB0\u5C5E\u6027"), t("\u6B64\u64CD\u4F5C\u5C06\u6309\u6A21\u677F\u91CD\u6392\u6240\u6709\u7B14\u8BB0\u7684 frontmatter \u5B57\u6BB5\u987A\u5E8F\u5E76\u8865\u5145\u7F3A\u5931\u5B57\u6BB5\u3002\u5DF2\u6709\u503C\u4E0D\u4F1A\u88AB\u4FEE\u6539\uFF0C\u4F46\u5EFA\u8BAE\u5148\u5907\u4EFD\u6570\u636E\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
       let d = 0, l = 0, r = [];
       for (let w of p) {
         let k = await o(w);
@@ -5048,7 +5057,7 @@ var ns = zt, Ht = class extends Xt {
       new b(t("\u6CA1\u6709\u5931\u6548\u7C7B\u578B\u9700\u8981\u6E05\u9664"));
       return;
     }
-    new je(this.app, t("\u6E05\u9664\u5931\u6548\u7C7B\u578B"), t("\u53D1\u73B0 ") + s.length + t(" \u4E2A\u7B14\u8BB0\u7684 type \u4E0D\u5728\u914D\u7F6E\u5217\u8868\u4E2D\uFF0C\u5C06\u88AB\u6E05\u9664\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u7B14\u8BB0\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
+    new Ye(this.app, t("\u6E05\u9664\u5931\u6548\u7C7B\u578B"), t("\u53D1\u73B0 ") + s.length + t(" \u4E2A\u7B14\u8BB0\u7684 type \u4E0D\u5728\u914D\u7F6E\u5217\u8868\u4E2D\uFF0C\u5C06\u88AB\u6E05\u9664\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u7B14\u8BB0\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
       let o = 0;
       for (let c of s)
         try {
@@ -5070,7 +5079,7 @@ var ns = zt, Ht = class extends Xt {
       new b(t("\u8BE5\u6587\u4EF6\u5DF2\u662F excalidraw \u683C\u5F0F"));
       return;
     }
-    new je(this.app, t("\u8F6C\u4E3A excalidraw"), t("\u8F6C\u6362\u540E\u300C") + e.basename + t("\u300D\u7684\u6B63\u6587\u5185\u5BB9\u5C06\u4E22\u5931\uFF08\u4EC5\u4FDD\u7559 frontmatter \u5C5E\u6027\uFF09\uFF0C\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
+    new Ye(this.app, t("\u8F6C\u4E3A excalidraw"), t("\u8F6C\u6362\u540E\u300C") + e.basename + t("\u300D\u7684\u6B63\u6587\u5185\u5BB9\u5C06\u4E22\u5931\uFF08\u4EC5\u4FDD\u7559 frontmatter \u5C5E\u6027\uFF09\uFF0C\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
       try {
         let i = (await this.app.vault.read(e)).match(/^---\n([\s\S]*?)\n---(?:\n|$)/), a;
         i ? a = ["---", ...i[1].split(`
@@ -5093,7 +5102,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
         for (let d of Je(this.app, this.settings.mainFolder))
           d.path !== e.path && await this.app.fileManager.processFrontMatter(d, (l) => {
             for (let r of [this.settings.linkField, this.settings.backField]) {
-              let h = He(l[r]), w = !1, k = h.map((m) => Me(m) === c ? (w = !0, "[[" + p + "]]") : m);
+              let h = He(l[r]), w = !1, k = h.map((m) => De(m) === c ? (w = !0, "[[" + p + "]]") : m);
               w && (l[r] = k);
             }
           });
@@ -5113,7 +5122,7 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
       new b(t("\u6CA1\u6709\u5931\u6548\u72B6\u6001\u9700\u8981\u6E05\u9664"));
       return;
     }
-    new je(this.app, t("\u6E05\u9664\u5931\u6548\u72B6\u6001"), t("\u53D1\u73B0 ") + s.length + t(" \u4E2A\u7B14\u8BB0\u7684 status \u4E0D\u5728\u914D\u7F6E\u5217\u8868\u4E2D\uFF0C\u5C06\u88AB\u6E05\u9664\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u7B14\u8BB0\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
+    new Ye(this.app, t("\u6E05\u9664\u5931\u6548\u72B6\u6001"), t("\u53D1\u73B0 ") + s.length + t(" \u4E2A\u7B14\u8BB0\u7684 status \u4E0D\u5728\u914D\u7F6E\u5217\u8868\u4E2D\uFF0C\u5C06\u88AB\u6E05\u9664\u3002\u5EFA\u8BAE\u5148\u5907\u4EFD\u7B14\u8BB0\u3002\u786E\u5B9A\u7EE7\u7EED\uFF1F"), async () => {
       let o = 0;
       for (let c of s)
         try {
@@ -5133,17 +5142,17 @@ N4IgLgngDgpiBcIYA8DGBDANgSwCYCd0B3EAGhADcZ8BnbAewDsEAmcm+gV31TkQAswYKDXgB6MQHNsY
     for (let [i, a] of Object.entries(n)) e.style.setProperty("--lkm-status-" + i, a);
   }
   async activateView() {
-    let { workspace: e } = this.app, n = e.getLeavesOfType(Le)[0];
-    n || (n = e.getLeaf(!0), await n.setViewState({ type: Le, active: !0 })), e.revealLeaf(n);
+    let { workspace: e } = this.app, n = e.getLeavesOfType(Pe)[0];
+    n || (n = e.getLeaf(!0), await n.setViewState({ type: Pe, active: !0 })), e.revealLeaf(n);
   }
   async activateTimeline() {
     await this.activateView();
-    for (let e of this.app.workspace.getLeavesOfType(Le))
+    for (let e of this.app.workspace.getLeavesOfType(Pe))
       e.view instanceof We && (e.view._mode = "dash", e.view._dashTab = "timeline", e.view.render());
   }
   refreshViews() {
     this.applyThemeVars();
-    for (let e of this.app.workspace.getLeavesOfType(Le))
+    for (let e of this.app.workspace.getLeavesOfType(Pe))
       e.view instanceof We && e.view.render();
   }
   async loadSettings() {
